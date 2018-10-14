@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>JS控制文章里关键词高亮显示 - www.webdm.cn</title>
+<style type="text/css">
+<!--
+.adKeyword {
+color: #FF0000;
+}
+-->
+</style>
+</head>
+<body>
+<p>　　一个和尚挑水吃、两个和尚抬水吃、三个和尚没水吃。总寺的方丈大人得知情况后，就派来了一名主持和一名书记，共同负责解决这一问题。主持上任后，发现问题的关键是管理不到位，于是就招聘一些和尚成立了寺庙管理部来制定分工流程。为了更好地借鉴国外的先进经验，寺庙选派唐僧等领导干部出国学习取经；此外，他们还专门花钱请了天主教、基督教的神父传授MBA。神父呆了不久留下几个东东就走了，一个叫BPR，一个叫ERP。</p>
+<p> </p>
+<script language="JavaScript" type="text/javascript"><!--
+var keys = 	[
+["和尚","http://www.webdm.cn","#ff0000"],
+["系统","http://www.webdm.cn","#00ff00"],
+["念经","/","#0000ff"],
+["工会","/","#cc6600"]
+]
+var bookmark;
+if(document.createRange){
+var range = document.createRange();
+}else{
+var range = document.body.createTextRange();
+bookmark = range.getBookmark();
+}
+var key;
+for(var i = 0;key = keys[i];i++){
+if(range.findText){
+range.collapse(true);
+range.moveToBookmark(bookmark);
+while(range.findText(key[0])){
+range.pasteHTML(range.text.fontcolor(key[2]));
+}
+}else{
+var s,n;
+s = window.getSelection();
+s.collapse(document.body,0);
+while(window.find(key[0])){
+var n = document.createElement("SPAN");
+n.style.color=key[2];
+s.getRangeAt(0).surroundContents(n);
+}
+}
+}
+//--></script>
+<br />
+</body>
+</html>
+
+
