@@ -1,71 +1,250 @@
-<!DOCTYPE html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE> Delete comment </TITLE>
+<META NAME="Author" CONTENT="zc-peng">
+</HEAD>
 
-</style>
-<link rel='stylesheet' id='crayon-group-css' href='http://hzwer.com/wp-content/plugins/bwp-minify/min/?f=wp-content/plugins/crayon-syntax-highlighter/css/min/crayon.min.css,wp-content/plugins/crayon-syntax-highlighter/themes/github/github.css,wp-content/plugins/crayon-syntax-highlighter/fonts/monaco.css,wp-content/plugins/wpdiscuz/assets/third-party/font-awesome-4.6.3/css/font-awesome.min.css,wp-content/plugins/wpdiscuz/assets/css/wpdiscuz.css' type='text/css' media='all' />
-		<style>
-			.ios7.web-app-mode.has-fixed header{ background-color: rgba(45,53,63,.88);}
-		</style>
-</head>
+<BODY>
+<textarea style="height:300;width:500" name="t1" onpropertychange=""></textarea>
+<textarea style="height:300;width:500" name="t3"></textarea>
+<input type="button" value="test" onclick="addColor()">
+<DIV id="divedit" style="BORDER-RIGHT: black 2px solid; BORDER-TOP: black 2px solid; SCROLLBAR-FACE-COLOR: #dda0dd; SCROLLBAR-HIGHLIGHT-COLOR: #c3d6da; OVERFLOW: scroll; BORDER-LEFT: black 2px solid; WIDTH: 100%; SCROLLBAR-SHADOW-COLOR: #3d5054; COLOR: #000000; SCROLLBAR-3DLIGHT-COLOR: #3d5054; SCROLLBAR-ARROW-COLOR: #e6e6fa; BORDER-BOTTOM: black 2px solid; SCROLLBAR-DARKSHADOW-COLOR: #85989c; HEIGHT: 380px; BACKGROUND-COLOR: #e6e6fa" align=left CONTENTEDITABLE="false"></div>
+</BODY>
 
-		<div id="crayon-5bc32ef94d1d7491735744" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 2px; font-size: 15px !important; line-height: 18px !important;">
-			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 15px !important;height: 22.5px !important; line-height: 22.5px !important;"><span class="crayon-title"></span>
-			<div class="crayon-tools" style="font-size: 15px !important;height: 22.5px !important; line-height: 22.5px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">C++</span></div></div>
-			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 15px !important; line-height: 18px !important;">
-#include&lt;set&gt;
-#include&lt;map&gt;
-#include&lt;ctime&gt;
-#include&lt;queue&gt;
-#include&lt;cmath&gt;
-#include&lt;cstdio&gt;
-#include&lt;vector&gt;
-#include&lt;cstring&gt;
-#include&lt;cstdlib&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#define ll long long
-#define mod 10000007
-using namespace std;
-int read()
-{
-    int x=0,f=1;char ch=getchar();
-    while(ch&lt;'0'||ch&gt;'9'){if(ch=='-')f=-1;ch=getchar();}
-    while(ch&gt;='0'&amp;&amp;ch&lt;='9'){x=x*10+ch-'0';ch=getchar();}
-    return x*f;
+<script>
+
+function addColor(){
+
+    var t1_Content = document.all.t1.value;
+
+    t1_Content = t1_Content.replace(/&amp/g,"&ampamp");
+    
+    for(var i=0;i<entity.length;i++){
+        var tem1 = entity[i].substr(0,1);
+        var tem2 = entity[i].substr(1);
+        var reg = new RegExp("&(" + tem2 + ")","g");
+        //#0000ff is keyword color
+        t1_Content = t1_Content.replace(reg,"&amp$1");
+    }
+
+    t1_Content = t1_Content.replace(/</g,"&lt;");
+    t1_Content = t1_Content.replace(/>/g,"&gt;");
+    t1_Content = "<br>" + t1_Content;
+    for(var i=0;i<keyword.length;i++){
+        var reg = new RegExp("([^a-zA-Z0-9_]+)(" + keyword[i] + ")([^a-zA-Z0-9_]+)","g");
+        //#0000ff is keyword color
+        t1_Content = t1_Content.replace(reg,"$1<font color='#0000ff'>$2</font>$3");
+        
+    }
+    for(var i=0;i<htmlkeyword.length;i++){
+        var reg = new RegExp("([^a-zA-Z0-9_]+)(" + htmlkeyword[i] + ")([^a-zA-Z0-9_]+)","g");
+        //#0000ff is keyword color
+        t1_Content = t1_Content.replace(reg,"$1<font color='#ff0000'>$2</font>$3");
+    }
+
+    var result = "";
+    var flag = false;
+    var b = t1_Content.split("/r/n");//split row
+
+    //for per row
+    for(var i = 0;i<b.length;i++){
+        var perRow = b[i];
+        if(flag == true){
+            if(perRow.indexOf("*/") != -1){
+                //delete comment
+                //perRow = perRow.substr(perRow.indexOf("*/") + 2);
+                //perRow = "<font color='#008040'>" + perRow.substr(0,perRow.indexOf("*/") + 2) + "</font>" + perRow.substr(perRow.indexOf("*/") + 2);
+                perRow = addFontTag(perRow.substr(0,perRow.indexOf("*/") + 2),COMMENT_COLOR) + perRow.substr(perRow.indexOf("*/") + 2);
+                flag = false;
+            }else{
+                //perRow = "<font color='#008040'>" + perRow + "</font>";
+                perRow = addFontTag(perRow,COMMENT_COLOR);
+                result += perRow + "/r/n";
+                continue;
+            }
+        }
+
+        if(perRow.indexOf("/"") == -1 && perRow.indexOf("/") == -1){
+            //neither " nor / exsit in perRow
+            //do nothing
+        }else{
+
+            //for per character
+            for(var j = 0;j<perRow.length;j++){
+                var tempChar = perRow.substr(j,1);//per char
+                if(tempChar == "/""){
+                    var tempCol = j+1;
+                    if(tempCol == perRow.length){
+                        break;//next row
+                    }else{
+                        for(var k = tempCol;k<perRow.length;k++){
+                            var nextChar = perRow.substr(k,1);
+                            if(nextChar == "/""){
+                                if(perRow.substr(k-1,1) == "//"){
+                                    if(perRow.substr(k-2,1) == "//"){
+                                        //match "...//"
+                                        perRow = perRow.substr(0,j) + addFontTag(perRow.substr(j,k-j+1),STRING_COLOR)+ perRow.substr(k + 1);
+                                        j = k + 22 + 7;//22:<font color='#990099'>.length ; 7:</font>.length
+                                        break;//next col
+                                    }else{
+                                        continue;
+                                    }
+                                }else{
+                                    //match "..."
+                                    //perRow = perRow.substr(0,j) + "<font color='#990099'>" + perRow.substr(j,k-j+1) + "</font>" + perRow.substr(k + 1);
+                                    perRow = perRow.substr(0,j) + addFontTag(perRow.substr(j,k-j+1),STRING_COLOR)+ perRow.substr(k + 1);
+                                    j = k + 22 + 7;//22:<font color='#990099'>.length ; 7:</font>.length
+                                    break;//next col
+                                }
+                            }
+                        }
+                    }
+                }else if(tempChar == "/"){
+                    var tempCol = j+1;
+                    if(tempCol == perRow.length){
+                        break;//next row
+                    }else{
+                        if(perRow.substr(tempCol,1) == "/"){
+                            //delete comment
+                            //perRow = perRow.substr(0,j);
+                            //perRow = perRow.substr(0,j) + "<font color='#008040'>" + perRow.substr(j) + "</font>";
+                            if(j != 0){
+                                if(perRow.substr(j - 1,1) == "//"){
+                                    //regExp
+                                    //like : ///*asdf*///
+                                    continue;
+                                }
+                            }
+                            perRow = perRow.substr(0,j) + addFontTag(perRow.substr(j),COMMENT_COLOR);
+                            break;//next row
+                        }else if(perRow.substr(tempCol,1) == "*"){
+                            if(j != 0){
+                                if(perRow.substr(j - 1,1) == "//"){
+                                    //regExp
+                                    //like : ///*asdf*///
+                                    continue;
+                                }
+                            }
+                            flag = true;
+                            var temp = perRow.substr(j + 2);
+                            if(temp.indexOf("*/") != -1){
+                                //delete comment
+                                //perRow = perRow.substr(0,j) + temp.substr(temp.indexOf("*/") + 2);
+                                //perRow = perRow.substr(0,j) + "<font color='#008040'>" + temp.substr(0,temp.indexOf("*/")) + "</font>" + temp.substr(temp.indexOf("*/") + 2);
+                                //alert(temp);
+                                perRow = perRow.substr(0,j) + addFontTag("/*" + temp.substr(0,temp.indexOf("*/") + 2),COMMENT_COLOR) + temp.substr(temp.indexOf("*/") + 2);
+                                flag = false;
+                                j--;//important
+                                j = j + 22 + 7;//22:<font color='#990099'>.length ; 7:</font>.length
+                            }else{
+                                //delete comment
+                                //perRow = perRow.substr(0,j);
+                                //perRow = perRow.substr(0,j) + "<font color='#008040'>" + perRow.substr(j) + "</font>"
+                                perRow = perRow.substr(0,j) + addFontTag(perRow.substr(j),COMMENT_COLOR);
+                                break;//next row
+                            }
+                        }else{
+                            continue;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        
+        result += perRow + "/r/n";
+    }
+
+    result = result.replace(//t/g,"&nbsp;&nbsp;&nbsp;&nbsp;");
+    document.all.divedit.innerHTML = "<pre>" + result + "</pre>";
+    document.all.t3.value = result;
+
 }
-int n;
-int bin[20],fac[20],a[5005];
-ll ans;
-bool check(int x,int k)
-{
-    for(int i=1;i&lt;bin[k];i++)if(a[x+i]!
-                swap(t1+x*bin[k-1],t2+y*bin[k-1],k-1);
-                if(check(t1,k)&amp;&amp;check(t2,k))
-                {
-                    dfs(k+1,now+1);
-                    swap(t1+x*bin[k-1],t2+y*bin[k-1],k-1);
-                    break;
-                }
-                swap(t1+x*bin[k-1],t2+y*bin[k-1],k-1);
-            }
-    }
+
+/** constant **/
+var COMMENT_COLOR = "'#008040'";
+var STRING_COLOR = "'#990099'";
+var KEYWORD_COLOR = "'#0000ff'"
+/***/
+
+function addFontTag(str,type){
+    var reg = /<font.*>(.*)<//font>/g;
+    str = str.replace(reg,"$1");
+    //alert(str);
+    return "<font color=" + type + ">" + str + "</font>";
 }
-int main()
-{
-				//asfasfasfasf
-    bin[0]=1;for(int i=1;i&lt;20;i++)bin[i]=bin[i-1]&lt;&lt;1;
-    fac[0]=1;for(int i=1;i&lt;=12;i++)fac[i]=fac[i-1]*i;
-    n=read();
-    for(int i=1;i&lt;=bin[n];i++)a[i]=read();
-    dfs(1,0);
-    printf("%lld",ans);
-    return 0;
-}</textarea></div>
-						<td class="crayon-code"><div class="crayon-pre" style="font-size: 15px !important; line-height: 18px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-1"><span class="crayon-p">#include&lt;set&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-2"><span class="crayon-p">#include&lt;map&gt;</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-3"><span class="crayon-p">#include&lt;ctime&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-4"><span class="crayon-p">#include&lt;queue&gt;</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-5"><span class="crayon-p">#include&lt;cmath&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-6"><span class="crayon-p">#include&lt;cstdio&gt;</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-7"><span class="crayon-p">#include&lt;vector&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-8"><span class="crayon-p">#include&lt;cstring&gt;</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-9"><span class="crayon-p">#include&lt;cstdlib&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-10"><span class="crayon-p">#include&lt;iostream&gt;</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-11"><span class="crayon-p">#include&lt;algorithm&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-12"><span class="crayon-p">#define ll long long</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-13"><span class="crayon-p">#define mod 10000007</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-14"><span class="crayon-r">using</span><span class="crayon-h"> </span><span class="crayon-t">namespace</span><span class="crayon-h"> </span><span class="crayon-v">std</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-15"><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-e">read</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-16"><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-17"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">x</span><span class="crayon-o">=</span><span class="crayon-cn">0</span><span class="crayon-sy">,</span><span class="crayon-v">f</span><span class="crayon-o">=</span><span class="crayon-cn">1</span><span class="crayon-sy">;</span><span class="crayon-t">char</span><span class="crayon-h"> </span><span class="crayon-v">ch</span><span class="crayon-o">=</span><span class="crayon-e">getchar</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-18"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">while</span><span class="crayon-sy">(</span><span class="crayon-v">ch</span><span class="crayon-o">&lt;</span><span class="crayon-s">'0'</span><span class="crayon-o">||</span><span class="crayon-v">ch</span><span class="crayon-o">&gt;</span><span class="crayon-s">'9'</span><span class="crayon-sy">)</span><span class="crayon-sy">{</span><span class="crayon-st">if</span><span class="crayon-sy">(</span><span class="crayon-v">ch</span><span class="crayon-o">==</span><span class="crayon-s">'-'</span><span class="crayon-sy">)</span><span class="crayon-v">f</span><span class="crayon-o">=</span><span class="crayon-o">-</span><span class="crayon-cn">1</span><span class="crayon-sy">;</span><span class="crayon-v">ch</span><span class="crayon-o">=</span><span class="crayon-e">getchar</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-19"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">while</span><span class="crayon-sy">(</span><span class="crayon-v">ch</span><span class="crayon-o">&gt;=</span><span class="crayon-s">'0'</span><span class="crayon-o">&amp;&amp;</span><span class="crayon-v">ch</span><span class="crayon-o">&lt;=</span><span class="crayon-s">'9'</span><span class="crayon-sy">)</span><span class="crayon-sy">{</span><span class="crayon-v">x</span><span class="crayon-o">=</span><span class="crayon-v">x</span><span class="crayon-o">*</span><span class="crayon-cn">10</span><span class="crayon-o">+</span><span class="crayon-v">ch</span><span class="crayon-o">-</span><span class="crayon-s">'0'</span><span class="crayon-sy">;</span><span class="crayon-v">ch</span><span class="crayon-o">=</span><span class="crayon-e">getchar</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-20"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">return</span><span class="crayon-h"> </span><span class="crayon-v">x</span><span class="crayon-o">*</span><span class="crayon-v">f</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-21"><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-22"><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">n</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-23"><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">bin</span><span class="crayon-sy">[</span><span class="crayon-cn">20</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span><span class="crayon-v">fac</span><span class="crayon-sy">[</span><span class="crayon-cn">20</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span><span class="crayon-v">a</span><span class="crayon-sy">[</span><span class="crayon-cn">5005</span><span class="crayon-sy">]</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-24"><span class="crayon-e">ll </span><span class="crayon-v">ans</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-25"><span class="crayon-t">bool</span><span class="crayon-h"> </span><span class="crayon-e">check</span><span class="crayon-sy">(</span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">x</span><span class="crayon-sy">,</span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">k</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-26"><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-27"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">for</span><span class="crayon-sy">(</span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">i</span><span class="crayon-o">=</span><span class="crayon-cn">1</span><span class="crayon-sy">;</span><span class="crayon-v">i</span><span class="crayon-o">&lt;</span><span class="crayon-v">bin</span><span class="crayon-sy">[</span><span class="crayon-v">k</span><span class="crayon-sy">]</span><span class="crayon-sy">;</span><span class="crayon-v">i</span><span class="crayon-o">++</span><span class="crayon-sy">)</span><span class="crayon-st">if</span><span class="crayon-sy">(</span><span class="crayon-v">a</span><span class="crayon-sy">[</span><span class="crayon-v">x</span><span class="crayon-o">+</span><span class="crayon-v">i</span><span class="crayon-sy">]</span><span class="crayon-o">!=</span><span class="crayon-v">a</span><span class="crayon-sy">[</span><span class="crayon-v">x</span><span class="crayon-o">+</span><span class="crayon-v">i</span><span class="crayon-o">-</span><span class="crayon-cn">1</span><span class="crayon-sy">]</span><span class="crayon-o">+</span><span class="crayon-cn">1</span><span class="crayon-sy">)</span><span class="crayon-st">return</span><span class="crayon-h"> </span><span class="crayon-cn">0</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-28"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">return</span><span class="crayon-h"> </span><span class="crayon-cn">1</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-29"><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-30"><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">swap</span><span class="crayon-sy">(</span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">x</span><span class="crayon-sy">,</span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">y</span><span class="crayon-sy">,</span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">k</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-31"><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-32"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">for</span><span class="crayon-sy">(</span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">i</span><span class="crayon-o">=</span><span class="crayon-cn">0</span><span class="crayon-sy">;</span><span class="crayon-v">i</span><span class="crayon-o">&lt;</span><span class="crayon-v">bin</span><span class="crayon-sy">[</span><span class="crayon-v">k</span><span class="crayon-sy">]</span><span class="crayon-sy">;</span><span class="crayon-v">i</span><span class="crayon-o">++</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-33"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">swap</span><span class="crayon-sy">(</span><span class="crayon-v">a</span><span class="crayon-sy">[</span><span class="crayon-v">x</span><span class="crayon-o">+</span><span class="crayon-v">i</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span><span class="crayon-v">a</span><span class="crayon-sy">[</span><span class="crayon-v">y</span><span class="crayon-o">+</span><span class="crayon-v">i</span><span class="crayon-sy">]</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-34"><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-35"><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">dfs</span><span class="crayon-sy">(</span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">k</span><span class="crayon-sy">,</span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">now</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-36"><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-37"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">if</span><span class="crayon-sy">(</span><span class="crayon-v">k</span><span class="crayon-o">==</span><span class="crayon-v">n</span><span class="crayon-o">+</span><span class="crayon-cn">1</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-38"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-39"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">for</span><span class="crayon-sy">(</span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">i</span><span class="crayon-o">=</span><span class="crayon-cn">1</span><span class="crayon-sy">;</span><span class="crayon-v">i</span><span class="crayon-o">&lt;=</span><span class="crayon-v">bin</span><span class="crayon-sy">[</span><span class="crayon-v">n</span><span class="crayon-sy">]</span><span class="crayon-sy">;</span><span class="crayon-v">i</span><span class="crayon-o">++</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-40"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">if</span><span class="crayon-sy">(</span><span class="crayon-v">a</span><span class="crayon-sy">[</span><span class="crayon-v">i</span><span class="crayon-sy">]</span><span class="crayon-o">&lt;</span><span class="crayon-v">a</span><span class="crayon-sy">[</span><span class="crayon-v">i</span><span class="crayon-o">-</span><span class="crayon-cn">1</span><span class="crayon-sy">]</span><span class="crayon-sy">)</span><span class="crayon-st">return</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-41"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">ans</span><span class="crayon-o">+=</span><span class="crayon-v">fac</span><span class="crayon-sy">[</span><span class="crayon-v">now</span><span class="crayon-sy">]</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-42"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">return</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-43"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-44"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">t1</span><span class="crayon-o">=</span><span class="crayon-cn">0</span><span class="crayon-sy">,</span><span class="crayon-v">t2</span><span class="crayon-o">=</span><span class="crayon-cn">0</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-45"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">for</span><span class="crayon-sy">(</span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">i</span><span class="crayon-o">=</span><span class="crayon-cn">1</span><span class="crayon-sy">;</span><span class="crayon-v">i</span><span class="crayon-o">&lt;=</span><span class="crayon-v">bin</span><span class="crayon-sy">[</span><span class="crayon-v">n</span><span class="crayon-sy">]</span><span class="crayon-sy">;</span><span class="crayon-v">i</span><span class="crayon-o">+=</span><span class="crayon-v">bin</span><span class="crayon-sy">[</span><span class="crayon-v">k</span><span class="crayon-sy">]</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-46"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">if</span><span class="crayon-sy">(</span><span class="crayon-o">!</span><span class="crayon-e">check</span><span class="crayon-sy">(</span><span class="crayon-v">i</span><span class="crayon-sy">,</span><span class="crayon-v">k</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-47"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-48"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">if</span><span class="crayon-sy">(</span><span class="crayon-o">!</span><span class="crayon-v">t1</span><span class="crayon-sy">)</span><span class="crayon-v">t1</span><span class="crayon-o">=</span><span class="crayon-v">i</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-49"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">else</span><span class="crayon-h"> </span><span class="crayon-st">if</span><span class="crayon-sy">(</span><span class="crayon-o">!</span><span class="crayon-v">t2</span><span class="crayon-sy">)</span><span class="crayon-v">t2</span><span class="crayon-o">=</span><span class="crayon-v">i</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-50"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">else</span><span class="crayon-h"> </span><span class="crayon-st">return</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-51"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-52"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">if</span><span class="crayon-sy">(</span><span class="crayon-o">!</span><span class="crayon-v">t1</span><span class="crayon-o">&amp;&amp;</span><span class="crayon-o">!</span><span class="crayon-v">t2</span><span class="crayon-sy">)</span><span class="crayon-e">dfs</span><span class="crayon-sy">(</span><span class="crayon-v">k</span><span class="crayon-o">+</span><span class="crayon-cn">1</span><span class="crayon-sy">,</span><span class="crayon-v">now</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-53"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">else</span><span class="crayon-h"> </span><span class="crayon-st">if</span><span class="crayon-sy">(</span><span class="crayon-v">t1</span><span class="crayon-o">&amp;&amp;</span><span class="crayon-o">!</span><span class="crayon-v">t2</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-54"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-55"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">swap</span><span class="crayon-sy">(</span><span class="crayon-v">t1</span><span class="crayon-sy">,</span><span class="crayon-v">t1</span><span class="crayon-o">+</span><span class="crayon-v">bin</span><span class="crayon-sy">[</span><span class="crayon-v">k</span><span class="crayon-o">-</span><span class="crayon-cn">1</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span><span class="crayon-v">k</span><span class="crayon-o">-</span><span class="crayon-cn">1</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-56"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">dfs</span><span class="crayon-sy">(</span><span class="crayon-v">k</span><span class="crayon-o">+</span><span class="crayon-cn">1</span><span class="crayon-sy">,</span><span class="crayon-v">now</span><span class="crayon-o">+</span><span class="crayon-cn">1</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-57"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">swap</span><span class="crayon-sy">(</span><span class="crayon-v">t1</span><span class="crayon-sy">,</span><span class="crayon-v">t1</span><span class="crayon-o">+</span><span class="crayon-v">bin</span><span class="crayon-sy">[</span><span class="crayon-v">k</span><span class="crayon-o">-</span><span class="crayon-cn">1</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span><span class="crayon-v">k</span><span class="crayon-o">-</span><span class="crayon-cn">1</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-58"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-59"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">else</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-60"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-61"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">for</span><span class="crayon-sy">(</span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">x</span><span class="crayon-o">=</span><span class="crayon-cn">0</span><span class="crayon-sy">;</span><span class="crayon-v">x</span><span class="crayon-o">&lt;=</span><span class="crayon-cn">1</span><span class="crayon-sy">;</span><span class="crayon-v">x</span><span class="crayon-o">++</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-62"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">for</span><span class="crayon-sy">(</span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">y</span><span class="crayon-o">=</span><span class="crayon-cn">0</span><span class="crayon-sy">;</span><span class="crayon-v">y</span><span class="crayon-o">&lt;=</span><span class="crayon-cn">1</span><span class="crayon-sy">;</span><span class="crayon-v">y</span><span class="crayon-o">++</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-63"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-64"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">swap</span><span class="crayon-sy">(</span><span class="crayon-v">t1</span><span class="crayon-o">+</span><span class="crayon-v">x</span><span class="crayon-o">*</span><span class="crayon-v">bin</span><span class="crayon-sy">[</span><span class="crayon-v">k</span><span class="crayon-o">-</span><span class="crayon-cn">1</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span><span class="crayon-v">t2</span><span class="crayon-o">+</span><span class="crayon-v">y</span><span class="crayon-o">*</span><span class="crayon-v">bin</span><span class="crayon-sy">[</span><span class="crayon-v">k</span><span class="crayon-o">-</span><span class="crayon-cn">1</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span><span class="crayon-v">k</span><span class="crayon-o">-</span><span class="crayon-cn">1</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-65"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">if</span><span class="crayon-sy">(</span><span class="crayon-e">check</span><span class="crayon-sy">(</span><span class="crayon-v">t1</span><span class="crayon-sy">,</span><span class="crayon-v">k</span><span class="crayon-sy">)</span><span class="crayon-o">&amp;&amp;</span><span class="crayon-e">check</span><span class="crayon-sy">(</span><span class="crayon-v">t2</span><span class="crayon-sy">,</span><span class="crayon-v">k</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-66"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-67"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">dfs</span><span class="crayon-sy">(</span><span class="crayon-v">k</span><span class="crayon-o">+</span><span class="crayon-cn">1</span><span class="crayon-sy">,</span><span class="crayon-v">now</span><span class="crayon-o">+</span><span class="crayon-cn">1</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-68"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">swap</span><span class="crayon-sy">(</span><span class="crayon-v">t1</span><span class="crayon-o">+</span><span class="crayon-v">x</span><span class="crayon-o">*</span><span class="crayon-v">bin</span><span class="crayon-sy">[</span><span class="crayon-v">k</span><span class="crayon-o">-</span><span class="crayon-cn">1</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span><span class="crayon-v">t2</span><span class="crayon-o">+</span><span class="crayon-v">y</span><span class="crayon-o">*</span><span class="crayon-v">bin</span><span class="crayon-sy">[</span><span class="crayon-v">k</span><span class="crayon-o">-</span><span class="crayon-cn">1</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span><span class="crayon-v">k</span><span class="crayon-o">-</span><span class="crayon-cn">1</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-69"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">break</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-70"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-71"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">swap</span><span class="crayon-sy">(</span><span class="crayon-v">t1</span><span class="crayon-o">+</span><span class="crayon-v">x</span><span class="crayon-o">*</span><span class="crayon-v">bin</span><span class="crayon-sy">[</span><span class="crayon-v">k</span><span class="crayon-o">-</span><span class="crayon-cn">1</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span><span class="crayon-v">t2</span><span class="crayon-o">+</span><span class="crayon-v">y</span><span class="crayon-o">*</span><span class="crayon-v">bin</span><span class="crayon-sy">[</span><span class="crayon-v">k</span><span class="crayon-o">-</span><span class="crayon-cn">1</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span><span class="crayon-v">k</span><span class="crayon-o">-</span><span class="crayon-cn">1</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-72"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-73"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-74"><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-75"><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-e">main</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-76"><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-77"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">bin</span><span class="crayon-sy">[</span><span class="crayon-cn">0</span><span class="crayon-sy">]</span><span class="crayon-o">=</span><span class="crayon-cn">1</span><span class="crayon-sy">;</span><span class="crayon-st">for</span><span class="crayon-sy">(</span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">i</span><span class="crayon-o">=</span><span class="crayon-cn">1</span><span class="crayon-sy">;</span><span class="crayon-v">i</span><span class="crayon-o">&lt;</span><span class="crayon-cn">20</span><span class="crayon-sy">;</span><span class="crayon-v">i</span><span class="crayon-o">++</span><span class="crayon-sy">)</span><span class="crayon-v">bin</span><span class="crayon-sy">[</span><span class="crayon-v">i</span><span class="crayon-sy">]</span><span class="crayon-o">=</span><span class="crayon-v">bin</span><span class="crayon-sy">[</span><span class="crayon-v">i</span><span class="crayon-o">-</span><span class="crayon-cn">1</span><span class="crayon-sy">]</span><span class="crayon-o">&lt;&lt;</span><span class="crayon-cn">1</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-78"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">fac</span><span class="crayon-sy">[</span><span class="crayon-cn">0</span><span class="crayon-sy">]</span><span class="crayon-o">=</span><span class="crayon-cn">1</span><span class="crayon-sy">;</span><span class="crayon-st">for</span><span class="crayon-sy">(</span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">i</span><span class="crayon-o">=</span><span class="crayon-cn">1</span><span class="crayon-sy">;</span><span class="crayon-v">i</span><span class="crayon-o">&lt;=</span><span class="crayon-cn">12</span><span class="crayon-sy">;</span><span class="crayon-v">i</span><span class="crayon-o">++</span><span class="crayon-sy">)</span><span class="crayon-v">fac</span><span class="crayon-sy">[</span><span class="crayon-v">i</span><span class="crayon-sy">]</span><span class="crayon-o">=</span><span class="crayon-v">fac</span><span class="crayon-sy">[</span><span class="crayon-v">i</span><span class="crayon-o">-</span><span class="crayon-cn">1</span><span class="crayon-sy">]</span><span class="crayon-o">*</span><span class="crayon-v">i</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-79"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">n</span><span class="crayon-o">=</span><span class="crayon-e">read</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-80"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">for</span><span class="crayon-sy">(</span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">i</span><span class="crayon-o">=</span><span class="crayon-cn">1</span><span class="crayon-sy">;</span><span class="crayon-v">i</span><span class="crayon-o">&lt;=</span><span class="crayon-v">bin</span><span class="crayon-sy">[</span><span class="crayon-v">n</span><span class="crayon-sy">]</span><span class="crayon-sy">;</span><span class="crayon-v">i</span><span class="crayon-o">++</span><span class="crayon-sy">)</span><span class="crayon-v">a</span><span class="crayon-sy">[</span><span class="crayon-v">i</span><span class="crayon-sy">]</span><span class="crayon-o">=</span><span class="crayon-e">read</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-81"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">dfs</span><span class="crayon-sy">(</span><span class="crayon-cn">1</span><span class="crayon-sy">,</span><span class="crayon-cn">0</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-82"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">printf</span><span class="crayon-sy">(</span><span class="crayon-s">"%lld"</span><span class="crayon-sy">,</span><span class="crayon-v">ans</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5bc32ef94d1d7491735744-83"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">return</span><span class="crayon-h"> </span><span class="crayon-cn">0</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5bc32ef94d1d7491735744-84"><span class="crayon-sy">}</span></div></div></td>
-					</tr>
-				</table>
-			</div>
-		</div>
-	</body>
-</html>
+
+var keyword = new Array(
+"abstract",
+"boolean",
+"break",
+"byte",
+"case",
+"catch",
+"char",
+"class",
+"const",
+"continue",
+"default",
+"delete",
+"do",
+"double",
+"else",
+"extends",
+"false",
+"final",
+"finally",
+"float",
+"for",
+"function",
+"goto",
+"if",
+"implements",
+"import",
+"in",
+"instanceof",
+"int",
+"interface",
+"long",
+"native",
+"new",
+"null",
+"package",
+"private",
+"protected",
+"public",
+"return",
+"short",
+"static",
+"super",
+"switch",
+"synchronized",
+"this",
+"throw",
+"throws",
+"transient",
+"true",
+"try",
+"typeof",
+"var",
+"void",
+"while",
+"with");
+
+var htmlkeyword = new Array(
+"document",
+"Array"
+);
+
+var entity = new Array(
+"&lt;",
+"&gt;",
+"&amp;",
+"&nbsp;"
+);
+
+</script>
+
+</HTML>
