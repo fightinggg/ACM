@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<style type="text/css">
+	#h
+	{
+		position: absolute;
+		right: 10px;
+	}
+	</style>
+	<div id="h">	
+ <a href="https://fightinggg.github.io/hello/"  style="color: red;fron:10px;" >
+ 	<span >主页</span>
+ </a>
+ 
+	</div>
+	<head>
+		<meta charset="utf-8" />
+		<title>
+			球盒模型
+		</title>
+		<style type="text/css">
+			h1{text-align:center} 
+		</style>
+		<div id="head">
+<h1 style="color: red;">球盒模型</h1>	
+	</head>		
+	</div>
+
+	<body>
+	 <p>        球盒模型指的是把球放入盒子里的题目模型（强行解释）</p>
+
+<p><a href="https://fightinggg.github.io/hello/广义组合数.html">广义组合数</a></p>
+
+<p>        分为盒子同或不同，球同或不同，盒子允许空或不空</p>
+
+<p>        所以一共八种问题</p>
+
+<p>        假设有n个球m个盒子</p>
+
+<p><strong>盒异，球同，盒子允许空 <img alt="C_{m+n-1}^{m-1}" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20C_%7Bm&amp;plus;n-1%7D%5E%7Bm-1%7D" />        </strong></p>
+
+<p><strong>盒异，球同，盒不允许空 <img alt="C_{n-1}^{m-1}" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20C_%7Bn-1%7D%5E%7Bm-1%7D" /></strong></p>
+
+<p><strong>盒同，球同，盒子允许空  <img alt="\dpi{150} \prod _{j=1}^{m}\frac{1}{1-x^{j}}=\frac{1}{\phi (n)}" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20%5Cdpi%7B150%7D%20%5Cprod%20_%7Bj%3D1%7D%5E%7Bm%7D%5Cfrac%7B1%7D%7B1-x%5E%7Bj%7D%7D%3D%5Cfrac%7B1%7D%7B%5Cphi%20%28n%29%7D" /> 中的系数</strong></p>
+
+<p><strong>盒同，球同，盒不允许空  <img alt="\prod _{j=1}^{m}\frac{x^j}{1-x^{j}}" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20%5Cprod%20_%7Bj%3D1%7D%5E%7Bm%7D%5Cfrac%7Bx%5Ej%7D%7B1-x%5E%7Bj%7D%7D" />  中的系数</strong></p>
+
+<p><strong>-----------------------------------------------------------------------</strong></p>
+
+<p><strong>-----------------------------------------------------------------------</strong></p>
+
+<p><strong>盒异，球异，盒子允许空  <img alt="m^n" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20m%5En" /></strong>         </p>
+
+<p><strong>盒异，球异，盒不允许空  <img alt="\sum _{k=0}^{m}(C_m^k(-1)^{m-k}k^n)" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20%5Csum%20_%7Bk%3D0%7D%5E%7Bm%7D%28C_m%5Ek%28-1%29%5E%7Bm-k%7Dk%5En%29" /></strong></p>
+
+<p> </p>
+
+<p><strong>盒同，球异，盒子允许空   根据下一问枚举盒子个数</strong><strong>  </strong></p>
+
+<p><strong>盒同，球异，盒不允许空  <img alt="\sum _{k=0}^m\frac{(C_m^k(-1)^{m-k}k^n)}{m!}" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20%5Csum%20_%7Bk%3D0%7D%5Em%5Cfrac%7B%28C_m%5Ek%28-1%29%5E%7Bm-k%7Dk%5En%29%7D%7Bm%21%7D" /></strong></p>
+
+<p><br />
+ </p>
+
+<p> </p>
+
+<p><strong>证明：</strong></p>
+
+<p><span style="color:#f33b45;"><strong>盒异，球同，盒子允许空 </strong></span></p>
+
+<p><strong>        <img alt="f(x) \\=(x^0+x^1+x^2+x^3...)^m \\=(\frac{1}{1-x})^m \\=(1-x)^{-m}" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20f%28x%29%20%5C%5C%3D%28x%5E0&amp;plus;x%5E1&amp;plus;x%5E2&amp;plus;x%5E3...%29%5Em%20%5C%5C%3D%28%5Cfrac%7B1%7D%7B1-x%7D%29%5Em%20%5C%5C%3D%281-x%29%5E%7B-m%7D" /></strong></p>
+
+<p> </p>
+
+<p>        <img alt="ans \\=C_{-m}^{n}(-x)^n \\=\frac{\prod _{k=-m-n+1}^{-m}k}{n!}(-x)^n \\=\frac{\prod _{k=m}^{m+n-1}k}{n!}x^n \\=C_{m+n-1}^{m-1}x^n" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20ans%20%5C%5C%3DC_%7B-m%7D%5E%7Bn%7D%28-x%29%5En%20%5C%5C%3D%5Cfrac%7B%5Cprod%20_%7Bk%3D-m-n&amp;plus;1%7D%5E%7B-m%7Dk%7D%7Bn%21%7D%28-x%29%5En%20%5C%5C%3D%5Cfrac%7B%5Cprod%20_%7Bk%3Dm%7D%5E%7Bm&amp;plus;n-1%7Dk%7D%7Bn%21%7Dx%5En%20%5C%5C%3DC_%7Bm&amp;plus;n-1%7D%5E%7Bm-1%7Dx%5En" /></p>
+
+<p><span style="color:#f33b45;"><strong>盒异，球同，盒不允许空</strong></span></p>
+
+<p><strong>                 隔板法 <img alt="C_{n-1}^{m-1}" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20C_%7Bn-1%7D%5E%7Bm-1%7D" /></strong></p>
+
+<p><span style="color:#f33b45;"><strong>盒同，球同，盒子允许空</strong></span></p>
+
+<p><span style="color:#f33b45;">            </span>   <img alt="f(x)\\=(x^{1*0}+x^{1*1}+x^{1*2}+...)(x^{2*0}+x^{2*1}+x^{2*2}+...)(x^{3*0}+x^{3*1}+x^{3*2}+...) ...\\=\prod _{j=1}^{m}\sum_{i=0}{(x^{j})^{i}}\\ =\prod _{j=1}^{m}\frac{1}{1-x^{j}}" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20f%28x%29%5C%5C%3D%28x%5E%7B1*0%7D&amp;plus;x%5E%7B1*1%7D&amp;plus;x%5E%7B1*2%7D&amp;plus;...%29%28x%5E%7B2*0%7D&amp;plus;x%5E%7B2*1%7D&amp;plus;x%5E%7B2*2%7D&amp;plus;...%29%28x%5E%7B3*0%7D&amp;plus;x%5E%7B3*1%7D&amp;plus;x%5E%7B3*2%7D&amp;plus;...%29%20...%5C%5C%3D%5Cprod%20_%7Bj%3D1%7D%5E%7Bm%7D%5Csum_%7Bi%3D0%7D%7B%28x%5E%7Bj%7D%29%5E%7Bi%7D%7D%5C%5C%20%3D%5Cprod%20_%7Bj%3D1%7D%5E%7Bm%7D%5Cfrac%7B1%7D%7B1-x%5E%7Bj%7D%7D" />   <span style="color:#f33b45;">    </span></p>
+
+<p><span style="color:#f33b45;"><strong>盒同，球同，盒子不允许空</strong></span></p>
+
+<p><span style="color:#f33b45;">                <img alt="f(x)\\=(x^{1*1}+x^{1*2}+...)(x^{2*1}+x^{2*2}+...)(x^{3*1}+x^{3*2}+...) ...\\=\prod _{j=1}^{m}\sum_{i=1}{(x^{j})^{i}}\\ =\prod _{j=1}^{m}\frac{x^{j}}{1-x^{j}}" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20f%28x%29%5C%5C%3D%28x%5E%7B1*1%7D&amp;plus;x%5E%7B1*2%7D&amp;plus;...%29%28x%5E%7B2*1%7D&amp;plus;x%5E%7B2*2%7D&amp;plus;...%29%28x%5E%7B3*1%7D&amp;plus;x%5E%7B3*2%7D&amp;plus;...%29%20...%5C%5C%3D%5Cprod%20_%7Bj%3D1%7D%5E%7Bm%7D%5Csum_%7Bi%3D1%7D%7B%28x%5E%7Bj%7D%29%5E%7Bi%7D%7D%5C%5C%20%3D%5Cprod%20_%7Bj%3D1%7D%5E%7Bm%7D%5Cfrac%7Bx%5E%7Bj%7D%7D%7B1-x%5E%7Bj%7D%7D" /></span></p>
+
+<p><span style="color:#f33b45;"><strong>盒子异，球异，盒子允许空</strong></span></p>
+
+<p><strong>                           <img alt="m^n" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20m%5En" /></strong>   </p>
+
+<p><span style="color:#f33b45;"><strong>盒子异，球异，盒子允许空   </strong></span></p>
+
+<p>                <img alt="f(x) \\=(\frac{x^{1}}{1!}+\frac{x^{2}}{2!}+\frac{x^{3}}{3!}+...)^{m} \\=(e^{x}-1)^{m} \\=\sum _{k=0}^{m}(C_{m}^{k}(-1)^{m-k}(e^{x})^{k}) \\=\sum _{k=0}^{m}(C_{m}^{k}(-1)^{m-k}(1+\frac{(kx)^{1}}{1!}+\frac{(kx)^{2}}{2!}+\frac{(kx)^{3}}{3!}+...))" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20f%28x%29%20%5C%5C%3D%28%5Cfrac%7Bx%5E%7B1%7D%7D%7B1%21%7D&amp;plus;%5Cfrac%7Bx%5E%7B2%7D%7D%7B2%21%7D&amp;plus;%5Cfrac%7Bx%5E%7B3%7D%7D%7B3%21%7D&amp;plus;...%29%5E%7Bm%7D%20%5C%5C%3D%28e%5E%7Bx%7D-1%29%5E%7Bm%7D%20%5C%5C%3D%5Csum%20_%7Bk%3D0%7D%5E%7Bm%7D%28C_%7Bm%7D%5E%7Bk%7D%28-1%29%5E%7Bm-k%7D%28e%5E%7Bx%7D%29%5E%7Bk%7D%29%20%5C%5C%3D%5Csum%20_%7Bk%3D0%7D%5E%7Bm%7D%28C_%7Bm%7D%5E%7Bk%7D%28-1%29%5E%7Bm-k%7D%281&amp;plus;%5Cfrac%7B%28kx%29%5E%7B1%7D%7D%7B1%21%7D&amp;plus;%5Cfrac%7B%28kx%29%5E%7B2%7D%7D%7B2%21%7D&amp;plus;%5Cfrac%7B%28kx%29%5E%7B3%7D%7D%7B3%21%7D&amp;plus;...%29%29" /></p>
+
+<p> </p>
+
+<p>                <img alt="ans\\=\sum _{k=0}^{m}(C_{m}^{k}(-1)^{m-k}\frac{(kx)^{n}}{n!}) \\= \sum _{k=0}^{m}(C_{m}^{k}(-1)^{m-k}k^n) \frac{x^n}{n!}" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20ans%5C%5C%3D%5Csum%20_%7Bk%3D0%7D%5E%7Bm%7D%28C_%7Bm%7D%5E%7Bk%7D%28-1%29%5E%7Bm-k%7D%5Cfrac%7B%28kx%29%5E%7Bn%7D%7D%7Bn%21%7D%29%20%5C%5C%3D%20%5Csum%20_%7Bk%3D0%7D%5E%7Bm%7D%28C_%7Bm%7D%5E%7Bk%7D%28-1%29%5E%7Bm-k%7Dk%5En%29%20%5Cfrac%7Bx%5En%7D%7Bn%21%7D" /></p>
+
+<p><span style="color:#f33b45;"><strong>盒同，球异，盒子允许空 </strong></span></p>
+
+<p><strong>                        设之为B(n,m)</strong></p>
+
+<p><strong>                        枚举和n号球在一起的数量k</strong></p>
+
+<p><strong>                        k=0-&gt;B(n-1,m-1)</strong></p>
+
+<p><strong>                        k=1-&gt;B(n-2,m-1)</strong></p>
+
+<p><strong>                        ...</strong></p>
+
+<p><strong>                       <img alt="B(n,m)=\sum_{i=0}^{n-1}C_{n-1}^iB(n-i-1,m-1) =\sum_{i=0}^{n-1}C_{n-1}^iB(i,m-1)" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20B%28n%2Cm%29%3D%5Csum_%7Bi%3D0%7D%5E%7Bn-1%7DC_%7Bn-1%7D%5EiB%28n-i-1%2Cm-1%29%20%3D%5Csum_%7Bi%3D0%7D%5E%7Bn-1%7DC_%7Bn-1%7D%5EiB%28i%2Cm-1%29" /></strong></p>
+
+<p><span style="color:#f33b45;"><strong>盒同，球异，盒不允许空 </strong></span></p>
+
+<p><strong>                        相当于盒异，球异，盒不允许空  去全排                     </strong></p>            </div>
+          
+	</body>
+</html>
