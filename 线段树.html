@@ -16,92 +16,74 @@
 
 	
 	
-	<pre>
+
 	<body>
-    线段树是树状数组的强化版，它才是真正的树，它每次对区间进行二分，每一个深度都维护了整个区间，在同一深度里面，每个节点维护的区间长度大致相同，而每深入一层又大致比上一层多一倍的节点，故空间复杂度为Onlgn
-
-线段树一般采用二叉树结构
-
-每个非叶子节点维护一个区间[l,r]，令mid=(l+r)>>1,则该节点的左儿子维护[l,mid]，右儿子维护[mid+1,r]；
-
-每个叶子节点维护一个点；
-
-线段树是一颗接近平衡的树。       
-
-因此当我们对于一个长度为n区间[l,r]进行操作的时候，我们就要操作所有与这些区间相关节点，这些节点数目接近2*N，笔者不想证明。要操作2*N个节点，，，，复杂度过高，，，问题无法解决。
-
-我们的操作相当于对树进行函数递归。
-
-这里我们把这个问题简化一下，对于那些节点对应区间属于[l,r]的我们分为一类，对于那些节点对应区间与[l,r]有交集，但不是[l,r]的子区间的节点我们分为第二类，第二类节点一定是某个第一类节点的父亲节点，借此我们可以在函数回溯时候利用区间加法处理，容易解决。
-
-我们容易发现第一类节点数目接近ON而第二类节点数目接近OlgN，第二类节点一个一个处理可以接受，第一类节点必须安排一下。可以证明第一类节点恰好可以用OlgN颗子树的所有节点唯一表达，笔者不想证明。
-
-在这里我们简化问题为对于OlgN个节点以及OlgN颗子树的操作，
-
-现在我们只需要考虑对某颗子树进行操作
-
-当我们进行修改的时候，我们试着只对该子树的根进行修改，并为其加入一个懒惰标记，表示他的所有子孙都有一个与懒惰标记有关的操作还未进行，(例如整段区间加上d，我们就设懒惰标记为d) ，如此区间修改就不用跑到叶子节点，就成了OlgN
-
-当我们进行查询时，每当我们查询一个节点，我们要查询的恰好为该节点所对应的区间，直接就处理了；如果不是该区间，而是该区间的某个子区间，那么我们考虑把该区间的懒惰标记下放到左右儿子，然后递归左右儿子，回溯答案。over
-
-        
-
-为什么线段树快，因为它把区间分成OlgN个处理，并且每次在树上只跑了OlgN个节点，依据区间加法处理询问，依据区间加法回溯处理修改，依据懒惰标记不实时更新叶子节点。所以线段树快。
-
-为什么我在开头说线段树是树状数组的强化版，因为树状数组虽然能依据区间加法处理询问，也可以依靠区间加法处理更新，但是它的非叶子节点过少，导致复杂的数据维护时程序较为复杂，不太好处理。
-
-赋上代码（ACM采取堆结构模拟二叉树简化代码量）
-
-<span style="color: green;font: 20px;">/////////////////////////////////////////////</span>/
-<span style="color: green;font: 20px;">//初始化要求maxn n</span> 
-<span style="color: green;font: 20px;">//注意修改注释部分代码即\345\217</span>\257
-#define ls (u&lt&lt1)
-#define rs (u&lt&lt1|1)
-#define ml ((l+r)&gt&gt1)
-#define mr (ml+1)
-<span style="color: blue;font: 20px;">const </span><span style="color: blue;font: 20px;">int </span>maxn=5e4+10;
-<span style="color: blue;font: 20px;">int </span>n;
-<span style="color: blue;font: 20px;">int </span>a[maxn],tree[maxn&lt&lt2],lazy[maxn&lt&lt2];
- 
-<span style="color: blue;font: 20px;">void </span>pushdown(<span style="color: blue;font: 20px;">int </span>u,<span style="color: blue;font: 20px;">int </span>l,<span style="color: blue;font: 20px;">int </span>r){
-    <span style="color: green;font: 20px;">//lazy[ls]+=lazy[u]</span>;
-    <span style="color: green;font: 20px;">//lazy[rs]+=lazy[u]</span>;
-    <span style="color: green;font: 20px;">//tree[ls]+=lazy[u]*(ml-l+1)</span>;
-    <span style="color: green;font: 20px;">//tree[rs]+=lazy[u]*(r-mr+1)</span>;
-    lazy[u]=0;
-}
-<span style="color: blue;font: 20px;">void </span>pushup(<span style="color: blue;font: 20px;">int </span>u){
-    <span style="color: green;font: 20px;">//tree[u]=tree[ls]+tree[rs]</span>;
-}
-<span style="color: blue;font: 20px;">void </span>build(<span style="color: blue;font: 20px;">int </span>l,<span style="color: blue;font: 20px;">int </span>r,<span style="color: blue;font: 20px;">int </span>u=1){
-    lazy[u]=0;       
-    <span style="color: blue;font: 20px;">if</span>(l==r){
-        tree[u]=a[l];
-        return;
-    }
-    build(l,ml,ls);
-    build(mr,r,rs);
-    pushup(u);
-}
-<span style="color: blue;font: 20px;">void </span>update(<span style="color: blue;font: 20px;">int </span>ql,<span style="color: blue;font: 20px;">int </span>qr,<span style="color: blue;font: 20px;">int </span>d,<span style="color: blue;font: 20px;">int </span>u=1,<span style="color: blue;font: 20px;">int </span>l=1,<span style="color: blue;font: 20px;">int </span>r=n){
-    <span style="color: blue;font: 20px;">if</span>(ql&lt=l&&r&lt=qr){
-        <span style="color: green;font: 20px;">//tree[u]+=(qr-ql+1)*d</span>;
-        <span style="color: green;font: 20px;">//lazy[u]+=d</span>;
-        return;
-    }
-    <span style="color: blue;font: 20px;">if</span>(ql&lt=ml)update(ql,qr,d,ls,l,ml);
-    <span style="color: blue;font: 20px;">if</span>(qr&gt=mr)update(ql,qr,d,rs,mr,r);
-    pushup(u);
-}
-<span style="color: blue;font: 20px;">int </span>query(<span style="color: blue;font: 20px;">int </span>ql,<span style="color: blue;font: 20px;">int </span>qr,<span style="color: blue;font: 20px;">int </span>u=1,<span style="color: blue;font: 20px;">int </span>l=1,<span style="color: blue;font: 20px;">int </span>r=n){
-    <span style="color: blue;font: 20px;">if</span>(ql&lt=l&&r&lt=qr)<span style="color: blue;font: 20px;">return </span>tree[u];
-    <span style="color: blue;font: 20px;">if</span>(lazy[u])pushdown(u,l,r);
-    int ret=0;<span style="color: green;font: 20px;">//返回也值搞一下\357\274</span>\233
-    <span style="color: blue;font: 20px;">if</span>(ql&lt=ml)ret+=query(ql,qr,ls,l,ml);
-    <span style="color: blue;font: 20px;">if</span>(qr&gt=mr)ret+=query(ql,qr,rs,mr,r);
-    <span style="color: blue;font: 20px;">return </span>ret;
-}
-<span style="color: green;font: 20px;">////////////////////////////////////////////////</span>/
+		线段树是树状数组的强化版，它才是真正的树，它每次对区间进行二分，每一个深度都维护了整个区间，在同一深度里面，每个节点维护的区间长度大致相同，而每深入一层又大致比上一层多一倍的节点，故空间复杂度为Onlgn<br />
+线段树一般采用二叉树结构<br />
+每个非叶子节点维护一个区间[l,r]，令mid=(l+r)&gt&gt1,则该节点的左儿子维护[l,mid]，右儿子维护[mid+1,r]；<br />
+每个叶子节点维护一个点；<br />
+线段树是一颗接近平衡的树。       <br />
+因此当我们对于一个长度为n区间[l,r]进行操作的时候，我们就要操作所有与这些区间相关节点，这些节点数目接近2*N，笔者不想证明。要操作2*N个节点，，，，复杂度过高，，，问题无法解决。<br />
+我们的操作相当于对树进行函数递归。<br />
+这里我们把这个问题简化一下，对于那些节点对应区间属于[l,r]的我们分为一类，对于那些节点对应区间与[l,r]有交集，但不是[l,r]的子区间的节点我们分为第二类，第二类节点一定是某个第一类节点的父亲节点，借此我们可以在函数回溯时候利用区间加法处理，容易解决。<br />
+我们容易发现第一类节点数目接近ON而第二类节点数目接近OlgN，第二类节点一个一个处理可以接受，第一类节点必须安排一下。可以证明第一类节点恰好可以用OlgN颗子树的所有节点唯一表达，笔者不想证明。<br />
+在这里我们简化问题为对于OlgN个节点以及OlgN颗子树的操作，<br />
+现在我们只需要考虑对某颗子树进行操作<br />
+当我们进行修改的时候，我们试着只对该子树的根进行修改，并为其加入一个懒惰标记，表示他的所有子孙都有一个与懒惰标记有关的操作还未进行，(例如整段区间加上d，我们就设懒惰标记为d) ，如此区间修改就不用跑到叶子节点，就成了OlgN<br />
+当我们进行查询时，每当我们查询一个节点，我们要查询的恰好为该节点所对应的区间，直接就处理了；如果不是该区间，而是该区间的某个子区间，那么我们考虑把该区间的懒惰标记下放到左右儿子，然后递归左右儿子，回溯答案。over<br />
+        <br />
+为什么线段树快，因为它把区间分成OlgN个处理，并且每次在树上只跑了OlgN个节点，依据区间加法处理询问，依据区间加法回溯处理修改，依据懒惰标记不实时更新叶子节点。所以线段树快。<br />
+为什么我在开头说线段树是树状数组的强化版，因为树状数组虽然能依据区间加法处理询问，也可以依靠区间加法处理更新，但是它的非叶子节点过少，导致复杂的数据维护时程序较为复杂，不太好处理。<br />
+赋上代码（ACM采取堆结构模拟二叉树简化代码量）<br />
+<span style="color: green;font: 20px;">/////////////////////////////////////////////</span>/<br />
+<span style="color: green;font: 20px;">//初始化要求maxn n</span> <br />
+<span style="color: green;font: 20px;">//注意修改注释部分代码即\345\217\25</span>7<br />
+#define ls (u&lt&lt1)<br />
+#define rs (u&lt&lt1|1)<br />
+#define ml ((l+r)&gt&gt1)<br />
+#define mr (ml+1)<br />
+<span style="color: blue;font: 20px;">const </span><span style="color: blue;font: 20px;">int </span>maxn=5e4+10;<br />
+<span style="color: blue;font: 20px;">int </span>n;<br />
+<span style="color: blue;font: 20px;">int </span>a[maxn],tree[maxn&lt&lt2],lazy[maxn&lt&lt2];<br />
+ <br />
+<span style="color: blue;font: 20px;">void </span>pushdown(<span style="color: blue;font: 20px;">int </span>u,<span style="color: blue;font: 20px;">int </span>l,<span style="color: blue;font: 20px;">int </span>r){<br />
+    <span style="color: green;font: 20px;">//lazy[ls]+=lazy[u]</span>;<br />
+    <span style="color: green;font: 20px;">//lazy[rs]+=lazy[u]</span>;<br />
+    <span style="color: green;font: 20px;">//tree[ls]+=lazy[u]*(ml-l+1)</span>;<br />
+    <span style="color: green;font: 20px;">//tree[rs]+=lazy[u]*(r-mr+1)</span>;<br />
+    lazy[u]=0;<br />
+}<br />
+<span style="color: blue;font: 20px;">void </span>pushup(<span style="color: blue;font: 20px;">int </span>u){<br />
+    <span style="color: green;font: 20px;">//tree[u]=tree[ls]+tree[rs]</span>;<br />
+}<br />
+<span style="color: blue;font: 20px;">void </span>build(<span style="color: blue;font: 20px;">int </span>l,<span style="color: blue;font: 20px;">int </span>r,<span style="color: blue;font: 20px;">int </span>u=1){<br />
+    lazy[u]=0;       <br />
+    <span style="color: blue;font: 20px;">if</span>(l==r){<br />
+        tree[u]=a[l];<br />
+        return;<br />
+    }<br />
+    build(l,ml,ls);<br />
+    build(mr,r,rs);<br />
+    pushup(u);<br />
+}<br />
+<span style="color: blue;font: 20px;">void </span>update(<span style="color: blue;font: 20px;">int </span>ql,<span style="color: blue;font: 20px;">int </span>qr,<span style="color: blue;font: 20px;">int </span>d,<span style="color: blue;font: 20px;">int </span>u=1,<span style="color: blue;font: 20px;">int </span>l=1,<span style="color: blue;font: 20px;">int </span>r=n){<br />
+    <span style="color: blue;font: 20px;">if</span>(ql&lt=l&&r&lt=qr){<br />
+        <span style="color: green;font: 20px;">//tree[u]+=(qr-ql+1)*d</span>;<br />
+        <span style="color: green;font: 20px;">//lazy[u]+=d</span>;<br />
+        return;<br />
+    }<br />
+    <span style="color: blue;font: 20px;">if</span>(ql&lt=ml)update(ql,qr,d,ls,l,ml);<br />
+    <span style="color: blue;font: 20px;">if</span>(qr&gt=mr)update(ql,qr,d,rs,mr,r);<br />
+    pushup(u);<br />
+}<br />
+<span style="color: blue;font: 20px;">int </span>query(<span style="color: blue;font: 20px;">int </span>ql,<span style="color: blue;font: 20px;">int </span>qr,<span style="color: blue;font: 20px;">int </span>u=1,<span style="color: blue;font: 20px;">int </span>l=1,<span style="color: blue;font: 20px;">int </span>r=n){<br />
+    <span style="color: blue;font: 20px;">if</span>(ql&lt=l&&r&lt=qr)<span style="color: blue;font: 20px;">return </span>tree[u];<br />
+    <span style="color: blue;font: 20px;">if</span>(lazy[u])pushdown(u,l,r);<br />
+    int ret=0;<span style="color: green;font: 20px;">//返回也值搞一下\357\274\23</span>3<br />
+    <span style="color: blue;font: 20px;">if</span>(ql&lt=ml)ret+=query(ql,qr,ls,l,ml);<br />
+    <span style="color: blue;font: 20px;">if</span>(qr&gt=mr)ret+=query(ql,qr,rs,mr,r);<br />
+    <span style="color: blue;font: 20px;">return </span>ret;<br />
+}<br />
+<span style="color: green;font: 20px;">////////////////////////////////////////////////</span>/<br />
 	</body>
-	</pre>
 </html>
