@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<style type="text/css">
+	#h
+	{
+		position: absolute;
+		right: 10px;
+	}
+	</style>
+	<div id="h">	
+ <a href="https://fightinggg.github.io/hello/"  style="color: red;fron:10px;" >
+ 	<span >主页</span>
+ </a>
+ 
+	</div>
+	<head>
+		<meta charset="utf-8" />
+		<title>
+			字符串hash
+		</title>
+		<style type="text/css">
+			h1{text-align:center} 
+		</style>
+		<div id="head">
+<h1 style="color: red;"> 字符串hash</h1>	
+	</head>		
+	</div>
+
+	<body>
+		就像cantor映射一样，字符串hash采取一种更加随机化的映射，<br />
+它的通项公式为<img alt="hash[i]=\sum _{j=0}^{i}s[j]*p^{i-j}" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B100%7D%20hash%5Bi%5D%3D%5Csum%20_%7Bj%3D0%7D%5E%7Bi%7Ds%5Bj%5D*p%5E%7Bi-j%7D" />,如此将一个字符串随机映射到了一个数字上，</p>
+
+,如此将一个字符串随机映射到了一个数字上，<br />
+我们来看这个公式的意义，他把一个字符串映射到了一个p进制数字上，位数代表着字符串的长度，然后我们将这个p进制数转化为十进制数并对1e9+7取模来存储，<br />
+但是通项公式不好求，但是我们可以通过递推公式来求<br />
+hash[i]=hash[i-1]*p+s[i]<br />
+这个公式就比较友好了，<br />
+可是怎么求出来中间一段呢<br />
+我们有这个公式<br />
+hash[l~r]&nbsp=&nbsphash[r]&nbsp-&nbsphash[l&nbsp-&nbsp1]&nbsp*&nbsppow(p,&nbspr&nbsp-&nbspl&nbsp+&nbsp1)<br />
+	</body>
+</html>
