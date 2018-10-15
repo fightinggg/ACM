@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<style type="text/css">
+	#h
+	{
+		position: absolute;
+		right: 10px;
+	}
+	</style>
+	<div id="h">	
+ <a href="https://fightinggg.github.io/hello/"  style="color: red;fron:10px;" >
+ 	<span >主页</span>
+ </a>
+ 
+	</div>
+	<head>
+		<meta charset="utf-8" />
+		<title>
+			博弈论
+		</title>
+		<style type="text/css">
+			h1{text-align:center} 
+		</style>
+		<div id="head">
+<h1 style="color: red;"> 博弈论</h1>	
+	</head>		
+	</div>
+
+	<body>                <p>博弈常常是acm中的签到题，能不能快速拿下，这得看本事。</p>
+
+<p>首先有以下的结论：</p>
+
+<p>        胜负取决于局面</p>
+
+<p>        如果当前局面能转移给对手的一个输的局面，那么对手就输</p>
+
+<p>        如果当前局面转转移给对手的全是赢的局面，那么对手就赢</p>
+
+<p>依据上诉两条规则，博弈题目也可以通过模拟来实现找规律</p>
+
+<p>    <span style="color:#f33b45;">    1.有a，b两个数字，两人轮流操作，每次可以选择两个之中较小的数字，然后另一个数字减去选择数字的任意倍数（不能减到负数），</span><span style="color:#f33b45;">直到其中一个为0，不能操作为败。比如2，8可以转移为（2，6 ）（2，4）（2，2）（2，0）</span></p>
+
+<p>        对于a,b(a&gt;=2b)，  </p>
+
+<p>                如果a%b+b,b先手赢-&gt;a,b先手就赢；</p>
+
+<p>                如果a%b+b,b先手输-&gt;a,b先手可以花样拿使得后手得到a%b+b,b先手还是赢；</p>
+
+<p>        对于其他a，b其实只有一种拿法，简单处理一下，细心就行了；</p>
+
+<p>        <span style="color:#f33b45;">2.有一个从1到n的连续自然数序列，两人轮流操作，可以选取一个数字，拿走它的所有因子（如果序列中存在），直到一方无法拿，该方输。</span></p>
+
+<p><span style="color:#f33b45;">        </span>我们先考虑一个这个序列2，3，4，5，6......n,</p>
+
+<p>                如果先手输，题目的序列中我们就拿1，题目中先手赢</p>
+
+<p>                如果先手赢，先手总得拿一个吧！，假设他拿的x，题目中我们也拿x，题目中先手赢</p>
+
+<p>        <span style="color:#f33b45;">3.鲍勃和爱丽丝正在玩一款新游戏。 有n个盒子从1到n编号。 每个盒子都是空的或包含几张卡片。 鲍勃和爱丽丝依次移动卡片。 在每个回合中，相应的玩家应该选择非空框A，然后选择另一个框B，其中B &lt;A &amp;&amp;（A + B）％2 = 1 &amp;&amp;（A + B）％3 = 0。 然后，从方框A取任意数量（但不是零）的牌到方框B。最后一个可以进行合法移动的人获胜。 爱丽丝是第一个玩家。 请预测谁将赢得比赛。</span></p>
+
+<p>               我们发现1，3，4是无法操作的盒子</p>
+
+<p>               有且仅有这三个盒子，</p>
+
+<p>                我们按照n%6=1，3，4和n%6=0，2，5把所有的盒子分为两类</p>
+
+<p>                考虑二分图模型，这就是一个二分图模型</p>
+
+<p>                除了1 3 4以外，所有其他点都存在出度，我们可以想象，比赛结束时所有卡片都在1 3 4 中</p>
+
+<p>                那么第一类盒子，不影响比赛结果，</p>
+
+<p>                因为每当对手操作了第一类盒子，我们可以操作第二类盒子让这些卡转移到1 3 4 中并恢复到对手上一次操作前到第二类盒子状态，</p>
+
+<p>                那么右边的盒子问题就是一个NIM问题</p>
+
+<p>        <span style="color:#f33b45;">4.有一个n*n的网格，左下角有一个东西可以在格子里面走，可以往相邻的格子走，已经走过的格子不能再走，两人轮流走，谁不能走谁输</span></p>
+
+<p><span style="color:#f33b45;">                </span><span>只要当前可以走的区域数目为奇数那么就可以赢，除非对手想打破这个僵局，也就是说，对手走了一步之后，把可以走的区域分成了两部分，只能选择其一，那么我们肯定选取走完之后剩余可以走的格子数为奇数部分那边走啊，也就是说n*n-1为奇数先手就赢了，也就是n为偶数先手就赢了。</span></p>
+
+<p><span style="color:#f33b45;">        5.有n张牌，两个人轮流抓牌，只能抓二的某个幂次方张牌，谁拿最后一张牌谁赢，</span></p>
+
+<p><span>                n%3==0，先手一定输，因为先手拿了以后一定会变成非三的倍数，后手可以拿1张或两张使得n回到三的倍数，局面还原，直到n=3，先手就输了。</span></p>
+
+<p>至于其他的博弈题目，一般不是那么容易找到规律的，所以产生了新的算法来模拟博弈进行</p>
+<pre><span style="color: green;font: 20px;">//sgf是转移方法</span>
+<span style="color: green;font: 20px;">//sgs是前一个状态的集合</span>
+<span style="color: blue;font: 20px;">int</span>&nbspsgf[N],sg[N];
+bool&nbspsgs[N];
+<span style="color: blue;font: 20px;">void</span>&nbspsgf_ini(){
+	sgf[0]=1;
+	sgf[1]=1;
+	sgf[2]=2;
+	<span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspi=3;i&lt20;i++){
+		sgf[i]=sgf[i-1]+sgf[i-2];
+		<span style="color: green;font: 20px;">//cout&lt&ltsgf[i]&lt&ltendl;</span>
+	}
+}
+<span style="color: blue;font: 20px;">void</span>&nbspsg_ini(<span style="color: blue;font: 20px;">int</span>&nbspn){
+	sgf_ini();
+	<span style="color: green;font: 20px;">//sg[0]=0;</span>
+	<span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspi=1;i&lt=n;i++){
+		memset(sgs,0,sizeof(sgs));
+		<span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspj=1;/**/i-sgf[j]&gt=0;j++)sgs[sg[i-sgf[j]]]=true;
+		<span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspj=0;;j++)<span style="color: blue;font: 20px;">if</span>(!sgs[j]){
+			sg[i]=j;
+			<span style="color: blue;font: 20px;">break</span>;
+		}
+	}
+	<span style="color: green;font: 20px;">//<span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspi=0;i&lt=n;i++){</span>
+	<span style="color: green;font: 20px;">//	printf("%4d&nbsp%2d",i,sg[i]);</span>
+	<span style="color: green;font: 20px;">//	<span style="color: blue;font: 20px;">if</span>(i%10==9)cout&lt&ltendl;</span>
+	<span style="color: green;font: 20px;">//}</span>
+}
+</pre>
+
+<p>博弈并不是公平的，博弈的胜负取决于博弈当前的局面。</p>
+
+<p>必胜态的后继中一定有一个必败态</p>
+
+<p>必败态的后继中一定全是必胜态</p>
+
+<p> </p>
+
+<p>这其实可以对应到一个运算法则mex集合运算</p>
+
+<p>mex运算：集合中不存在的最小的非负整数</p>
+
+<p>我们定义0为失败，其他数字为胜利，（这里我并不理解为什么要用其他数字而不是1，肯能是还有其他用途）</p>
+
+<p>对于sg[i],我们参考dp算法</p>
+
+<p>假设nex是i的后继，那么sg[i]=mex{sg[nex1]，sg[nex2]，sg[nex3]。。。}</p>
+	</body>
+</html>
