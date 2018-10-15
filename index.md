@@ -1,2 +1,11 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
 
-哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+<body>
+	<a href="www.baidu.com">baidu</a>
+</body>
+</html>
