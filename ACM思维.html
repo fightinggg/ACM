@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<style type="text/css">
+	#h
+	{
+		position: absolute;
+		right: 10px;
+	}
+	</style>
+	<div id="h">	
+ <a href="https://fightinggg.github.io/hello/"  style="color: red;fron:10px;" >
+ 	<span >主页</span>
+ </a>
+ 
+	</div>
+	<head>
+		<meta charset="utf-8" />
+		<title>
+			ACM思维
+		</title>
+		<style type="text/css">
+			h1{text-align:center} 
+		</style>
+		<div id="head">
+<h1 style="color: red;"> ACM思维</h1>	
+	</head>		
+	</div>
+
+	<body>
+  <p><span style="color:#f33b45;">给你一个括号数组，里面有不同种类的括号，每个种类都有左右两种括号，左右括号可以结合，很多组询问，问你一个区间内括号是否匹配，<br />
+1.一个空的字符串是一个合法的文档。<br />
+2.如果A,B都是合法的文档，那么AB也是合法的文档。<br />
+3.如果S是合法的文档，那么aSb也是合法的文档，其中a,b是同一种括号，并且a是左括号，b是右括号</span></p>
+
+<p>用栈来模拟，对于每一个括号，我们用数组L记录当处理完这个括号（压入栈并完成当前匹配）的栈顶元素的下标，当我们判断[l,r]时之用比较L[l-1]与L[r]即可</p>
+
+
+	</body>
+</html>
