@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<style type="text/css">
+	#h
+	{
+		position: absolute;
+		right: 10px;
+	}
+	</style>
+	
+	<div id="h">	
+ <a href="https://fightinggg.github.io/hello/"  style="color: red;fron:10px;" >
+ 	<span >主页</span>
+ </a>
+	</div>
+	
+	<head>
+		<meta charset="utf-8" />
+		<title>
+			蒙哥马利快速乘模运算
+		</title>
+		<style type="text/css">
+			h1{text-align:center} 
+		</style>
+		<div id="head">
+<h1 style="color: red;"> 蒙哥马利快速乘模运算</h1>	
+	</head>
+		
+	</div>
+
+	
+	
+
+	<body>
+		Montgomery&nbspmodular&nbspmultiplication<br />
+蒙哥马利快速乘模运算<br />
+蒙哥马利运算是一种新的运算，他把乘模简化为对进制数的除法，以及简单加法，这就使得乘模避开了大量的取模试除。<br />
+ <br />
+蒙哥马利表示法是蒙哥马利运算的基础，<br />
+ <br />
+例如a%mod的蒙哥马利表示法为a*p%mod，p是一个进制数<br />
+于是我们很容易发现对于蒙哥马利表示法变会普通表示法时只需要<br />
+(a*p)*invp%mod<br />
+这里的invp是乘模运算下p对mod的逆元<br />
+ <br />
+如果我们要计算a*b%mod;<br />
+ <br />
+蒙哥马利表示法会找一个进制数使得普通数字转化为蒙哥马利表示法<br />
+ <br />
+一般来说这是一个刚好大于模数的进制数<br />
+ <br />
+但是对于大数运算，例如64位整形，我们会直接取2**64<br />
+我们令p=2**64；<br />
+所以上述a*b%mod会表示为（a*p）*（b*p）%mod=a*b*p**2%mod<br />
+ <br />
+这里出现了问题，多了一个p，所以乘模不是这样写的<br />
+应该是a*b*p%mod<br />
+ <br />
+对比我们发现，只需要微调即可，即（（（a*p）*（b*p））/p）%mod【/p表示逆元法】<br />
+ <br />
+于是这里出现了除法，这正是我们需要的，我们就是靠着这个除以p使得乘模避开了对非进制数取模，也避开了很多高复杂度无谓的除法<br />
+ <br />
+对于ACM中，如果要求大量的乘模，且刚好范围在int128以内，我们就可以直接暴算出<br />
+（a*p）*（b*p），如此留下的问题就是大数除法，把它变回蒙哥马利表示法标准式子<br />
+所以现在问题简化到给出一个大数（小于int128），快速除法，我们假设这个大整数是BIG<br />
+ <br />
+由拓展欧几里得算法我们可以找到这样一个数字，使得inv*mod与1对与2**128同余，找到这样的数字以后，我们可以这样化简<br />
+BIG/p%mod=（BIG-（inv*mod）*BIG）/p%mod<br />
+首先，有一个问题：三个数相乘已经爆了精度，但是这并不影响，因为自然溢出使得inv*mod直接变成了1<br />
+然后inv*mod*BIG/p还是很大<br />
+所以这样写错了<br />
+ <br />
+应该是这样<br />
+BIG/p%mod=（BIG-（inv*BIG）*mod））/p%mod<br />
+可以证明这样的溢出不会影响结果，并且溢出导致inv*mod*BIG/p结果就比较小了<br />
+ <br />
+ <br />
+于是我们可以预测结果，BIG-（inv*BIG）*mod）的低64位全部变成了0，直接移位就行了<br />
+于是我们又避开了逆元的选取，<br />
+ <br />
+由此受到启发，我们从一开始便可以避开逆元，<br />
+ <br />
+于是给出蒙哥马利类<br />
+struct Mod64&nbsp{<br />
+&nbsp&nbsp&nbsp&nbsp<br />
+&nbsp&nbsp&nbsp&nbsp &nbsp  static u64&nbspmod,inv,r2;<br />
+&nbsp&nbsp&nbsp&nbsp<br />
+&nbsp&nbsp&nbsp&nbsp &nbsp &nbspu64&nbspn_;<br />
+&nbsp&nbsp&nbsp&nbsp<br />
+};<br />
+ <br />
+        由拓展欧几里得算法根据模数算出inv<br />
+        然后有一个削减函数<br />
+static u64&nbspreduce(u128&nbspx)&nbsp{<br />
+&nbsp&nbsp&nbsp&nbsp<br />
+&nbsp&nbsp&nbsp&nbsp &nbsp &nbsp &nbsp &nbspu64&nbspy=u64(x&gt&gt64)-u64((u128(u64(x)*inv)*mod)&gt&gt64);<br />
+&nbsp&nbsp&nbsp&nbsp<br />
+&nbsp&nbsp&nbsp&nbsp &nbsp &nbsp &nbsp  return ll(y)&lt0?y+mod:y;<br />
+&nbsp&nbsp&nbsp&nbsp<br />
+&nbsp&nbsp&nbsp&nbsp &nbsp &nbsp}<br />
+用与蒙哥马利乘模运算之后的大数除法（快速除法）<br />
+我们尝试通过这一个函数完成所有的操作<br />
+构造函数<br />
+ Mod64(u64&nbspn):n_(init(n))&nbsp{}<br />
+ static u64&nbspinit(u64&nbspw)&nbsp{ return reduce(u128(w)&nbsp*&nbspr2);&nbsp}<br />
+这里的r2就是（2**128）**2对于mod的模，其实也就是r**2<br />
+所以我们发现这个代码里面的r便是上文中的p<br />
+ <br />
+蒙哥马利类内部乘法<br />
+ Mod64& operator *=&nbsp(Mod64 rhs)&nbsp{&nbspn_=reduce(u128(n_)*rhs.n_); return *this;&nbsp}<br />
+ &nbsp  Mod64 operator *&nbsp(Mod64 rhs) const { return Mod64(*this)*=rhs;&nbsp}<br />
+ <br />
+很明显了他是先做除法，再做乘法<br />
+ <br />
+ <br />
+蒙哥马利类还原至整形类<br />
+  &nbspu64&nbspget() const { return reduce(n_);&nbsp}<br />
+直接调用削减函数，除以p（r）<br />
+最后给出dls的代码<br />
+<span style="color: blue;font: 20px;">typedef</span>&nbsp<span style="color: blue;font: 20px;">long&nbsplong</span>&nbspll;
+<br />
+<span style="color: blue;font: 20px;">typedef</span>&nbspunsigned&nbsp<span style="color: blue;font: 20px;">long&nbsplong</span>&nbspu64;
+<br />
+<span style="color: blue;font: 20px;">typedef</span>&nbsp__int128_t&nbspi128;
+<br />
+<span style="color: blue;font: 20px;">typedef</span>&nbsp__uint128_t&nbspu128;
+<br />
+
+<br />
+<span style="color: blue;font: 20px;">struct</span>&nbspMod64&nbsp{
+<br />
+ &nbsp &nbsp<span style="color: blue;font: 20px;">static</span>&nbspu64&nbspmod,inv,r2;
+<br />
+ &nbsp &nbspu64&nbspn_;
+<br />
+ &nbsp &nbspMod64():n_(0)&nbsp{}
+<br />
+ &nbsp &nbspMod64(u64&nbspn):n_(init(n))&nbsp{}
+<br />
+ &nbsp &nbsp<span style="color: blue;font: 20px;">static</span>&nbspu64&nbspinit(u64&nbspw)&nbsp{&nbsp<span style="color: blue;font: 20px;">return</span>&nbspreduce(u128(w)&nbsp*&nbspr2);&nbsp}
+<br />
+ &nbsp &nbsp<span style="color: blue;font: 20px;">static</span>&nbsp<span style="color: blue;font: 20px;">void</span>&nbspset_mod(u64&nbspm)&nbsp{
+<br />
+ &nbsp &nbsp &nbsp &nbspmod=m;&nbsp<span style="color: green;font: 20px;">//assert(mod&1);
+</span><br />
+ &nbsp &nbsp &nbsp &nbspinv=m;&nbsp<span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspi=0;i&lt5;i++)&nbspinv*=2-inv*m;
+<br />
+ &nbsp &nbsp &nbsp &nbspr2=-u128(m)%m;
+<br />
+ &nbsp &nbsp}
+<br />
+ &nbsp &nbsp<span style="color: blue;font: 20px;">static</span>&nbspu64&nbspreduce(u128&nbspx)&nbsp{
+<br />
+ &nbsp &nbsp &nbsp &nbspu64&nbspy=u64(x&gt&gt64)-u64((u128(u64(x)*inv)*mod)&gt&gt64);
+<br />
+ &nbsp &nbsp &nbsp &nbsp<span style="color: blue;font: 20px;">return</span>&nbspll(y)&lt0?y+mod:y;
+<br />
+ &nbsp &nbsp}
+<br />
+ &nbsp &nbspMod64&&nbsp<span style="color: blue;font: 20px;">operator</span>&nbsp+=&nbsp(Mod64&nbsprhs)&nbsp{&nbspn_+=rhs.n_-mod;&nbspif&nbsp(ll(n_)&lt0)&nbspn_+=mod;&nbsp<span style="color: blue;font: 20px;">return</span>&nbsp*this;&nbsp}
+<br />
+ &nbsp &nbspMod64&nbsp<span style="color: blue;font: 20px;">operator</span>&nbsp+&nbsp(Mod64&nbsprhs)&nbsp<span style="color: blue;font: 20px;">const</span>&nbsp{&nbsp<span style="color: blue;font: 20px;">return</span>&nbspMod64(*this)+=rhs;&nbsp}
+<br />
+ &nbsp &nbspMod64&&nbsp<span style="color: blue;font: 20px;">operator</span>&nbsp-=&nbsp(Mod64&nbsprhs)&nbsp{&nbspn_-=rhs.n_;&nbspif&nbsp(ll(n_)&lt0)&nbspn_+=mod;&nbsp<span style="color: blue;font: 20px;">return</span>&nbsp*this;&nbsp}
+<br />
+ &nbsp &nbspMod64&nbsp<span style="color: blue;font: 20px;">operator</span>&nbsp-&nbsp(Mod64&nbsprhs)&nbsp<span style="color: blue;font: 20px;">const</span>&nbsp{&nbsp<span style="color: blue;font: 20px;">return</span>&nbspMod64(*this)-=rhs;&nbsp}
+<br />
+ &nbsp &nbspMod64&&nbsp<span style="color: blue;font: 20px;">operator</span>&nbsp*=&nbsp(Mod64&nbsprhs)&nbsp{&nbspn_=reduce(u128(n_)*rhs.n_);&nbsp<span style="color: blue;font: 20px;">return</span>&nbsp*this;&nbsp}
+<br />
+ &nbsp &nbspMod64&nbsp<span style="color: blue;font: 20px;">operator</span>&nbsp*&nbsp(Mod64&nbsprhs)&nbsp<span style="color: blue;font: 20px;">const</span>&nbsp{&nbsp<span style="color: blue;font: 20px;">return</span>&nbspMod64(*this)*=rhs;&nbsp}
+<br />
+ &nbsp &nbspu64&nbspget()&nbsp<span style="color: blue;font: 20px;">const</span>&nbsp{&nbsp<span style="color: blue;font: 20px;">return</span>&nbspreduce(n_);&nbsp}
+<br />
+};
+<br />
+u64&nbspMod64::mod,Mod64::inv,Mod64::r2;<br />
+	</body>
+</html>
