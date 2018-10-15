@@ -6,6 +6,6 @@
 	</head>
 
 <body>
-	<a href="www.baidu.com">baidu</a>
+	<a href="https://www.baidu.com">baidu</a>
 </body>
 </html>
