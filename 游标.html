@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html>
+	
+	<style type="text/css">
+		#h
+		{
+			position: absolute;
+			right: 10px;
+		}
+	</style>
+	
+	<div id="h">	
+ 		<a href="https://fightinggg.github.io/hello/"  style="color: red;" >
+ 			<span >主页</span></a>
+	</div>
+	
+	<head>
+		<meta charset="utf-8" />
+		 <link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/hello/pastebin.css">
+		 
+		<title>游标的使用</title>
+		
+		<center>
+			<span style="color: red;font-size: 30px;">游标的使用 </span>	
+		</center>
+		
+	</head>	
+		
+	<body>
+		<pre><span class="cm">/********************</span>
+
+<span class="cm">游标命名cursor</span>
+
+<span class="cm">创建游标</span>
+<span class="cm"> 当我们使用游标的时候语法大致为declare &lt;name&gt; cursor for select &lt;几个列名&gt;</span>
+<span class="cm"> 使其按照..排序则加上order by &lt;列名&gt;</span>
+<span class="cm"> </span>
+<span class="cm">打开游标</span>
+<span class="cm">  open &lt;游标名&gt;</span>
+
+<span class="cm">利用游标遍历结果集</span>
+<span class="cm">  fetch next from &lt;游标名&gt; into &lt;从列名中提取出来的信息将保存在局部变量里面&gt;</span>
+<span class="cm">  此语句将如果调用失败则@@fetch_status变为1</span>
+
+
+<span class="cm">*********************/</span>
+<span class="n">use</span> <span class="p">[</span><span class="n">pubs</span><span class="p">]</span>
+
+<span class="k">declare</span> <span class="o">@</span><span class="n">tem_id</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="o">@</span><span class="n">tem_fname</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="o">@</span><span class="n">tem_lname</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+		<span class="o">@</span><span class="n">tem_title_id</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+		<span class="o">@</span><span class="n">tem_title</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">print</span> <span class="s1">&#39;-------- Utah Authors report --------&#39;</span>
+
+<span class="k">declare</span> <span class="n">pauthor</span> <span class="k">cursor</span> <span class="k">for</span>
+<span class="k">select</span> <span class="p">[</span><span class="n">au_id</span><span class="p">],[</span><span class="n">au_fname</span><span class="p">],[</span><span class="n">au_lname</span><span class="p">]</span>
+<span class="k">from</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">authors</span><span class="p">]</span>
+<span class="c1">--where state=&#39;UT&#39;</span>
+<span class="k">order</span> <span class="k">by</span> <span class="p">[</span><span class="n">au_id</span><span class="p">]</span>
+<span class="k">open</span> <span class="n">pauthor</span>
+<span class="k">fetch</span> <span class="k">next</span> <span class="k">from</span> <span class="n">pauthor</span> <span class="k">into</span> <span class="o">@</span><span class="n">tem_id</span><span class="p">,</span><span class="o">@</span><span class="n">tem_fname</span><span class="p">,</span><span class="o">@</span><span class="n">tem_lname</span>
+
+
+
+<span class="n">while</span> <span class="o">@@</span><span class="n">fetch_status</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">begin</span>
+	<span class="n">print</span> <span class="s1">&#39;----- Books by Author: &#39;</span><span class="o">+@</span><span class="n">tem_fname</span><span class="o">+</span><span class="s1">&#39; &#39;</span><span class="o">+@</span><span class="n">tem_lname</span>
+
+	<span class="k">declare</span> <span class="n">ptitleauthor</span> <span class="k">cursor</span> <span class="k">for</span>
+	<span class="k">select</span> <span class="p">[</span><span class="n">title_id</span><span class="p">]</span>
+	<span class="k">from</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">titleauthor</span><span class="p">]</span>
+	<span class="k">where</span> <span class="p">[</span><span class="n">au_id</span><span class="p">]</span><span class="o">=@</span><span class="n">tem_id</span>
+	<span class="k">open</span> <span class="n">ptitleauthor</span>
+	<span class="k">fetch</span> <span class="k">next</span> <span class="k">from</span> <span class="n">ptitleauthor</span> <span class="k">into</span> <span class="o">@</span><span class="n">tem_title_id</span>
+
+	<span class="n">while</span> <span class="o">@@</span><span class="n">fetch_status</span><span class="o">=</span><span class="mi">0</span>
+	<span class="k">begin</span>
+		<span class="k">declare</span> <span class="n">ptitle</span> <span class="k">cursor</span> <span class="k">for</span>
+		<span class="k">select</span> <span class="p">[</span><span class="n">title</span><span class="p">]</span>	
+		<span class="k">from</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">titles</span><span class="p">]</span> 
+		<span class="k">where</span> <span class="p">[</span><span class="n">title_id</span><span class="p">]</span><span class="o">=@</span><span class="n">tem_title_id</span>
+		<span class="k">open</span> <span class="n">ptitle</span>
+		<span class="k">fetch</span> <span class="k">next</span> <span class="k">from</span> <span class="n">ptitle</span> <span class="k">into</span> <span class="o">@</span><span class="n">tem_title</span>
+		
+		<span class="c1">--print &#39;          &#39;+@tem_title</span>
+
+		<span class="k">close</span> <span class="n">ptitle</span>
+		<span class="k">deallocate</span> <span class="n">ptitle</span>
+		<span class="k">fetch</span> <span class="k">next</span> <span class="k">from</span> <span class="n">ptitleauthor</span> <span class="k">into</span> <span class="o">@</span><span class="n">tem_title_id</span>
+	<span class="k">end</span>
+	<span class="k">close</span> <span class="n">ptitleauthor</span>
+	<span class="k">deallocate</span> <span class="n">ptitleauthor</span>
+
+	<span class="k">fetch</span> <span class="k">next</span> <span class="k">from</span> <span class="n">pauthor</span> <span class="k">into</span> <span class="o">@</span><span class="n">tem_id</span><span class="p">,</span><span class="o">@</span><span class="n">tem_fname</span><span class="p">,</span><span class="o">@</span><span class="n">tem_lname</span>
+	<span class="n">print</span> <span class="s1">&#39;&#39;</span>
+<span class="k">end</span>
+
+<span class="k">close</span> <span class="n">pauthor</span>
+<span class="k">deallocate</span> <span class="n">pauthor</span>
+
+
+
+
+<span class="c1">--一个缩进意味着一层循环</span>
+<span class="c1">--第一层循环找名字，id</span>
+<span class="c1">--第二层循环通过id 找书的id</span>
+<span class="c1">--第三层循环一对一寻找书本</span>
+</pre>
+	</body>
