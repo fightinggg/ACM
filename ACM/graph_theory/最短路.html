@@ -27,45 +27,64 @@ onclick="javascrtpt:window.location.href='https://fightinggg.github.io/hello/ACM
 <span class="c1">//如果是大于号不等式x1&gt;=x2+k,则连边x2-&gt;x1,对应找最长路</span>
 <span class="c1">//如果是小于号不等式x1&lt;=x2+k,则连边x2-&gt;x1,对应找最短路</span>
 
-<span class="k">struct</span> <span class="n">sofc</span><span class="p">{</span>
-    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span><span class="o">=</span><span class="mf">1e5</span><span class="o">+</span><span class="mi">5</span><span class="p">;</span>
-    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">maxm</span><span class="o">=</span><span class="mf">3e5</span><span class="o">+</span><span class="mi">5</span><span class="p">;</span>
+<span class="k">struct</span> <span class="n">spfa</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span><span class="o">=</span><span class="mf">2e6</span><span class="o">+</span><span class="mi">10</span><span class="p">;</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">maxm</span><span class="o">=</span><span class="mf">6e6</span><span class="o">+</span><span class="mi">10000</span><span class="p">;</span>
     <span class="kt">int</span> <span class="n">head</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">cir</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">d</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
     <span class="kt">bool</span> <span class="n">inq</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
     <span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">cnt</span><span class="p">;</span>
-    <span class="k">struct</span> <span class="n">edge</span><span class="p">{</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">nex</span><span class="p">;}</span><span class="n">g</span><span class="p">[</span><span class="n">maxm</span><span class="p">];</span>
-    
-    <span class="kt">void</span> <span class="n">ini</span><span class="p">(</span><span class="kt">int</span> <span class="n">newn</span><span class="p">){</span>
+
+    <span class="k">struct</span> <span class="n">edge</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">v</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">nex</span><span class="p">;</span>
+    <span class="p">}</span> <span class="n">g</span><span class="p">[</span><span class="n">maxm</span><span class="p">];</span>
+
+    <span class="kt">void</span> <span class="n">ini</span><span class="p">(</span><span class="kt">int</span> <span class="n">newn</span><span class="p">)</span>
+    <span class="p">{</span>
         <span class="n">n</span><span class="o">=</span><span class="n">newn</span><span class="p">;</span>
         <span class="n">cnt</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
         <span class="n">memset</span><span class="p">(</span><span class="n">head</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">head</span><span class="p">));</span>
     <span class="p">}</span>
-    <span class="kt">void</span> <span class="n">add_edge</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">,</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span><span class="kt">int</span> <span class="n">w</span><span class="p">){</span>
+    <span class="kt">void</span> <span class="n">add_edge</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">,</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span><span class="kt">int</span> <span class="n">w</span><span class="p">)</span>
+    <span class="p">{</span>
         <span class="n">g</span><span class="p">[</span><span class="n">cnt</span><span class="p">].</span><span class="n">v</span><span class="o">=</span><span class="n">v</span><span class="p">;</span>
         <span class="n">g</span><span class="p">[</span><span class="n">cnt</span><span class="p">].</span><span class="n">w</span><span class="o">=</span><span class="n">w</span><span class="p">;</span>
         <span class="n">g</span><span class="p">[</span><span class="n">cnt</span><span class="p">].</span><span class="n">nex</span><span class="o">=</span><span class="n">head</span><span class="p">[</span><span class="n">u</span><span class="p">];</span>
         <span class="n">head</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">=</span><span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="kt">bool</span> <span class="n">spfa</span><span class="p">(</span><span class="kt">int</span> <span class="n">s</span><span class="p">){</span>
-        <span class="c1">//fill(d,d+n+1,1e9);//最短路选这个</span>
-        <span class="n">memset</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">d</span><span class="p">));</span><span class="c1">//最长路选这个</span>
+    <span class="kt">bool</span> <span class="n">short_path</span><span class="p">(</span><span class="kt">int</span> <span class="n">s</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">fill</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">d</span><span class="o">+</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mf">1e9</span><span class="p">);</span><span class="c1">//最短路选这个</span>
+        <span class="c1">//memset(d,0,sizeof(d));//最长路选这个</span>
         <span class="n">memset</span><span class="p">(</span><span class="n">cir</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">cir</span><span class="p">));</span>
         <span class="n">memset</span><span class="p">(</span><span class="n">inq</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">inq</span><span class="p">));</span>
-    
+
         <span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="n">q</span><span class="p">;</span>
         <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
         <span class="n">inq</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span>
-        <span class="n">d</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">cir</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
-        
-        <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span><span class="c1">//不要写成了while(~q.empty())</span>
-            <span class="kt">int</span> <span class="n">u</span><span class="o">=</span><span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span><span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+        <span class="n">d</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="n">cir</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+
+        <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="c1">//不要写成了while(~q.empty())</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">u</span><span class="o">=</span><span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+            <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
             <span class="n">inq</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">=</span><span class="kc">false</span><span class="p">;</span>
-            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">head</span><span class="p">[</span><span class="n">u</span><span class="p">];</span><span class="o">~</span><span class="n">i</span><span class="p">;</span><span class="n">i</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">nex</span><span class="p">){</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">head</span><span class="p">[</span><span class="n">u</span><span class="p">];</span> <span class="o">~</span><span class="n">i</span><span class="p">;</span> <span class="n">i</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">nex</span><span class="p">)</span>
+            <span class="p">{</span>
                 <span class="kt">int</span> <span class="n">v</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">v</span><span class="p">,</span><span class="n">w</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">w</span><span class="p">;</span>
-                <span class="k">if</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">&lt;</span><span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">+</span><span class="n">w</span><span class="p">){</span><span class="c1">//大于号就是求最短路，小于号就是求最长路</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">&gt;</span><span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">+</span><span class="n">w</span><span class="p">)</span> <span class="c1">//大于号就是求最短路，小于号就是求最长路</span>
+                <span class="p">{</span>
                     <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">=</span><span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">+</span><span class="n">w</span><span class="p">;</span>
-                    <span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">cir</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">n</span><span class="p">)</span><span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-                    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">inq</span><span class="p">[</span><span class="n">v</span><span class="p">]){</span>
+                    <span class="c1">////////////////////////////////</span>
+                    <span class="cm">/*</span>
+<span class="cm">                    if(++cir[v]&gt;=2+n)</span>
+<span class="cm">                        return false;</span>
+<span class="cm">                    */</span>
+                    <span class="c1">///////////////////////////////</span>
+                    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">inq</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
+                    <span class="p">{</span>
                         <span class="n">inq</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span>
                         <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
                     <span class="p">}</span>
@@ -74,7 +93,9 @@ onclick="javascrtpt:window.location.href='https://fightinggg.github.io/hello/ACM
         <span class="p">}</span>
         <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
     <span class="p">}</span>
-<span class="p">}</span><span class="n">g</span><span class="p">;</span>
-<span class="c1">//solved bzoj2330</span>
+<span class="p">}</span> <span class="n">g</span><span class="p">;</span>
+<span class="c1">//solved bzoj2330   使用判正环+最长路</span>
+<span class="c1">//solved bzoj1001   使用最长路   发现判负环出现了问题 将&gt;=n改为&gt;=n+2就没问题了</span>
+<span class="c1">/////////////////////</span>
 </pre>
 	</body>
