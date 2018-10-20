@@ -82,3 +82,31 @@ li {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+ .out_sign{
+ 	float:left;
+	margin-top: 50px;
+    height:1000px;
+    width: 15%;
+    background: white;
+ }
+ 
+ 
+ 
+.sign {
+    height:1000px;
+    width: 30px;
+    background: black;
+     color: white;
+}
