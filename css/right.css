@@ -1,7 +1,7 @@
 .ACMright{
-	clear: all;
-	float: right ;
+	
+	float: left ;
 	margin-top: 100px;
     height: 1000px;
-    width: 80%;
+    width: 70%;
 }
