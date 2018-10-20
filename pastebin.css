@@ -1,23 +1,12 @@
 /* CC-BY 2010 Dieki Noordhoek. */
-
-*{
-        padding:1000px;
-        margin:100px;
-    }
-
-
+.c {
+    color: #080;
+    font-style: italic
+}
  pre{
 white-space: pre-wrap!important;
 word-wrap: break-word!important;
 *white-space:normal!important;
-}
-
-
- 
-        
-.c {
-    color: #080;
-    font-style: italic
 }
 
 .err {
@@ -43,7 +32,7 @@ word-wrap: break-word!important;
 }
 
 .c1 {
-    color: green;
+    color: #080;
     font-style: italic
 }
 
@@ -115,7 +104,7 @@ word-wrap: break-word!important;
 }
 
 .kt {
-    color: #A2F;
+    color: blue;
     font-weight: bold
 }
 
@@ -324,6 +313,17 @@ th, td {
 
 label, .pturl {
     color: #dd4814 !important
+}
+
+h1 {
+    font-size: 100%;
+    text-align: center;
+    color: #dd4814;
+    font-family: Verdana, arial, helvetica, sans-serif;
+    font-size: medium;
+    font-weight: 400;
+    padding-top: 0.4em;
+    margin: 0
 }
 
 textarea {
