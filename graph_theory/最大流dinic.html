@@ -32,8 +32,11 @@
 	</center>
 	
 	
-	<pre>
-<span class="c1">//最大使用范围[0,N][0,M],INF是流量达不到的无穷大</span>
+	
+	
+	
+	
+	<pre><span class="c1">//最大使用范围[0,N][0,M],INF是流量达不到的无穷大</span>
 <span class="c1">//add必须成对使用,注意M并不是简单的边数</span>
 <span class="c1">//初始化要求cnt=0,head;</span>
 <span class="k">const</span> <span class="kt">int</span> <span class="n">N</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">INF</span><span class="p">;</span>
@@ -82,9 +85,17 @@
 		<span class="k">while</span><span class="p">((</span><span class="n">f</span><span class="o">=</span><span class="n">dfs</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">INF</span><span class="p">))</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="n">flow</span><span class="o">+=</span><span class="n">f</span><span class="p">;</span><span class="c1">//注意括号</span>
 	<span class="p">}</span>
 <span class="p">}</span>
-<span class="c1">//至于最大权闭合图,将正权点连接s,容量为点权,负权点连接t容量为点权绝对值,所求得的最小割将图分为两部分,我们发现所有正点权的和减去该简单割便是与s相连的闭合图的权，</span>
-<span class="c1">通过最小割找到了最大权闭合图。</span>
+<span class="c1">//至于最大权闭合图,将正权点连接s,容量为点权,负权点连接t容量为点权绝对值,</span>
+<span class="c1">//所求得的最小割将图分为两部分,我们发现所有正点权的和减去该简单割便是与s</span>
+<span class="c1">//相连的闭合图的权，通过最小割找到了最大权闭合图。</span>
 </pre>
+	
+	
+	
+	
+	
+	
+	
  
  
  
@@ -93,4 +104,5 @@
 	
 	
 </html>
+
 
