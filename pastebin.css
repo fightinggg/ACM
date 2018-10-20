@@ -3,15 +3,18 @@
 *{
         padding:1000px;
         margin:100px;
-        font-size:10px;
     }
-    
-    
-  h1{
-  	font-size:30px;
-  }
-  
-  
+
+
+ pre{
+white-space: pre-wrap!important;
+word-wrap: break-word!important;
+*white-space:normal!important;
+}
+
+
+ 
+        
 .c {
     color: #080;
     font-style: italic
@@ -23,7 +26,7 @@
 
 .k {
     color: blue;
-    font-weight: bold;
+    font-weight: bold
 }
 
 .o {
@@ -263,4 +266,109 @@
 .il {
     color: #666
 }
+
+body {
+    background-image: url("bg_dotted.png");
+    font-family: arial, helvetica, sans-serif;
+    font-size: small
+}
+
+#title {
+    background: url("ubuntu_logo.png") no-repeat;
+    width: 375px;
+    height: 56px;
+    margin: 0px auto 30px auto;
+    font-size: 0%;
+    color: #fff
+}
+
+#contentColumn {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    margin-top: -10px;
+    width: 95%;
+    font-family: Verdana, arial, helvetica, sans-serif;
+    -moz-box-shadow: 0px 1px 5px #bbb;
+    -webkit-box-shadow: 0px 1px 5px #bbb;
+    background: #fff;
+    -moz-border-radius: 0px 0px 10px 10px;
+    -border-radius: 0px 0px 10px 10px;
+    -webkit-border-radius: 0px 0px 10px 10px
+}
+
+#pasteform table {
+    margin: 0px auto;
+    border-left: 1px solid #f5f5f
+}
+
+.inside {
+    padding: 0 1.5em
+}
+
+#contentColumn {
+    padding-top: 3em;
+    padding-bottom: 1em
+}
+
+#contentColumn .inside {
+    position: relative;
+    top: -2em;
+    padding: 0 0.5em
+}
+
+th, td {
+    padding: 0px 0px 6px 12px;
+    color: #888
+}
+
+label, .pturl {
+    color: #dd4814 !important
+}
+
+textarea {
+    font: 110% "Courier New", Courier, monospace;
+    color: #000;
+    width: 100%
+}
+
+.linenos {
+    font-size: medium
+}
+
+div.paste {
+    font-size: small;
+    border: 1px solid #ddd;
+    background-color: #eee;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -border-radius: 4px;
+    padding: 10px 0px;
+    margin: 20px 10px 100px 10px;
+    color: #000
+}
+
+div.paste div {
+    border: 0;
+    margin: 0px 0px;
+    !important;
+    padding: 0px;
+    -moz-box-shadow: 0px 1px 5px #eee;
+    -webkit-box-shadow: 0px 1px 5px #eee;
+    -box-shadow: 0px 1px 5px #eee;
+    font-size: medium
+}
+
+div.paste a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9em;
+    padding: 1em
+}
+
+#pasteform > table {
+    width: 100%;
+}
+
 
