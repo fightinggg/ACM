@@ -12,12 +12,17 @@ body {
 }
 
 .out_head{
-	 height: 36px;
+	height: 36px;
     width: 100%;
     margin: 0 auto;
     background: black;
     margin-bottom: 0px;
 } 
+
+.in_head{
+	    	width: 10%;
+	     background: black;
+}
 
  
 li {
@@ -27,7 +32,7 @@ li {
  
 .miaov_head {
     height: 36px;
-    width: 900px;
+    width: 100%;
     margin: 0 auto;
     background: black;
     margin-bottom: 0px;
@@ -36,19 +41,19 @@ li {
  
 .miaov_head ul {
     float: left;
-    width: 900px;
+    width: 95%;
     height: 36px;
     margin-top: 0px;
     color: white;
     position: absolute;
     top: 0px;
-    margin-left: 7px;
+    margin-left: 0px;
 }
  
 .miaov_head ul li {
-    float: left;
-    padding-left: 60px;
-    margin-left: 0px;
+	position: relative;
+    float: right;
+    margin-left: 2%;
     color: white;
     list-style: none;
 }
@@ -75,4 +80,5 @@ li {
 .miaov_head a:hover {
     color: #555;
 }
+
 
