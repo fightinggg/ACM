@@ -1,85 +1,90 @@
 <!DOCTYPE html>
 <html>
-	<style type="text/css">
-	#h
-	{
-		position: absolute;
-		right: 10px;
-	}
-	</style>
-	<div id="h">	
- <a href="https://fightinggg.github.io/hello/"  style="color: red;fron:10px;" >
- 	<span >主页</span>
- </a>
  
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/head.js"></script>
+    <link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/hello/pastebin.css">
+	<link rel="stylesheet" type="text/css" href="/ACM/css/left.css">
+	<link rel="stylesheet" type="text/css" href="/ACM/css/right.css">
+	<title>树链剖分</title>
+</head>
+ 
+<body>
+	
+	<div class="out_left">
+	<center>
+	<div class="ACMleft">
+		<ul></br></br></br></br></br></br></br>
+			相</br>信</br>不</br>屈</br>不</br>挠</br>的</br>努</br>力</br>
+		</br>
+		相</br>信</br>战</br>胜</br>死</br>亡</br>的</br>年</br>轻</br>
+			</ul>
 	</div>
-	<head>
-		<meta charset="utf-8" />
-		<title>
-			树链剖分
-		</title>
-		<style type="text/css">
-			h1{text-align:center} 
-		</style>
-		<div id="head">
-<h1 style="color: red;"> 树链剖分</h1>	
-	</head>		
+	</center>
 	</div>
-
-	<body>
-		 &nbsp &nbsp &nbsp &nbsp如果给出一棵树并为每个节点标号1234...n;并定义区间[x,y]为树上节点x到节点y的最短路所经过的所有节点组成的集合，注意是闭区间，包括x，y两个节点 &nbsp &nbsp &nbsp  <br />
+	
+	
+										
+<div class="ACMright">
+	<center>
+	<h1>树链剖分</h1>
+	</center>
+	
+	
+		 &nbsp &nbsp &nbsp &nbsp如果给出一棵树并为每个节点标号1234...n;并定义区间[x,y]为树上节点x到节点y的最短路所经过的所有节点组成的集合，注意是闭区间，包括x，y两个节点 &nbsp &nbsp &nbsp  <br />
 <br />
- &nbsp &nbsp &nbsp &nbsp树链剖分能够解决树上区间的操作，是线段树功能的强化版，但他也依赖着线段树。<br />
+ &nbsp &nbsp &nbsp &nbsp树链剖分能够解决树上区间的操作，是线段树功能的强化版，但他也依赖着线段树。<br />
 <br />
- &nbsp &nbsp &nbsp &nbsp树链剖分尝试着把树分割为多条链，并按照dfs序对链排序并交给线段树维护，如果这个想法成立，那么所有的树上区间操作都成了多段区间的线段树操作。<br />
+ &nbsp &nbsp &nbsp &nbsp树链剖分尝试着把树分割为多条链，并按照dfs序对链排序并交给线段树维护，如果这个想法成立，那么所有的树上区间操作都成了多段区间的线段树操作。<br />
 <br />
- &nbsp &nbsp &nbsp &nbsp现在的问题转移到如何分链，能够保证任何树上区间进行分解时分出的链都较少？否则上诉尝试没有任何意义，前人给出了分法。按轻重链分，<br />
+ &nbsp &nbsp &nbsp &nbsp现在的问题转移到如何分链，能够保证任何树上区间进行分解时分出的链都较少？否则上诉尝试没有任何意义，前人给出了分法。按轻重链分，<br />
 <br />
- &nbsp &nbsp &nbsp &nbsp这里有必要介绍几种名词<br />
+ &nbsp &nbsp &nbsp &nbsp这里有必要介绍几种名词<br />
 <br />
- &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp重儿子：父亲节点的所有儿子中子树结点数目最多（size最大）的结点；<br />
+ &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp重儿子：父亲节点的所有儿子中子树结点数目最多（size最大）的结点；<br />
 <br />
- &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp轻儿子：父亲节点中除了重儿子以外的儿子；<br />
+ &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp轻儿子：父亲节点中除了重儿子以外的儿子；<br />
 <br />
- &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp重边：父亲结点和重儿子连成的边；<br />
+ &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp重边：父亲结点和重儿子连成的边；<br />
 <br />
- &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp轻边：父亲节点和轻儿子连成的边；<br />
+ &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp轻边：父亲节点和轻儿子连成的边；<br />
 <br />
- &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp重链：由多条重边连接而成的路径；<br />
+ &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp重链：由多条重边连接而成的路径；<br />
 <br />
- &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp轻链：由多条轻边连接而成的路径；<br />
+ &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp轻链：由多条轻边连接而成的路径；<br />
 <br />
- &nbsp &nbsp &nbsp &nbsp如此想必读者已经知道如何去分了，但为什么这样分保证任何树上区间进行分解时分出的链都较少<br />
+ &nbsp &nbsp &nbsp &nbsp如此想必读者已经知道如何去分了，但为什么这样分保证任何树上区间进行分解时分出的链都较少<br />
 <br />
 简单证明：<br />
 <br />
- &nbsp &nbsp &nbsp &nbsp假设根编号为root<br />
+ &nbsp &nbsp &nbsp &nbsp假设根编号为root<br />
 <br />
- &nbsp &nbsp &nbsp &nbsp则区间[x,y]分出的链一定少于[root,x][root,y]这两个区间分出的链的和<br />
+ &nbsp &nbsp &nbsp &nbsp则区间[x,y]分出的链一定少于[root,x][root,y]这两个区间分出的链的和<br />
 <br />
- &nbsp &nbsp &nbsp &nbsp问题可以简化为对于区间[root,x]分出的链的数量的复杂度的证明，<br />
+ &nbsp &nbsp &nbsp &nbsp问题可以简化为对于区间[root,x]分出的链的数量的复杂度的证明，<br />
 <br />
- &nbsp &nbsp &nbsp &nbsp我们尝试从根往节点x走，一走就走一整条剖分链，如果没有到达x，一定会走上一个轻儿子，每当走上一个轻儿子，问题递归为以轻儿子为根走向节点x，<br />
+ &nbsp &nbsp &nbsp &nbsp我们尝试从根往节点x走，一走就走一整条剖分链，如果没有到达x，一定会走上一个轻儿子，每当走上一个轻儿子，问题递归为以轻儿子为根走向节点x，<br />
 <br />
- &nbsp &nbsp &nbsp &nbsp可以证明这样的走法每走一步，当前子树的节点数目减半，这是轻儿子的性质。<br />
+ &nbsp &nbsp &nbsp &nbsp可以证明这样的走法每走一步，当前子树的节点数目减半，这是轻儿子的性质。<br />
 <br />
- &nbsp &nbsp &nbsp &nbsp我们顶多走Olgn步，这意味着分出的链为Olgn个。子问题证毕。<br />
+ &nbsp &nbsp &nbsp &nbsp我们顶多走Olgn步，这意味着分出的链为Olgn个。子问题证毕。<br />
 <br />
 over<br />
 <br />
 如何分链呢？<br />
 <br />
- &nbsp &nbsp &nbsp &nbsp两次dfs<br />
+ &nbsp &nbsp &nbsp &nbsp两次dfs<br />
 <br />
- &nbsp &nbsp &nbsp &nbsp第一次记录父亲，记录子孙数量，回溯重儿子，<br />
+ &nbsp &nbsp &nbsp &nbsp第一次记录父亲，记录子孙数量，回溯重儿子，<br />
 <br />
- &nbsp &nbsp &nbsp &nbsp第二次根据重儿子优先dfs，标记每个节点所属重链的起点，标记dfs序，<br />
+ &nbsp &nbsp &nbsp &nbsp第二次根据重儿子优先dfs，标记每个节点所属重链的起点，标记dfs序，<br />
 <br />
- &nbsp &nbsp &nbsp &nbsp依据dfs序把树变成链并交给线段树处理<br />
+ &nbsp &nbsp &nbsp &nbsp依据dfs序把树变成链并交给线段树处理<br />
 <br />
- &nbsp &nbsp &nbsp &nbsp查询的时候便只需要依据每个节点所属重链起点和dfs序进行线段树区间查询，修改也是一样，都交给线段树处理<br />
+ &nbsp &nbsp &nbsp &nbsp查询的时候便只需要依据每个节点所属重链起点和dfs序进行线段树区间查询，修改也是一样，都交给线段树处理<br />
 <br />
- <br />
+ <br />
 <br />
 附上代码<br />
 <br />
@@ -249,5 +254,11 @@ over<br />
 <br />
 <span style="color: green;font: 20px;">///////</span><br />
 
-	</body>
+	
+	
+	
+	
+	</div>
+	
+	
 </html>
