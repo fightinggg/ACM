@@ -4,6 +4,7 @@ document.writeln(" ");
 document.writeln("<head>");
 document.writeln("    <meta charset=\"utf-8\">");
 document.writeln("    <link rel=\"stylesheet\" type=\"text/css\" href=\"/ACM/css/head.css\">");
+document.writeln("    <meta charset=\"utf-8\" name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0\"/>");        
 document.writeln("</head>");
 document.writeln(" ");
 document.writeln("<body>");
@@ -14,7 +15,7 @@ document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/\">计
 document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/\">思维</a></li>");
 document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/\">黑科技</a></li>");
 document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/string\">字符串</a></li>");
-document.writeln("         	    <li><a href=\"http://fightinggg.github.io/ACM/dp\">dp</a></li>");
+document.writeln("         	  <li><a href=\"http://fightinggg.github.io/ACM/dp\">dp</a></li>");
 document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/graph_theory/\">图论</a></li>");
 document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/math/\">数论</a></li>");
 document.writeln("    			<li ><a href=\"http://fightinggg.github.io/ACM/data_struct/\">数据结构</a></li>");
