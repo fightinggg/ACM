@@ -315,16 +315,6 @@ label, .pturl {
     color: #dd4814 !important
 }
 
-h1 {
-    font-size: 100%;
-    text-align: center;
-    color: #dd4814;
-    font-family: Verdana, arial, helvetica, sans-serif;
-    font-size: medium;
-    font-weight: 400;
-    padding-top: 0.4em;
-    margin: 0
-}
 
 textarea {
     font: 110% "Courier New", Courier, monospace;
