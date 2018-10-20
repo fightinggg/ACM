@@ -15,13 +15,36 @@ document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/\">计
 document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/\">思维</a></li>");
 document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/\">黑科技</a></li>");
 document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/string\">字符串</a></li>");
-document.writeln("         	  <li><a href=\"http://fightinggg.github.io/ACM/dp\">dp</a></li>");
+document.writeln("         	    <li><a href=\"http://fightinggg.github.io/ACM/dp\">dp</a></li>");
 document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/graph_theory/\">图论</a></li>");
 document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/math/\">数论</a></li>");
 document.writeln("    			<li ><a href=\"http://fightinggg.github.io/ACM/data_struct/\">数据结构</a></li>");
 document.writeln("    		</ul>");
 document.writeln("   		</div>");
 document.writeln("   </div>");
+
+document.writeln(" 	<center>");
+document.writeln("	<div class=\"out_sign\">");
+document.writeln("	<div class=\"sign\">");
+document.writeln(" 		</br></br></br></br></br></br></br>");
+document.writeln(" 			相</br>信</br>不</br>屈</br>不</br>挠</br>的</br>努</br>力</br>");
+document.writeln(" 			</br></br>");
+document.writeln("		相</br>信</br>战</br>胜</br>死</br>亡</br>的</br>年</br>轻</br>");
+document.writeln("	</div>");
+document.writeln("	</div>");
+document.writeln("	</center>");
+
+
+
+
+
+
+
+
+			
+
+
+
 document.writeln("</body>");
 document.writeln(" ");
 document.writeln("</html>");
