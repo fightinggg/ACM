@@ -27,7 +27,7 @@ li {
  
 .miaov_head {
     height: 36px;
-    width: 400px;
+    width: 900px;
     margin: 0 auto;
     background: black;
     margin-bottom: 0px;
@@ -47,7 +47,7 @@ li {
  
 .miaov_head ul li {
     float: left;
-    padding-left: 10px;
+    padding-left: 60px;
     margin-left: 0px;
     color: white;
     list-style: none;
