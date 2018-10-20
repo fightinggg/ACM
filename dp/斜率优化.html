@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/head.js"></script>
+    <link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/ACM/pastebin.css">
+	<link rel="stylesheet" type="text/css" href="/ACM/css/left.css">
+	<link rel="stylesheet" type="text/css" href="/ACM/css/right.css">
+	<title>斜率优化</title>
+</head>
+ 
+<body>
+	
+	<div class="out_left">
+	<center>
+	<div class="ACMleft">
+		<ul></br></br></br></br></br></br></br>
+			相</br>信</br>不</br>屈</br>不</br>挠</br>的</br>努</br>力</br>
+		</br>
+		相</br>信</br>战</br>胜</br>死</br>亡</br>的</br>年</br>轻</br>
+			</ul>
+	</div>
+	</center>
+	</div>
+	
+	
+										
+<div class="ACMright">
+	<center>
+	<h1>斜率优化</h1>
+	</center>
+	
+
+
+<pre><span class="cp">///斜率优化</span>
+
+<span class="cp">///对于dp[i]=max/min(f(j)+g(j)*h(i)+H(i))形式</span>
+
+<span class="cp">///为简化描述我们可以只考虑min情况</span>
+<span class="cp">///我们对式子中不同的j作差</span>
+<span class="cp">///这里姑且用j与k表示</span>
+<span class="cp">///不妨设k&gt;j</span>
+<span class="cp">///得到差f(k)-f(j)+h(i)*(g(k)-g(j))</span>
+
+<span class="cp">///如果k优于j那么上式&lt;=0</span>
+<span class="cp">///f(k)-f(j)+h(i)*(g(k)-g(j))&lt;=0</span>
+<span class="cp">///如果g函数满足单调，为了方便 我们假设他单调增</span>
+<span class="cp">///则【f(k)-f(j)】/【g(k)-g(j)】&lt;=h(i)</span>
+<span class="cp">///斜率找到，就是最大且小于h(i)的一组相邻点的斜率，这时的右端点就是dp转移式所要的东西</span>
+
+<span class="cp">///总而言之，当且仅当转移方程满足dp[i]=max/min(f(j)+g(j)*h(i)+H(i))形式且g函数单调</span>
+<span class="cp">///我们就可以斜率优化 </span>
+
+<span class="cp">///重在思维与推导，不在板子，此板子仅供参考</span>
+<span class="cp">#include&lt;bits/stdc++.h&gt;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="cp">#define ll long long</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span><span class="o">=</span><span class="mf">5e4</span><span class="p">;</span>
+<span class="kt">long</span> <span class="kt">long</span> <span class="n">Q</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">dp</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">s</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+
+<span class="kt">long</span> <span class="kt">long</span> <span class="n">f</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">+</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
+<span class="p">}</span>
+<span class="kt">double</span> <span class="n">Slope</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">j</span><span class="p">,</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">k</span><span class="p">)</span>   <span class="c1">//求斜率</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="kt">double</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">-</span><span class="n">f</span><span class="p">(</span><span class="n">j</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">s</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">-</span><span class="n">j</span><span class="o">-</span><span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">ll</span> <span class="n">n</span><span class="p">,</span><span class="n">L</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="o">~</span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lld%lld&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">,</span><span class="o">&amp;</span><span class="n">L</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">tmp</span><span class="p">;</span>
+            <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">tmp</span><span class="p">);</span>
+            <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">tmp</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="kt">int</span> <span class="n">Left</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">Right</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="n">Q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">Left</span><span class="o">&lt;</span><span class="n">Right</span><span class="o">&amp;&amp;</span><span class="n">Slope</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="n">Left</span><span class="p">],</span><span class="n">Q</span><span class="p">[</span><span class="n">Left</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">&lt;=</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">i</span><span class="o">-</span><span class="n">L</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+                <span class="n">Left</span><span class="o">++</span><span class="p">;</span> <span class="c1">//维护队首（删除非最优决策）</span>
+            <span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">Q</span><span class="p">[</span><span class="n">Left</span><span class="p">];</span>
+            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-</span><span class="n">L</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-</span><span class="n">L</span><span class="p">);</span> <span class="c1">//计算当前f</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">Left</span><span class="o">&lt;</span><span class="n">Right</span><span class="o">&amp;&amp;</span><span class="n">Slope</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="n">Right</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">Q</span><span class="p">[</span><span class="n">Right</span><span class="p">])</span><span class="o">&gt;=</span><span class="n">Slope</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="n">Right</span><span class="p">],</span><span class="n">i</span><span class="p">))</span>
+                <span class="n">Right</span><span class="o">--</span><span class="p">;</span> <span class="c1">//维护队尾（维护下凸包性质）</span>
+            <span class="n">Q</span><span class="p">[</span><span class="o">++</span><span class="n">Right</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="p">;</span> <span class="c1">//入队</span>
+        <span class="p">}</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%lld</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">///solved pzoj 1010</span>
+</pre>
+	</div>
+	
+	
+</html>
+
+
