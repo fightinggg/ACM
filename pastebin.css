@@ -1,31 +1,10 @@
 /* CC-BY 2010 Dieki Noordhoek. */
 
 *{
-        padding:0;
-        margin:1px;
-        background:lightskyblue;
+        padding:1000px;
+        margin:100px;
     }
-.head{
-	height:40px ;
-	width:100%;
-	  border: 2px solid deepskyblue;
-      background: skyblue;
-     color: black;
-     text-align: center;
-     font-weight: bold;
-}
 
- .index{
- 	    width: 20%;
- 	    border: 1px solid deepskyblue;
-        background: skyblue;
-        color: black;
-        text-align: center;
-        font-weight: bold;
-      }
-
- 
-        
 .c {
     color: #080;
     font-style: italic
