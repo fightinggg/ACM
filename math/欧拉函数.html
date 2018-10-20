@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/head.js"></script>
+    <link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/ACM/pastebin.css">
+	<link rel="stylesheet" type="text/css" href="/ACM/css/left.css">
+	<link rel="stylesheet" type="text/css" href="/ACM/css/right.css">
+	<title>欧拉函数</title>
+</head>
+ 
+<body>
+	
+	<div class="out_left">
+	<center>
+	<div class="ACMleft">
+		<ul></br></br></br></br></br></br></br>
+			相</br>信</br>不</br>屈</br>不</br>挠</br>的</br>努</br>力</br>
+		</br>
+		相</br>信</br>战</br>胜</br>死</br>亡</br>的</br>年</br>轻</br>
+			</ul>
+	</div>
+	</center>
+	</div>
+	
+	
+										
+<div class="ACMright">
+	<center>
+	<h1>欧拉函数</h1>
+	</center>
+	
+	<pre><span<pre><span class="c1">//O(lgn)适用于少求</span>
+<span class="kt">int</span> <span class="n">euler</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="n">n</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+            <span class="n">ret</span><span class="o">=</span><span class="n">ret</span><span class="o">-</span><span class="n">ret</span><span class="o">/</span><span class="n">i</span><span class="p">;</span>
+            <span class="k">do</span> <span class="n">n</span><span class="o">/=</span><span class="n">i</span><span class="p">;</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span><span class="n">ret</span><span class="o">=</span><span class="n">ret</span><span class="o">-</span><span class="n">ret</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">/////////////////////////////////////////////////</span>
+<span class="c1">//O(maxn)</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span><span class="p">;</span>
+<span class="kt">bool</span> <span class="n">vis</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">phi</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">prime</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+<span class="kt">void</span> <span class="n">euler_ini</span><span class="p">(){</span>
+    <span class="n">phi</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">primes</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">maxn</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">vis</span><span class="p">[</span><span class="n">i</span><span class="p">]){</span>
+            <span class="n">prime</span><span class="p">[</span><span class="o">++</span><span class="n">primes</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
+            <span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+            <span class="c1">//由函数本身性质推</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">primes</span><span class="o">&amp;&amp;</span><span class="n">i</span><span class="o">*</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">maxn</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">vis</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="c1">//由积性函数性质推</span>
+                <span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span><span class="o">=</span><span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+            <span class="k">else</span><span class="p">{</span><span class="c1">//找规律</span>
+                <span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span><span class="o">=</span><span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+ 
+ 
+ 
+
+	</div>
+	
+	
+</html>
+
