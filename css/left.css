@@ -15,25 +15,26 @@ li {
     list-style: none;
     text-decoration: none;
 }
+ .out_left{
+ 	float:left;
+	margin-top: 50px;
+    height:1000px;
+    width: 20%;
+    background: white;
+ }
  
 .ACMleft {
-	margin-top: 100px;
-	float:left;
-    height: 1000px;
-    width: 20%;
-
+    height:1000px;
+    width: 150px;
     background: black;
-    margin-bottom: 0px;
 }
  
- 
 .ACMleft ul {
-    width: 900px;
-    height: 10px;
+    width: 100%;
+    height: 100px;
     margin-top: 10px;
     color: white;
     top: 0px;
-    margin-left: 7px;
 }
  
 .ACMleft ul li {
