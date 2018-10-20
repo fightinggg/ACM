@@ -9,16 +9,16 @@
 .index {
 	position: relative;
     height: 560px;
-    width: 300px;
+    width: 350px;
     margin: 0 auto;
-    background: white;
+
     margin-top: 200px;
 }
  
  
 .index ul {
     float: left;
-    width: 100%;
+    width: 350px;
     height: 300px;
     margin-top: 0px;
     color: black;
@@ -30,7 +30,7 @@
 .index ul li {
 	position: relative;
    
-    margin-left: 50px;
+    margin-left: 40px;
     color: white;
     list-style: none;
 }
@@ -45,7 +45,7 @@
     position: absolute;
     top: 5px;
     margin-left: 1000px;
-    width: 200px;
+    width: 250px;
     height: 22px;
 }
  
