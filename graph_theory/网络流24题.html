@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/head.js"></script>
+    <link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/ACM/pastebin.css">
+	<link rel="stylesheet" type="text/css" href="/ACM/css/right.css">
+	<title>网络流24题</title>
+</head>
+ 
+<body>
+	
+										
+   <div class="ACMright">
+		<center>
+		<h1>网络流24题</h1>
+		</center>
+
+<div class="normal_href">
+<a href="https://www.luogu.org/problemnew/show/P2756"target="_blank" >第一题：P2756 飞行员配对方案问题<a>
+</div>
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+二分图匹配，学到了使用反向边是否存在流量来输出路径。
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+
+<div class="normal_href">
+<a href="https://www.luogu.org/problemnew/show/P2762"target="_blank" >第二题：P2762 太空飞行计划问题<a>
+</div>
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+最大权闭合图，将正权点连接s,容量为点权,负权点连接t容量为点权绝对
+值,所求得的一个割将图分为两部分,我们发现所有正点权的和减去该简单
+割，便是与s相连的闭合图的权，因为最小割所以最大权闭合图（即给定
+常数c，求c-a的最大值，等价于求c减去a的最小值）。注意跑完最大流
+以后，与s相连的点构成的点集就是最大权闭合图。学会了使用bfs之后
+的lv数组来输出路径
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+
+<div class="normal_href">
+<a href="https://www.luogu.org/problemnew/show/P2764#sub"target="_blank" >第三题：P2764 最小路径覆盖问题<a>
+</div>
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+最小路径覆盖，用原图建立一个两层的新图，如果原图中存在边i->j我
+们建立的新图就有第一层的点i流到第二层的点j，最后建立超级源点流向
+所有的第一层图的点，建立超级汇点，由所有第二层的图流入，用n减去所
+求的最大流就是最小路径，
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+对于路径输出的时候，要先理解为什么得到的答案是最小路径，我们发现每
+有一个成功的二分图匹配路径a->b那么说明可以由a走到b，也就是第一层
+的a点可以走到第二层的b点，我们把这个映射回原图，就是a到b这样一条边
+，也就是说在原图中可以走这样的一条边，另一方面假设我们一共走了k条边
+走完了图，那么此时最少路径就是n-k。与上面的一样我们只要保证k最大就能
+得到最少的路径，显然最大的k就是二分图匹配了，如此二分图匹配中我们不妨
+设原图的点i映射到二分图的i与n+i，那么如果二分图匹配到了a->b那么说明我们
+在原图中走了a->(b-n)这样一条边.
+	
+	
+	
+
+  
+  
+	</div>
+	
+	
+</html>
+
+
