@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/head.js"></script>
+    <link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/ACM/pastebin.css">
+	<link rel="stylesheet" type="text/css" href="/ACM/css/right.css">
+	<title>广义组合数</title>
+</head>
+ 
+<body>
+	
+										
+   <div class="ACMright">
+		<center>
+		<h1>广义组合数</h1>
+		</center>
+	
+	<p>        想必大家都知道的组合数在正整数上有：</p>
+
+<p>        <img alt="C_{a}^{b}=\frac{a!}{b!(a-b)!}" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20C_%7Ba%7D%5E%7Bb%7D%3D%5Cfrac%7Ba%21%7D%7Bb%21%28a-b%29%21%7D" /></p>
+
+<p>        但很少有人知道这个公式在实数领域上也是成立的：</p>
+
+<p>        也就是说n！在实数上有定义</p>
+
+<p>        x！=<img alt="\gamma" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20%5Cgamma" />(x+1)。。。。。<img alt="\gamma" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20%5Cgamma" />(x)为伽马函数</p>
+
+<p><img alt="" class="has" src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1537781108554&amp;di=ed16c8522730026f11421c1e9388ca59&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.twword.com%2Fuploads%2Fwiki%2F02%2F8e%2F537058_1.jpg" /></p>
+
+<p>        </p>
+
+<p>        下面问题转移到伽马函数上面了，但是在这里我们所用到的伽马函数的性质只有这一条</p>
+
+<p>        <img alt="\gamma" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20%5Cgamma" />(x)=(x-1)<img alt="\gamma" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20%5Cgamma" />(x-1)</p>
+
+<p>        </p>
+
+<p>        为什么这样说呢，因为我们不需要计算x！，我们要算的是这个式子</p>
+
+<p>        <img alt="C_{a}^{b}=\frac{a!}{b!(a-b)!}=\frac{\gamma (a+1)}{\gamma (b+1)\gamma(a-b+1)}" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20C_%7Ba%7D%5E%7Bb%7D%3D%5Cfrac%7Ba%21%7D%7Bb%21%28a-b%29%21%7D%3D%5Cfrac%7B%5Cgamma%20%28a&amp;plus;1%29%7D%7B%5Cgamma%20%28b&amp;plus;1%29%5Cgamma%28a-b&amp;plus;1%29%7D" /></p>
+
+<p> </p>
+
+<p>        下面给出几个简单的我们来算一下</p>
+
+<p>        <img alt="C_{4.5}^{3} =\frac{4.5!}{3!*1.5!} =\frac{\gamma (5.5)}{3!\gamma (2.5)} =\frac{1}{3!}\frac{\gamma (5.5)}{\gamma(2.5)} =\frac{1}{3!}*4.5*3.5*2.5" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20C_%7B4.5%7D%5E%7B3%7D%20%3D%5Cfrac%7B4.5%21%7D%7B3%21*1.5%21%7D%20%3D%5Cfrac%7B%5Cgamma%20%285.5%29%7D%7B3%21%5Cgamma%20%282.5%29%7D%20%3D%5Cfrac%7B1%7D%7B3%21%7D%5Cfrac%7B%5Cgamma%20%285.5%29%7D%7B%5Cgamma%282.5%29%7D%20%3D%5Cfrac%7B1%7D%7B3%21%7D*4.5*3.5*2.5" /></p>
+
+<p>        <img alt="C_{3}^{4} =\frac{3!}{4!(-1)!}" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20C_%7B3%7D%5E%7B4%7D%20%3D%5Cfrac%7B3%21%7D%7B4%21%28-1%29%21%7D" /></p>
+
+<p>                为什么我不继续化简了呢？</p>
+
+<p> </p>
+
+<p>                如果你是一个思维严谨的读者，当你看到了我放入的伽马函数图像的时候，你就应该对我的博客提出质疑，</p>
+
+<p>                我曾经说n!在整个实数领域有意义，又说x!=<img alt="\gamma" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20%5Cgamma" />(x+1)        ,然而我给出的伽马函数的定义域明显不包含负整数和0，</p>
+
+<p>                我一定有一个地方错了。</p>
+
+<p>                对的，负数没有阶乘！</p>
+
+<p> </p>
+
+<p>                我重新给出定义域：</p>
+
+<p>                <img alt="C_{a}^{b}=\frac{a!}{b!(a-b)!}" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20C_%7Ba%7D%5E%7Bb%7D%3D%5Cfrac%7Ba%21%7D%7Bb%21%28a-b%29%21%7D" /></p>
+
+<p>                x!有意义当且仅当<img alt="x\geq 0||-x\notin Z" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20x%5Cgeq%200%7C%7C-x%5Cnotin%20Z" /></p>
+
+<p> </p>
+
+<p>                不管读者如何想，至少我自己认为，如果给要给负数定义一个阶乘的值，依据伽马函数在对应的点的极限为∞，</p>
+
+<p>                那么负数的阶乘应该是∞，代入刚刚的式子并化简有</p>
+
+<p>                <img alt="C_{3}^{4} =\frac{3!}{4!(-1)!}=\frac{1}{4}*\frac{1}{infinity}=0" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20C_%7B3%7D%5E%7B4%7D%20%3D%5Cfrac%7B3%21%7D%7B4%21%28-1%29%21%7D%3D%5Cfrac%7B1%7D%7B4%7D*%5Cfrac%7B1%7D%7Binfinity%7D%3D0" /></p>
+
+<p>                我又写了一个不严谨的证明。。。。。。如果读者有兴趣，自己试着证明一下吧，至少我好像证出来了。</p>
+
+<p>然后继续下一题</p>
+
+<p>        <img alt="C_{-1}^{3}=\frac{(-1)!}{3!*(-4)!}" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20C_%7B-1%7D%5E%7B3%7D%3D%5Cfrac%7B%28-1%29%21%7D%7B3%21*%28-4%29%21%7D" /></p>
+
+<p>        <img alt="C_{-1}^{-4}=\frac{(-1)!}{(-4)!*3!}" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20C_%7B-1%7D%5E%7B-4%7D%3D%5Cfrac%7B%28-1%29%21%7D%7B%28-4%29%21*3%21%7D" /></p>
+
+<p>        哈哈哈哈你说怎么办呢？？？？？</p>
+
+<p>        除非无穷大有大小关系，否则这里无法解释，，，，此路不通</p>
+
+<p>        </p>
+
+<p>        数学总是这样，如果我非得让这个式子可以运算，将对很多其他数学定理有很大的影响，而不是那些数学家们不愿意在数学界给出新的运算。给出新的运算就得付出代价。</p>
+
+<p>        </p>
+
+<p>        数学界用这样一种方法来回避这样的问题，重新定义组合数，而不是引入新的运算。</p>
+
+<p> </p>
+
+<p>        重新定义广义组合数的值</p>
+
+<p>        <img alt="C_{x}^{n}=\frac{\prod _{i=x-n+1}^{x}i}{n!}(x\in R,n\in Z^{*})" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20C_%7Bx%7D%5E%7Bn%7D%3D%5Cfrac%7B%5Cprod%20_%7Bi%3Dx-n&amp;plus;1%7D%5E%7Bx%7Di%7D%7Bn%21%7D%28x%5Cin%20R%2Cn%5Cin%20Z%5E%7B*%7D%29" /></p>
+
+<p>     </p>
+
+<p>        如此我们把题目都重新做一遍</p>
+
+<p>        <img alt="C_{4.5}^{3}=\frac{\prod _{i=4.5-3+1}^{4.5}i}{3!}=\frac{\prod _{I=2.5}^{4.5}i}{3!}=\frac{2.5*3.5*4.5}{1*2*3}" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20C_%7B4.5%7D%5E%7B3%7D%3D%5Cfrac%7B%5Cprod%20_%7Bi%3D4.5-3&amp;plus;1%7D%5E%7B4.5%7Di%7D%7B3%21%7D%3D%5Cfrac%7B%5Cprod%20_%7BI%3D2.5%7D%5E%7B4.5%7Di%7D%7B3%21%7D%3D%5Cfrac%7B2.5*3.5*4.5%7D%7B1*2*3%7D" /></p>
+
+<p>        <img alt="C_{3}^{4}=\frac{\prod _{i=3-4+1}^{3}i}{4!}=\frac{\prod _{i=0}^{3}i}{4!}=\frac{0*1*2*3}{1*2*3*4}=0" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20C_%7B3%7D%5E%7B4%7D%3D%5Cfrac%7B%5Cprod%20_%7Bi%3D3-4&amp;plus;1%7D%5E%7B3%7Di%7D%7B4%21%7D%3D%5Cfrac%7B%5Cprod%20_%7Bi%3D0%7D%5E%7B3%7Di%7D%7B4%21%7D%3D%5Cfrac%7B0*1*2*3%7D%7B1*2*3*4%7D%3D0" /></p>
+
+<p>        <img alt="C_{-1}^{3}=\frac{\prod _{i=-1-3+1}^{-1}i}{3!}=\frac{\prod _{i=-3}^{-1}i}{3!}=\frac{(-3)*(-2)*(-1)}{1*2*3}" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20C_%7B-1%7D%5E%7B3%7D%3D%5Cfrac%7B%5Cprod%20_%7Bi%3D-1-3&amp;plus;1%7D%5E%7B-1%7Di%7D%7B3%21%7D%3D%5Cfrac%7B%5Cprod%20_%7Bi%3D-3%7D%5E%7B-1%7Di%7D%7B3%21%7D%3D%5Cfrac%7B%28-3%29*%28-2%29*%28-1%29%7D%7B1*2*3%7D" /></p>
+
+<p>        .......</p>
+
+<p>差不多了</p>
+
+<p>over</p>
+  
+  		
+  
+  
+  
+	</div>
+	
+	
+</html>
+
+
