@@ -2,30 +2,22 @@
 	
 	float: left ;
 	margin-top: 100px;
-    height: 500px;
+    height: 600px;
     width: 80%;
+    
 }
 
 .index {
 	position: relative;
-    	margin-top: 50px;
-    height:460px;
+    height:550px;
     width: 350px;
-    margin: 0 auto;
-
-    margin-top: 200px;
 }
  
- 
 .index ul {
-    float: left;
     width: 350px;
-    height: 300px;
-    margin-top: 0px;
+    height: 100px;
     color: black;
-    position: absolute;
-    top: 0px;
-    margin-left: 0px;
+    position: relative;
 }
  
 .index ul li {
@@ -59,7 +51,15 @@
     color: #555;
 }
 
+
+
+
+
+
+
+
 .normal_href{
+	position: relative;
 	float:right;
 	width:100%;
 	background:black;
