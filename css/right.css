@@ -8,7 +8,8 @@
 
 .index {
 	position: relative;
-    height: 560px;
+    	margin-top: 50px;
+    height:460px;
     width: 350px;
     margin: 0 auto;
 
@@ -55,5 +56,21 @@
 }
  
 .index a:hover {
+    color: #555;
+}
+
+.normal_href{
+	float:right;
+	width:100%;
+	background:black;
+	
+}
+
+.normal_href a{
+	color:white;
+	background: black;
+	text-decoration:none;
+}
+.normal_href a:hover {
     color: #555;
 }
