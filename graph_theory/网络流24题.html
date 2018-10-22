@@ -55,15 +55,24 @@
 得到最少的路径，显然最大的k就是二分图匹配了，如此二分图匹配中我们不妨
 设原图的点i映射到二分图的i与n+i，那么如果二分图匹配到了a->b那么说明我们
 在原图中走了a->(b-n)这样一条边.
+	</br>
 	
-	
-	
-
-  
-  
+	<div class="normal_href">
+<a href="https://www.luogu.org/problemnew/show/P2764#sub"target="_blank" >第四题：LiberOJ6003 魔术球<a>
+</div>
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+依旧是是一个最小路径覆盖的问题，我们考虑把球当作点，把盒子当成路径，那么
+很明显，连边方式就是i->j当且仅当i<=n且j<=n且i+j=k^2.
+</br>但是这样子做我们只能解决这样一个问题:
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+给你从1到n的n个球我们可以找到最少的盒子来装球。
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+仔细分析发现题目给的问题可以二分处理，我们二分来判断n个盒子能不能装到k个球
+就可以了。
 	</div>
 	
 	
 </html>
+
 
 
