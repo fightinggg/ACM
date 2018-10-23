@@ -1,9 +1,10 @@
 .ACMright{
 	
-	float: right;
-	margin-top: 100px;
-    height: 600px;
-    width: 80%;
+	float: right ;
+	margin-top: 144px;
+    height: 80%;
+    width: 78%;
+    margin-right:6%;
     
 }
 
@@ -67,6 +68,7 @@
 }
 
 .normal_href a{
+	position: relative;
 	color:white;
 	background: black;
 	text-decoration:none;
@@ -74,3 +76,4 @@
 .normal_href a:hover {
     color: #555;
 }
+
