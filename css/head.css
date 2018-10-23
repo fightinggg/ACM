@@ -12,12 +12,13 @@ body {
 }
 
 .out_head{
-    position:fixed;
-	height: 36px;
+	position:fixed;
+	z-index:100;
+	margin-top:36px;
+	height: 108px;
     width: 100%;
-    margin: 0 auto;
-    background: black;
-    margin-bottom: 0px;
+    background: white;
+
 } 
  
 li {
@@ -28,9 +29,7 @@ li {
 .miaov_head {
     height: 36px;
     width: 100%;
-    margin: 0 auto;
     background: black;
-    margin-top: 12px;
 }
  
  
@@ -38,7 +37,6 @@ li {
     float: left;
     width: 95%;
     height: 36px;
-    margin-top: 30px;
     color: white;
     position: absolute;
     top: 0px;
@@ -77,7 +75,16 @@ li {
 }
 
 
-
+.out_name{
+	z-index: 100;
+	position:fixed;
+	margin-top:0;
+	height:36px;
+	width: 100%;
+	background:white;
+	color:black;
+	font-size:25px;
+}
 
 
 
@@ -90,19 +97,17 @@ li {
 
 
  .out_sign{
- 	float:left;
-   position:fixed;
-	margin-top: 50px;
-   height:600px;
-   width: 15%;
-   background: white;
+ 	position:fixed; 
+	margin-top: 144px;
+    height:1000px;
+    width: 16%;
+    background: white;
  }
- 
- 
- 
 .sign {
-    height:600px;
+	position:relative; 
+	margin-top: 0%;
+    height:1000px;
     width: 30px;
     background: black;
-    color: white;
+     color: white;
 }
