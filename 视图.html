@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/head.js"></script>
+    <link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/ACM/pastebin.css">
+	<link rel="stylesheet" type="text/css" href="/ACM/css/right.css">
+	<title>视图</title>
+</head>
+ 
+<body>
+	
+										
+   <div class="ACMright">
+   <center>
+   <h1>视图</h1>
+   </center>
+<pre>
+
+/*************************
+ *                       *
+ *                       *
+ *     定义视图           *
+ *                       *
+ *                       *
+ *************************/
+
+ 
+--1.定义计算机系学生基本情况视图V_Computer；
+/*
+if exists (select table_name from      
+                    information_schema.views
+                    where table_name = 'V_Computer')
+        drop view V_Computer
+go
+create view V_Computer
+as select *
+from student
+where dno='计算机'
+*/
+
+
+
+--2.将Student、 Course 和Student_course表中学生的学号，姓名，课程号，课程名，成绩定义为视图V_S_C_G
+/*
+use EDUC
+if exists (select table_name from      
+                    information_schema.views
+                    where table_name = 'V_S_C_G')
+        drop view V_S_C_G
+go
+create view V_S_C_G  as
+select student.sno,student.sname,
+		course.cno,course.cname,
+		student_course.score
+from student,course,student_course
+where student.sno=student_course.sno
+with check option
+*/
+
+/*
+--3. 将各系学生人数，平均年龄定义为视图V_NUM_AVG
+
+use EDUC
+if exists (select table_name from
+				information_schema.views   
+				where table_name='V_NUM_AVG')
+				drop view V_NUM_AVG
+go
+create view V_NUM_AVG as
+select student.sname,student.age
+from student
+with check option
+*/
+
+/*
+--4.定义一个反映学生出生年份的视图V_YEAR
+
+use EDUC
+if exists (select table_name from
+				information_schema.views   
+				where table_name='V_YEAR')
+				drop view V_YEAR
+go
+create view V_YEAR as
+select student.sname,student.birthday
+from student
+with check option
+*/
+
+--5.将各位学生选修课程的门数及平均成绩定义为视图V_AVG_S_G
+/*
+use EDUC
+if exists (select table_name from
+				information_schema.views   
+				where table_name='V_AVG_S_G')
+				drop view V_AVG_S_G
+go
+create view V_AVG_S_G as
+select student.sname,student_course.tcid,student_course.score
+from student,student_course
+with check option
+*/
+
+
+--6.将各门课程的选修人数及平均成绩定义为视图V_AVG_C_G
+/*
+use EDUC
+if exists (select table_name from
+				information_schema.views   
+				where table_name='V_AVG_C_G')
+				drop view V_AVG_C_G
+go
+create view V_AVG_C_G as
+select student_course.tcid,student_course.score
+from student_course
+with check option
+*/
+
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+
+/*************************
+ *                       *
+ *                       *
+ *     使用视图          *
+ *                       *
+ *                       *
+ *************************/
+
+ --1.查询以上所建的视图结果。
+ /*
+ use EDUC
+select*from student where dno='计算机'
+ select*from V_S_C_G
+ select*from V_NUM_AVG
+ select*from V_YEAR
+ select*from V_AVG_S_G
+ select*from V_AVG_C_G
+ */
+
+--2.查询平均成绩为90分以上的学生学号、姓名和成绩；
+--3.查询各课成绩均大于平均成绩的学生学号、姓名、课程和成绩；
+--4.按系统计各系平均成绩在80分以上的人数，结果按降序排列；
+
+
+/*************************
+ *                       *
+ *                       *
+ *     修改视图          *
+ *                       *
+ *                       *
+ *************************/
+
+ --1.通过视图V_Computer，分别将学号为“S1”和“S4”的学生姓名更改为“S1_MMM”,”S4_MMM” 并查询结果;
+/*( 
+use EDUC
+
+update V_Computer 
+set sname='S1'
+where sno ='1'
+go
+update V_Computer
+set sname='S4'
+where sno = '4'
+go
+select*from V_Computer
+
+
+update V_Computer 
+set sname='1'
+where sno ='S1'
+go
+update V_Computer
+set sname='4'
+where sno = 'S4'
+go
+select*from V_Computer
+*/
+
+--2.通过视图V_Computer，新增加一个学生记录 ('S12','YAN XI',19,'IS')，并查询结果
+  --3.通过视图V_Computer，新增加一个学生记录 ('S13','YAN XI',19,'MA')，并查询结果
+  --4.通过视图V_Computer，删除学号为“S12”和“S3”的学生信息，并查询结果
+  
+  /*
+select*from V_Computer
+go
+
+insert into V_Computer
+values ('S12','S12','S','S12',1,'计算机','S12','S12',1,'S12','S12','S12')
+insert into V_Computer
+values ('S13','S13','S','S13',1,'计算机','S13','S13',1,'S13','S13','S13')
+select*from V_Computer
+go
+
+delete from V_Computer
+where sno='S12'or sno='S13'
+select*from V_Computer
+*/
+
+--5为学生改名
+--可以实现
+--以上代码已经实现
+
+--6为学生改分数
+--可以实现
+--都是一样的
+
+/*********************************
+**********************************/
+
+
+
+
+
+/*************************
+ *                       *
+ *                       *
+ *     使用索引          *
+ *                       *
+ *                       *
+ *************************/
+ 
+ --普通降序索引
+create index index_student_sanme on student (sname DESC)
+
+--唯一索引
+create unique index index_course_cname on course (cname)
+
+--聚类索引
+create clustered index index_student_course_sno on student_course(sno)
+
+
+--对score创建普通索引
+create index index_student_course_score on student_course(score asc)
+
+--删除索引
+drop index student.index_student_sanme
+drop index course.index_course_cname
+drop index student_course.index_student_course_sno
+drop index student_course.index_student_course_score
+
+
+</pre>
+
+
+        
+</br></br></br></br></br></br></br></br>
+</div>
+
+
+
+</html>
+
+
+
