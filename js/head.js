@@ -4,12 +4,14 @@ document.writeln(" ");
 document.writeln("<head>");
 document.writeln("    <meta charset=\"utf-8\">");
 document.writeln("    <meta charset=\"utf-8\" name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0\"/>");   
-document.writeln("        <center><p style=\"color: black;\">逐梦</p></center>");
 document.writeln("    <link rel=\"stylesheet\" type=\"text/css\" href=\"/ACM/css/head.css\">");     
 document.writeln("</head>");
 document.writeln(" ");
 document.writeln("<body>");
-document.writeln("	<div class=\"out_head\">   ");
+
+document.writeln("      <center><div class='out_name'>逐梦</div></center>");
+
+document.writeln("	<div class='out_head'>   ");
 document.writeln("		<div class='miaov_head'>");
 document.writeln("    		<ul>");
 document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/\">计算几何</a></li>");
@@ -35,14 +37,6 @@ document.writeln("	</div>");
 document.writeln("	</div>");
 document.writeln("	</center>");
 
-
-
-
-
-
-
-
-			
 
 
 
