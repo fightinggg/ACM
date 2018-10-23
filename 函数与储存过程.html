@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/head.js"></script>
+    <link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/ACM/pastebin.css">
+	<link rel="stylesheet" type="text/css" href="/ACM/css/right.css">
+	<title>函数与储存过程</title>
+</head>
+ 
+<body>
+	
+										
+   <div class="ACMright">
+   
+   <center><h1>函数与储存过程</h1></center>
+   
+        <pre><span class="c1">--创建函数，合并fname和lname</span>
+<span class="k">create</span> <span class="k">function</span> <span class="n">add_name</span><span class="p">(</span><span class="o">@</span><span class="n">fname</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span><span class="o">@</span><span class="n">lname</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">))</span>
+<span class="k">returns</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span>
+<span class="k">as</span>
+<span class="k">begin</span>
+    <span class="k">declare</span> <span class="o">@</span><span class="n">ret</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span>
+	<span class="k">select</span> <span class="o">@</span><span class="n">ret</span><span class="o">=@</span><span class="n">fname</span><span class="o">+@</span><span class="n">lname</span>
+ 	<span class="k">return</span> <span class="o">@</span><span class="n">ret</span>
+<span class="k">end</span>
+</pre>
+
+</br>
+用储存过程来调用函数
+<pre><span class="k">alter</span> <span class="n">proc</span> <span class="n">find_city</span> <span class="o">@</span><span class="n">city</span>  <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="p">,</span><span class="o">@</span><span class="n">contract</span>  <span class="nb">bit</span>
+<span class="k">as</span>
+<span class="k">select</span> <span class="n">dbo</span><span class="p">.</span><span class="n">add_name</span><span class="p">(</span><span class="n">au_fname</span><span class="p">,</span><span class="n">au_lname</span><span class="p">)</span><span class="k">as</span> <span class="n">name</span>
+<span class="k">from</span> <span class="n">authors</span>
+<span class="k">where</span> <span class="n">authors</span><span class="p">.</span><span class="n">city</span> <span class="k">like</span> <span class="o">@</span><span class="n">city</span> <span class="k">and</span> <span class="n">authors</span><span class="p">.</span><span class="n">contract</span> <span class="k">like</span> <span class="o">@</span><span class="n">contract</span>
+</pre>
+
+
+
+        
+</br></br></br></br></br></br></br></br>
+</div>
+
+
+
+</html>
+
+
+
