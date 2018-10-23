@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/head.js"></script>
+    <link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/ACM/pastebin.css">
+	<link rel="stylesheet" type="text/css" href="/ACM/css/right.css">
+	<title>网络流24题</title>
+</head>
+ 
+<body>
+	
+										
+   <div class="ACMright">
+   <center>
+   <h1>创建数据库</h1>
+   	</center>
+	<pre><span class="c1">--这里是创建数据库</span>
+<span class="k">create</span> <span class="k">database</span> <span class="ss">&quot;EDUC&quot;</span>
+<span class="k">on</span> <span class="k">primary</span>
+<span class="p">(</span>
+	<span class="n">name</span><span class="o">=</span><span class="ss">&quot;student_data&quot;</span><span class="p">,</span>							
+	<span class="n">filename</span><span class="o">=</span><span class="s1">&#39;C:\sql_data\student_data.mdf&#39;</span><span class="p">,</span> <span class="c1">--no E:\</span>
+	<span class="k">size</span><span class="o">=</span><span class="mi">10</span><span class="n">MB</span><span class="p">,</span>
+	<span class="n">maxsize</span><span class="o">=</span><span class="mi">50</span><span class="n">MB</span><span class="p">,</span>
+	<span class="n">filegrowth</span><span class="o">=</span><span class="mi">5</span><span class="o">%</span>
+<span class="p">)</span>
+<span class="n">log</span> <span class="k">on</span>
+<span class="p">(</span>
+	<span class="n">name</span><span class="o">=</span><span class="ss">&quot;student_log&quot;</span><span class="p">,</span>
+	<span class="n">filename</span><span class="o">=</span><span class="s1">&#39;C:\sql_data\student_log.ldf&#39;</span><span class="p">,</span>  <span class="c1">--no E:\</span>
+	<span class="k">size</span><span class="o">=</span><span class="mi">2</span><span class="n">MB</span><span class="p">,</span>
+	<span class="n">maxsize</span><span class="o">=</span><span class="mi">5</span><span class="n">MB</span><span class="p">,</span>
+	<span class="n">filegrowth</span><span class="o">=</span><span class="mi">1</span><span class="n">MB</span>
+<span class="p">)</span>
+
+<span class="c1">--drop database &quot;EDUC&quot;</span>
+</pre>
+        
+        <center>
+        	<h1>
+        		创建表
+        	</h1>
+        </center>
+        
+        <pre><span class="n">use</span> <span class="ss">&quot;EDUC&quot;</span>
+<span class="k">go</span>
+<span class="k">create</span> <span class="k">table</span> <span class="n">student</span>
+<span class="p">(</span>	
+	<span class="n">sno</span>		<span class="nb">char</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>		<span class="k">not</span> <span class="k">null</span><span class="p">,</span>	<span class="c1">--学生学号</span>
+	<span class="n">sname</span>		<span class="nb">char</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>		<span class="k">not</span> <span class="k">null</span><span class="p">,</span>	<span class="c1">--学生姓名</span>
+	<span class="n">sex</span>		<span class="nb">char</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>		<span class="k">null</span><span class="p">,</span>		<span class="c1">--学生性别</span>
+	<span class="n">native</span>		<span class="nb">char</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>	<span class="k">null</span><span class="p">,</span>		<span class="c1">--籍贯</span>
+	<span class="n">birthday</span>	<span class="nb">smallint</span>	<span class="k">null</span><span class="p">,</span>		<span class="c1">--学生出生日期</span>
+	<span class="n">dno</span>		<span class="nb">char</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>		<span class="k">null</span><span class="p">,</span>		<span class="c1">--学生所在院系</span>
+	<span class="n">spno</span>		<span class="nb">char</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>		<span class="k">null</span><span class="p">,</span>		<span class="c1">--专业代码（外键）</span>
+	<span class="n">classno</span>		<span class="nb">char</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>		<span class="k">null</span><span class="p">,</span>		<span class="c1">--班级号</span>
+	<span class="n">entime</span>		<span class="nb">smallint</span>	<span class="k">null</span><span class="p">,</span>		<span class="c1">--学生入校时间</span>
+	<span class="n">home</span>		<span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>	<span class="k">null</span><span class="p">,</span>		<span class="c1">--学生家庭住址</span>
+	<span class="n">tel</span>		<span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>	<span class="k">null</span>		<span class="c1">--学生联系电话</span>
+	<span class="k">constraint</span> <span class="n">pk_student</span> <span class="k">primary</span> <span class="k">key</span> <span class="n">clustered</span><span class="p">(</span><span class="n">sno</span><span class="p">)</span>
+	<span class="c1">--foreign key(spno)references (spno)</span>
+<span class="p">)</span>
+
+<span class="k">create</span> <span class="k">table</span> <span class="n">course</span>
+<span class="p">(</span>
+	<span class="n">cno</span>		<span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>	<span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>	<span class="c1">--课程编号</span>
+	<span class="n">spno</span>		<span class="nb">char</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>		<span class="k">NULL</span><span class="p">,</span>		<span class="c1">--专业代码（外键）</span>
+	<span class="n">cname</span>		<span class="nb">char</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>	<span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>	<span class="c1">--课程名称</span>
+	<span class="n">ctno</span>		<span class="n">tinyint</span>		<span class="k">NULL</span><span class="p">,</span>		<span class="c1">--课程类型编号（外键）</span>
+	<span class="n">experiment</span>	<span class="n">tinyint</span>		<span class="k">NULL</span><span class="p">,</span>		<span class="c1">--实验时数</span>
+	<span class="n">lecture</span>		<span class="n">tinyint</span>		<span class="k">NULL</span><span class="p">,</span>		<span class="c1">--授课学时</span>
+	<span class="n">semester</span>	<span class="n">tinyint</span>		<span class="k">NULL</span><span class="p">,</span>		<span class="c1">--开课学期</span>
+	<span class="n">credit</span>		<span class="n">tinyint</span>		<span class="k">NULL</span><span class="p">,</span>		<span class="c1">--课程学分</span>
+	<span class="k">constraint</span> <span class="n">pk_course</span> <span class="k">primary</span> <span class="k">key</span> <span class="n">clustered</span><span class="p">(</span><span class="n">cno</span><span class="p">)</span>
+	<span class="c1">--foreign key(spno)references course(spno)</span>
+	<span class="c1">--foreign key(ctno)references course(ctno)</span>
+<span class="p">)</span>
+
+<span class="k">create</span> <span class="k">table</span> <span class="n">student_course</span>
+<span class="p">(</span>
+	<span class="n">sno</span>		<span class="nb">char</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>		<span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>	<span class="c1">--学生学号</span>
+	<span class="n">tcid</span>		<span class="nb">smallint</span>	<span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>	<span class="c1">--上课编号</span>
+	<span class="n">score</span>		<span class="n">tinyint</span>		<span class="k">NULL</span>		<span class="c1">--学生成绩</span>
+	<span class="k">constraint</span> <span class="n">pk_student_course</span> <span class="k">primary</span> <span class="k">key</span> <span class="n">clustered</span><span class="p">(</span><span class="n">sno</span><span class="p">,</span><span class="n">tcid</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="k">create</span> <span class="k">table</span> <span class="n">teacher</span>
+<span class="p">(</span>
+	<span class="n">tno</span>		<span class="nb">char</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>		<span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>	<span class="c1">--教师编号</span>
+	<span class="n">tname</span>		<span class="nb">char</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>		<span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>	<span class="c1">--教师姓名</span>
+	<span class="n">sex</span>		<span class="nb">char</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>		<span class="k">NULL</span><span class="p">,</span>		<span class="c1">--教师性别</span>
+	<span class="n">birthday</span>	<span class="nb">smallint</span>	<span class="k">NULL</span><span class="p">,</span>		<span class="c1">--教师出生日期</span>
+	<span class="n">dno</span>		<span class="nb">char</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>		<span class="k">NULL</span><span class="p">,</span>		<span class="c1">--教师所在院系</span>
+	<span class="n">pno</span>		<span class="n">tinyint</span>		<span class="k">NULL</span><span class="p">,</span>		<span class="c1">--教师职务或职称编号</span>
+	<span class="n">home</span>		<span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>	<span class="k">NULL</span><span class="p">,</span>		<span class="c1">--教师家庭住址</span>
+	<span class="n">zipcode</span>		<span class="nb">char</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>		<span class="k">NULL</span><span class="p">,</span>		<span class="c1">--邮政编码</span>
+	<span class="n">tel</span>		<span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>	<span class="k">NULL</span><span class="p">,</span>		<span class="c1">--联系电话</span>
+	<span class="n">email</span>		<span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>	<span class="k">NULL</span>		<span class="c1">--电子邮件</span>
+	<span class="k">constraint</span> <span class="n">pk_teacher</span> <span class="k">primary</span> <span class="k">key</span> <span class="n">clustered</span><span class="p">(</span><span class="n">tno</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="k">create</span> <span class="k">table</span> <span class="n">teacher_course</span>
+<span class="p">(</span>
+	<span class="n">tcid</span>		<span class="nb">smallint</span>	<span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>	<span class="c1">--上课编号</span>
+	<span class="n">tno</span>		<span class="nb">char</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>		<span class="k">NULL</span><span class="p">,</span>		<span class="c1">--教师编号（外键）</span>
+	<span class="n">spno</span>		<span class="nb">char</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>		<span class="k">NULL</span><span class="p">,</span>		<span class="c1">--专业代码（外键）</span>
+	<span class="n">classno</span>		<span class="nb">char</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>		<span class="k">NULL</span><span class="p">,</span>		<span class="c1">--班级号</span>
+	<span class="n">cno</span>		<span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>	<span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>	<span class="c1">--课程编号（外键）</span>
+	<span class="n">semester</span>	<span class="nb">char</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>		<span class="k">NULL</span><span class="p">,</span>		<span class="c1">--学期</span>
+	<span class="n">schoolyear</span>	<span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>	<span class="k">NULL</span><span class="p">,</span>		<span class="c1">--学年</span>
+	<span class="n">classtime</span>	<span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>	<span class="k">NULL</span><span class="p">,</span>		<span class="c1">--上课时间</span>
+	<span class="n">classroom</span>	<span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>	<span class="k">NULL</span><span class="p">,</span>		<span class="c1">--上课地点</span>
+	<span class="n">weektime</span>	<span class="n">tinyint</span>		<span class="k">NULL</span>		<span class="c1">--每周课时数</span>
+	<span class="k">constraint</span> <span class="n">pk_teacher_course</span> <span class="k">primary</span> <span class="k">key</span> <span class="n">clustered</span><span class="p">(</span><span class="n">tcid</span><span class="p">)</span>
+	<span class="k">foreign</span> <span class="k">key</span><span class="p">(</span><span class="n">tno</span><span class="p">)</span> <span class="k">references</span> <span class="n">teacher</span><span class="p">(</span><span class="n">tno</span><span class="p">),</span>
+	<span class="c1">--foreign key(spno)references course(spno),</span>
+	<span class="k">foreign</span> <span class="k">key</span><span class="p">(</span><span class="n">cno</span><span class="p">)</span><span class="k">references</span> <span class="n">course</span><span class="p">(</span><span class="n">cno</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">use</span> <span class="ss">&quot;EDUC&quot;</span>
+<span class="k">drop</span> <span class="k">table</span> <span class="n">teacher</span>
+<span class="k">drop</span> <span class="k">table</span> <span class="n">teacher_course</span>
+<span class="k">go</span>
+</pre>
+        
+        <center>
+        	<h1>修改列</h1>
+        </center>
+        <p>
+        	带有主键性质的列一般不能直接修改需要先给他把主键性质消除，
+        	然后才能进行修改最后再复原他的主键性质。
+        </p>
+        <pre><span class="n">use</span> <span class="ss">&quot;EDUC&quot;</span>
+<span class="k">go</span> 
+<span class="k">alter</span> <span class="k">table</span> <span class="n">student</span> <span class="k">alter</span> <span class="k">column</span> <span class="n">birthday</span> <span class="nb">smallint</span> <span class="k">not</span> <span class="k">null</span>
+
+<span class="k">alter</span> <span class="k">table</span> <span class="n">student</span> <span class="k">drop</span> <span class="k">constraint</span> <span class="n">pk_student</span>
+<span class="k">alter</span> <span class="k">table</span> <span class="n">student</span> <span class="k">alter</span> <span class="k">column</span> <span class="n">sno</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">not</span> <span class="k">null</span>
+<span class="k">alter</span> <span class="k">table</span> <span class="n">student</span> <span class="k">add</span> <span class="k">constraint</span> <span class="n">pk_student</span> <span class="k">primary</span> <span class="k">key</span><span class="p">(</span><span class="n">sno</span><span class="p">)</span> 
+</pre>
+        
+        
+        <center>
+        	<h1>添加列</h1>
+        </center>
+        这里给年份设置限制
+        <pre><span class="n">use</span> <span class="ss">&quot;EDUC&quot;</span>
+<span class="k">go</span>
+<span class="k">alter</span> <span class="k">table</span> <span class="n">course</span> <span class="k">add</span> <span class="p">[</span><span class="k">year</span><span class="p">]</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="k">null</span>
+<span class="k">alter</span> <span class="k">table</span> <span class="n">course</span> <span class="k">add</span> <span class="k">check</span><span class="p">([</span><span class="k">year</span><span class="p">]</span> <span class="k">between</span> <span class="mi">2004</span> <span class="k">and</span> <span class="mi">2008</span><span class="p">)</span>
+</pre>
+
+<center><h1>删除列</h1></center>
+同样列也不能直接删除，要先给列去处主键约束，才能删掉。
+<pre><span class="n">use</span> <span class="ss">&quot;EDUC&quot;</span>
+<span class="k">go</span>
+<span class="k">alter</span> <span class="k">table</span> <span class="n">course</span> <span class="k">drop</span> <span class="k">constraint</span> <span class="n">CK__course__year__34C8D9D1</span>
+<span class="k">alter</span> <span class="k">table</span> <span class="n">course</span> <span class="k">drop</span> <span class="k">column</span> <span class="p">[</span><span class="k">year</span><span class="p">]</span>
+</pre>
+        
+        
+        
+      <center><h1>加标识列</h1></center>
+        <pre><span class="n">use</span> <span class="ss">&quot;EDUC&quot;</span>
+<span class="k">alter</span> <span class="k">table</span> <span class="n">student</span> <span class="k">drop</span> <span class="k">constraint</span> <span class="n">pk_student</span>
+<span class="k">alter</span> <span class="k">table</span> <span class="n">student</span> <span class="k">add</span> <span class="p">[</span><span class="n">new_main</span><span class="p">]</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="k">not</span> <span class="k">null</span>
+<span class="k">alter</span> <span class="k">table</span> <span class="n">student</span> <span class="k">add</span> <span class="k">constraint</span> <span class="n">pk_student</span> <span class="k">primary</span> <span class="k">key</span><span class="p">(</span><span class="n">new_main</span><span class="p">)</span> 
+</pre
+        
+        
+        
+        
+</br></br></br></br></br></br></br></br>
+</div>
+
+
+
+</html>
+
+
+
