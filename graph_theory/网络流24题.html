@@ -1,52 +1,55 @@
 <!DOCTYPE html>
 <html>
- 
+
 <head>
-    <meta charset="utf-8">
-    <script type="text/javascript" src="/ACM/js/head.js"></script>
-    <link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/ACM/pastebin.css">
-	<link rel="stylesheet" type="text/css" href="/ACM/css/right.css">
-	<title>网络流24题</title>
+<meta charset="utf-8">
+<script type="text/javascript" src="/ACM/js/head.js"></script>
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/ACM/pastebin.css">
+<link rel="stylesheet" type="text/css" href="/ACM/css/right.css">
+<title>网络流24题</title>
 </head>
- 
+
 <body>
-	
-										
-   <div class="ACMright">
-		<center>
-		<h1>网络流24题</h1>
-		</center>
+
+
+<div class="ACMright">
+<center>
+<h1>网络流24题</h1>
+</center>
 
 <div class="normal_href">
-<a href="https://www.luogu.org/problemnew/show/P2756"target="_blank" >第一题：P2756 飞行员配对方案问题<a>
+<a href="https://www.luogu.org/problemnew/show/P2756"target="_blank" >第一题：P2756 飞行员配对方案问题</a>
 </div>
-</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 二分图匹配，学到了使用反向边是否存在流量来输出路径。
-</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 
 
 <div class="normal_href">
-<a href="https://www.luogu.org/problemnew/show/P2762"target="_blank" >第二题：P2762 太空飞行计划问题<a>
+<a href="https://www.luogu.org/problemnew/show/P2762"target="_blank" >第二题：P2762 太空飞行计划问题</a>
 </div>
-</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 最大权闭合图，将正权点连接s,容量为点权,负权点连接t容量为点权绝对
 值,所求得的一个割将图分为两部分,我们发现所有正点权的和减去该简单
 割，便是与s相连的闭合图的权，因为最小割所以最大权闭合图（即给定
 常数c，求c-a的最大值，等价于求c减去a的最小值）。注意跑完最大流
 以后，与s相连的点构成的点集就是最大权闭合图。学会了使用bfs之后
 的lv数组来输出路径
-</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+
+
 
 
 <div class="normal_href">
-<a href="https://www.luogu.org/problemnew/show/P2764#sub"target="_blank" >第三题：P2764 最小路径覆盖问题<a>
+<a href="https://www.luogu.org/problemnew/show/P2764#sub"target="_blank" >第三题：P2764 最小路径覆盖问题</a>
 </div>
-</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 最小路径覆盖，用原图建立一个两层的新图，如果原图中存在边i->j我
 们建立的新图就有第一层的点i流到第二层的点j，最后建立超级源点流向
 所有的第一层图的点，建立超级汇点，由所有第二层的图流入，用n减去所
 求的最大流就是最小路径，
-</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 对于路径输出的时候，要先理解为什么得到的答案是最小路径，我们发现每
 有一个成功的二分图匹配路径a->b那么说明可以由a走到b，也就是第一层
 的a点可以走到第二层的b点，我们把这个映射回原图，就是a到b这样一条边
@@ -55,32 +58,110 @@
 得到最少的路径，显然最大的k就是二分图匹配了，如此二分图匹配中我们不妨
 设原图的点i映射到二分图的i与n+i，那么如果二分图匹配到了a->b那么说明我们
 在原图中走了a->(b-n)这样一条边.
-	</br>
-	
-	<div class="normal_href">
-<a href="https://www.luogu.org/problemnew/show/P2764#sub"target="_blank" >第四题：LiberOJ6003 魔术球<a>
+</br>
+</br>
+
+
+
+
+
+
+
+<div class="normal_href">
+<a href="https://www.luogu.org/problemnew/show/P2764#sub"target="_blank" >第四题：LiberOJ6003 魔术球</a>
 </div>
-</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 依旧是是一个最小路径覆盖的问题，我们考虑把球当作点，把盒子当成路径，那么
 很明显，连边方式就是i->j当且仅当i<=n且j<=n且i+j=k^2.
 </br>但是这样子做我们只能解决这样一个问题:
-</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 给你从1到n的n个球我们可以找到最少的盒子来装球。
-</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 仔细分析发现题目给的问题可以二分处理，我们二分来判断n个盒子能不能装到k个球
 就可以了。
 </br>
+</br>
+
+
+
+
 
 <div class="normal_href">
-	<a herf="https://www.luogu.org/problemnew/show/P3254"target="_blank">第五题： P3254 圆桌问题</a>
+<a href="https://www.luogu.org/problemnew/show/P3254"target="_blank">第五题： P3254 圆桌问题</a>
 </div>
-</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    给m组人，每个人要分到不同的桌子上，每个桌子可以一定
-    量的人，组内的人不能坐在一个桌子上， 网络流问题，s连到
-    组，流量组内人数，桌子连到t，流量为可以坐下的人数，组与
-    桌子自由组合， 流量为1.
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+给m组人，每个人要分到不同的桌子上，每个桌子可以一定
+量的人，组内的人不能坐在一个桌子上， 网络流问题，s连到
+组，流量组内人数，桌子连到t，流量为可以坐下的人数，组与
+桌子自由组合， 流量为1。
+</br>
+</br>
 
+
+
+
+<div class="normal_href">
+<a href="https://www.luogu.org/problemnew/show/P2766"target="_blank">第六题： P2766 最长不下降子序列问题</a>
 </div>
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+让你求一个数列的最长不下降子序列的长度k，然后求这个序列最多可以
+分出多少个这样的子序列，再求如果可以多次使用第一个元素和最后一个元素
+可以分出多少个这样的子序列，
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+我们考虑到每个元素dp的值（dp[i]表示以i结尾的最长不下降子序列的长度），并以
+次最为标准，给所有点分ans1层，并给所有第一层的点连s，所有最后一层的点连t，
+如果i&ltj且a[i]<=a[j]我们就连一条边i-&gtj，如此如果每当从s流到t,就是一个字串,考虑到
+一个点只能用一次,拆点限流就可以了。
+</br>
+</br>
+
+
+
+
+
+<div class="normal_href">
+<a href="https://www.luogu.org/problemnew/show/P2763"target="_blank">第七题：  P2763 试题库问题</a>
+</div>
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+给你一个试题库，告诉你每个题目的类型（一个题目可能属于多种类型），让你
+用这些题为每个类型组一套题（告诉了你每套题包含的题数），每道题只能用一次，
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+类型在左，题目在右，s连类型，流量为该套题的题数，类型连题目流量1，题目连
+t流量1，如果最大流不够要求的题目数量，说明无法组成套题。
+</br>
+</br>
+
+<div class="normal_href">
+<a href="https://www.luogu.org/problemnew/show/P2775"target="_blank">第八题： P2775 机器人路径规划问题</a>
+</div>
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+什么怪东西，明明是深搜题
+</br>
+</br>
+
+
+<div class="normal_href">
+<a href="https://www.luogu.org/problemnew/show/P2775"target="_blank">第八题： P2775 机器人路径规划问题</a>
+</div>
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+什么怪东西，明明是深搜题
+</br>
+</br>
+
+
+
+
+
+
+
+
+
+
+
+</br></br></br></br></br></br></br></br>
+</div>
+
+
 
 </html>
 
