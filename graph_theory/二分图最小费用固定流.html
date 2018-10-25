@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="/ACM/js/head.js"></script>
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/ACM/pastebin.css">
+<link rel="stylesheet" type="text/css" href="/ACM/css/right.css">
+<title>二分图最小费用固定流</title>
+</head>
+
+
+
+<body>
+<div class="ACMright">
+
+<center><h1>二分图最小费用固定流</h1></center>
+
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+这是我自己给这类图取的名字
+
+</br>
+给出定义：
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+有五类边，
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+第一类为原点到左边的点，容量无穷大,有费用
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+第二类为左边的点到右边的点，一对一，容量为任意常数，费用0
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+第三类为右边的点到汇点，容量无穷大，费用0
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+第四类为左边的点依次连i->i+1，容量无穷大，费用0
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+第四类为左边的点依次连i->i+1，容量无穷大，费用0
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+第五类从右边连向左边，容量无穷大，费用0
+</br>如下图左边的图
+<img src="/ACM/img/二分图固定流.png"  style="width:300px;height:200px"/>
+</br>
+给出问题,求当有容量的边的都满流时，最小费用，
+</br>
+我们发现左图的最大流一定满足有容量的边是满流的，我们尝试将其转化为最小费用最大流
+我们发现，如果我们对左边的图跑最大流，当左边的图有流量进入y点集的时候，他一定会进
+入源点，不会流回x点集，这就很烦，我们尝试“阻止”这个过程，怎么阻止呢，我们在考虑一个
+y点集，从源点出发，
+
+
+
+
+
+
+
+</br></br></br></br></br></br></br></br>
+</div>
+</body>
+</html>
+
