@@ -98,6 +98,7 @@ li {
 
  .out_sign{
  	position:fixed; 
+ 	z-index: 100;
 	margin-top: 144px;
     height:1000px;
     width: 16%;
@@ -109,5 +110,5 @@ li {
     height:1000px;
     width: 30px;
     background: black;
-     color: white;
+    color: white;
 }

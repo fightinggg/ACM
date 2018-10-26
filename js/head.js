@@ -16,7 +16,7 @@ document.writeln("		<div class='miaov_head'>");
 document.writeln("    		<ul>");
 document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/\">计算几何</a></li>");
 document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/\">思维</a></li>");
-document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/\">黑科技</a></li>");
+document.writeln("        		<li><a href=\"http://fightinggg.github.io/Yuki_technique/\">黑科技</a></li>");
 document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/string\">字符串</a></li>");
 document.writeln("         	    <li><a href=\"http://fightinggg.github.io/ACM/dp\">dp</a></li>");
 document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/graph_theory/\">图论</a></li>");

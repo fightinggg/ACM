@@ -1,5 +1,4 @@
 .ACMright{
-	
 	float: right ;
 	margin-top: 144px;
     height: 80%;
@@ -9,21 +8,20 @@
 }
 
 .index {
-	position: relative;
-    height:550px;
-    width: 350px;
+    height:100px;
+    width:350px;
+     background:white;
 }
  
 .index ul {
-    width: 350px;
-    height: 100px;
+    height: 90px;
+    width:350px;
     color: black;
-    position: relative;
+  background:black;
 }
  
 .index ul li {
 	position: relative;
-   
     margin-left: 40px;
     color: white;
     list-style: none;
