@@ -259,7 +259,7 @@ word-wrap: break-word!important;
 body {
     background-image: url("bg_dotted.png");
     font-family: arial, helvetica, sans-serif;
-    font-size: small
+    font-size: large;
 }
 
 #title {

@@ -15,7 +15,7 @@ body {
 	position:fixed;
 	z-index:100;
 	margin-top:36px;
-	height: 108px;
+	height: 64px;
     width: 100%;
     background: white;
 
@@ -99,7 +99,7 @@ li {
  .out_sign{
  	position:fixed; 
  	z-index: 100;
-	margin-top: 144px;
+	margin-top: 100px;
     height:1000px;
     width: 16%;
     background: white;
@@ -109,6 +109,7 @@ li {
 	margin-top: 0%;
     height:1000px;
     width: 30px;
+    font-size: small;
     background: black;
     color: white;
 }
