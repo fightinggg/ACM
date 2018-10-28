@@ -3,11 +3,6 @@
     color: #080;
     font-style: italic
 }
- pre{
-white-space: pre-wrap!important;
-word-wrap: break-word!important;
-*white-space:normal!important;
-}
 
 .err {
     border: 1px solid #F00

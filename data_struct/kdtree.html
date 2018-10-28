@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/head.js"></script>
+    <link rel="stylesheet" type="text/css" href="/ACM/pastebin.css">
+	<link rel="stylesheet" type="text/css" href="/ACM/css/right.css">
+	<title>镜像并查集</title>
+</head>
+ 
+ 
+<body>
+<div class="ACMright" >
+	<center>
+	<h1>镜像并查集</h1>
+	</center>
+	
+	
+<pre><span class="c1">//kd树，占用了三个变量名：idx，_data,kd</span>
+<span class="c1">///kd树使用方法：</span>
+<span class="c1">///build(ll l,ll r,ll k)闭区间  k维度 输入为_data；</span>
+<span class="c1">///query(kdnode p,ll m)在kd树里面找离p最近的m个点</span>
+<span class="c1">///可能需要修改的地方</span>
+<span class="c1">///函数kd_d 定义距离</span>
+<span class="c1">///maxn</span>
+<span class="c1">///数组xyz</span>
+<span class="c1">/// if((p.xyz[dim] - data[rt].xyz[dim])*(p.xyz[dim] - data[rt].xyz[dim]) &lt; Q.top().first)这里是距离</span>
+
+<span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span><span class="o">=</span><span class="mf">2e5</span><span class="o">+</span><span class="mi">5</span><span class="p">;</span>
+<span class="cp">#define lson rt &lt;&lt; 1</span>
+<span class="cp">#define rson rt &lt;&lt; 1 | 1</span>
+<span class="cp">#define Pair pair&lt;double, kdnode&gt;</span>
+<span class="c1">//----------------------------------------------------------------------------------------</span>
+<span class="c1">//kd树节点类型</span>
+<span class="n">ll</span> <span class="n">idx</span><span class="p">;</span>
+<span class="k">struct</span> <span class="n">kdnode</span>
+<span class="p">{</span>
+    <span class="n">ll</span> <span class="n">xyz</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>     <span class="c1">//定义属性数组</span>
+    <span class="kt">bool</span> <span class="k">operator</span> <span class="o">&lt;</span> <span class="p">(</span><span class="k">const</span> <span class="n">kdnode</span> <span class="o">&amp;</span><span class="n">u</span><span class="p">)</span> <span class="k">const</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">xyz</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">u</span><span class="p">.</span><span class="n">xyz</span><span class="p">[</span><span class="n">idx</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="n">_data</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>  <span class="c1">//_data[]数组代表输入的数据</span>
+<span class="c1">//---------------------------------------------------------------------------/////////////</span>
+
+<span class="kr">inline</span> <span class="kt">double</span> <span class="n">kd_d</span><span class="p">(</span><span class="n">kdnode</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span><span class="n">kdnode</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">xyz</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&gt;</span><span class="n">b</span><span class="p">.</span><span class="n">xyz</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="k">return</span> <span class="mf">9e18</span><span class="p">;</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="kt">double</span> <span class="n">dx</span><span class="o">=</span><span class="n">a</span><span class="p">.</span><span class="n">xyz</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">b</span><span class="p">.</span><span class="n">xyz</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="kt">double</span> <span class="n">dy</span><span class="o">=</span><span class="n">a</span><span class="p">.</span><span class="n">xyz</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">b</span><span class="p">.</span><span class="n">xyz</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+        <span class="k">return</span> <span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">+</span><span class="n">dy</span><span class="o">*</span><span class="n">dy</span><span class="o">+</span><span class="n">a</span><span class="p">.</span><span class="n">xyz</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="mf">3e5</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">//----------------------------------------------------------------------------------------</span>
+<span class="c1">//kd树声明</span>
+<span class="k">class</span> <span class="nc">KDTree</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">build</span><span class="p">(</span><span class="n">ll</span><span class="p">,</span> <span class="n">ll</span><span class="p">,</span> <span class="n">ll</span><span class="p">);</span>             <span class="c1">//闭区间建树</span>
+    <span class="kt">void</span> <span class="n">query</span><span class="p">(</span><span class="n">kdnode</span><span class="p">,</span> <span class="n">ll</span><span class="p">);</span>             <span class="c1">//闭区间查询</span>
+    <span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">Pair</span><span class="o">&gt;</span> <span class="n">Q</span><span class="p">;</span>             <span class="c1">//队列Q用于存放离p最近的m个数据</span>
+    <span class="c1">//这里本来准备用static的，但是用了就报错很烦不知道为什么。</span>
+    
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">ll</span> <span class="n">k</span><span class="p">;</span>
+    <span class="n">kdnode</span> <span class="n">data</span><span class="p">[</span><span class="mi">4</span> <span class="o">*</span> <span class="n">maxn</span><span class="p">];</span>                <span class="c1">//data[]数组代表K-D树的所有节点数据</span>
+    <span class="n">ll</span> <span class="n">flag</span><span class="p">[</span><span class="mi">4</span> <span class="o">*</span> <span class="n">maxn</span><span class="p">];</span>                    <span class="c1">//用于标记某个节点是否存在，1表示存在，-1表示不存在</span>
+    <span class="kt">void</span> <span class="n">_build</span><span class="p">(</span><span class="n">ll</span><span class="p">,</span><span class="n">ll</span><span class="p">,</span><span class="n">ll</span><span class="p">,</span><span class="n">ll</span><span class="p">);</span>             <span class="c1">//查询</span>
+    <span class="kt">void</span> <span class="n">_query</span><span class="p">(</span><span class="n">kdnode</span><span class="p">,</span> <span class="n">ll</span><span class="p">,</span> <span class="n">ll</span><span class="p">,</span> <span class="n">ll</span><span class="p">);</span>      <span class="c1">//查询</span>
+<span class="p">}</span> <span class="n">kd</span><span class="p">;</span>
+<span class="c1">//---------------------------------------------------------------------------/////////////</span>
+
+
+<span class="c1">//----------------------------------------------------------------------------------------</span>
+<span class="c1">//kd树实现</span>
+<span class="c1">//查询函数，寻找离p最近的m个特征属性</span>
+<span class="kt">void</span> <span class="n">KDTree</span><span class="o">::</span><span class="n">query</span><span class="p">(</span><span class="n">kdnode</span> <span class="n">P</span><span class="p">,</span><span class="n">ll</span> <span class="n">m</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">//事先需要清空优先队列</span>
+    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">Q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+        <span class="n">Q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+    <span class="n">_query</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="kt">void</span> <span class="n">KDTree</span><span class="o">::</span><span class="n">build</span><span class="p">(</span><span class="n">ll</span> <span class="n">l</span><span class="p">,</span><span class="n">ll</span> <span class="n">r</span><span class="p">,</span><span class="n">ll</span> <span class="n">kk</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">k</span><span class="o">=</span><span class="n">kk</span><span class="p">;</span>
+    <span class="n">_build</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="c1">//建树步骤，参数dept代表树的深度</span>
+<span class="kt">void</span> <span class="n">KDTree</span><span class="o">::</span><span class="n">_build</span><span class="p">(</span><span class="n">ll</span> <span class="n">l</span><span class="p">,</span> <span class="n">ll</span> <span class="n">r</span><span class="p">,</span> <span class="n">ll</span> <span class="n">rt</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ll</span> <span class="n">dept</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">&gt;</span> <span class="n">r</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="n">flag</span><span class="p">[</span><span class="n">rt</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                   <span class="c1">//表示编号为rt的节点存在</span>
+    <span class="n">flag</span><span class="p">[</span><span class="n">lson</span><span class="p">]</span> <span class="o">=</span> <span class="n">flag</span><span class="p">[</span><span class="n">rson</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>   <span class="c1">//当前节点的孩子暂时标记不存在</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">dept</span> <span class="o">%</span> <span class="n">k</span><span class="p">;</span>                 <span class="c1">//按照编号为idx的属性进行划分</span>
+    <span class="n">ll</span> <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">nth_element</span><span class="p">(</span><span class="n">_data</span> <span class="o">+</span> <span class="n">l</span><span class="p">,</span> <span class="n">_data</span> <span class="o">+</span> <span class="n">mid</span><span class="p">,</span> <span class="n">_data</span> <span class="o">+</span> <span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>   <span class="c1">//nth_element()为STL中的函数</span>
+    <span class="n">data</span><span class="p">[</span><span class="n">rt</span><span class="p">]</span> <span class="o">=</span> <span class="n">_data</span><span class="p">[</span><span class="n">mid</span><span class="p">];</span>
+    <span class="n">_build</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">lson</span><span class="p">,</span> <span class="n">dept</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>  <span class="c1">//递归左子树</span>
+    <span class="n">_build</span><span class="p">(</span><span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">rson</span><span class="p">,</span> <span class="n">dept</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>  <span class="c1">//递归右子树</span>
+<span class="p">}</span>
+
+
+<span class="c1">//查询函数，寻找离p最近的m个特征属性</span>
+<span class="kt">void</span> <span class="n">KDTree</span><span class="o">::</span><span class="n">_query</span><span class="p">(</span><span class="n">kdnode</span> <span class="n">p</span><span class="p">,</span> <span class="n">ll</span> <span class="n">m</span><span class="p">,</span> <span class="n">ll</span> <span class="n">rt</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ll</span> <span class="n">dept</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">flag</span><span class="p">[</span><span class="n">rt</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">;</span>   <span class="c1">//不存在的节点不遍历</span>
+    <span class="n">Pair</span> <span class="n">cur</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">rt</span><span class="p">]);</span>       <span class="c1">//获取当前节点的数据和到p的距离</span>
+    <span class="n">cur</span><span class="p">.</span><span class="n">first</span><span class="o">=</span><span class="n">kd_d</span><span class="p">(</span><span class="n">cur</span><span class="p">.</span><span class="n">second</span><span class="p">,</span><span class="n">p</span><span class="p">);</span><span class="c1">//距离</span>
+    
+    <span class="n">ll</span> <span class="n">dim</span> <span class="o">=</span> <span class="n">dept</span> <span class="o">%</span> <span class="n">k</span><span class="p">;</span>          <span class="c1">//跟建树一样，这样能保证相同节点的dim值不变</span>
+    <span class="kt">bool</span> <span class="n">fg</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>                 <span class="c1">//用于标记是否需要遍历右子树</span>
+    <span class="n">ll</span> <span class="n">x</span> <span class="o">=</span> <span class="n">lson</span><span class="p">;</span>
+    <span class="n">ll</span> <span class="n">y</span> <span class="o">=</span> <span class="n">rson</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">xyz</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">data</span><span class="p">[</span><span class="n">rt</span><span class="p">].</span><span class="n">xyz</span><span class="p">[</span><span class="n">dim</span><span class="p">])</span> <span class="c1">//数据p的第dim个特征值大于等于当前的数据，则需要进入右子树</span>
+        <span class="n">swap</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">~</span><span class="n">flag</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+        <span class="n">_query</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">dept</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>      <span class="c1">//如果节点x存在，则进入子树继续遍历</span>
+    
+    <span class="c1">//以下是回溯过程，维护一个优先队列</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">Q</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">)</span>   <span class="c1">//如果队列没有满，则继续放入</span>
+    <span class="p">{</span>
+        <span class="n">Q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
+        <span class="n">fg</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">cur</span><span class="p">.</span><span class="n">first</span> <span class="o">&lt;</span> <span class="n">Q</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">first</span><span class="p">)</span>  <span class="c1">//如果找到更小的距离，则用于替换队列Q中最大的距离的数据</span>
+        <span class="p">{</span>
+            <span class="n">Q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+            <span class="n">Q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">((</span><span class="n">p</span><span class="p">.</span><span class="n">xyz</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="n">rt</span><span class="p">].</span><span class="n">xyz</span><span class="p">[</span><span class="n">dim</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">xyz</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="n">rt</span><span class="p">].</span><span class="n">xyz</span><span class="p">[</span><span class="n">dim</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">Q</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">first</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">fg</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">~</span><span class="n">flag</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">fg</span><span class="p">)</span>
+        <span class="n">_query</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dept</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">//---------------------------------------------------------------------------/////////////</span>
+</pre>
+
+	
+</div>
+</html>

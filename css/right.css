@@ -4,8 +4,9 @@
     height: 80%;
     width: 78%;
     margin-right:6%;
-    
+    overflow:auto;
 }
+
 
 .index {
     height:60px;
