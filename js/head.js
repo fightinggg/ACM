@@ -22,6 +22,8 @@ document.writeln("         	    <li><a href=\"http://fightinggg.github.io/ACM/dp
 document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/graph_theory/\">图论</a></li>");
 document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/math/\">数论</a></li>");
 document.writeln("    			<li ><a href=\"http://fightinggg.github.io/ACM/data_struct/\">数据结构</a></li>");
+document.writeln("    			<li ><a href=\"http://fightinggg.github.io/ACM/acm_head_file.html\">快读</a></li>");
+
 document.writeln("    		</ul>");
 document.writeln("   		</div>");
 document.writeln("   </div>");
