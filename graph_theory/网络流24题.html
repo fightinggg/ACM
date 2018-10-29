@@ -141,12 +141,34 @@ t流量1，如果最大流不够要求的题目数量，说明无法组成套题
 
 
 <div class="normal_href">
-<a href="https://www.luogu.org/problemnew/show/P2775"target="_blank">第八题： P2775 机器人路径规划问题</a>
+<a href="https://www.luogu.org/problemnew/show/P2774"target="_blank">第九题： P2774 方格取数</a>
 </div>
 </br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-什么怪东西，明明是深搜题
+给你一个矩阵，每个元素一个权值，相邻的元素不能够同时取走，
+问你最多可以取走多少权。
+对于格子我们令k=行数加列数，对于所有的k&1==1内部，无边，
+对于所有的k&1==0内部，无边。于是取走元素就成了：
+</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+拿走点，使得这些点覆盖所有边，于是剩下的点就是独立的了，
+没有边互相连。就是我们要的答案，所以就成了
+<a href="http://fightinggg.github.io/ACM/graph_theory/最小顶点覆盖二分图.html.html"target="_blank">
+	 最小点覆盖二分图</a>
+
+
 </br>
 </br>
+
+
+<div class="normal_href">
+<a href="https://www.luogu.org/problemnew/show/P1251"target="_blank">第十题： P1251 餐巾纸计划</a>
+</div>
+
+
+<div >
+	此处不方便证明，详情见：
+<a href="http://fightinggg.github.io/ACM/graph_theory/二分图最小费用固定流.html.html"target="_blank">
+	 建图与证明</a>
+</div>
 
 
 
