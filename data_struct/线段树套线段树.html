@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/head.js"></script>
+    <link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/ACM/pastebin.css">
+	<link rel="stylesheet" type="text/css" href="/ACM/css/right.css">
+	<title>线段树套线段树</title>
+</head>
+ 
+<body>
+	
+										
+<div class="ACMright">
+	<center>
+	<h1>线段树套线段树</h1>
+	</center>
+	
+	我的第一颗树套树</br>
+	</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	树套树的思路估计都这样子了，树套树分为外树和内树，也可以分为第一维树和
+	第二维树，我这里把他们叫做x树和y树，即x树为外树，y树为内树。我们描述时
+	用内外，代码用xy。
+	
+	</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	首先树套树，顾名思义，给出定义，树套树是一棵节点是树的树。
+	</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	
+	于是作为一棵树,他有这些函数：
+	</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	建树build，更新update，查询query
+	
+	</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	一个一个来说
+	
+	</br>
+	<h2>建树</h2>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	建树先建外层树，递归建树，递归出口为当前外树所代表的只有一行，
+	他是叶子结点树，这时调用建内层树，并退出函数，回溯时，意味着此时
+	是非叶子节点树，意味着外树所代表的不止一行，<span style="color:red;">
+	意味着此节点树的儿子	节点树以经建立完成</span>，此时我们调用建
+	内层树，
+	</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	建树建内层树，依旧递归，和一维线段树相比，只是递归出口有所区别，
+	建内层树时，如果该树为叶子节点树，直接处理，但是当他为非叶节点树
+	的时候要注意，此时不能直接对当前节点（不是节点树，是节点树的递归
+	出口所对应的节点）修改值，而是借助上诉结论“意味着此节点树的儿子	
+	节点树以经建立完成”，我们可以通过跨越树来更新值，
+		</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		这里有点难以理解，其实仔细的想想，我们建立的虽然说是一颗二维的
+		二叉树，两颗内树之间的关系确并不是我们想象的那么简单，举个例子，
+		如果mi[i][j]记录了外树节点树i对应的内树节点j的数据，那么mi[i][j]只能
+		由mi[i][j<<1]和mi[i][j<<1|1]推过来吗,这里显然不对,如果细心点,我们会发现
+		我们建立的并不是简单的二维树,它更是一个超级复杂的图,我们站在更高的
+		角度上看,mi[i<<1][j]和mi[i<<1|1][j]又何尝不能作为mi[i][j]的后继呢?
+	</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		于是我们就有了通过mi[i<<1][j]和mi[i<<1|1][j]来更新值的做法,跨越树,用另一棵树
+			来更新自己,ok?
+			于是建树完成.
+			
+	
+		</br>
+	<h2>更新</h2>
+	
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		和建树是一样的
+	
+	
+		</br>
+	<h2>查询</h2>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	查询的话就简单很多了，不需要跨越树就能完成，这个的依据是区间的可加性
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	</br>
+	
+	
+	
+	
+	</br>
+	</br>
+	这只是一颗单点修改，区间最值查询的树
+	<pre>
+<span class="cp">#define pii pair&lt;int,int&gt;</span>
+<span class="k">struct</span> <span class="n">segment</span><span class="p">{</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span><span class="o">=</span><span class="mi">1000</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">ma</span><span class="p">[</span><span class="n">maxn</span><span class="o">&lt;&lt;</span><span class="mi">2</span><span class="p">][</span><span class="n">maxn</span><span class="o">&lt;&lt;</span><span class="mi">2</span><span class="p">],</span><span class="n">mi</span><span class="p">[</span><span class="n">maxn</span><span class="o">&lt;&lt;</span><span class="mi">2</span><span class="p">][</span><span class="n">maxn</span><span class="o">&lt;&lt;</span><span class="mi">2</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">tmp</span><span class="p">[</span><span class="n">maxn</span><span class="p">][</span><span class="n">maxn</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">lenx</span><span class="p">,</span><span class="n">leny</span><span class="p">;</span>
+    <span class="c1">//x为行 y为列</span>
+    
+    <span class="kt">void</span> <span class="n">build</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+        <span class="n">lenx</span><span class="o">=</span><span class="n">leny</span><span class="o">=</span><span class="n">n</span><span class="p">;</span>
+        <span class="n">build_x</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">build_x</span><span class="p">(</span><span class="kt">int</span> <span class="n">x1</span><span class="p">,</span><span class="kt">int</span> <span class="n">x2</span><span class="p">,</span><span class="kt">int</span> <span class="n">rtx</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">x1</span><span class="o">==</span><span class="n">x2</span><span class="p">){</span>
+            <span class="n">build_y</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">leny</span><span class="p">,</span><span class="n">rtx</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kt">int</span> <span class="n">midx</span><span class="o">=</span><span class="p">(</span><span class="n">x1</span><span class="o">+</span><span class="n">x2</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">;</span>
+        <span class="n">build_x</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">midx</span><span class="p">,</span><span class="n">rtx</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">build_x</span><span class="p">(</span><span class="n">midx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">rtx</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="o">|</span><span class="mi">1</span><span class="p">);</span>
+        
+        <span class="n">build_y</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">leny</span><span class="p">,</span><span class="n">rtx</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">build_y</span><span class="p">(</span><span class="kt">int</span> <span class="n">x1</span><span class="p">,</span><span class="kt">int</span> <span class="n">x2</span><span class="p">,</span><span class="kt">int</span> <span class="n">y1</span><span class="p">,</span><span class="kt">int</span> <span class="n">y2</span><span class="p">,</span><span class="kt">int</span> <span class="n">rtx</span><span class="p">,</span><span class="kt">int</span> <span class="n">rty</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">y1</span><span class="o">==</span><span class="n">y2</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">x1</span><span class="o">==</span><span class="n">x2</span><span class="p">){</span>
+                <span class="n">mi</span><span class="p">[</span><span class="n">rtx</span><span class="p">][</span><span class="n">rty</span><span class="p">]</span><span class="o">=</span><span class="n">tmp</span><span class="p">[</span><span class="n">x1</span><span class="p">][</span><span class="n">y1</span><span class="p">];</span>
+                <span class="n">ma</span><span class="p">[</span><span class="n">rtx</span><span class="p">][</span><span class="n">rty</span><span class="p">]</span><span class="o">=</span><span class="n">tmp</span><span class="p">[</span><span class="n">x1</span><span class="p">][</span><span class="n">y1</span><span class="p">];</span>
+            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+                <span class="n">mi</span><span class="p">[</span><span class="n">rtx</span><span class="p">][</span><span class="n">rty</span><span class="p">]</span><span class="o">=</span><span class="n">min</span><span class="p">(</span><span class="n">mi</span><span class="p">[</span><span class="n">rtx</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">][</span><span class="n">rty</span><span class="p">],</span><span class="n">mi</span><span class="p">[</span><span class="n">rtx</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="o">|</span><span class="mi">1</span><span class="p">][</span><span class="n">rty</span><span class="p">]);</span>
+                <span class="n">ma</span><span class="p">[</span><span class="n">rtx</span><span class="p">][</span><span class="n">rty</span><span class="p">]</span><span class="o">=</span><span class="n">max</span><span class="p">(</span><span class="n">ma</span><span class="p">[</span><span class="n">rtx</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">][</span><span class="n">rty</span><span class="p">],</span><span class="n">ma</span><span class="p">[</span><span class="n">rtx</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="o">|</span><span class="mi">1</span><span class="p">][</span><span class="n">rty</span><span class="p">]);</span>
+            <span class="p">}</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kt">int</span> <span class="n">midy</span><span class="o">=</span><span class="p">(</span><span class="n">y1</span><span class="o">+</span><span class="n">y2</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">;</span>
+        <span class="n">build_y</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">midy</span><span class="p">,</span><span class="n">rtx</span><span class="p">,</span><span class="n">rty</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">build_y</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">midy</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="n">rtx</span><span class="p">,</span><span class="n">rty</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="o">|</span><span class="mi">1</span><span class="p">);</span>
+        
+        <span class="n">mi</span><span class="p">[</span><span class="n">rtx</span><span class="p">][</span><span class="n">rty</span><span class="p">]</span><span class="o">=</span><span class="n">min</span><span class="p">(</span><span class="n">mi</span><span class="p">[</span><span class="n">rtx</span><span class="p">][</span><span class="n">rty</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">],</span><span class="n">mi</span><span class="p">[</span><span class="n">rtx</span><span class="p">][</span><span class="n">rty</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="o">|</span><span class="mi">1</span><span class="p">]);</span>
+        <span class="n">ma</span><span class="p">[</span><span class="n">rtx</span><span class="p">][</span><span class="n">rty</span><span class="p">]</span><span class="o">=</span><span class="n">max</span><span class="p">(</span><span class="n">ma</span><span class="p">[</span><span class="n">rtx</span><span class="p">][</span><span class="n">rty</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">],</span><span class="n">ma</span><span class="p">[</span><span class="n">rtx</span><span class="p">][</span><span class="n">rty</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="o">|</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="p">}</span>
+    
+    
+    <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span class="p">,</span><span class="kt">int</span> <span class="n">d</span><span class="p">){</span>
+        <span class="n">update_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">lenx</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">update_x</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span class="p">,</span><span class="kt">int</span> <span class="n">d</span><span class="p">,</span><span class="kt">int</span> <span class="n">x1</span><span class="p">,</span><span class="kt">int</span> <span class="n">x2</span><span class="p">,</span><span class="kt">int</span> <span class="n">rtx</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">x1</span><span class="o">==</span><span class="n">x2</span><span class="p">){</span>
+            <span class="n">update_y</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">leny</span><span class="p">,</span><span class="n">rtx</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kt">int</span> <span class="n">midx</span><span class="o">=</span><span class="p">(</span><span class="n">x1</span><span class="o">+</span><span class="n">x2</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">&lt;=</span><span class="n">midx</span><span class="p">)</span><span class="n">update_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">midx</span><span class="p">,</span><span class="n">rtx</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">);</span>
+        <span class="k">else</span> <span class="n">update_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">midx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">rtx</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="o">|</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">update_y</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">leny</span><span class="p">,</span><span class="n">rtx</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">update_y</span><span class="p">(</span><span class="kt">int</span> <span class="n">y</span><span class="p">,</span><span class="kt">int</span> <span class="n">d</span><span class="p">,</span><span class="kt">int</span> <span class="n">x1</span><span class="p">,</span><span class="kt">int</span> <span class="n">x2</span><span class="p">,</span><span class="kt">int</span> <span class="n">y1</span><span class="p">,</span><span class="kt">int</span> <span class="n">y2</span><span class="p">,</span><span class="kt">int</span> <span class="n">rtx</span><span class="p">,</span><span class="kt">int</span> <span class="n">rty</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">y1</span><span class="o">==</span><span class="n">y2</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">x1</span><span class="o">==</span><span class="n">x2</span><span class="p">){</span>
+                <span class="n">mi</span><span class="p">[</span><span class="n">rtx</span><span class="p">][</span><span class="n">rty</span><span class="p">]</span><span class="o">=</span><span class="n">d</span><span class="p">;</span>
+                <span class="n">ma</span><span class="p">[</span><span class="n">rtx</span><span class="p">][</span><span class="n">rty</span><span class="p">]</span><span class="o">=</span><span class="n">d</span><span class="p">;</span>
+            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+                <span class="n">mi</span><span class="p">[</span><span class="n">rtx</span><span class="p">][</span><span class="n">rty</span><span class="p">]</span><span class="o">=</span><span class="n">min</span><span class="p">(</span><span class="n">mi</span><span class="p">[</span><span class="n">rtx</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">][</span><span class="n">rty</span><span class="p">],</span><span class="n">mi</span><span class="p">[</span><span class="n">rtx</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="o">|</span><span class="mi">1</span><span class="p">][</span><span class="n">rty</span><span class="p">]);</span>
+                <span class="n">ma</span><span class="p">[</span><span class="n">rtx</span><span class="p">][</span><span class="n">rty</span><span class="p">]</span><span class="o">=</span><span class="n">max</span><span class="p">(</span><span class="n">ma</span><span class="p">[</span><span class="n">rtx</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">][</span><span class="n">rty</span><span class="p">],</span><span class="n">ma</span><span class="p">[</span><span class="n">rtx</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="o">|</span><span class="mi">1</span><span class="p">][</span><span class="n">rty</span><span class="p">]);</span>
+            <span class="p">}</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kt">int</span> <span class="n">midy</span><span class="o">=</span><span class="p">(</span><span class="n">y1</span><span class="o">+</span><span class="n">y2</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">y</span><span class="o">&lt;=</span><span class="n">midy</span><span class="p">)</span><span class="n">update_y</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">midy</span><span class="p">,</span><span class="n">rtx</span><span class="p">,</span><span class="n">rty</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">);</span>
+        <span class="k">else</span> <span class="n">update_y</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">midy</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="n">rtx</span><span class="p">,</span><span class="n">rty</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="o">|</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">mi</span><span class="p">[</span><span class="n">rtx</span><span class="p">][</span><span class="n">rty</span><span class="p">]</span><span class="o">=</span><span class="n">min</span><span class="p">(</span><span class="n">mi</span><span class="p">[</span><span class="n">rtx</span><span class="p">][</span><span class="n">rty</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">],</span><span class="n">mi</span><span class="p">[</span><span class="n">rtx</span><span class="p">][</span><span class="n">rty</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="o">|</span><span class="mi">1</span><span class="p">]);</span>
+        <span class="n">ma</span><span class="p">[</span><span class="n">rtx</span><span class="p">][</span><span class="n">rty</span><span class="p">]</span><span class="o">=</span><span class="n">max</span><span class="p">(</span><span class="n">ma</span><span class="p">[</span><span class="n">rtx</span><span class="p">][</span><span class="n">rty</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">],</span><span class="n">ma</span><span class="p">[</span><span class="n">rtx</span><span class="p">][</span><span class="n">rty</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="o">|</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="p">}</span>
+    
+    
+    <span class="n">pii</span> <span class="n">query</span><span class="p">(</span><span class="kt">int</span> <span class="n">qx1</span><span class="p">,</span><span class="kt">int</span> <span class="n">qx2</span><span class="p">,</span><span class="kt">int</span> <span class="n">qy1</span><span class="p">,</span><span class="kt">int</span> <span class="n">qy2</span><span class="p">){</span>
+        <span class="k">return</span> <span class="n">query_x</span><span class="p">(</span><span class="n">qx1</span><span class="p">,</span><span class="n">qx2</span><span class="p">,</span><span class="n">qy1</span><span class="p">,</span><span class="n">qy2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">lenx</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">pii</span> <span class="n">getpii</span><span class="p">(</span><span class="n">pii</span> <span class="n">a</span><span class="p">,</span><span class="n">pii</span> <span class="n">b</span><span class="p">){</span>
+        <span class="k">return</span> <span class="n">pii</span><span class="p">(</span><span class="n">min</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">first</span><span class="p">,</span><span class="n">b</span><span class="p">.</span><span class="n">first</span><span class="p">),</span><span class="n">max</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">second</span><span class="p">,</span><span class="n">b</span><span class="p">.</span><span class="n">second</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="n">pii</span> <span class="n">query_x</span><span class="p">(</span><span class="kt">int</span> <span class="n">qx1</span><span class="p">,</span><span class="kt">int</span> <span class="n">qx2</span><span class="p">,</span><span class="kt">int</span> <span class="n">qy1</span><span class="p">,</span><span class="kt">int</span> <span class="n">qy2</span><span class="p">,</span><span class="kt">int</span> <span class="n">x1</span><span class="p">,</span><span class="kt">int</span> <span class="n">x2</span><span class="p">,</span><span class="kt">int</span> <span class="n">rtx</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">qx1</span><span class="o">&lt;=</span><span class="n">x1</span><span class="o">&amp;&amp;</span><span class="n">x2</span><span class="o">&lt;=</span><span class="n">qx2</span><span class="p">){</span>
+            <span class="k">return</span> <span class="n">query_y</span><span class="p">(</span><span class="n">qy1</span><span class="p">,</span><span class="n">qy2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">leny</span><span class="p">,</span><span class="n">rtx</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
+        
+        <span class="n">pii</span> <span class="n">ret</span><span class="o">=</span><span class="n">pii</span><span class="p">(</span><span class="mf">2e9</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">midx</span><span class="o">=</span><span class="p">(</span><span class="n">x1</span><span class="o">+</span><span class="n">x2</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">midx</span><span class="o">&gt;=</span><span class="n">qx1</span><span class="p">)</span><span class="n">ret</span><span class="o">=</span><span class="n">getpii</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span><span class="n">query_x</span><span class="p">(</span><span class="n">qx1</span><span class="p">,</span><span class="n">qx2</span><span class="p">,</span><span class="n">qy1</span><span class="p">,</span><span class="n">qy2</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">midx</span><span class="p">,</span><span class="n">rtx</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">));</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">midx</span><span class="o">+</span><span class="mi">1</span><span class="o">&lt;=</span><span class="n">qx2</span><span class="p">)</span><span class="n">ret</span><span class="o">=</span><span class="n">getpii</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span><span class="n">query_x</span><span class="p">(</span><span class="n">qx1</span><span class="p">,</span><span class="n">qx2</span><span class="p">,</span><span class="n">qy1</span><span class="p">,</span><span class="n">qy2</span><span class="p">,</span><span class="n">midx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">rtx</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="o">|</span><span class="mi">1</span><span class="p">));</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">pii</span> <span class="n">query_y</span><span class="p">(</span><span class="kt">int</span> <span class="n">qy1</span><span class="p">,</span><span class="kt">int</span> <span class="n">qy2</span><span class="p">,</span><span class="kt">int</span> <span class="n">y1</span><span class="p">,</span><span class="kt">int</span> <span class="n">y2</span><span class="p">,</span><span class="kt">int</span> <span class="n">rtx</span><span class="p">,</span><span class="kt">int</span> <span class="n">rty</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">qy1</span><span class="o">&lt;=</span><span class="n">y1</span><span class="o">&amp;&amp;</span><span class="n">y2</span><span class="o">&lt;=</span><span class="n">qy2</span><span class="p">){</span>
+            <span class="k">return</span> <span class="n">pii</span><span class="p">(</span><span class="n">mi</span><span class="p">[</span><span class="n">rtx</span><span class="p">][</span><span class="n">rty</span><span class="p">],</span><span class="n">ma</span><span class="p">[</span><span class="n">rtx</span><span class="p">][</span><span class="n">rty</span><span class="p">]);</span>
+        <span class="p">}</span>
+        
+        <span class="n">pii</span> <span class="n">ret</span><span class="p">(</span><span class="mf">2e9</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">midy</span><span class="o">=</span><span class="p">(</span><span class="n">y1</span><span class="o">+</span><span class="n">y2</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">midy</span><span class="o">&gt;=</span><span class="n">qy1</span><span class="p">)</span><span class="n">ret</span><span class="o">=</span><span class="n">getpii</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span><span class="n">query_y</span><span class="p">(</span><span class="n">qy1</span><span class="p">,</span><span class="n">qy2</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">midy</span><span class="p">,</span><span class="n">rtx</span><span class="p">,</span><span class="n">rty</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">));</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">midy</span><span class="o">+</span><span class="mi">1</span><span class="o">&lt;=</span><span class="n">qy2</span><span class="p">)</span><span class="n">ret</span><span class="o">=</span><span class="n">getpii</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span><span class="n">query_y</span><span class="p">(</span><span class="n">qy1</span><span class="p">,</span><span class="n">qy2</span><span class="p">,</span><span class="n">midy</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="n">rtx</span><span class="p">,</span><span class="n">rty</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="o">|</span><span class="mi">1</span><span class="p">));</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span><span class="n">tree</span><span class="p">;</span>
+</pre>
+
+
+
+
+
+</div>
+</html>
