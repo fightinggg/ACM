@@ -18,15 +18,15 @@
  
 .index ul {
     height: 60px;
-    width:300px;
+    width:280px;
   background:black;
 }
  
 .index ul li {
 	position: relative;
 	 height: 60px;
-    width:300px;
-    margin-left: 40px;
+    width:280px;
+    margin-left: 20px;
    
      margin-top: 10px;
      margin-bottom: 10px;
