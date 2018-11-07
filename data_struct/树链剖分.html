@@ -75,174 +75,92 @@ over<br />
  <br />
 <br />
 附上代码<br />
-<br />
-<span style="color: green;font: 20px;">//初始化要求maxn
-</span><br />
-<span style="color: green;font: 20px;">//自己补线段树
-</span><br />
-<span style="color: green;font: 20px;">//w[u]=a[rnk[l]];
-</span><br />
-<span style="color: green;font: 20px;">//建树的时候treen最终会等于到线段树的n，所以不用担心
-</span><br />
-<span style="color: green;font: 20px;">//用的时候只要注意
-</span><br />
-<span style="color: green;font: 20px;">//<span style="color: blue;font: 20px;">const</span>&nbsp<span style="color: blue;font: 20px;">ll</span>&nbspmaxn=1e5+5;
-</span><br />
-
-<br />
-<span style="color: green;font: 20px;">//siz,dep,son,dad,
-</span><br />
-<span style="color: blue;font: 20px;">void</span>&nbspdfs1(<span style="color: blue;font: 20px;">ll</span>&nbspu=1,<span style="color: blue;font: 20px;">ll</span>&nbspfather=1,<span style="color: blue;font: 20px;">ll</span>&nbspdeep=1){
-<br />
-&nbsp&nbsp&nbsp&nbspdep[u]=deep;
-<br />
-&nbsp&nbsp&nbsp&nbspdad[u]=father;
-<br />
-&nbsp&nbsp&nbsp&nbspsiz[u]=1;
-<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">ll</span>&nbspi=head[u];~i;i=g[i].nex){
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">ll</span>&nbspv=g[i].v;
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">if</span>(v!=father){
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspdfs1(v,u,deep+1);
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsiz[u]+=siz[v];
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspif&nbsp(son[u]==-1||siz[v]&gtsiz[son[u]])son[u]=v;
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp}
-<br />
-&nbsp&nbsp&nbsp&nbsp}
-<br />
-}
-<br />
-<span style="color: green;font: 20px;">//chain,tid,rnk;
-</span><br />
-<span style="color: blue;font: 20px;">void</span>&nbspdfs2(<span style="color: blue;font: 20px;">ll</span>&nbspu=1,<span style="color: blue;font: 20px;">ll</span>&nbsps=1)&nbsp{
-<br />
-&nbsp&nbsp&nbsp&nbspchain[u]=s;
-<br />
-&nbsp&nbsp&nbsp&nbsptid[u]=++treen;
-<br />
-&nbsp&nbsp&nbsp&nbsprnk[treen]=u;
-<br />
-&nbsp&nbsp&nbsp&nbsp
-<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">if</span>(son[u]==-1)<span style="color: blue;font: 20px;">return</span>;
-<br />
-&nbsp&nbsp&nbsp&nbspdfs2(son[u],s);
-<br />
-&nbsp&nbsp&nbsp&nbspfor&nbsp(<span style="color: blue;font: 20px;">ll</span>&nbspi=head[u];~i;i=g[i].nex){
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">ll</span>&nbspv=g[i].v;
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">if</span>(v!=son[u]&&v!=dad[u])dfs2(v,v);
-<br />
-&nbsp&nbsp&nbsp&nbsp}
-<br />
-}
-<br />
-<span style="color: blue;font: 20px;">ll</span>&nbspquery_path(<span style="color: blue;font: 20px;">ll</span>&nbspx,<span style="color: blue;font: 20px;">ll</span>&nbspy){
-<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">ll</span>&nbspans=0;
-<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">ll</span>&nbspfx=chain[x],fy=chain[y];
-<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">while</span>(fx!=fy){
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">if</span>(dep[fx]&gt=dep[fy]){
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspans+=tree.query(tid[fx],tid[x]);
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspx=dad[fx];
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspfx=chain[x];
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp}else{
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspans+=tree.query(tid[fy],tid[y]);
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspy=dad[fy];
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspfy=chain[y];
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp}
-<br />
-&nbsp&nbsp&nbsp&nbsp}
-<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">if</span>(x!=y){
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">if</span>(tid[x]&lttid[y]){
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspans+=tree.query(tid[x],tid[y]);
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp}else{
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspans+=tree.query(tid[y],tid[x]);
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp}
-<br />
-&nbsp&nbsp&nbsp&nbsp}<span style="color: blue;font: 20px;">else</span>&nbspans+=tree.query(tid[x],tid[y]);
-<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">return</span>&nbspans;
-<br />
-}
-<br />
-<span style="color: blue;font: 20px;">void</span>&nbspupdate_path(<span style="color: blue;font: 20px;">ll</span>&nbspx,<span style="color: blue;font: 20px;">ll</span>&nbspy,<span style="color: blue;font: 20px;">ll</span>&nbspd){
-<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">ll</span>&nbspfx=chain[x],fy=chain[y];
-<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">while</span>(fx!=fy){
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">if</span>(dep[fx]&gtdep[fy]){
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsptree.update(tid[fx],tid[x],d);
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspx=dad[fx];
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspfx=chain[x];
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp}else{
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsptree.update(tid[fy],tid[y],d);
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspy=dad[fy];
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspfy=chain[y];
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp}
-<br />
-&nbsp&nbsp&nbsp&nbsp}
-<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">if</span>(x!=y){
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">if</span>(tid[x]&lttid[y])tree.update(tid[x],tid[y],d);
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">else</span>&nbsptree.update(tid[y],tid[x],d);
-<br />
-&nbsp&nbsp&nbsp&nbsp}<span style="color: blue;font: 20px;">else</span>&nbsptree.update(tid[x],tid[y],d);
-<br />
-}
-<br />
-<span style="color: blue;font: 20px;">void</span>&nbspbuild(){
-<br />
-&nbsp&nbsp&nbsp&nbsptreen=0;
-<br />
-&nbsp&nbsp&nbsp&nbspmemset(son,-1,sizeof(son));
-<br />
-&nbsp&nbsp&nbsp&nbspdfs1();
-<br />
-&nbsp&nbsp&nbsp&nbspdfs2();
-<br />
-&nbsp&nbsp&nbsp&nbsptree.build(1,n);
-<br />
-}
-<br />
-<span style="color: green;font: 20px;">///////</span><br />
-
-	
+<pre><span class="k">struct</span> <span class="nl">dissection:</span><span class="n">segment_tree</span><span class="p">,</span><span class="n">graph</span><span class="p">{</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="n">ll</span> <span class="n">maxn</span><span class="o">=</span><span class="mf">2.1e5</span><span class="p">;</span>
+    <span class="n">ll</span> <span class="n">treen</span><span class="p">;</span>
+    <span class="n">ll</span> <span class="n">dep</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">dad</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">son</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">siz</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+    <span class="n">ll</span> <span class="n">tid</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">chain</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+    
+    <span class="c1">//siz,dep,son,dad,</span>
+    <span class="kt">void</span> <span class="n">dfs1</span><span class="p">(</span><span class="n">ll</span> <span class="n">u</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">ll</span> <span class="n">father</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">ll</span> <span class="n">deep</span><span class="o">=</span><span class="mi">1</span><span class="p">){</span>
+        <span class="n">dep</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">=</span><span class="n">deep</span><span class="p">;</span>
+        <span class="n">dad</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">=</span><span class="n">father</span><span class="p">;</span>
+        <span class="n">siz</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span class="n">head</span><span class="p">[</span><span class="n">u</span><span class="p">];</span><span class="o">~</span><span class="n">i</span><span class="p">;</span><span class="n">i</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">nex</span><span class="p">){</span>
+            <span class="n">ll</span> <span class="n">v</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">v</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="o">!=</span><span class="n">father</span><span class="p">){</span>
+                <span class="n">dfs1</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">deep</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+                <span class="n">siz</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">+=</span><span class="n">siz</span><span class="p">[</span><span class="n">v</span><span class="p">];</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">son</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">==-</span><span class="mi">1</span><span class="o">||</span><span class="n">siz</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">&gt;</span><span class="n">siz</span><span class="p">[</span><span class="n">son</span><span class="p">[</span><span class="n">u</span><span class="p">]])</span><span class="n">son</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">=</span><span class="n">v</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">//chain,tid,rnk;</span>
+    <span class="kt">void</span> <span class="n">dfs2</span><span class="p">(</span><span class="n">ll</span> <span class="n">u</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">ll</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">chain</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">=</span><span class="n">s</span><span class="p">;</span>
+        <span class="n">tid</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">=++</span><span class="n">treen</span><span class="p">;</span>
+        <span class="n">rnk</span><span class="p">[</span><span class="n">treen</span><span class="p">]</span><span class="o">=</span><span class="n">u</span><span class="p">;</span>
+        
+        <span class="k">if</span><span class="p">(</span><span class="n">son</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">==-</span><span class="mi">1</span><span class="p">)</span><span class="k">return</span><span class="p">;</span>
+        <span class="n">dfs2</span><span class="p">(</span><span class="n">son</span><span class="p">[</span><span class="n">u</span><span class="p">],</span><span class="n">s</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span class="n">head</span><span class="p">[</span><span class="n">u</span><span class="p">];</span><span class="o">~</span><span class="n">i</span><span class="p">;</span><span class="n">i</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">nex</span><span class="p">){</span>
+            <span class="n">ll</span> <span class="n">v</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">v</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="o">!=</span><span class="n">son</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">&amp;&amp;</span><span class="n">v</span><span class="o">!=</span><span class="n">dad</span><span class="p">[</span><span class="n">u</span><span class="p">])</span><span class="n">dfs2</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">v</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">ll</span> <span class="n">query_path</span><span class="p">(</span><span class="n">ll</span> <span class="n">x</span><span class="p">,</span><span class="n">ll</span> <span class="n">y</span><span class="p">){</span>
+        <span class="n">ll</span> <span class="n">ans</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="n">ll</span> <span class="n">fx</span><span class="o">=</span><span class="n">chain</span><span class="p">[</span><span class="n">x</span><span class="p">],</span><span class="n">fy</span><span class="o">=</span><span class="n">chain</span><span class="p">[</span><span class="n">y</span><span class="p">];</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">fx</span><span class="o">!=</span><span class="n">fy</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">dep</span><span class="p">[</span><span class="n">fx</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">dep</span><span class="p">[</span><span class="n">fy</span><span class="p">]){</span>
+                <span class="n">ans</span><span class="o">+=</span><span class="n">query</span><span class="p">(</span><span class="n">tid</span><span class="p">[</span><span class="n">fx</span><span class="p">],</span><span class="n">tid</span><span class="p">[</span><span class="n">x</span><span class="p">]);</span>
+                <span class="n">x</span><span class="o">=</span><span class="n">dad</span><span class="p">[</span><span class="n">fx</span><span class="p">];</span>
+                <span class="n">fx</span><span class="o">=</span><span class="n">chain</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+                <span class="n">ans</span><span class="o">+=</span><span class="n">query</span><span class="p">(</span><span class="n">tid</span><span class="p">[</span><span class="n">fy</span><span class="p">],</span><span class="n">tid</span><span class="p">[</span><span class="n">y</span><span class="p">]);</span>
+                <span class="n">y</span><span class="o">=</span><span class="n">dad</span><span class="p">[</span><span class="n">fy</span><span class="p">];</span>
+                <span class="n">fy</span><span class="o">=</span><span class="n">chain</span><span class="p">[</span><span class="n">y</span><span class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">!=</span><span class="n">y</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">tid</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">&lt;</span><span class="n">tid</span><span class="p">[</span><span class="n">y</span><span class="p">]){</span>
+                <span class="n">ans</span><span class="o">+=</span><span class="n">query</span><span class="p">(</span><span class="n">tid</span><span class="p">[</span><span class="n">x</span><span class="p">],</span><span class="n">tid</span><span class="p">[</span><span class="n">y</span><span class="p">]);</span>
+            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+                <span class="n">ans</span><span class="o">+=</span><span class="n">query</span><span class="p">(</span><span class="n">tid</span><span class="p">[</span><span class="n">y</span><span class="p">],</span><span class="n">tid</span><span class="p">[</span><span class="n">x</span><span class="p">]);</span>
+            <span class="p">}</span>
+        <span class="p">}</span><span class="k">else</span> <span class="n">ans</span><span class="o">+=</span><span class="n">query</span><span class="p">(</span><span class="n">tid</span><span class="p">[</span><span class="n">x</span><span class="p">],</span><span class="n">tid</span><span class="p">[</span><span class="n">y</span><span class="p">]);</span>
+        <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">update_path</span><span class="p">(</span><span class="n">ll</span> <span class="n">x</span><span class="p">,</span><span class="n">ll</span> <span class="n">y</span><span class="p">,</span><span class="n">ll</span> <span class="n">d</span><span class="p">){</span>
+        <span class="n">ll</span> <span class="n">fx</span><span class="o">=</span><span class="n">chain</span><span class="p">[</span><span class="n">x</span><span class="p">],</span><span class="n">fy</span><span class="o">=</span><span class="n">chain</span><span class="p">[</span><span class="n">y</span><span class="p">];</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">fx</span><span class="o">!=</span><span class="n">fy</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">dep</span><span class="p">[</span><span class="n">fx</span><span class="p">]</span><span class="o">&gt;</span><span class="n">dep</span><span class="p">[</span><span class="n">fy</span><span class="p">]){</span>
+                <span class="n">update</span><span class="p">(</span><span class="n">tid</span><span class="p">[</span><span class="n">fx</span><span class="p">],</span><span class="n">tid</span><span class="p">[</span><span class="n">x</span><span class="p">],</span><span class="n">d</span><span class="p">);</span>
+                <span class="n">x</span><span class="o">=</span><span class="n">dad</span><span class="p">[</span><span class="n">fx</span><span class="p">];</span>
+                <span class="n">fx</span><span class="o">=</span><span class="n">chain</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+                <span class="n">update</span><span class="p">(</span><span class="n">tid</span><span class="p">[</span><span class="n">fy</span><span class="p">],</span><span class="n">tid</span><span class="p">[</span><span class="n">y</span><span class="p">],</span><span class="n">d</span><span class="p">);</span>
+                <span class="n">y</span><span class="o">=</span><span class="n">dad</span><span class="p">[</span><span class="n">fy</span><span class="p">];</span>
+                <span class="n">fy</span><span class="o">=</span><span class="n">chain</span><span class="p">[</span><span class="n">y</span><span class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">!=</span><span class="n">y</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">tid</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">&lt;</span><span class="n">tid</span><span class="p">[</span><span class="n">y</span><span class="p">])</span><span class="n">update</span><span class="p">(</span><span class="n">tid</span><span class="p">[</span><span class="n">x</span><span class="p">],</span><span class="n">tid</span><span class="p">[</span><span class="n">y</span><span class="p">],</span><span class="n">d</span><span class="p">);</span>
+            <span class="k">else</span> <span class="n">update</span><span class="p">(</span><span class="n">tid</span><span class="p">[</span><span class="n">y</span><span class="p">],</span><span class="n">tid</span><span class="p">[</span><span class="n">x</span><span class="p">],</span><span class="n">d</span><span class="p">);</span>
+        <span class="p">}</span><span class="k">else</span> <span class="n">update</span><span class="p">(</span><span class="n">tid</span><span class="p">[</span><span class="n">x</span><span class="p">],</span><span class="n">tid</span><span class="p">[</span><span class="n">y</span><span class="p">],</span><span class="n">d</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">ini</span><span class="p">(){</span>
+        <span class="n">graph</span><span class="o">::</span><span class="n">ini</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">build</span><span class="p">(){</span>
+        <span class="n">treen</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">son</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">son</span><span class="p">));</span>
+        <span class="n">dfs1</span><span class="p">();</span>
+        <span class="n">dfs2</span><span class="p">();</span>
+        <span class="n">segment_tree</span><span class="o">::</span><span class="n">build</span><span class="p">(</span><span class="n">treen</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="n">tree</span><span class="p">;</span>
+</pre>	
 	
 	
 	
