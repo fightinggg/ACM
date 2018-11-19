@@ -1,32 +1,24 @@
 <!DOCTYPE html>
 <html>
-	<style type="text/css">
-	#h
-	{
-		position: absolute;
-		right: 10px;
-	}
-	</style>
-	<div id="h">	
- <a href="https://fightinggg.github.io/hello/"  style="color: red;fron:10px;" >
- 	<span >主页</span>
- </a>
  
-	</div>
-	<head>
-		<meta charset="utf-8" />
-		<title>
-			博弈论
-		</title>
-		<style type="text/css">
-			h1{text-align:center} 
-		</style>
-		<div id="head">
-<h1 style="color: red;"> 博弈论</h1>	
-	</head>		
-	</div>
-
-	<body>                <p>博弈常常是acm中的签到题，能不能快速拿下，这得看本事。</p>
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/head.js"></script>
+    <link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/ACM/pastebin.css">
+	<link rel="stylesheet" type="text/css" href="/ACM/css/right.css">
+	<title>博弈论</title>
+</head>
+ 
+<body>
+	
+										
+<div class="ACMright">
+	<center>
+	<h1>博弈论</h1>
+	</center>
+	
+	
+<body>                <p>博弈常常是acm中的签到题，能不能快速拿下，这得看本事。</p>
 
 <p>首先有以下的结论：</p>
 
@@ -88,29 +80,29 @@
 <span style="color: blue;font: 20px;">int</span>&nbspsgf[N],sg[N];
 bool&nbspsgs[N];
 <span style="color: blue;font: 20px;">void</span>&nbspsgf_ini(){
-	sgf[0]=1;
-	sgf[1]=1;
-	sgf[2]=2;
-	<span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspi=3;i&lt20;i++){
-		sgf[i]=sgf[i-1]+sgf[i-2];
-		<span style="color: green;font: 20px;">//cout&lt&ltsgf[i]&lt&ltendl;</span>
-	}
+    sgf[0]=1;
+    sgf[1]=1;
+    sgf[2]=2;
+    <span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspi=3;i&lt20;i++){
+        sgf[i]=sgf[i-1]+sgf[i-2];
+        <span style="color: green;font: 20px;">//cout&lt&ltsgf[i]&lt&ltendl;</span>
+    }
 }
 <span style="color: blue;font: 20px;">void</span>&nbspsg_ini(<span style="color: blue;font: 20px;">int</span>&nbspn){
-	sgf_ini();
-	<span style="color: green;font: 20px;">//sg[0]=0;</span>
-	<span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspi=1;i&lt=n;i++){
-		memset(sgs,0,sizeof(sgs));
-		<span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspj=1;/**/i-sgf[j]&gt=0;j++)sgs[sg[i-sgf[j]]]=true;
-		<span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspj=0;;j++)<span style="color: blue;font: 20px;">if</span>(!sgs[j]){
-			sg[i]=j;
-			<span style="color: blue;font: 20px;">break</span>;
-		}
-	}
-	<span style="color: green;font: 20px;">//<span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspi=0;i&lt=n;i++){</span>
-	<span style="color: green;font: 20px;">//	printf("%4d&nbsp%2d",i,sg[i]);</span>
-	<span style="color: green;font: 20px;">//	<span style="color: blue;font: 20px;">if</span>(i%10==9)cout&lt&ltendl;</span>
-	<span style="color: green;font: 20px;">//}</span>
+    sgf_ini();
+    <span style="color: green;font: 20px;">//sg[0]=0;</span>
+    <span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspi=1;i&lt=n;i++){
+        memset(sgs,0,sizeof(sgs));
+        <span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspj=1;/**/i-sgf[j]&gt=0;j++)sgs[sg[i-sgf[j]]]=true;
+        <span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspj=0;;j++)<span style="color: blue;font: 20px;">if</span>(!sgs[j]){
+            sg[i]=j;
+            <span style="color: blue;font: 20px;">break</span>;
+        }
+    }
+    <span style="color: green;font: 20px;">//<span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspi=0;i&lt=n;i++){</span>
+    <span style="color: green;font: 20px;">//    printf("%4d&nbsp%2d",i,sg[i]);</span>
+    <span style="color: green;font: 20px;">//    <span style="color: blue;font: 20px;">if</span>(i%10==9)cout&lt&ltendl;</span>
+    <span style="color: green;font: 20px;">//}</span>
 }
 </pre>
 
@@ -131,5 +123,14 @@ bool&nbspsgs[N];
 <p>对于sg[i],我们参考dp算法</p>
 
 <p>假设nex是i的后继，那么sg[i]=mex{sg[nex1]，sg[nex2]，sg[nex3]。。。}</p>
-	</body>
+</body>
+
+
+	
+<a href="http://web.cs.ucla.edu/~rosen/161/notes/alphabeta.html"target="_blank">
+	CS 161 Recitation Notes - Minimax with Alpha Beta Pruning
+</a>
+	
+
+</div>
 </html>
