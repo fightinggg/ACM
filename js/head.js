@@ -14,14 +14,15 @@ document.writeln("      <center><div class='out_name'>逐梦</div></center>");
 document.writeln("	<div class='out_head'>   ");
 document.writeln("		<div class='miaov_head'>");
 document.writeln("    		<ul>");
-document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/computational_geometry\">计算几何</a></li>");
-document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/thinging\">思维与算法</a></li>");
-document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/Yuki_technique/\">黑科技</a></li>");
+
+document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/math/\">数论</a></li>");
+document.writeln("    			<li ><a href=\"http://fightinggg.github.io/ACM/data_struct/\">数据结构</a></li>");
 document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/string\">字符串</a></li>");
 document.writeln("         	    <li><a href=\"http://fightinggg.github.io/ACM/dp\">dp</a></li>");
 document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/graph_theory/\">图论</a></li>");
-document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/math/\">数论</a></li>");
-document.writeln("    			<li ><a href=\"http://fightinggg.github.io/ACM/data_struct/\">数据结构</a></li>");
+document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/computational_geometry\">计算几何</a></li>");
+document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/thinging\">思维与算法</a></li>");
+document.writeln("        		<li><a href=\"http://fightinggg.github.io/ACM/Yuki_technique/\">黑科技</a></li>");
 document.writeln("    			<li ><a href=\"http://fightinggg.github.io/ACM/acm_head_file.html\">快读</a></li>");
 
 document.writeln("    		</ul>");
