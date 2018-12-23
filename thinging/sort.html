@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/head.js"></script>
+    <link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/ACM/pastebin.css">
+	<link rel="stylesheet" type="text/css" href="/ACM/css/right.css">
+	<title>排序算法</title>
+</head>
+ 
+<body>
+	
+										
+<div class="ACMright">
+	<center>
+	<h1>排序算法比较</h1>
+	</center>
+	
+	
+	<pre><span class="cp">#include&lt;iostream&gt;</span>
+<span class="cp">#include&lt;iomanip&gt;</span>
+<span class="cp">#include&lt;vector&gt;</span>
+<span class="cp">#include&lt;cstring&gt;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="c1">//快速排序</span>
+<span class="c1">//unstable</span>
+<span class="c1">//time:   sita(n*lgn)   omiga(n*lgn)   O(n^2)</span>
+<span class="c1">//memery  O(lgn)</span>
+<span class="kt">void</span> <span class="n">quicksort</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">b</span><span class="p">){</span>  <span class="c1">//[a,b)</span>
+    <span class="kt">int</span> <span class="o">*</span><span class="n">l</span> <span class="o">=</span> <span class="n">a</span> <span class="p">,</span> <span class="o">*</span><span class="n">r</span> <span class="o">=</span> <span class="n">b</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">l</span><span class="o">&gt;=</span><span class="n">r</span><span class="p">)</span><span class="k">return</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="o">*</span><span class="n">mid</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span> <span class="c1">//suppose that the little some is in [l,mid-1] and bound is in mid</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">r</span><span class="o">&gt;</span><span class="n">mid</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="n">r</span><span class="o">&lt;*</span><span class="n">l</span><span class="p">)</span><span class="n">swap</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="o">++</span><span class="n">mid</span><span class="p">),</span><span class="o">*</span><span class="n">r</span><span class="p">);</span>
+        <span class="k">else</span> <span class="n">r</span><span class="o">--</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">swap</span><span class="p">(</span><span class="o">*</span><span class="n">l</span><span class="p">,</span><span class="o">*</span><span class="n">mid</span><span class="p">);</span>
+    <span class="n">quicksort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">mid</span><span class="p">);</span>
+    <span class="n">quicksort</span><span class="p">(</span><span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="c1">//插入排序</span>
+<span class="c1">//stable</span>
+<span class="c1">//time:   sita(n^2) omiga(n)  O(n^2)</span>
+<span class="c1">//memery: O(1)</span>
+<span class="kt">void</span> <span class="n">insertionsort</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">b</span><span class="p">){</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">i</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">b</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="o">*</span><span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">j</span><span class="o">&gt;</span><span class="n">a</span><span class="o">&amp;&amp;*</span><span class="n">j</span><span class="o">&lt;*</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)){</span><span class="c1">//可能每次都直接跳出去，结果成了omiga(n)</span>
+            <span class="n">swap</span><span class="p">(</span><span class="o">*</span><span class="n">j</span><span class="p">,</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>
+            <span class="n">j</span><span class="o">--</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="c1">//选择排序</span>
+<span class="c1">//unstable</span>
+<span class="c1">//time:   sita(n^2) omiga(n^2)  O(n^2)</span>
+<span class="c1">//memery: O(1)</span>
+<span class="kt">void</span> <span class="n">selectsort</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">b</span><span class="p">){</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">i</span><span class="o">=</span><span class="n">a</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">b</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="kt">int</span><span class="o">*</span><span class="n">min</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">b</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="n">min</span><span class="o">&gt;*</span><span class="n">j</span><span class="p">)</span><span class="n">min</span><span class="o">=</span><span class="n">j</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">swap</span><span class="p">(</span><span class="o">*</span><span class="n">min</span><span class="p">,</span><span class="o">*</span><span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="c1">//基数排序??</span>
+<span class="c1">//unstable</span>
+<span class="c1">//time:   omige(log(k,maxvalue)*n)  O(log(k,maxvalue)*n)</span>
+<span class="c1">//memery:</span>
+<span class="kt">void</span> <span class="n">radixsort</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="kt">int</span><span class="o">*</span><span class="n">b</span><span class="p">){</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span><span class="mi">15</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="n">bin</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span><span class="c1">// 滚动数组</span>
+    <span class="kt">int</span> <span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="n">i</span><span class="o">=</span><span class="n">a</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">b</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">bin</span><span class="p">[</span><span class="n">t</span><span class="p">][(</span><span class="o">*</span><span class="n">i</span><span class="p">)</span><span class="o">&amp;</span><span class="n">k</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="o">*</span><span class="n">i</span><span class="p">);</span>
+    <span class="n">t</span><span class="o">^=</span><span class="mi">1</span><span class="p">;</span>
+    
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">times</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">times</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">times</span><span class="o">++</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">k</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">bin</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">i</span><span class="p">].</span><span class="n">clear</span><span class="p">();</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">k</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="nl">x:</span><span class="n">bin</span><span class="p">[</span><span class="n">t</span><span class="o">^</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]){</span>
+                <span class="n">bin</span><span class="p">[</span><span class="n">t</span><span class="p">][(</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">times</span><span class="p">))</span><span class="o">&amp;</span><span class="n">k</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">t</span><span class="o">^=</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">k</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="nl">x:</span><span class="n">bin</span><span class="p">[</span><span class="n">t</span><span class="o">^</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]){</span>
+            <span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">++</span><span class="p">)</span><span class="o">=</span><span class="n">x</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="c1">//计数排序??</span>
+<span class="c1">//unstable</span>
+<span class="c1">//time:   sita(maxvalue-minvalue) omiga(maxvalue-minvalue) O(maxvalue-minvalue)</span>
+<span class="c1">//memery: O(maxvalue-minvalue)</span>
+<span class="kt">void</span> <span class="n">countingsort</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="kt">int</span><span class="o">*</span><span class="n">b</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">maxvalue</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">31</span><span class="p">);</span> <span class="c1">// 最小的int</span>
+    <span class="kt">int</span> <span class="n">minvalue</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">^</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">31</span><span class="p">);</span><span class="c1">// 最大的int</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="n">i</span><span class="o">=</span><span class="n">a</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">b</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">maxvalue</span><span class="o">=</span><span class="n">max</span><span class="p">(</span><span class="n">maxvalue</span><span class="p">,</span><span class="o">*</span><span class="n">i</span><span class="p">);</span>
+        <span class="n">minvalue</span><span class="o">=</span><span class="n">min</span><span class="p">(</span><span class="n">minvalue</span><span class="p">,</span><span class="o">*</span><span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kt">int</span><span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">maxvalue</span><span class="o">-</span><span class="n">minvalue</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">maxvalue</span><span class="o">-</span><span class="n">minvalue</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="n">i</span><span class="o">=</span><span class="n">a</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">b</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">data</span><span class="p">[(</span><span class="o">*</span><span class="n">i</span><span class="p">)</span><span class="o">-</span><span class="n">minvalue</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">minvalue</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">maxvalue</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">minvalue</span><span class="p">]</span><span class="o">--</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">++</span><span class="p">)</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">delete</span><span class="p">[]</span> <span class="n">data</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="c1">//桶排序??</span>
+<span class="c1">//time:   sita(k*O(sort(n/k))  omiga(k*O(sort(n/k))  O(k*O(sort(n/k))</span>
+<span class="c1">//memery:</span>
+<span class="kt">void</span> <span class="n">bucketsort</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="kt">int</span><span class="o">*</span><span class="n">b</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">maxvalue</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">31</span><span class="p">);</span> <span class="c1">// 最小的int</span>
+    <span class="kt">int</span> <span class="n">minvalue</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">^</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">31</span><span class="p">);</span><span class="c1">// 最大的int</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="n">i</span><span class="o">=</span><span class="n">a</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">b</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">maxvalue</span><span class="o">=</span><span class="n">max</span><span class="p">(</span><span class="n">maxvalue</span><span class="p">,</span><span class="o">*</span><span class="n">i</span><span class="p">);</span>
+        <span class="n">minvalue</span><span class="o">=</span><span class="n">min</span><span class="p">(</span><span class="n">minvalue</span><span class="p">,</span><span class="o">*</span><span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">maxvalue</span><span class="o">==</span><span class="n">minvalue</span><span class="p">)</span><span class="k">return</span><span class="p">;</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="n">i</span><span class="o">=</span><span class="n">a</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">b</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="n">belong</span> <span class="o">=</span> <span class="p">((</span><span class="o">*</span><span class="n">i</span><span class="p">)</span><span class="o">-</span><span class="n">minvalue</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="n">maxvalue</span><span class="o">-</span><span class="n">minvalue</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">belong</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="o">*</span><span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">k</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">sort</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">begin</span><span class="p">(),</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">end</span><span class="p">());</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="nl">x:</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">++</span><span class="p">)</span><span class="o">=</span><span class="n">x</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="c1">//冒泡排序</span>
+<span class="c1">//stable</span>
+<span class="c1">//time： sita(n^2) omiga（n） O(n^2)</span>
+<span class="c1">//memery: O(1)</span>
+<span class="kt">void</span> <span class="n">bubblesort</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">b</span><span class="p">){</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="kt">bool</span> <span class="n">noswap</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="n">j</span><span class="o">=</span><span class="n">a</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">b</span><span class="o">-</span><span class="n">i</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;*</span><span class="n">j</span><span class="p">){</span>
+                <span class="n">swap</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="n">j</span><span class="p">);</span>
+                <span class="n">noswap</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">noswap</span><span class="p">)</span><span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="c1">//归并排序</span>
+<span class="c1">//stable</span>
+<span class="c1">//time:   sita(n*lgn) omiga(n*lgn) O(n*lgn)</span>
+<span class="c1">//memery: O(n)</span>
+<span class="kt">void</span> <span class="n">mergesort</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="kt">int</span><span class="o">*</span><span class="n">b</span><span class="p">){</span>
+    <span class="kt">int</span><span class="o">*</span><span class="n">mid</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span> <span class="c1">// =(a+b)/2</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="o">&gt;=</span><span class="n">b</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="k">return</span><span class="p">;</span>
+    
+    <span class="n">mergesort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">mid</span><span class="p">);</span>
+    <span class="n">mergesort</span><span class="p">(</span><span class="n">mid</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+    
+    <span class="kt">int</span><span class="o">*</span><span class="n">c</span><span class="o">=</span><span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">];</span>
+    <span class="kt">int</span><span class="o">*</span><span class="n">pa</span><span class="o">=</span><span class="n">a</span><span class="p">,</span><span class="o">*</span><span class="n">pm</span><span class="o">=</span><span class="n">mid</span><span class="p">,</span><span class="o">*</span><span class="n">pc</span><span class="o">=</span><span class="n">c</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">pa</span><span class="o">&lt;</span><span class="n">mid</span><span class="o">&amp;&amp;</span><span class="n">pm</span><span class="o">&lt;</span><span class="n">b</span><span class="p">){</span>
+        <span class="o">*</span><span class="p">(</span><span class="n">pc</span><span class="o">++</span><span class="p">)</span><span class="o">=*</span><span class="n">pa</span><span class="o">&lt;=*</span><span class="n">pm</span><span class="o">?*</span><span class="p">(</span><span class="n">pa</span><span class="o">++</span><span class="p">)</span><span class="o">:*</span><span class="p">(</span><span class="n">pm</span><span class="o">++</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">pa</span><span class="o">&lt;</span><span class="n">mid</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">pc</span><span class="o">++</span><span class="p">)</span><span class="o">=*</span><span class="p">(</span><span class="n">pa</span><span class="o">++</span><span class="p">);</span>
+    <span class="k">while</span><span class="p">(</span> <span class="n">pm</span><span class="o">&lt;</span><span class="n">b</span> <span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">pc</span><span class="o">++</span><span class="p">)</span><span class="o">=*</span><span class="p">(</span><span class="n">pm</span><span class="o">++</span><span class="p">);</span>
+    <span class="n">memcpy</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">));</span>
+<span class="p">}</span>
+
+
+<span class="c1">//希尔排序</span>
+<span class="c1">//unstable</span>
+<span class="c1">//time:   sita(n^1.3) omiga(??) O(n^2)</span>
+<span class="c1">//memery: O(1)</span>
+<span class="kt">void</span> <span class="n">shellsort</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="kt">int</span><span class="o">*</span><span class="n">b</span><span class="p">){</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">gap</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">;</span><span class="n">gap</span><span class="p">;</span><span class="n">gap</span><span class="o">&gt;&gt;=</span><span class="mi">1</span><span class="p">){</span><span class="c1">//枚举gap</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="n">i</span><span class="o">=</span><span class="n">a</span><span class="o">+</span><span class="n">gap</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">b</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="kt">int</span> <span class="n">x</span><span class="o">=*</span><span class="n">i</span><span class="p">,</span><span class="o">*</span><span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="n">gap</span><span class="o">&gt;=</span><span class="n">a</span><span class="o">&amp;&amp;</span><span class="n">x</span><span class="o">&lt;*</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="n">gap</span><span class="p">)){</span>
+                <span class="o">*</span><span class="n">j</span><span class="o">=*</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="n">gap</span><span class="p">);</span>
+                <span class="n">j</span><span class="o">-=</span><span class="n">gap</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="o">*</span><span class="n">j</span><span class="o">=</span><span class="n">x</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="c1">//堆排序</span>
+<span class="c1">//unstable</span>
+<span class="c1">//time:   sita(n*lgn)   omiga(n*lgn)   O(n*lgn)</span>
+<span class="c1">//memery: O(1)</span>
+<span class="kt">void</span> <span class="n">heapsort</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="kt">int</span><span class="o">*</span><span class="n">b</span><span class="p">){</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">n</span><span class="o">=</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">;</span>
+    <span class="n">a</span><span class="o">--</span><span class="p">;</span>
+    
+    <span class="c1">//up</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="c1">//建立大根堆</span>
+        <span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">j</span><span class="o">!=</span><span class="mi">1</span><span class="o">&amp;&amp;</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">&gt;</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">]){</span><span class="c1">//不是根且比父亲大</span>
+            <span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">]);</span>
+            <span class="n">j</span><span class="o">&gt;&gt;=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+   
+    <span class="c1">//down</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">&gt;=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">--</span><span class="p">){</span>
+        <span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="kt">int</span> <span class="n">cur</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">((</span><span class="n">cur</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">)</span><span class="o">&lt;</span><span class="n">i</span><span class="p">){</span><span class="c1">//左儿子存在</span>
+            <span class="kt">int</span> <span class="n">son</span> <span class="o">=</span> <span class="p">(</span><span class="n">cur</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="o">|</span><span class="mi">1</span><span class="p">)</span><span class="o">&lt;</span><span class="n">i</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">cur</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="o">|</span><span class="mi">1</span><span class="p">]</span><span class="o">&gt;</span><span class="n">a</span><span class="p">[</span><span class="n">cur</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">];</span><span class="c1">//若满足此条件则son为1，代表着右儿子优先</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span><span class="o">&lt;</span><span class="n">a</span><span class="p">[</span><span class="n">cur</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="o">|</span><span class="n">son</span><span class="p">])</span><span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">cur</span><span class="p">],</span><span class="n">a</span><span class="p">[</span><span class="n">cur</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="o">|</span><span class="n">son</span><span class="p">]);</span>
+            <span class="k">else</span> <span class="k">break</span><span class="p">;</span><span class="c1">//若优先的儿子都不能换</span>
+            <span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="o">|</span><span class="n">son</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="k">const</span> <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mf">1e4</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">ans</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+
+<span class="kr">inline</span> <span class="kt">void</span> <span class="n">compare</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">b</span><span class="p">,</span><span class="kt">void</span> <span class="n">sort</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">,</span><span class="kt">int</span><span class="o">*</span><span class="p">),</span><span class="n">string</span> <span class="n">name</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">data</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+    <span class="n">memcpy</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">));</span>
+    <span class="n">time_t</span> <span class="n">begin</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
+    <span class="n">sort</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="o">+</span><span class="n">n</span><span class="p">);</span>
+    <span class="n">time_t</span> <span class="n">spend</span> <span class="o">=</span> <span class="n">clock</span><span class="p">()</span><span class="o">-</span><span class="n">begin</span><span class="p">;</span>
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">setw</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">left</span><span class="o">&lt;&lt;</span><span class="n">name</span><span class="o">&lt;&lt;</span><span class="s">&quot; time:&quot;</span><span class="o">&lt;&lt;</span><span class="n">setw</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">spend</span><span class="p">;</span>
+    <span class="c1">//check it</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&amp;&amp;</span><span class="n">i</span><span class="o">==</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;everything is right&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">!=</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]){</span>
+            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;error&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+    <span class="n">srand</span><span class="p">(</span><span class="kt">int</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)));</span>
+
+    <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">rand</span><span class="p">()</span><span class="o">%</span><span class="mi">9000000</span><span class="o">+</span><span class="mi">1000000</span><span class="p">;</span>
+    <span class="n">memcpy</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">a</span><span class="p">));</span>
+    <span class="n">sort</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="n">ans</span><span class="o">+</span><span class="n">n</span><span class="p">);</span>
+    
+    <span class="n">compare</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="o">+</span><span class="n">n</span><span class="p">,</span><span class="n">sort</span><span class="p">,</span><span class="s">&quot;* STL(fastest)&quot;</span><span class="p">);</span>
+    <span class="n">compare</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="o">+</span><span class="n">n</span><span class="p">,</span><span class="n">quicksort</span><span class="p">,</span><span class="s">&quot;quicksort&quot;</span><span class="p">);</span>
+    <span class="n">compare</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="o">+</span><span class="n">n</span><span class="p">,</span><span class="n">insertionsort</span><span class="p">,</span><span class="s">&quot;insertionsort&quot;</span><span class="p">);</span>
+    <span class="n">compare</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="o">+</span><span class="n">n</span><span class="p">,</span><span class="n">selectsort</span><span class="p">,</span><span class="s">&quot;selectsort&quot;</span><span class="p">);</span>
+    <span class="n">compare</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="o">+</span><span class="n">n</span><span class="p">,</span><span class="n">radixsort</span><span class="p">,</span><span class="s">&quot;radixsort&quot;</span><span class="p">);</span>
+    <span class="n">compare</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="o">+</span><span class="n">n</span><span class="p">,</span><span class="n">countingsort</span><span class="p">,</span><span class="s">&quot;countingsort&quot;</span><span class="p">);</span>
+    <span class="n">compare</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="o">+</span><span class="n">n</span><span class="p">,</span><span class="n">bucketsort</span><span class="p">,</span><span class="s">&quot;bucketsort&quot;</span><span class="p">);</span>
+    <span class="n">compare</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="o">+</span><span class="n">n</span><span class="p">,</span><span class="n">bubblesort</span><span class="p">,</span><span class="s">&quot;bubblesort&quot;</span><span class="p">);</span>
+    <span class="n">compare</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="o">+</span><span class="n">n</span><span class="p">,</span><span class="n">mergesort</span><span class="p">,</span><span class="s">&quot;mergesort&quot;</span><span class="p">);</span>
+    <span class="n">compare</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="o">+</span><span class="n">n</span><span class="p">,</span><span class="n">shellsort</span><span class="p">,</span><span class="s">&quot;shellsort&quot;</span><span class="p">);</span>
+    <span class="n">compare</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="o">+</span><span class="n">n</span><span class="p">,</span><span class="n">heapsort</span><span class="p">,</span><span class="s">&quot;heapsort&quot;</span><span class="p">);</span>
+    
+    <span class="n">puts</span><span class="p">(</span><span class="s">&quot;ok&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+
+<span class="cm">/*</span>
+<span class="cm"> </span>
+<span class="cm"> 输出:</span>
+<span class="cm"> </span>
+<span class="cm"> * STL(fastest)   time:468          everything is right</span>
+<span class="cm"> quicksort        time:1265         everything is right</span>
+<span class="cm"> insertionsort    time:178130       everything is right</span>
+<span class="cm"> selectsort       time:126705       everything is right</span>
+<span class="cm"> radixsort        time:3128         everything is right</span>
+<span class="cm"> countingsort     time:50445        everything is right</span>
+<span class="cm"> bucketsort       time:1002         everything is right</span>
+<span class="cm"> bubblesort       time:355497       everything is right</span>
+<span class="cm"> mergesort        time:3295         everything is right</span>
+<span class="cm"> shellsort        time:3960         everything is right</span>
+<span class="cm"> heapsort         time:2347         everything is right</span>
+<span class="cm"> ok</span>
+<span class="cm"> </span>
+<span class="cm"> </span>
+<span class="cm"> */</span>
+</pre>
+
+
+	
+
+</div>
+</html>
