@@ -1,10 +1,11 @@
  
   
 body {
+	
      background-color: #d5e9ef;
      background-image: url(http://api.3ewl.cc/acg/img.php);!important;
      background-repeat: no-repeat; 
-     background-attachment: fixed; 
+     background-attachment:local; 
      background-position: center 0; 
        background-size: 100% 100% ；/* 老手机的浏览器上可能出不来背景平铺的效果*/
      -webkit-background-size: auto;
