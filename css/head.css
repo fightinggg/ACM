@@ -1,11 +1,12 @@
  
 body {
      background-color: #efefef;
+     lowsrc
      background-image: url(http://api.3ewl.cc/acg/img.php);fixed top !important;
      background-repeat: no-repeat; 
      background-attachment: fixed; 
      background-position: center 0; 
-     background-size: cover; 
+     -webkit-background-size: auto;
 	
     color: black;
     font-size: 15px;
