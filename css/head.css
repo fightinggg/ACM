@@ -29,7 +29,7 @@ body {
 #left{
     background-color:white;
     	border: 1px black dotted;
-    width:750px;
+    width:800px;
     float: left;
     padding:10px;
     margin:auto;
@@ -42,7 +42,7 @@ body {
 	    background-color:white;
     		border: 1px black dotted;
     		height: 100px;
-    		width:700px;
+    		width:750px;
    		padding:10px;
     		margin: auto;
     		margin-top: 10px ;
@@ -69,7 +69,7 @@ body {
 #right{
 	background-color:white;
 	border: 1px black dotted;
-	width:250px;
+	width:200px;
 	float:right;
     padding:10px;
     margin: auto;
