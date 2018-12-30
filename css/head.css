@@ -1,6 +1,6 @@
  
 body {
-    background: white;
+   background:  url(http://api.3ewl.cc/acg/img.php) fixed top !important;
     color: black;
     font-size: 15px;
 }
@@ -9,9 +9,11 @@ body {
 #myweb{
 	width: 1050px;
      margin: auto;
+     filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9;
 }
 
 #up{
+	background: white;
     padding:10px;
     margin-top: 20px ;
     margin-bottom: 30px;
@@ -27,7 +29,7 @@ body {
 
 
 #left{
-    background-color:white;
+	background: white;
     	border: 1px black dotted;
     width:790px;
     float: left;
