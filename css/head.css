@@ -15,7 +15,7 @@ body {
 
 
 #myweb{
-	width: 980px;
+	width: 900px;
      margin: auto;
      filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9;
 }
@@ -39,7 +39,7 @@ body {
 #left{
 	background: white;
     	border: 1px black dotted;
-    width:745px;
+    width:685px;
     float: left;
     padding:10px;
     margin:auto;
@@ -78,7 +78,7 @@ body {
 #right{
 	background-color:white;
 	border: 1px black dotted;
-	width:165px;
+	width:145px;
 	float:right;
     padding:10px;
     margin: auto;
