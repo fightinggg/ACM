@@ -49,3 +49,23 @@ body {
 #right a:hover {
     color: #555;
 }
+
+#index{
+	    background-color:white;
+    		border: 1px black dotted;
+    		height: 100px;
+    		width:700px;
+   		padding:10px;
+    		margin: auto;
+    		margin-top: 10px ;
+    		margin-bottom: 10px ;
+}
+
+#index a{
+	color:black;
+	text-decoration:none;
+}
+
+#index a:hover {
+    color: #555;
+}
