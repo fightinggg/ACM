@@ -1,0 +1,94 @@
+ 
+  
+body {
+     background-color: #d5e9ef;
+     background-image: url(http://api.3ewl.cc/acg/img.php);!important;
+     background-repeat: no-repeat; 
+     background-attachment: fixed; 
+     background-position: center 0; 
+      background-size:cover; 
+     -webkit-background-size: auto;
+	
+    color: black;
+    font-size: 15px;
+}
+
+
+#myweb{
+	 width: 100%;
+     margin: auto;
+     filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9;
+}
+
+#up{
+	background: white;
+    padding:2%;
+    height: auto;
+    margin-top: 3% ;
+    margin-bottom: 5%;
+    margin-left: 2%;
+    margin-right: 2%;
+    border:3px black double;
+}
+#up a{
+	color:black;
+	font-size:30px;
+	text-decoration:none;
+}
+
+
+#left{
+	background: white;
+    	border: 1px black dotted;
+    width:73%;
+    float: left;
+    padding:2%;
+    margin-left: 2%;
+}
+#code{
+		overflow: scroll;
+}
+
+#index{
+	    background-color:white;
+    		border: 1px black dotted;
+    		height: 100px;
+   		padding:2%;
+    		margin-top: 2% ;
+    		margin-bottom: 2% ;
+}
+
+#index a{
+	color:black;
+	text-decoration:none;
+}
+
+#index a:hover {
+    color: #555;
+}
+
+
+
+
+
+
+
+
+
+#right{
+	background-color:white;
+	border: 1px black dotted;
+	width:14%;
+	float:right;
+    padding:2%;
+    margin-right: 2%;
+}
+
+#right a{
+	color:black;
+	text-decoration:none;
+}
+
+#right a:hover {
+    color: #555;
+}
