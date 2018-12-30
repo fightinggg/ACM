@@ -3,32 +3,39 @@
  
 <head>
     <meta charset="utf-8">
-    <script type="text/javascript" src="/ACM/js/head.js"></script>
     <link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/ACM/pastebin.css">
-	<link rel="stylesheet" type="text/css" href="/ACM/css/right.css">
+	<link rel="stylesheet" type="text/css" href="/ACM/css/head.css">
 	<title>树形dp</title>
 </head>
- 
+
 <body>
-	
-	
-										
-<div class="ACMright">
-	<center>
-	<h1>树形dp</h1>
-	</center>
-	
-
-
+	<div id = "myweb">
+		
+<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
+<script type="text/javascript" src="/ACM/js/up_and_right.js"></script>
+<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
+		     
+     		<div id="left">
+     			<center><h1>树形dp</h1></center>
+     			<div id="text">
+     				
 <p><span style="color:red;">1.给你一棵n个节点的树，要你求出包含每个点的连通点集的数量。答案对1e9+7取模。</span></p>
 <p>两次dfs，第一次处理每个节点的子孙方向的联通点集数量，</p>
 <p><img alt="dp[i]=\prod _{all..son}{(dp[son]+1)}" class="mathcode" src="https://private.codecogs.com/gif.latex?dp%5Bi%5D%3D%5Cprod%20_%7Ball..son%7D%7B%28dp%5Bson%5D&amp;plus;1%29%7D" /></p>
 <p>第二次处理父亲方向的点集数量</p>
 <p><img alt="dp2[i]\\=(\prod _{all..brother}{(dp1[brother]+1)})*dp2[father]+1 \\=\frac{dp1[father]}{dp1[i]+1}*dp2[father]+1" class="mathcode" src="https://private.codecogs.com/gif.latex?dp2%5Bi%5D%5C%5C%3D%28%5Cprod%20_%7Ball..brother%7D%7B%28dp1%5Bbrother%5D&amp;plus;1%29%7D%29*dp2%5Bfather%5D&amp;plus;1%20%5C%5C%3D%5Cfrac%7Bdp1%5Bfather%5D%7D%7Bdp1%5Bi%5D&amp;plus;1%7D*dp2%5Bfather%5D&amp;plus;1" /></p>
 <p>特别注意这里小心没有逆元</p>
-	</div>
 	
 	
-</html>
+	
+     			</div>
+     			<div id="code">
+     				
+     			</div>
 
+     		</div>
+     		
+    </div>
+</body>
+</html>
 

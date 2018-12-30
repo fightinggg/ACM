@@ -1,33 +1,25 @@
 <!DOCTYPE html>
 <html>
-	<style type="text/css">
-	#h
-	{
-		position: absolute;
-		right: 10px;
-	}
-	</style>
-	<div id="h">	
- <a href="https://fightinggg.github.io/hello/"  style="color: red;fron:10px;" >
- 	<span >主页</span>
- </a>
  
-	</div>
-	<head>
-		<meta charset="utf-8" />
-		<title>
-			找规律
-		</title>
-		<style type="text/css">
-			h1{text-align:center} 
-		</style>
-		<div id="head">
-<h1 style="color: red;"> 找规律</h1>	
-	</head>		
-	</div>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/ACM/pastebin.css">
+	<link rel="stylesheet" type="text/css" href="/ACM/css/head.css">
+	<title>找规律</title>
+</head>
 
-	<body>
-		<span style="color: green;font: 20px;">1.无限大的棋盘有一只走‘日’的马呆在0，0处，也是坐标原点，（存在四个象限），给你（x，y）问你要至少跳多少步才能跳过去<br /></span>
+<body>
+	<div id = "myweb">
+		
+<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
+<script type="text/javascript" src="/ACM/js/up_and_right.js"></script>
+<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
+		     
+     		<div id="left">
+     			<center><h1> 找规律</h1>	</center>
+     			<div id="text"></div>
+     			<div id="code">
+     					<span style="color: green;font: 20px;">1.无限大的棋盘有一只走‘日’的马呆在0，0处，也是坐标原点，（存在四个象限），给你（x，y）问你要至少跳多少步才能跳过去<br /></span>
 假设x&gty,<br />
 &nbspx&lt=2*y,可以证明当x和y足够大的时候<br />
 （x+y）%3==0时，我们只需要（x+y）/3步这些步数又两种跳跃组成（1，2）（2，1）<br />
@@ -37,5 +29,12 @@
 同样分析出x&gt2*y在x和y足够大的时候，需要y+(x-2*y)/4*2+(x-2*y)%4部<br />
 那么这个足够大是多少呢？是x&gt3&&y&gt3<br />
 再分个类就行了<br />
-	</body>
+     			</div>
+
+     		</div>
+     		
+    </div>
+</body>
 </html>
+<!DOCTYPE html>
+
