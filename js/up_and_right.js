@@ -1,5 +1,4 @@
- document.writeln("   <div id=\"up\">  <center>逐    梦</center></div>");
-		     
+ document.writeln("   <div id=\"up\">  <center><a href=\"http://fightinggg.github.io/ACM/\">逐    梦</a></center></div>");
 document.writeln("  		     	<div id=\"right\">");
 document.writeln("  		     		    -------------------------------------");
  document.writeln("    					<h3><center>ACM</center></h3>");

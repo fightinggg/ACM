@@ -19,6 +19,13 @@ body {
     margin-bottom: 20px;
     border:3px black double;
 }
+#up a{
+	color:black;
+	font-size:30px;
+	text-decoration:none;
+}
+
+
 #left{
     background-color:white;
     	border: 1px black dotted;
@@ -30,24 +37,6 @@ body {
 }
 #code{
 		overflow: scroll;
-}
-#right{
-	background-color:white;
-	border: 1px black dotted;
-	 height: auto;
-	width:250px;
-	float:right;
-    padding:10px;
-    margin: 0px;
-}
-
-#right a{
-	color:black;
-	text-decoration:none;
-}
-
-#right a:hover {
-    color: #555;
 }
 
 #index{
@@ -67,5 +56,32 @@ body {
 }
 
 #index a:hover {
+    color: #555;
+}
+
+
+
+
+
+
+
+
+
+#right{
+	background-color:white;
+	border: 1px black dotted;
+	 height: auto;
+	width:250px;
+	float:right;
+    padding:10px;
+    margin: 0px;
+}
+
+#right a{
+	color:black;
+	text-decoration:none;
+}
+
+#right a:hover {
     color: #555;
 }
