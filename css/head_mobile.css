@@ -6,7 +6,7 @@ body {
      background-repeat: no-repeat; 
      background-attachment: fixed; 
      background-position: center 0; 
-      background-size:auto; 
+       background-size: 100% ；/* 老手机的浏览器上可能出不来背景平铺的效果*/
      -webkit-background-size: auto;
 	
     color: black;
