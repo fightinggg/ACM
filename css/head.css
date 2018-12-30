@@ -1,115 +1,51 @@
-* {
-    margin: 0;
-    padding: 0;
-}
  
 body {
     background: white;
-    position: relative;
-    height: 100%;
-    color: #777;
-    font-size: 13px;
+    color: black;
+    font-size: 15px;
 }
 
-.out_head{
-	position:fixed;
-	z-index:100;
-	margin-top:36px;
-	height: 64px;
-    width: 100%;
-    background: white;
 
-} 
- 
-li {
-    list-style: none;
-    text-decoration: none;
+#myweb{
+	width: 1100px;
+     margin: auto;
 }
- 
-.miaov_head {
-    height: 36px;
-    width: 100%;
-    background: black;
+
+#up{
+    width:1000px;
+    padding:10px;
+    margin: auto;
+    margin-top: 20px ;
+    margin-bottom: 20px;
+    border:3px black double;
 }
- 
- 
-.miaov_head ul {
+#left{
+    background-color:white;
+    	border: 1px black dotted;
+    	height: auto;
+    width:750px;
     float: left;
-    width: 95%;
-    height: 36px;
-    color: white;
-    position: absolute;
-    top: 0px;
-    margin-left: 0px;
+    padding:10px;
+    margin: 0px;
 }
- 
-.miaov_head ul li {
-	position: relative;
-    float: right;
-    margin-left: 2%;
-    color: white;
-    list-style: none;
+#code{
+		overflow: scroll;
 }
- 
-.miaov_head ul li a {
-    color: white;
-    font-size: 14px;
-    text-decoration: none;
-}
- 
-.miaov_head input {
-    position: absolute;
-    top: 5px;
-    margin-left: 1000px;
-    width: 200px;
-    height: 22px;
-}
- 
-.miaov_head a {
-    line-height: 36px;
-    color: #777;
-}
- 
-.miaov_head a:hover {
-    color: #555;
+#right{
+	background-color:white;
+	border: 1px black dotted;
+	 height: auto;
+	width:250px;
+	float:right;
+    padding:10px;
+    margin: 0px;
 }
 
-
-.out_name{
-	z-index: 100;
-	position:fixed;
-	margin-top:0;
-	height:36px;
-	width: 100%;
-	background:white;
+#right a{
 	color:black;
-	font-size:25px;
+	text-decoration:none;
 }
 
-
-
-
-
-
-
-
-
-
-
- .out_sign{
- 	position:fixed; 
- 	z-index: 100;
-	margin-top: 100px;
-    height:1000px;
-    width: 16%;
-    background: white;
- }
-.sign {
-	position:relative; 
-	margin-top: 0%;
-    height:1000px;
-    width: 30px;
-    font-size: small;
-    background: black;
-    color: white;
+#right a:hover {
+    color: #555;
 }

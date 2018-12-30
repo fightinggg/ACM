@@ -251,12 +251,6 @@
     color: #666
 }
 
-body {
-    background-image: url("bg_dotted.png");
-    font-family: arial, helvetica, sans-serif;
-    font-size: large;
-}
-
 #title {
     background: url("ubuntu_logo.png") no-repeat;
     width: 375px;

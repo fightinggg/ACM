@@ -3,21 +3,22 @@
  
 <head>
     <meta charset="utf-8">
-    <script type="text/javascript" src="/ACM/js/head.js"></script>
     <link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/ACM/pastebin.css">
-	<link rel="stylesheet" type="text/css" href="/ACM/css/right.css">
+	<link rel="stylesheet" type="text/css" href="/ACM/css/head.css">
 	<title>线段树</title>
 </head>
- 
-<body>
 
-	
-	
-										
-<div class="ACMright">
-	<center>
-	<h1>线段树</h1>
-	</center>
+<body>
+	<div id = "myweb">
+		
+<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
+<script type="text/javascript" src="/ACM/js/up_and_right.js"></script>
+<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
+		     
+     		<div id="left">
+     			 <center><h1>线段树</h1></center>
+     			<div id="text">
+  
 	
 	线段树是树状数组的强化版，它才是真正的树，它每次对区间进行二分，每一个深度都维护了整个区间，在同一深度里面，每个节点维护的区间长度大致相同，而每深入一层又大致比上一层多一倍的节点，故空间复杂度为Onlgn<br />
 线段树一般采用二叉树结构<br />
@@ -37,8 +38,9 @@
 为什么我在开头说线段树是树状数组的强化版，因为树状数组虽然能依据区间加法处理询问，也可以依靠区间加法处理更新，但是它的非叶子节点过少，导致复杂的数据维护时程序较为复杂，不太好处理。<br />
 赋上代码（ACM采取堆结构模拟二叉树简化代码量）<br />
 
-
-
+     			</div>
+     			<div id="code">
+     				
 <pre><span class="cp">#define ls (u&lt;&lt;1)</span>
 <span class="cp">#define rs (u&lt;&lt;1|1)</span>
 <span class="cp">#define ml ((l+r)&gt;&gt;1)</span>
@@ -106,7 +108,15 @@
 <span class="p">};</span>
 </pre>
 	
-	</div>
-	
-	
+     			</div>
+
+     		</div>
+     		
+    </div>
+</body>
 </html>
+
+
+
+
+	

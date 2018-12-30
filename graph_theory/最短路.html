@@ -3,28 +3,26 @@
  
 <head>
     <meta charset="utf-8">
-    <script type="text/javascript" src="/ACM/js/head.js"></script>
     <link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/ACM/pastebin.css">
-	<link rel="stylesheet" type="text/css" href="/ACM/css/right.css">
+	<link rel="stylesheet" type="text/css" href="/ACM/css/head.css">
 	<title>最短路</title>
 </head>
- 
+
 <body>
+	<div id = "myweb">
+		
+<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
+<script type="text/javascript" src="/ACM/js/up_and_right.js"></script>
+<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
+		     
+     		<div id="left">
+     				<center> <h1>最短路</h1> </center>
 	
-	
-										
-<div class="ACMright">
-	<center>
-	<h1>最短路</h1>
-	
-	</center>
-	
-	
-	<h1>spfa算法</h1>
-	</br>
-		<h3>注意是单向边</h3>
-		</br>
-		<pre><span class="c1">//最短/长路spfa算法</span>
+     			<div id="text">
+		<h1>spfa算法</h1>	
+     			</div>
+     			<div id="code">
+     					<pre><span class="c1">//最短/长路spfa算法</span>
 <span class="c1">//可以用于解决差分约束问题</span>
 <span class="c1">//对于同一张图可以多次调用spfa()，你不需要担心初始化问题</span>
 <span class="c1">//对图进行修改/初始化时要调用ini()</span>
@@ -104,12 +102,15 @@
 <span class="c1">//solved bzoj1001   使用最长路   发现判负环出现了问题 将&gt;=n改为&gt;=n+2就没问题了</span>
 <span class="c1">/////////////////////</span>
 </pre>
-		
-		
-		</br>
-		</br>
+     			</div>
+
+<div id="text">
+     				
 <h1>dijkstra算法</h1>
-		<pre><span class="c1">//n是点数，作用是fill函数</span>
+	
+     			</div>
+			<div id = "code">
+				<pre><span class="c1">//n是点数，作用是fill函数</span>
 <span class="k">struct</span> <span class="n">dijkstra</span>
 <span class="p">{</span>
     <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span><span class="o">=</span><span class="mf">2e6</span><span class="o">+</span><span class="mi">10</span><span class="p">;</span>
@@ -176,14 +177,14 @@
 <span class="p">}</span><span class="n">g</span><span class="p">;</span>
 <span class="c1">//solved  pzoj1001 对偶图最短路</span>
 </pre>
-	
-	
- 
- 
- 
-
-	</div>
-	
-	
+			</div>
+			
+			
+     		</div>
+     		
+    </div>
+</body>
 </html>
+
+
 

@@ -3,23 +3,22 @@
  
 <head>
     <meta charset="utf-8">
-    <script type="text/javascript" src="/ACM/js/head.js"></script>
     <link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="/ACM/pastebin.css">
-	<link rel="stylesheet" type="text/css" href="/ACM/css/right.css">
+	<link rel="stylesheet" type="text/css" href="/ACM/css/head.css">
 	<title>字符串hash</title> 
 </head>
- 
-<body>
-	
-	
-	
-										
-<div class="ACMright">
-	<center>
-	<h1>字符串hash</h1>
-	</center>
-	
 
+<body>
+	<div id = "myweb">
+		
+<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
+<script type="text/javascript" src="/ACM/js/up_and_right.js"></script>
+<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
+		     
+     		<div id="left">
+     			<center><h1>字符串hash</h1></center>
+     			<div id="text">
+     				
 	就像cantor映射一样，字符串hash采取一种更加随机化的映射，<br />
 它的通项公式为<img alt="hash[i]=\sum _{j=0}^{i}s[j]*p^{i-j}" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B100%7D%20hash%5Bi%5D%3D%5Csum%20_%7Bj%3D0%7D%5E%7Bi%7Ds%5Bj%5D*p%5E%7Bi-j%7D" />,如此将一个字符串随机映射到了一个数字上，</p>
 我们来看这个公式的意义，他把一个字符串映射到了一个p进制数字上，位数代表着字符串的长度，然后我们将这个p进制数转化为十进制数并对1e9+7取模来存储，<br />
@@ -30,10 +29,10 @@ hash[i]=hash[i-1]*p+s[i]<br />
 我们有这个公式<br />
 hash[l~r]&nbsp=&nbsphash[r]&nbsp-&nbsphash[l&nbsp-&nbsp1]&nbsp*&nbsppow(p,&nbspr&nbsp-&nbspl&nbsp+&nbsp1)<br />
 	
-</br>
-</br>
-</br>
-<pre><span class="c1">//双hash，双倍常数，1e6 的数据 nlgn的做法 1s的时限 不建议使用</span>
+	
+     			</div>
+     			<div id="code">
+     				<pre><span class="c1">//双hash，双倍常数，1e6 的数据 nlgn的做法 1s的时限 不建议使用</span>
 <span class="k">struct</span> <span class="n">double_hash</span> <span class="p">{</span>
     <span class="k">static</span> <span class="k">const</span> <span class="n">ull</span> <span class="n">maxn</span><span class="o">=</span><span class="mf">1e6</span><span class="o">+</span><span class="mi">666</span><span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="mi">26</span><span class="p">,</span><span class="n">mod1</span><span class="o">=</span><span class="mf">1e9</span><span class="o">+</span><span class="mi">7</span><span class="p">,</span><span class="n">mod2</span><span class="o">=</span><span class="mf">1e9</span><span class="o">+</span><span class="mi">9</span><span class="p">;</span>
     <span class="k">static</span> <span class="n">ull</span> <span class="n">pw1</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">pw2</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
@@ -81,14 +80,12 @@ hash[l~r]&nbsp=&nbsphash[r]&nbsp-&nbsphash[l&nbsp-&nbsp1]&nbsp*&nbsppow(p,&nbspr
 <span class="n">ull</span> <span class="n">str_hash</span><span class="o">::</span><span class="n">pw</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
 </pre>
 
+     			</div>
 
-
-
-
-
-	</div>
-	
-	
+     		</div>
+     		
+    </div>
+</body>
 </html>
 
 
