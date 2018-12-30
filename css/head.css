@@ -39,7 +39,7 @@ body {
 #left{
 	background: white;
     	border: 1px black dotted;
-    width:790px;
+    width:785px;
     float: left;
     padding:10px;
     margin:auto;
@@ -78,7 +78,7 @@ body {
 #right{
 	background-color:white;
 	border: 1px black dotted;
-	width:190px;
+	width:185px;
 	float:right;
     padding:10px;
     margin: auto;
