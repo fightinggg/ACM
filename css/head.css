@@ -12,11 +12,11 @@ body {
 }
 
 #up{
-    width:1000px;
     padding:10px;
-    margin: auto;
     margin-top: 20px ;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
     border:3px black double;
 }
 #up a{
@@ -29,10 +29,11 @@ body {
 #left{
     background-color:white;
     	border: 1px black dotted;
-    width:800px;
+    width:790px;
     float: left;
     padding:10px;
     margin:auto;
+    margin-left: 10px;
 }
 #code{
 		overflow: scroll;
@@ -42,9 +43,7 @@ body {
 	    background-color:white;
     		border: 1px black dotted;
     		height: 100px;
-    		width:750px;
    		padding:10px;
-    		margin: auto;
     		margin-top: 10px ;
     		margin-bottom: 10px ;
 }
@@ -69,10 +68,11 @@ body {
 #right{
 	background-color:white;
 	border: 1px black dotted;
-	width:200px;
+	width:190px;
 	float:right;
     padding:10px;
     margin: auto;
+    margin-right: 10px;
 }
 
 #right a{
