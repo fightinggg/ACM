@@ -2,11 +2,11 @@
   
 body {
      background-color: #d5e9ef;
-     background-image: url(http://api.3ewl.cc/acg/img.php);fixed top !important;
+     background-image: url(http://api.3ewl.cc/acg/img.php);!important;
      background-repeat: no-repeat; 
      background-attachment: fixed; 
      background-position: center 0; 
-          background-size: cover; 
+      background-size:cover; 
      -webkit-background-size: auto;
 	
     color: black;
