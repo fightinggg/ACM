@@ -42,12 +42,8 @@ body {
     padding:10px;
     margin:auto;
     margin-left: 10px;
-    margin-bottom: 100px;
+    margin-bottom: 200px;
 }
-#code{
-		overflow: scroll;
-}
-
 #index{
 	    background-color:white;
     		border: 1px black dotted;
