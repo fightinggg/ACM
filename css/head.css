@@ -42,6 +42,7 @@ body {
     padding:10px;
     margin:auto;
     margin-left: 10px;
+    margin-bottom: 100px;
 }
 #code{
 		overflow: scroll;
