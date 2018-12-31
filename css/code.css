@@ -5,6 +5,10 @@
     text-align: center;
 }
 
+.code{
+	
+}
+
 .block {
     display: flex;
     -webkit-box-orient: vertical;
