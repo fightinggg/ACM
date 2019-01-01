@@ -16,9 +16,8 @@
     -ms-flex-flow: column-reverse nowrap;
     flex-flow: column-reverse nowrap;
     width: 100%;
-    font-size: 8px;
+    font-size: 13px;
     color: #4C4C4C;
-    line-height: 13px;
     border: 1px solid #999;
 }
 
@@ -79,7 +78,7 @@
 }
 
 .block > [type="checkbox"]:checked + .case-block + .code_in {
-    max-height: 500px;
+    max-height: 700px;
     margin-bottom: 0px;
     overflow:scroll;
 }
