@@ -16,13 +16,14 @@
     -ms-flex-flow: column-reverse nowrap;
     flex-flow: column-reverse nowrap;
     width: 100%;
-    font-size: 14px;
+    font-size: 8px;
     color: #4C4C4C;
     line-height: 28px;
     border: 1px solid #999;
 }
 
 .block > .code_in {
+	margin-left: 10px;
     max-height: 0px;
     margin-bottom: 0px;
     overflow: hidden;
