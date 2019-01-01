@@ -28,7 +28,6 @@ body {
 
 #left{
 	width:100%;
-	float:left;
 }
 
 
@@ -36,7 +35,6 @@ body {
 	background: white;
     	border: 1px black dotted;
     width:99%;
-    float: left;
     padding:1%;
     margin-bottom: 200px;
 }
