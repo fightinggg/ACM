@@ -26,15 +26,12 @@ body {
 
 
 
-#left{
-	width:100%;
-}
+#left{}
 
 
 #left_in{
 	background: white;
     	border: 1px black dotted;
-    width:99%;
     padding:1%;
     margin-bottom: 200px;
 }
