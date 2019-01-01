@@ -1,0 +1,70 @@
+
+
+/**
+ * hamburger
+ */
+.btn-hamburger {
+  border: none;
+  position: absolute;
+  top: -31px;
+  left: 10px;
+  outline:none;
+  background: url('../images/menu.png') no-repeat left center;
+}
+
+.tooltip {
+  font-size: 20px;
+  line-height: 19px;
+  display: inline-block;
+  background: #4B5 url('../images/happy.png') no-repeat 135px 15px;
+  color: #fff;
+  padding: 4px 25px 4px 10px;
+  border-radius: 4px;
+  position: relative;
+  left: 50px;
+}
+
+.tooltip:before {
+  content: '';
+  display:inline-block;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 6px solid #4B5;
+  position: absolute;
+  top: 50%;
+  left: -5px;
+  margin-top: -6px;
+}
+
+
+/**
+ * Slideout module styles
+ */
+.menu,
+.slideout-menu {
+  position: fixed;
+  left: 0;
+  top: 20px;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  width: 256px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  display: none;
+}
+
+.panel,
+.slideout-panel {
+  position: relative;
+  z-index: 1;
+}
+
+.slideout-open,
+.slideout-open body {
+  overflow: hidden;
+}
+
+.slideout-open .slideout-menu {
+  display: block;
+}
