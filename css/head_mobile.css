@@ -31,19 +31,10 @@ body {
 
 
 #left{
-	width:79.5%;
-	float:right;
+	width:79%;
+	float:left;
 }
 
-
-#left{
-	background: white;
-    	border: 1px  black dotted;
-    width:77.3%;
-    float: left;
-    padding:1%;
-    margin-bottom: 20%;
-}
 
 #left_in{
 	background: white;

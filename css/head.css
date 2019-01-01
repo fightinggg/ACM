@@ -37,18 +37,9 @@ body {
 
 #left{
 	width:795px;
-	float:right;
+	float:left;
 }
 
-
-#left{
-	background: white;
-    	border: 1px black dotted;
-    width:773px;
-    float: left;
-    padding:10px;
-    margin-bottom: 200px;
-}
 
 #left_in{
 	background: white;
