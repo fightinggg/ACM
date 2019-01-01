@@ -15,7 +15,7 @@ body {
 #myweb{
 	width: 1000px;
      margin: auto;
- 
+ z-index: 1;
 }
 
 #up{
@@ -69,11 +69,6 @@ body {
 #index a:hover {
     color: #555;
 }
-
-
-
-
-
 
 
 #right{
