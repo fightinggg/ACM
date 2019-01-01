@@ -21,7 +21,7 @@
   padding: 4px 25px 4px 10px;
   border-radius: 4px;
   position: relative;
-  left: 150px;
+  left: 0px;
 }
 
 .tooltip:before {
@@ -48,7 +48,7 @@
   bottom: 0;
   right: 0;
   z-index: 0;
-  width: 80%;
+  width: 256px;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   display: none;
