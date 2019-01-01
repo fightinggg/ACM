@@ -15,7 +15,7 @@ body {
 #myweb{
 	width: 1000px;
      margin: auto;
-     filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9;
+ 
 }
 
 #up{
@@ -24,6 +24,7 @@ body {
     margin-top: 20px ;
     margin-bottom: 30px;
     border:3px black double;
+    	 filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9;
 }
 #up a{
 	color:black;
@@ -42,8 +43,6 @@ body {
 
 
 #left_in{
-	background: white;
-    	border: 1px black dotted;
     width:773px;
     float: left;
     padding:10px;
@@ -57,12 +56,14 @@ body {
    		padding:10px;
     		margin-top: 10px ;
     		margin-bottom: 10px ;
+    		filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9;
 }
 
 #index a{
 	color:black;
 	text-decoration:none;
 	font-size: 25px;
+
 }
 
 #index a:hover {
@@ -87,6 +88,7 @@ body {
 	float:right;
     padding:10px;
     margin-bottom: 10px;
+    	 filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9;
 }
 
 #right_in a{
