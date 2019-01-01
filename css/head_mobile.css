@@ -57,14 +57,14 @@ body {
 
 
 #right{
-	width:100%;
+	width:350px;
 	background-color:  rgb(233, 237, 255);;
 }
 
 #right_in{
 	background-color:white;
 	border: 1px black dotted;
-	width:80%;
+	width:300px;
     padding:1%;
     margin: auto;
     margin-bottom: 10px;
@@ -78,4 +78,5 @@ body {
 #right_in a:hover {
     color: #555;
 }
+
 
