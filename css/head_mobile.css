@@ -1,28 +1,23 @@
  
+
   
 body {
-	
      background-color: rgb(233, 237, 255);
 	
     color: black;
     font-size: 15px;
 }
-
-
+ 
 #myweb{
-	 width: 100%;
-     margin: auto;
+	width: 100%;
      filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9;
 }
 
 #up{
 	background: white;
-    padding:2%;
-    height: auto;
-    margin-top: 3% ;
-    margin-bottom: 5%;
-    margin-left: 2%;
-    margin-right: 2%;
+    padding:10px;
+    margin-top: 20px ;
+    margin-bottom: 30px;
     border:3px black double;
 }
 #up a{
@@ -32,28 +27,46 @@ body {
 }
 
 
+
+
+
+#left{
+	width:79.5%;
+	float:right;
+}
+
+
 #left{
 	background: white;
-    	border: 1px black dotted;
-    width:73%;
+    	border: 1px  black dotted;
+    width:77.3%;
     float: left;
-    padding:2%;
-    margin-left: 2%;
+    padding:1%;
+    margin-bottom: 20%;
+}
+
+#left_in{
+	background: white;
+    	border: 1px black dotted;
+    width:99%;
+    float: left;
+    padding:1%;
     margin-bottom: 200px;
 }
 
 #index{
 	    background-color:white;
     		border: 1px black dotted;
-    		height: 100px;
-   		padding:2%;
-    		margin-top: 2% ;
-    		margin-bottom: 2% ;
+    		height: 10%;
+   		padding:10px;
+    		margin-top: 10px ;
+    		margin-bottom: 10px ;
 }
 
 #index a{
 	color:black;
 	text-decoration:none;
+	font-size: 25px;
 }
 
 #index a:hover {
@@ -66,22 +79,26 @@ body {
 
 
 
-
-
 #right{
-	background-color:white;
-	border: 1px black dotted;
-	width:14%;
+	width:19.5%;
 	float:right;
-    padding:2%;
-    margin-right: 2%;
 }
 
-#right a{
+#right_in{
+	background-color:white;
+	border: 1px black dotted;
+	width:99%;
+	float:right;
+    padding:1%;
+    margin-bottom: 10px;
+}
+
+#right_in a{
 	color:black;
 	text-decoration:none;
 }
 
-#right a:hover {
+#right_in a:hover {
     color: #555;
 }
+

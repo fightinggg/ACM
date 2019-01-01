@@ -13,7 +13,7 @@ body {
 
 
 #myweb{
-	width: 1100px;
+	width: 1000px;
      margin: auto;
      filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9;
 }
@@ -23,8 +23,6 @@ body {
     padding:10px;
     margin-top: 20px ;
     margin-bottom: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
     border:3px black double;
 }
 #up a{
@@ -34,16 +32,33 @@ body {
 }
 
 
+
+
+
+#left{
+	width:795px;
+	float:right;
+}
+
+
 #left{
 	background: white;
     	border: 1px black dotted;
-    width:850px;
+    width:773px;
     float: left;
     padding:10px;
-    margin:auto;
-    margin-left: 10px;
     margin-bottom: 200px;
 }
+
+#left_in{
+	background: white;
+    	border: 1px black dotted;
+    width:773px;
+    float: left;
+    padding:10px;
+    margin-bottom: 200px;
+}
+
 #index{
 	    background-color:white;
     		border: 1px black dotted;
@@ -64,20 +79,22 @@ body {
 }
 
 
+
+
+
+
+
 #right{
-	width:180px;
+	width:195px;
 	float:right;
-    margin: auto;
 }
 
 #right_in{
 	background-color:white;
 	border: 1px black dotted;
-	width:180px;
+	width:173px;
 	float:right;
     padding:10px;
-    margin: auto;
-    margin-right: 10px;
     margin-bottom: 10px;
 }
 
