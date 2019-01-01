@@ -6,7 +6,7 @@
 }
 
 .code{
-	
+	overflow: scroll;
 }
 
 .block {
