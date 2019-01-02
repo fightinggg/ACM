@@ -63,11 +63,9 @@ body {
 
 #right_in{
 	background-color:white;
-	border: 1px black dotted;
-	width:90%;
+	width:100%;
     padding:1%;
     margin: auto;
-    margin-bottom: 10px;
 }
 
 #right_in a{
