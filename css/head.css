@@ -16,6 +16,7 @@ body {
 	width: 1000px;
      margin: auto;
  	z-index: 1;
+ 	filter:alpha(Opacity=95);-moz-opacity:0.95;opacity: 0.95;
 }
 
 #up{
@@ -24,7 +25,7 @@ body {
     margin-top: 20px ;
     margin-bottom: 30px;
     border:3px black double;
-    	 filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9;
+
 }
 #up a{
 	color:black;
@@ -57,7 +58,6 @@ body {
    		padding:10px;
     		margin-top: 10px ;
     		margin-bottom: 10px ;
-    		filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9;
 }
 
 #index a{
@@ -84,7 +84,6 @@ body {
 	float:right;
     padding:10px;
     margin-bottom: 10px;
-    	 filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9;
 }
 
 #right_in a{

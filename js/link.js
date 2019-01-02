@@ -5,8 +5,3 @@
    
  document.writeln("   <link rel=\"stylesheet\" type=\"text/css\" charset=\"utf-8\" media=\"screen and (max-width: 1000px)\" href=\"/ACM/css/menu_style_phone.css\">");
  document.writeln("   <link rel=\"stylesheet\" type=\"text/css\" charset=\"utf-8\" media=\"screen and (min-width: 1000px)\" href=\"/ACM/css/menu_style.css\">");
- 
-
-
-
-   
