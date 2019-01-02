@@ -51,7 +51,7 @@ document.writeln("  		     	<nav id=\"menu\" class=\"menu\">     ");
  		document.writeln("    					<h3><center>友链</center></h3>");
  		document.writeln("    					<hr>");
  		document.writeln("    					    						<a href=\"https://blog.csdn.net/weixin_41863129\" target=\"_blank\">yg</a></br>");
- 		document.writeln("    					    						<a href=\"https://decaku.github.io\">zwg</a></br>");
+ 		document.writeln("    					    						<a href=\"https://decaku.github.io\"  target=\"_blank\">zwg</a></br>");
 		document.writeln("    					<hr>");
 		document.writeln("    					</div>");
 		
