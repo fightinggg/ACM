@@ -19,10 +19,12 @@
     font-size: 13px;
     color: #4C4C4C;
     border: 1px solid #999;
+    margin-top: 30px;
 }
 
 .block > .code_in {
-	margin-left: 10px;
+	margin-left: 15px;
+	margin-right: 15px;
     max-height: 0px;
     margin-bottom: 0px;
     overflow: hidden;
@@ -78,7 +80,7 @@
 }
 
 .block > [type="checkbox"]:checked + .case-block + .code_in {
-    max-height: 700px;
+    max-height: 650px;
     margin-bottom: 0px;
     overflow:scroll;
 }

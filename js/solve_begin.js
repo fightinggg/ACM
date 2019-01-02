@@ -1,0 +1,1 @@
+   document.writeln("   <section class=\"block\"> <input type=\"checkbox\"><div class=\"case-block\"> <div>题解展开</div> <div>题解收起</div></div><div class=\"code_in\">  ");
