@@ -12,7 +12,10 @@ body {
 }
  
 #myweb{
-	width: 100%;
+		width: 100%;
+     margin: auto;
+ 	z-index: 1;
+ 	filter:alpha(Opacity=95);-moz-opacity:0.95;opacity: 0.95;
 }
 
 #up{
