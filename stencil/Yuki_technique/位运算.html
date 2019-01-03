@@ -2,48 +2,139 @@
 <html>
  
 <head>
-  <meta charset="utf-8">
+   <meta charset="utf-8">
 	<script type="text/javascript" src="/ACM/js/link.js"></script>
 	<title>位运算</title>
 </head>
- 
+
 <body>
-	
-										
-<div class="ACMright">
-	<center>
-	<h1>位运算</h1>
-	
-	<div>
-	</center>
-	<pre><span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span><span class="o">=</span><span class="mf">2e6</span><span class="p">;</span>
-<span class="kt">int</span> <span class="n">zero</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span><span class="c1">//最高位的有效数字0取出来变成1</span>
-<span class="kt">int</span> <span class="n">high</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span><span class="c1">//取出最高位的1</span>
-<span class="c1">// 最低位的1 -&gt;                  x&amp;-x</span>
+	<div id = "myweb">
+		
+<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
+<script type="text/javascript" src="/ACM/js/up_and_right.js"></script>
+<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
+		     
+     			<div id="left"><div id="left_in">
+     				 <h1><center>位运算</center></h1>
+     			
+     			<div id="code">
+     			<pre><span class="c1">// 最低位的1 -&gt;                  x&amp;-x</span>
 <span class="c1">// 去掉最低位的1 -&gt;               x&amp;(x-1)</span>
 <span class="c1">// 有效数字全是1 -&gt;               (x&amp;(x+1))==0</span>
 <span class="c1">//把最低位的0 变成1-&gt;              x|(x+1)</span>
 <span class="c1">//取出最低位的0并变成1             (~x)&amp;(x+1)</span>
 <span class="c1">//取出第k位（约定最低位为第0位）     x&amp;(1&lt;&lt;k)</span>
 
-<span class="kt">void</span> <span class="n">ini</span><span class="p">(){</span>
-    <span class="kt">int</span> <span class="n">up</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">20</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+<span class="cm">/* all</span>
+<span class="cm"> </span>
+<span class="cm"> bit cnt one            -&gt;      cnt_one(x)              -&gt;  int __builtin_popcount (unsigned int x);</span>
+<span class="cm"> bit rev                -&gt;      rev_dig(x)              -&gt;</span>
+<span class="cm"> high bit               -&gt;      high_one(x)</span>
+<span class="cm"> count leading zero     -&gt;      cnt_leading_zero(x)     -&gt;  int __builtin_clz (unsigned int x);</span>
+<span class="cm"> count trailing zero    -&gt;      cnt_trailing_zero(x)    -&gt;  int __builtin_ctz (unsigned int x);</span>
+<span class="cm"> get trailing one       -&gt;      get_trailing_one(x)     -&gt;  x&amp;(x^(x+1))</span>
+<span class="cm"> </span>
+<span class="cm"> */</span>
+<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">u32</span><span class="p">;</span>
+<span class="k">namespace</span> <span class="n">bit</span><span class="p">{</span>
     
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">up</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-        <span class="n">high</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">high</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
-        <span class="k">if</span><span class="p">((</span><span class="n">i</span><span class="o">&amp;</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
-            <span class="n">high</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
+    <span class="c1">//count the digits of one in binary number</span>
+    <span class="n">u32</span> <span class="n">co</span><span class="p">[</span><span class="mi">65536u</span><span class="p">];</span><span class="c1">//bit cnt one</span>
+    <span class="kt">void</span> <span class="n">cnt_one_ini</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">u32</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">65536u</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">co</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">co</span><span class="p">[</span><span class="n">i</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&amp;</span> <span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">u32</span> <span class="n">cnt_one</span><span class="p">(</span><span class="n">u32</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">co</span><span class="p">[</span><span class="n">x</span> <span class="o">&amp;</span> <span class="mh">0xffffu</span><span class="p">]</span> <span class="o">+</span> <span class="n">co</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">16</span><span class="p">];</span>
+    <span class="p">}</span>
+    
+    
+    <span class="c1">//reverse the digits in binary number</span>
+    <span class="n">u32</span> <span class="n">rd</span><span class="p">[</span><span class="mi">65536u</span><span class="p">];</span><span class="c1">//bit rev data</span>
+    <span class="kt">void</span> <span class="n">rev_digit_ini</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">u32</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">65536u</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">rd</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">rd</span><span class="p">[</span><span class="n">i</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="p">((</span><span class="n">i</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">15</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">u32</span> <span class="n">rev_dig</span><span class="p">(</span><span class="n">u32</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">rd</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">16</span><span class="p">]</span> <span class="o">|</span> <span class="p">(</span><span class="n">rd</span><span class="p">[</span><span class="n">x</span> <span class="o">&amp;</span> <span class="mh">0xffffu</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    
+    <span class="c1">//get the highest digit one in binary number</span>
+    <span class="n">u32</span> <span class="n">ho</span><span class="p">[</span><span class="mi">65536u</span><span class="p">];</span><span class="c1">//high bit data</span>
+    <span class="kt">void</span> <span class="n">high_one_ini</span><span class="p">(){</span>
+        <span class="n">ho</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">u32</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">65536u</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">ho</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">ho</span><span class="p">[</span><span class="n">i</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">;</span><span class="c1">// only the one have the highest digit one 1;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">u32</span> <span class="n">high_one</span><span class="p">(</span><span class="n">u32</span> <span class="n">x</span><span class="p">){</span>
+        <span class="k">return</span> <span class="n">x</span><span class="o">&lt;</span><span class="mi">65536u</span> <span class="o">?</span> <span class="n">ho</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">:</span><span class="p">(</span><span class="n">ho</span><span class="p">[</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="mi">16</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">16</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    
+    <span class="c1">//count leading zero</span>
+    <span class="n">u32</span> <span class="n">clz</span><span class="p">[</span><span class="mi">65536u</span><span class="p">];</span><span class="c1">//leading zero count</span>
+    <span class="kt">void</span> <span class="n">cnt_leading_zero_int</span><span class="p">(){</span>
+        <span class="n">clz</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">16</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">u32</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">65536u</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">clz</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">clz</span><span class="p">[</span><span class="n">i</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">u32</span> <span class="n">cnt_leading_zero</span><span class="p">(</span><span class="n">u32</span> <span class="n">x</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="mi">65536u</span><span class="p">){</span>
+            <span class="k">return</span> <span class="n">clz</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">+</span><span class="mi">16</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">clz</span><span class="p">[</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="mi">16</span><span class="p">];</span>
         <span class="p">}</span>
     <span class="p">}</span>
     
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">up</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
-        <span class="kt">int</span> <span class="n">ii</span><span class="o">=</span><span class="n">i</span><span class="o">^</span><span class="p">(</span><span class="n">i</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">);</span>
-        <span class="n">zero</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">high</span><span class="p">[</span><span class="n">ii</span><span class="o">-</span><span class="n">high</span><span class="p">[</span><span class="n">ii</span><span class="p">]];</span>
+    <span class="c1">//count trailing zero</span>
+    <span class="n">u32</span> <span class="n">ctz</span><span class="p">[</span><span class="mi">65536u</span><span class="p">];</span><span class="c1">//trailing zero count</span>
+    <span class="kt">void</span> <span class="n">cnt_trailing_zero_int</span><span class="p">(){</span>
+        <span class="n">ctz</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">16</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">u32</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">65526u</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">ctz</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="o">&amp;</span><span class="mi">1</span> <span class="o">?</span> <span class="mi">0</span><span class="o">:</span> <span class="n">ctz</span><span class="p">[</span><span class="n">i</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">u32</span> <span class="n">cnt_trailing_zero</span><span class="p">(</span><span class="n">u32</span> <span class="n">x</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="mi">65536u</span><span class="p">){</span>
+            <span class="k">return</span> <span class="n">ctz</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">ctz</span><span class="p">[</span><span class="n">x</span><span class="o">&amp;</span><span class="mi">65535u</span><span class="p">];</span>
+        <span class="p">}</span>
     <span class="p">}</span>
     
-<span class="p">}</span>
+    <span class="c1">//count leading one is more diffcult using count leading zero</span>
+    
+    
+    <span class="c1">//提取第k个1</span>
+    <span class="kt">int</span> <span class="n">kthbit</span><span class="p">(</span><span class="n">u32</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">s</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">;</span>
+        <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+        <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="p">((</span><span class="n">x</span> <span class="o">&amp;</span> <span class="mh">0xAAAAAAAAu</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0xCCCCCCCCu</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x33333333u</span><span class="p">);</span> <span class="n">s</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">&amp;</span> <span class="mh">0x0F0F0F0Fu</span><span class="p">;</span>
+        <span class="n">s</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">s</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">s</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="o">&amp;</span> <span class="mh">0x00FF00FFu</span><span class="p">;</span> <span class="n">t</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mi">65535u</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">t</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">)</span> <span class="n">k</span> <span class="o">-=</span> <span class="n">t</span><span class="p">,</span> <span class="n">ans</span> <span class="o">|=</span><span class="mi">16</span><span class="p">,</span> <span class="n">x</span> <span class="o">&gt;&gt;=</span><span class="mi">16</span><span class="p">;</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">ans</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">255u</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">t</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">)</span> <span class="n">k</span> <span class="o">-=</span> <span class="n">t</span><span class="p">,</span> <span class="n">ans</span> <span class="o">|=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">x</span> <span class="o">&gt;&gt;=</span> <span class="mi">8</span><span class="p">;</span> <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">ans</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">15u</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">t</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">)</span> <span class="n">k</span> <span class="o">-=</span> <span class="n">t</span><span class="p">,</span> <span class="n">ans</span> <span class="o">|=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">x</span> <span class="o">&gt;&gt;=</span> <span class="mi">4</span><span class="p">;</span> <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">ans</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">3u</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">t</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">)</span> <span class="n">k</span> <span class="o">-=</span> <span class="n">t</span><span class="p">,</span> <span class="n">ans</span> <span class="o">|=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">x</span> <span class="o">&gt;&gt;=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">ans</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1u</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">t</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">)</span> <span class="n">k</span> <span class="o">-=</span> <span class="n">t</span><span class="p">,</span> <span class="n">ans</span> <span class="o">|=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">;</span> <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
 </pre>
-	</div>
+     			</div>
+     			
+     			
 
-</div>
+    		 </div></div>
+     		
+    </div>
+</body>
 </html>
+
+
