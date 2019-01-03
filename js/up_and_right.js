@@ -41,6 +41,7 @@ document.writeln("  		     	<nav id=\"menu\" class=\"menu\">     ");
 		document.writeln("  		     	<div id=\"right_in\">");
  		document.writeln("    					<h3><center>珍藏网站</center></h3>");
  		document.writeln("    					<hr>");
+ 		document.writeln("    					    						<a href=\"https://gcc.gnu.org/onlinedocs/gcc/Other-Builtins.html\" target=\"_blank\">gcc内建函数</a></br>");
  		document.writeln("    					    						<a href=\"https://www.codecogs.com/latex/eqneditor.php\" target=\"_blank\">数学公式</a></br>");
  		document.writeln("    					    						<a href=\"http://hzwer.com\" target=\"_blank\">hzwer</a></br>");
 		document.writeln("    					<hr>");
