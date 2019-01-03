@@ -2,8 +2,12 @@
 
   
 body {
+	background-image: url(../img/back-ground.php);
      background-color: rgb(233, 237, 255);
-    color: black;
+     background-size: calc(300%);
+     background-position-x: 10%;
+    background-attachment: fixed; 
+    	color: black;
     font-size: 15px;
 }
  
