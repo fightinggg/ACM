@@ -36,7 +36,7 @@ document.writeln('                        <hr>																																		
 document.writeln('                                                    <a href="https://gcc.gnu.org/onlinedocs/gcc/Other-Builtins.html" target="_blank">gcc内建函数</a></br>	');
 document.writeln('                                                    <a href="https://www.codecogs.com/latex/eqneditor.php" target="_blank">数学公式</a></br>					');
 document.writeln('                                                    <a href="http://hzwer.com" target="_blank">hzwer</a></br>');
-document.writeln('                                                    <a href="https://decaku.github.io"  target="_blank">桌面高清背景图片</a></br>											');
+document.writeln('                                                    <a href="http://www.jj20.com"  target="_blank">桌面高清背景图片</a></br>											');
 document.writeln('                        <hr>																																																');
 document.writeln('                        </div>																																																');
 document.writeln('                   <div id="right_in">																																												');
