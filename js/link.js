@@ -1,7 +1,8 @@
+// 背景
 var random = Math.round( Math.random() * 6 );
-document.write('<style>body{ background-image: url(/ACM/img/'+random+'.jpg);!important;}</style>');
-  
-
+if (window.innerWidth>1000){
+	document.write('<style>body{ background-image: url(/ACM/img/'+random+'.jpg);!important;}</style>');
+ }
 
 
 document.writeln("   <link rel=\"stylesheet\" type=\"text/css\"  href=\"/ACM/css/head.css\">");

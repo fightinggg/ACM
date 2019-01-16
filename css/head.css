@@ -1,10 +1,12 @@
  
   
 body {
+     background-color: #d5e9ef;
      background-repeat: no-repeat; 
      background-size: cover;
      background-attachment: fixed; 
      background-position:center;
+	
     color: black;
     font-size: 15px;
 }
