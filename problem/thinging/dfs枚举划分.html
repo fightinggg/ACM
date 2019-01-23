@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+   <meta charset="utf-8">
+	<script type="text/javascript" src="/ACM/js/link.js"></script>
+	
+	<title>CCPC-Wannafly Winter Camp Day2 (Div1, online mirror) Sticks</title>
+</head>
+
+<body>
+	<div id = "myweb">
+		
+<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
+<script type="text/javascript" src="/ACM/js/up_and_right.js"></script>
+<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
+		     
+     			<div id="left"><div id="left_in">
+     				 <h1><center><a href="https://www.zhixincode.com/contests" target="_blank">CCPC-Wannafly Winter Camp Day2 (Div1, online mirror) Sticks</a></center></h1>
+     			
+     			<div id="text">
+     				题目大意 :</br>
+     				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;给你12根棍子，让你对棍子分四堆，每堆三根，
+     				要求这四堆棍子尽可能组成多的三角形</br>
+     			</div>
+     			
+     				<script type="text/javascript" src="/ACM/js/solve_begin.js"></script><div>
+     				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     				解法1:考虑到划分只有3万个左右，实际上dfs枚举划分就可以ac。详见代码</br>
+     				
+     				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     				解法2:考虑分块，先分成6+6，有接近1000种分法，然后6=3+3，6=3+3，但是我们有必要用一边的6=3+3
+     				的所有划分去匹配另一边的6=3+3的划分吗？其实不需要，我们只需要单独考虑两边的6=3+3，取最优分法
+     				然后组合在一起，因为互不影响，所以可以直接最优对最优，省掉了很大一部分的讨论，复杂度为12=6+6的
+     				划分的种类数乘以2再乘以6=3+3的划分的种类数大概为2万，相比解法1优化了一部分常数。</br>
+     				 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我使用解法2的代码很蠢很长，就不拿出来了。
+     				
+     				</div><script type="text/javascript" src="/ACM/js/solve_end.js"></script>
+     				
+     				<script type="text/javascript" src="/ACM/js/code_begin.js"></script><div>
+     				<pre><span class="cp">#include&lt;bits/stdc++.h&gt;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">dfs</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">3</span><span class="p">)</span><span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&gt;</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+    
+    <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">ret_array</span><span class="p">[</span><span class="mi">12</span><span class="p">]{};</span>
+    <span class="kt">int</span> <span class="n">b</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span><span class="n">b_</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">b_</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">k</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">k</span><span class="o">++</span><span class="p">){</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">k</span><span class="o">==</span><span class="n">i</span><span class="o">||</span><span class="n">k</span><span class="o">==</span><span class="n">j</span><span class="p">)</span><span class="k">continue</span><span class="p">;</span>
+                <span class="n">b</span><span class="p">[</span><span class="n">b_</span><span class="o">++</span><span class="p">]</span><span class="o">=</span><span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+            <span class="p">}</span>
+            <span class="kt">int</span> <span class="n">tmp</span><span class="o">=</span><span class="n">dfs</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">3</span><span class="p">);</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">tmp</span><span class="o">+</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">&gt;</span><span class="n">ret</span><span class="p">){</span>
+                <span class="n">ret</span><span class="o">=</span><span class="n">tmp</span><span class="o">+</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
+                <span class="n">memcpy</span><span class="p">(</span><span class="n">ret_array</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">3</span><span class="p">));</span>
+                <span class="n">ret_array</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+                <span class="n">ret_array</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+                <span class="n">ret_array</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">memcpy</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">ret_array</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="n">n</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+    <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span><span class="n">T</span><span class="p">;</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">T</span><span class="p">);</span>
+    
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">times</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">times</span><span class="o">&lt;=</span><span class="n">T</span><span class="p">;</span><span class="n">times</span><span class="o">++</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">12</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="n">a</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
+        <span class="n">sort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="o">+</span><span class="mi">12</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">ans</span><span class="o">=</span><span class="n">dfs</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">12</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Case #%d: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">times</span><span class="p">,</span><span class="n">ans</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">12</span><span class="p">;</span><span class="n">i</span><span class="o">+=</span><span class="mi">3</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">&gt;</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]){</span>
+                <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+     				</div><script type="text/javascript" src="/ACM/js/code_end.js"></script>
+     				
+
+    		 </div></div>
+     		
+    </div>
+</body>
+</html>
+
+
