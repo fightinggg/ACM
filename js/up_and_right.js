@@ -1,7 +1,14 @@
 document.writeln('   <div id="up"> <center><a href="http://fightinggg.github.io/ACM/">逐    梦</a></center></div>																	');
 document.writeln('                   <nav id="menu" class="menu">     																																					');
 document.writeln('                   <div id="right">																																													');
-/*1111111111111111111111*/
+
+document.writeln('                   <div id="right_in">																																												');
+document.writeln('                        <h3><center> <a href="https://github.com">github</a></br>	</center></h3>																																		');
+document.writeln('                        <hr>																																																');
+document.writeln('                                                    <a href="https://github.com">github</a></br>													');
+document.writeln('                        <hr>																																																');
+document.writeln('                        </div>																																																');
+
 document.writeln('                   <div id="right_in">																																												');
 document.writeln('                        <h3><center>ACM模版</center></h3>																																		');
 document.writeln('                        <hr>																																																');
@@ -16,7 +23,7 @@ document.writeln('                                                	<a href="http
 document.writeln('                                                	<a href="http://fightinggg.github.io/ACM/stencil/acm_head_file.html">快读</a></br>									');
 document.writeln('                        <hr>																																																');
 document.writeln('                        </div>																																																');
-/*22222222222222222222*/
+
 document.writeln('                   <div id="right_in">																																												');
 document.writeln('                        <h3><center>ACM题型</center></h3>																																		');
 document.writeln('                        <hr>																																																');
@@ -30,15 +37,17 @@ document.writeln('                                                	<a href="http
 document.writeln('                                                	<a href="http://fightinggg.github.io/ACM/problem/Yuki_technique/">黑科技</a></br>									');
 document.writeln('                        <hr>																																																');
 document.writeln('                        </div>																																																');
+
 document.writeln('                   <div id="right_in">																																												');
 document.writeln('                        <h3><center>珍藏网站</center></h3>																																		');
 document.writeln('                        <hr>																																																');
 document.writeln('                                                    <a href="https://gcc.gnu.org/onlinedocs/gcc/Other-Builtins.html" target="_blank">gcc内建函数</a></br>	');
 document.writeln('                                                    <a href="https://www.codecogs.com/latex/eqneditor.php" target="_blank">数学公式</a></br>					');
-document.writeln('                                                    <a href="http://hzwer.com" target="_blank">hzwer</a></br>');
-document.writeln('                                                    <a href="http://www.jj20.com"  target="_blank">桌面高清背景图片</a></br>											');
+document.writeln('                                                    <a href="http://hzwer.com" target="_blank">hzwer</a></br>																			');
+document.writeln('                                                    <a href="http://www.jj20.com"  target="_blank">桌面高清背景图片</a></br>													');
 document.writeln('                        <hr>																																																');
 document.writeln('                        </div>																																																');
+
 document.writeln('                   <div id="right_in">																																												');
 document.writeln('                        <h3><center>友链</center></h3>																																				');
 document.writeln('                        <hr>																																																');
@@ -46,4 +55,5 @@ document.writeln('                                                    <a href="h
 document.writeln('                                                    <a href="https://decaku.github.io"  target="_blank">zwg</a></br>																	');
 document.writeln('                        <hr>																																																');
 document.writeln('                        </div>																																																');
+
 document.writeln('                    </div>																																																	');
