@@ -1,73 +1,72 @@
- 
-  
+
 body {
-     background-color: #d5e9ef;
-     background-repeat: no-repeat; 
-     background-size: cover;
-     background-attachment: fixed; 
-     background-position:center;
-	
+    background-color: #d5e9ef;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+
     color: black;
     font-size: 15px;
 }
 
 
-#myweb{
-	width: 1000px;
-     margin: auto;
- 	z-index: 1;
- 	filter:alpha(Opacity=95);-moz-opacity:0.95;opacity: 0.95;
+#myweb {
+    width: 1000px;
+    margin: auto;
+    z-index: 1;
+    filter: alpha(Opacity=95);
+    -moz-opacity: 0.95;
+    opacity: 0.95;
 }
 
-#up{
-	background: white;
-    padding:10px;
-    margin-top: 20px ;
+#up {
+    background: white;
+    padding: 10px;
+    margin-top: 20px;
     margin-bottom: 30px;
-    border:3px black double;
+    border: 3px black double;
 
 }
-#up a{
-	color:black;
-	font-size:30px;
-	text-decoration:none;
-}
 
-
-
-
-
-#left{
-	width:795px;
-	float:left;
+#up a {
+    color: black;
+    font-size: 30px;
+    text-decoration: none;
 }
 
 
-#left_in{
-	background-color: white;
-    width:773px;
+#left {
+    width: 795px;
     float: left;
-    padding:10px;
+}
+
+
+#left_in {
+    background-color: white;
+    width: 773px;
+    float: left;
+    padding: 10px;
     margin-bottom: 100px;
 }
 
-#text{
-	margin-bottom: 30px;
+#text {
+    margin-bottom: 30px;
 }
 
-#index{
-	    background-color:white;
-    		border: 1px black dotted;
-    		height: 100px;
-   		padding:10px;
-    		margin-top: 10px ;
-    		margin-bottom: 10px ;
+#index {
+    background-color: white;
+    border: 1px black dotted;
+    height: 100px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-#index a{
-	color:black;
-	text-decoration:none;
-	font-size: 25px;
+#index a {
+    color: black;
+    text-decoration: none;
+    font-size: 25px;
 
 }
 
@@ -76,23 +75,23 @@ body {
 }
 
 
-#right{
-	width:195px;
-	float:right;
+#right {
+    width: 195px;
+    float: right;
 }
 
-#right_in{
-	background-color:white;
-	border: 1px black dotted;
-	width:173px;
-	float:right;
-    padding:10px;
+#right_in {
+    background-color: white;
+    border: 1px black dotted;
+    width: 173px;
+    float: right;
+    padding: 10px;
     margin-bottom: 10px;
 }
 
-#right_in a{
-	color:black;
-	text-decoration:none;
+#right_in a {
+    color: black;
+    text-decoration: none;
 }
 
 #right_in a:hover {

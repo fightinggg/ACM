@@ -5,8 +5,8 @@
     text-align: center;
 }
 
-#code{
-	overflow: scroll;
+#code {
+    overflow: scroll;
 }
 
 .block {
@@ -23,8 +23,8 @@
 }
 
 .block > .code_in {
-	margin-left: 15px;
-	margin-right: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
     max-height: 0px;
     margin-bottom: 0px;
     overflow: hidden;
@@ -82,5 +82,5 @@
 .block > [type="checkbox"]:checked + .case-block + .code_in {
     max-height: 650px;
     margin-bottom: 0px;
-    overflow:scroll;
+    overflow: scroll;
 }
