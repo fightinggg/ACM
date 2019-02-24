@@ -53,6 +53,7 @@ document.writeln('                        <h3><center>友链</center></h3>						
 document.writeln('                        <hr>																																																');
 document.writeln('                                                    <a href="https://blog.csdn.net/weixin_41863129" target="_blank">yg</a></br>											');
 document.writeln('                                                    <a href="https://decaku.github.io"  target="_blank">zwg</a></br>																	');
+document.writeln('                                                    <a href="https://www.cnblogs.com/chunibyo/"  target="_blank">wly</a></br>																	');
 document.writeln('                        <hr>																																																');
 document.writeln('                        </div>																																																');
 
