@@ -1,85 +1,178 @@
 <!DOCTYPE html>
 <html>
- 
+
 <head>
-   <meta charset="utf-8">
-	<script type="text/javascript" src="/ACM/js/link.js"></script>
-	<title>hdu5726</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>hdu5726</title>
 </head>
 
 <body>
-	<div id = "myweb">
-		
-<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
-<script type="text/javascript" src="/ACM/js/up_and_right.js"></script>
-<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
-		     
-     			<div id="left"><div id="left_in">
-     				 <h1><center><a href="http://acm.hdu.edu.cn/showproblem.php?pid=5726" target="_blank">hdu5726</a></center></h1>
-     			
-     			<div id="text">
-     				题目难点 :</br>
-     				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;给你一个不变的序列，输入很多k，输出区间gcd等于k的区间的数量。</br>
-     			</div>
-     			
-     				<script type="text/javascript" src="/ACM/js/solve_begin.js"></script><div>
-     				 对所有区间计数，枚举左端点，二分右端点即可。 </br>
-     				 理论依据: 以任意左端点为起点的所有区间的gcd的种类不会超过这个点的值的因子的个数。</br>
-     				 细节: 区间询问使用ST表.</br>
-     					</div><script type="text/javascript" src="/ACM/js/solve_end.js"></script>
-     				
-     				<script type="text/javascript" src="/ACM/js/code_begin.js"></script><div>
+<div id="myweb">
+
+    <!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
+    <script type="text/javascript" src="/ACM/js/up_and_right.js"></script>
+    <!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
+
+    <div id="left">
+        <div id="left_in">
+            <h1>
+                <center><a href="http://acm.hdu.edu.cn/showproblem.php?pid=5726" target="_blank">hdu5726</a></center>
+            </h1>
+
+            <div id="text">
+                题目难点 :</br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;给你一个不变的序列，输入很多k，输出区间gcd等于k的区间的数量。</br>
+            </div>
+
+            <script type="text/javascript" src="/ACM/js/solve_begin.js"></script>
+            <div>
+                对所有区间计数，枚举左端点，二分右端点即可。 </br>
+                理论依据: 以任意左端点为起点的所有区间的gcd的种类不会超过这个点的值的因子的个数。</br>
+                细节: 区间询问使用ST表.</br>
+            </div>
+            <script type="text/javascript" src="/ACM/js/solve_end.js"></script>
+
+
+            <script type="text/javascript" src="/ACM/js/code_begin.js"></script>
+            <div>
      					<pre><span class="cp">#include&lt;bits/stdc++.h&gt;</span>
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 <span class="cp">#define ll long long</span>
 
-<span class="k">const</span> <span class="n">ll</span> <span class="n">maxn</span><span class="o">=</span><span class="mf">1e5</span><span class="o">+</span><span class="mi">5</span><span class="p">;</span>
-<span class="n">map</span><span class="o">&lt;</span><span class="n">ll</span><span class="p">,</span><span class="n">ll</span><span class="o">&gt;</span><span class="n">mp</span><span class="p">;</span>
-<span class="n">ll</span> <span class="n">t</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">q</span><span class="p">;</span>
-<span class="n">ll</span> <span class="n">a</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+<span class="k">const</span> <span class="n">ll</span> <span class="n">maxn</span><span class="o">=</span><span
+                                    class="mf">1e5</span><span class="o">+</span><span class="mi">5</span><span
+                                    class="p">;</span>
+<span class="n">map</span><span class="o">&lt;</span><span class="n">ll</span><span class="p">,</span><span
+                                    class="n">ll</span><span class="o">&gt;</span><span class="n">mp</span><span
+                                    class="p">;</span>
+<span class="n">ll</span> <span class="n">t</span><span class="p">,</span><span class="n">n</span><span
+                                    class="p">,</span><span class="n">q</span><span class="p">;</span>
+<span class="n">ll</span> <span class="n">a</span><span class="p">[</span><span class="n">maxn</span><span
+                                    class="p">];</span>
 
-<span class="n">ll</span> <span class="n">mm</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">rmq</span><span class="p">[</span><span class="n">maxn</span><span class="p">][</span><span class="mi">20</span><span class="p">];</span>
+<span class="n">ll</span> <span class="n">mm</span><span class="p">[</span><span class="n">maxn</span><span
+                                    class="p">],</span><span class="n">rmq</span><span class="p">[</span><span
+                                    class="n">maxn</span><span class="p">][</span><span class="mi">20</span><span
+                                    class="p">];</span>
 
-<span class="kt">void</span> <span class="n">st</span><span class="p">(</span><span class="n">ll</span> <span class="n">l</span><span class="p">,</span><span class="n">ll</span> <span class="n">r</span><span class="p">){</span>
-    <span class="n">mm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">maxn</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-        <span class="n">mm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="p">((</span><span class="n">i</span><span class="o">&amp;</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="o">?</span><span class="n">mm</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="o">:</span><span class="n">mm</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+<span class="kt">void</span> <span class="n">st</span><span class="p">(</span><span class="n">ll</span> <span class="n">l</span><span
+                                    class="p">,</span><span class="n">ll</span> <span class="n">r</span><span class="p">){</span>
+    <span class="n">mm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span
+                                    class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span
+                                    class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span
+                                    class="n">maxn</span><span class="p">;</span><span class="n">i</span><span
+                                    class="o">++</span><span class="p">){</span>
+        <span class="n">mm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
+                                    class="o">=</span><span class="p">((</span><span class="n">i</span><span class="o">&amp;</span><span
+                                    class="n">i</span><span class="o">-</span><span class="mi">1</span><span
+                                    class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span
+                                    class="o">?</span><span class="n">mm</span><span class="p">[</span><span
+                                    class="n">i</span><span class="o">-</span><span class="mi">1</span><span
+                                    class="p">]</span><span class="o">+</span><span class="mi">1</span><span
+                                    class="o">:</span><span class="n">mm</span><span class="p">[</span><span
+                                    class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
     <span class="p">}</span><span class="c1">//如果卡常，可以放外面</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span class="n">l</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">r</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">rmq</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">mm</span><span class="p">[</span><span class="n">r</span><span class="o">-</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
-        <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span class="n">l</span><span class="p">;</span><span class="n">i</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">j</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">&lt;=</span><span class="n">r</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
-            <span class="n">rmq</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">__gcd</span><span class="p">(</span><span class="n">rmq</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">rmq</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">))][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span
+                                    class="n">l</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span
+                                    class="n">r</span><span class="p">;</span><span class="n">i</span><span
+                                    class="o">++</span><span class="p">)</span><span class="n">rmq</span><span
+                                    class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span
+                                    class="p">]</span><span class="o">=</span><span class="n">a</span><span
+                                    class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">j</span><span class="o">=</span><span
+                                    class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span
+                                    class="n">mm</span><span class="p">[</span><span class="n">r</span><span
+                                    class="o">-</span><span class="n">l</span><span class="o">+</span><span
+                                    class="mi">1</span><span class="p">];</span><span class="n">j</span><span class="o">++</span><span
+                                    class="p">)</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span
+                                    class="o">=</span><span class="n">l</span><span class="p">;</span><span
+                                    class="n">i</span><span class="o">+</span><span class="p">(</span><span
+                                    class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">j</span><span
+                                    class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">&lt;=</span><span
+                                    class="n">r</span><span class="p">;</span><span class="n">i</span><span
+                                    class="o">++</span><span class="p">)</span>
+            <span class="n">rmq</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span
+                                    class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">__gcd</span><span
+                                    class="p">(</span><span class="n">rmq</span><span class="p">[</span><span class="n">i</span><span
+                                    class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span
+                                    class="p">],</span><span class="n">rmq</span><span class="p">[</span><span
+                                    class="n">i</span><span class="o">+</span><span class="p">(</span><span
+                                    class="mi">1</span><span class="o">&lt;&lt;</span><span class="p">(</span><span
+                                    class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">))][</span><span
+                                    class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
 <span class="p">}</span>
-<span class="n">ll</span> <span class="n">query</span><span class="p">(</span><span class="n">ll</span> <span class="n">l</span><span class="p">,</span><span class="n">ll</span> <span class="n">r</span><span class="p">){</span>
-    <span class="n">ll</span> <span class="n">k</span><span class="o">=</span><span class="n">mm</span><span class="p">[</span><span class="n">r</span><span class="o">-</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
-    <span class="k">return</span> <span class="n">__gcd</span><span class="p">(</span><span class="n">rmq</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">k</span><span class="p">],</span><span class="n">rmq</span><span class="p">[</span><span class="n">r</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">k</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">k</span><span class="p">]);</span>
+<span class="n">ll</span> <span class="n">query</span><span class="p">(</span><span class="n">ll</span> <span class="n">l</span><span
+                                    class="p">,</span><span class="n">ll</span> <span class="n">r</span><span class="p">){</span>
+    <span class="n">ll</span> <span class="n">k</span><span class="o">=</span><span class="n">mm</span><span
+                                    class="p">[</span><span class="n">r</span><span class="o">-</span><span
+                                    class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+    <span class="k">return</span> <span class="n">__gcd</span><span class="p">(</span><span class="n">rmq</span><span
+                                    class="p">[</span><span class="n">l</span><span class="p">][</span><span
+                                    class="n">k</span><span class="p">],</span><span class="n">rmq</span><span
+                                    class="p">[</span><span class="n">r</span><span class="o">-</span><span
+                                    class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span
+                                    class="n">k</span><span class="p">)</span><span class="o">+</span><span
+                                    class="mi">1</span><span class="p">][</span><span class="n">k</span><span class="p">]);</span>
 <span class="p">}</span>
 
 
 <span class="kt">void</span> <span class="n">ini</span><span class="p">()</span>
 <span class="p">{</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span
+                                    class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span
+                                    class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span
+                                    class="p">)</span>
     <span class="p">{</span>
-        <span class="n">ll</span> <span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="n">ll</span> <span class="n">l</span><span class="p">,</span><span class="n">r</span><span
+                                    class="o">=</span><span class="n">i</span><span class="o">-</span><span
+                                    class="mi">1</span><span class="p">;</span>
 
        <span class="c1">// cout&lt;&lt;i&lt;&lt;&quot;:&quot;;</span>
        <span class="c1">///100</span>
-        <span class="k">while</span><span class="p">(</span><span class="n">r</span><span class="o">&lt;</span><span class="n">n</span><span class="p">){</span><span class="c1">//  r : gcd[i..r]!=gcd[i,r+1]</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">r</span><span class="o">&lt;</span><span
+                                    class="n">n</span><span class="p">){</span><span class="c1">//  r : gcd[i..r]!=gcd[i,r+1]</span>
            <span class="c1">// cout&lt;&lt;r&lt;&lt;&quot; &quot;;</span>
-            <span class="n">ll</span> <span class="n">pre_r</span><span class="o">=</span><span class="n">r</span><span class="p">;</span>
-            <span class="n">l</span><span class="o">=</span><span class="n">r</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
-            <span class="n">ll</span> <span class="n">gcd</span><span class="o">=</span><span class="n">query</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+            <span class="n">ll</span> <span class="n">pre_r</span><span class="o">=</span><span class="n">r</span><span
+                                    class="p">;</span>
+            <span class="n">l</span><span class="o">=</span><span class="n">r</span><span class="o">+</span><span
+                                    class="mi">2</span><span class="p">,</span><span class="n">r</span><span
+                                    class="o">=</span><span class="n">n</span><span class="o">+</span><span
+                                    class="mi">1</span><span class="p">;</span>
+            <span class="n">ll</span> <span class="n">gcd</span><span class="o">=</span><span
+                                    class="n">query</span><span class="p">(</span><span class="n">i</span><span
+                                    class="p">,</span><span class="n">l</span><span class="o">-</span><span
+                                    class="mi">1</span><span class="p">);</span>
             <span class="c1">///lg</span>
-            <span class="k">while</span><span class="p">(</span><span class="n">l</span><span class="o">&lt;</span><span class="n">r</span><span class="p">){</span>
-                <span class="n">ll</span> <span class="n">mid</span><span class="o">=</span><span class="p">(</span><span class="n">l</span><span class="o">+</span><span class="n">r</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">;</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">l</span><span class="o">&lt;</span><span
+                                    class="n">r</span><span class="p">){</span>
+                <span class="n">ll</span> <span class="n">mid</span><span class="o">=</span><span
+                                    class="p">(</span><span class="n">l</span><span class="o">+</span><span
+                                    class="n">r</span><span class="p">)</span><span class="o">&gt;&gt;</span><span
+                                    class="mi">1</span><span class="p">;</span>
                 <span class="c1">///lg</span>
-                <span class="k">if</span><span class="p">(</span><span class="n">mid</span><span class="o">&gt;</span><span class="n">n</span><span class="o">||</span><span class="n">gcd</span><span class="o">!=</span><span class="n">query</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">mid</span><span class="p">)){</span>
-                    <span class="n">r</span><span class="o">=</span><span class="n">mid</span><span class="p">;</span><span class="c1">// query(i,r)!=gcd</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">mid</span><span
+                                    class="o">&gt;</span><span class="n">n</span><span class="o">||</span><span
+                                    class="n">gcd</span><span class="o">!=</span><span class="n">query</span><span
+                                    class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">mid</span><span
+                                    class="p">)){</span>
+                    <span class="n">r</span><span class="o">=</span><span class="n">mid</span><span
+                                    class="p">;</span><span class="c1">// query(i,r)!=gcd</span>
                 <span class="p">}</span>
-                <span class="k">else</span> <span class="n">l</span><span class="o">=</span><span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="c1">//query(i,l-1)=gcd</span>
+                <span class="k">else</span> <span class="n">l</span><span class="o">=</span><span
+                                    class="n">mid</span><span class="o">+</span><span class="mi">1</span><span
+                                    class="p">;</span><span class="c1">//query(i,l-1)=gcd</span>
             <span class="p">}</span><span class="c1">// query(i,l-1)=gcd&amp;&amp;query(i,l)!=gcd</span>
-            <span class="n">mp</span><span class="p">[</span><span class="n">gcd</span><span class="p">]</span><span class="o">+=</span><span class="p">(</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="n">pre_r</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
-            <span class="n">r</span><span class="o">=</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+            <span class="n">mp</span><span class="p">[</span><span class="n">gcd</span><span class="p">]</span><span
+                                    class="o">+=</span><span class="p">(</span><span class="n">l</span><span
+                                    class="o">-</span><span class="mi">1</span><span class="p">)</span><span
+                                    class="o">-</span><span class="p">(</span><span class="n">pre_r</span><span
+                                    class="o">+</span><span class="mi">1</span><span class="p">)</span><span
+                                    class="o">+</span><span class="mi">1</span><span class="p">;</span>
+            <span class="n">r</span><span class="o">=</span><span class="n">l</span><span class="o">-</span><span
+                                    class="mi">1</span><span class="p">;</span>
         <span class="p">}</span>
       <span class="c1">//  cout&lt;&lt;endl;</span>
     <span class="p">}</span>
@@ -89,36 +182,70 @@
 
 <span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
 <span class="p">{</span>
-    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lld&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">t</span><span class="p">);</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">time</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">time</span><span class="o">&lt;=</span><span class="n">t</span><span class="p">;</span> <span class="n">time</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lld&quot;</span><span
+                                    class="p">,</span><span class="o">&amp;</span><span class="n">t</span><span
+                                    class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">time</span><span
+                                    class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">time</span><span
+                                    class="o">&lt;=</span><span class="n">t</span><span class="p">;</span> <span
+                                    class="n">time</span><span class="o">++</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="n">mp</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
-        <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lld&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
-        <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lld&quot;</span><span class="p">,</span><span class="n">a</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lld&quot;</span><span
+                                    class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span
+                                    class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span
+                                    class="o">=</span><span class="mi">1</span><span class="p">;</span><span
+                                    class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span
+                                    class="p">;</span><span class="n">i</span><span class="o">++</span><span
+                                    class="p">)</span><span class="n">scanf</span><span class="p">(</span><span
+                                    class="s">&quot;%lld&quot;</span><span class="p">,</span><span
+                                    class="n">a</span><span class="o">+</span><span class="n">i</span><span
+                                    class="p">);</span>
 
-        <span class="n">st</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
+        <span class="n">st</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span
+                                    class="n">n</span><span class="p">);</span>
         <span class="n">ini</span><span class="p">();</span>
 
 
-        <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lld&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">q</span><span class="p">);</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Case #%lld:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">time</span><span class="p">);</span>
-        <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">q</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lld&quot;</span><span
+                                    class="p">,</span><span class="o">&amp;</span><span class="n">q</span><span
+                                    class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Case #%lld:</span><span
+                                    class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span
+                                    class="n">time</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span
+                                    class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span
+                                    class="o">&lt;=</span><span class="n">q</span><span class="p">;</span> <span
+                                    class="n">i</span><span class="o">++</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="n">ll</span> <span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">;</span>
-            <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lld %lld&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">l</span><span class="p">,</span><span class="o">&amp;</span><span class="n">r</span><span class="p">);</span>
-            <span class="n">ll</span> <span class="n">ans</span><span class="o">=</span><span class="n">query</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
-            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%lld &quot;</span><span class="p">,</span><span class="n">ans</span><span class="p">);</span>
-            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%lld</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">mp</span><span class="p">[</span><span class="n">ans</span><span class="p">]);</span>
+            <span class="n">ll</span> <span class="n">l</span><span class="p">,</span><span class="n">r</span><span
+                                    class="p">;</span>
+            <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lld %lld&quot;</span><span
+                                    class="p">,</span><span class="o">&amp;</span><span class="n">l</span><span
+                                    class="p">,</span><span class="o">&amp;</span><span class="n">r</span><span
+                                    class="p">);</span>
+            <span class="n">ll</span> <span class="n">ans</span><span class="o">=</span><span
+                                    class="n">query</span><span class="p">(</span><span class="n">l</span><span
+                                    class="p">,</span><span class="n">r</span><span class="p">);</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%lld &quot;</span><span
+                                    class="p">,</span><span class="n">ans</span><span class="p">);</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%lld</span><span
+                                    class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span
+                                    class="n">mp</span><span class="p">[</span><span class="n">ans</span><span
+                                    class="p">]);</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre>
-     					</div><script type="text/javascript" src="/ACM/js/code_end.js"></script>
-     				
+            </div>
+            <script type="text/javascript" src="/ACM/js/code_end.js"></script>
 
-    		 </div></div>
-     		
+
+        </div>
     </div>
+
+</div>
 </body>
 </html>
 
