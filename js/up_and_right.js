@@ -3,9 +3,9 @@ document.writeln('                   <nav id="menu" class="menu">     										
 document.writeln('                   <div id="right">																																													');
 
 document.writeln('                   <div id="right_in">																																												');
-document.writeln('                        <h3><center> <a href="https://github.com">github</a></br>	</center></h3>																																		');
+document.writeln('                        <h3><center> <a href="https://github.com/fightinggg/ACM">github</a></br>	</center></h3>																																		');
 document.writeln('                        <hr>																																																');
-document.writeln('                                                    <a href="https://github.com">github</a></br>													');
+document.writeln('                                                    <a href="https://github.com/fightinggg/ACM">github</a></br>													');
 document.writeln('                        <hr>																																																');
 document.writeln('                        </div>																																																');
 
