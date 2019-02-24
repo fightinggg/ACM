@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e505d993-0813-4b95-9e39-e1a7b5c097cb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/problem/data_struct/bzoj2124.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/problem/data_struct/hdu5726.html" beforeDir="false" afterPath="$PROJECT_DIR$/problem/data_struct/hdu5726.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/problem/data_struct/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/problem/data_struct/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,11 +24,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/problem/data_struct/bzoj2124.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="32" column="16" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
+            <state relative-caret-position="285">
+              <caret line="19" column="86" selection-start-line="19" selection-start-column="86" selection-end-line="19" selection-end-column="86" />
               <folding>
                 <element signature="e#889#895#0" expanded="true" />
                 <element signature="e#895#901#0" expanded="true" />
@@ -41,14 +38,6 @@
                 <element signature="e#919#925#0" expanded="true" />
                 <element signature="e#925#931#0" expanded="true" />
                 <element signature="e#931#937#0" expanded="true" />
-                <element signature="e#937#943#0" expanded="true" />
-                <element signature="e#943#949#0" expanded="true" />
-                <element signature="e#949#955#0" expanded="true" />
-                <element signature="e#955#961#0" expanded="true" />
-                <element signature="e#961#967#0" expanded="true" />
-                <element signature="e#967#973#0" expanded="true" />
-                <element signature="e#973#979#0" expanded="true" />
-                <element signature="e#979#985#0" expanded="true" />
                 <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#pre#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
                 <element signature="e#1719#1723#0" expanded="true" />
@@ -103,11 +92,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/problem/data_struct/hdu5726.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="473">
+            <state relative-caret-position="540">
               <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
               <folding>
                 <element signature="n#pre#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/problem/data_struct/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="23" column="75" selection-start-line="23" selection-start-column="75" selection-end-line="23" selection-end-column="75" />
             </state>
           </provider>
         </entry>
@@ -123,6 +121,7 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/problem/data_struct/hdu5726.html" />
         <option value="$PROJECT_DIR$/problem/data_struct/bzoj2124.html" />
+        <option value="$PROJECT_DIR$/problem/data_struct/index.html" />
       </list>
     </option>
   </component>
@@ -188,8 +187,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.bzoj2124.html">
+  <component name="RunManager" selected="JavaScript Debug.index.html (1)">
     <configuration name="bzoj2124.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/problem/data_struct/bzoj2124.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="index.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/problem/data_struct/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/index.html" useBuiltInWebServerPort="true">
@@ -197,6 +199,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.index.html (1)" />
         <item itemvalue="JavaScript Debug.bzoj2124.html" />
         <item itemvalue="JavaScript Debug.index.html" />
       </list>
@@ -212,12 +215,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1551002843960</updated>
-      <workItem from="1551002845178" duration="2653000" />
+      <workItem from="1551002845178" duration="2852000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2653000" />
+    <option name="totallyTimeSpent" value="2852000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="19" y="60" width="1400" height="763" extended-state="0" />
@@ -267,7 +270,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/problem/data_struct/hdu5726.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
+        <state relative-caret-position="540">
           <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
           <folding>
             <element signature="n#pre#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
@@ -277,8 +280,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/problem/data_struct/bzoj2124.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="32" column="16" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
+        <state relative-caret-position="285">
+          <caret line="19" column="86" selection-start-line="19" selection-start-column="86" selection-end-line="19" selection-end-column="86" />
           <folding>
             <element signature="e#889#895#0" expanded="true" />
             <element signature="e#895#901#0" expanded="true" />
@@ -288,14 +291,6 @@
             <element signature="e#919#925#0" expanded="true" />
             <element signature="e#925#931#0" expanded="true" />
             <element signature="e#931#937#0" expanded="true" />
-            <element signature="e#937#943#0" expanded="true" />
-            <element signature="e#943#949#0" expanded="true" />
-            <element signature="e#949#955#0" expanded="true" />
-            <element signature="e#955#961#0" expanded="true" />
-            <element signature="e#961#967#0" expanded="true" />
-            <element signature="e#967#973#0" expanded="true" />
-            <element signature="e#973#979#0" expanded="true" />
-            <element signature="e#979#985#0" expanded="true" />
             <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
             <element signature="n#pre#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
             <element signature="e#1719#1723#0" expanded="true" />
@@ -343,6 +338,13 @@
             <element signature="e#20081#20085#0" expanded="true" />
             <element signature="e#20085#20089#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/problem/data_struct/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="75" selection-start-line="23" selection-start-column="75" selection-end-line="23" selection-end-column="75" />
         </state>
       </provider>
     </entry>
