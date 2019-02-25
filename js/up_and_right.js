@@ -1,4 +1,4 @@
-document.writeln('   <div id="up"> <center><a href="http://fightinggg.github.io/ACM/">逐    梦</a></center></div>																	');
+document.writeln('   <div id="up"> <center><a href="http://fightinggg.github.io/">逐    梦</a></center></div>																	');
 document.writeln('                   <nav id="menu" class="menu">     																																					');
 document.writeln('                   <div id="right">																																													');
 

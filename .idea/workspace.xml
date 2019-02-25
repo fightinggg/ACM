@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e505d993-0813-4b95-9e39-e1a7b5c097cb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/problem/dp/cf_edu_60d.html" beforeDir="false" afterPath="$PROJECT_DIR$/problem/dp/cf_edu_60d.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/problem/dp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/problem/dp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/up_and_right.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/up_and_right.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,11 +16,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="264">
               <caret line="63" column="18" selection-start-line="63" selection-start-column="18" selection-end-line="63" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/up_and_right.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="79" selection-start-column="79" selection-end-column="79" />
             </state>
           </provider>
         </entry>
@@ -31,46 +39,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="300">
               <caret line="20" column="77" selection-start-line="20" selection-start-column="77" selection-end-line="20" selection-end-column="77" />
-              <folding>
-                <element signature="e#1212#1216#0" expanded="true" />
-                <element signature="e#1229#1233#0" expanded="true" />
-                <element signature="e#2390#2395#1" expanded="true" />
-                <element signature="e#2762#2766#1" expanded="true" />
-                <element signature="e#3125#3129#1" expanded="true" />
-                <element signature="e#3492#3496#1" expanded="true" />
-                <element signature="e#4984#4989#1" expanded="true" />
-                <element signature="e#5356#5360#1" expanded="true" />
-                <element signature="e#5719#5723#1" expanded="true" />
-                <element signature="e#6887#6892#1" expanded="true" />
-                <element signature="e#7170#7174#1" expanded="true" />
-                <element signature="e#7533#7537#1" expanded="true" />
-                <element signature="e#8928#8932#1" expanded="true" />
-                <element signature="e#9286#9290#1" expanded="true" />
-                <element signature="e#10758#10763#1" expanded="true" />
-                <element signature="e#11169#11173#0" expanded="true" />
-                <element signature="e#11173#11177#0" expanded="true" />
-                <element signature="e#11557#11562#1" expanded="true" />
-                <element signature="e#12294#12299#1" expanded="true" />
-                <element signature="e#12868#12872#0" expanded="true" />
-                <element signature="e#12872#12876#0" expanded="true" />
-                <element signature="e#13747#13751#0" expanded="true" />
-                <element signature="e#13751#13755#0" expanded="true" />
-                <element signature="e#14221#14225#0" expanded="true" />
-                <element signature="e#14225#14229#0" expanded="true" />
-                <element signature="e#14276#14280#0" expanded="true" />
-                <element signature="e#14280#14284#0" expanded="true" />
-                <element signature="e#15398#15402#1" expanded="true" />
-                <element signature="e#16386#16390#1" expanded="true" />
-                <element signature="e#16926#16930#0" expanded="true" />
-                <element signature="e#17393#17397#0" expanded="true" />
-                <element signature="e#17397#17401#0" expanded="true" />
-                <element signature="e#17622#17626#0" expanded="true" />
-                <element signature="e#17626#17630#0" expanded="true" />
-                <element signature="e#17825#17829#0" expanded="true" />
-                <element signature="e#17829#17833#0" expanded="true" />
-                <element signature="e#17881#17885#0" expanded="true" />
-                <element signature="e#17885#17889#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -107,16 +75,16 @@
         <option value="$PROJECT_DIR$/css/code.css" />
         <option value="$PROJECT_DIR$/css/pastebin.css" />
         <option value="$PROJECT_DIR$/problem/data_struct/index.html" />
-        <option value="$PROJECT_DIR$/js/up_and_right.js" />
         <option value="$PROJECT_DIR$/problem/dp/index.html" />
         <option value="$PROJECT_DIR$/problem/dp/cf_edu_60d.html" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/up_and_right.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="19" />
-    <option name="y" value="60" />
+    <option name="x" value="40" />
+    <option name="y" value="63" />
     <option name="width" value="1400" />
     <option name="height" value="763" />
   </component>
@@ -138,13 +106,7 @@
             <path>
               <item name="ACM" type="b2602c69:ProjectViewProjectNode" />
               <item name="ACM" type="462c0819:PsiDirectoryNode" />
-              <item name="problem" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ACM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ACM" type="462c0819:PsiDirectoryNode" />
-              <item name="problem" type="462c0819:PsiDirectoryNode" />
-              <item name="dp" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -177,7 +139,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.cf_edu_60d.html">
+  <component name="RunManager" selected="JavaScript Debug.index.html">
     <configuration name="bzoj2124.html" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:63342/ACM/problem/data_struct/bzoj2124.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -214,14 +176,18 @@
       <workItem from="1551006830484" duration="239000" />
       <workItem from="1551007089617" duration="271000" />
       <workItem from="1551101603798" duration="1704000" />
+      <workItem from="1551103363385" duration="255000" />
+      <workItem from="1551103725557" duration="131000" />
+      <workItem from="1551103945128" duration="46000" />
+      <workItem from="1551106257034" duration="13000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5958000" />
+    <option name="totallyTimeSpent" value="6403000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="19" y="60" width="1400" height="763" extended-state="0" />
+    <frame x="40" y="63" width="1400" height="763" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21174765" />
@@ -277,13 +243,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/up_and_right.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="45" column="19" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/problem/data_struct/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -324,10 +283,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/problem/dp/hdu5745.html">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
+        <state relative-caret-position="264">
+          <caret line="63" column="18" selection-start-line="63" selection-start-column="18" selection-end-line="63" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -335,46 +294,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="77" selection-start-line="20" selection-start-column="77" selection-end-line="20" selection-end-column="77" />
-          <folding>
-            <element signature="e#1212#1216#0" expanded="true" />
-            <element signature="e#1229#1233#0" expanded="true" />
-            <element signature="e#2390#2395#1" expanded="true" />
-            <element signature="e#2762#2766#1" expanded="true" />
-            <element signature="e#3125#3129#1" expanded="true" />
-            <element signature="e#3492#3496#1" expanded="true" />
-            <element signature="e#4984#4989#1" expanded="true" />
-            <element signature="e#5356#5360#1" expanded="true" />
-            <element signature="e#5719#5723#1" expanded="true" />
-            <element signature="e#6887#6892#1" expanded="true" />
-            <element signature="e#7170#7174#1" expanded="true" />
-            <element signature="e#7533#7537#1" expanded="true" />
-            <element signature="e#8928#8932#1" expanded="true" />
-            <element signature="e#9286#9290#1" expanded="true" />
-            <element signature="e#10758#10763#1" expanded="true" />
-            <element signature="e#11169#11173#0" expanded="true" />
-            <element signature="e#11173#11177#0" expanded="true" />
-            <element signature="e#11557#11562#1" expanded="true" />
-            <element signature="e#12294#12299#1" expanded="true" />
-            <element signature="e#12868#12872#0" expanded="true" />
-            <element signature="e#12872#12876#0" expanded="true" />
-            <element signature="e#13747#13751#0" expanded="true" />
-            <element signature="e#13751#13755#0" expanded="true" />
-            <element signature="e#14221#14225#0" expanded="true" />
-            <element signature="e#14225#14229#0" expanded="true" />
-            <element signature="e#14276#14280#0" expanded="true" />
-            <element signature="e#14280#14284#0" expanded="true" />
-            <element signature="e#15398#15402#1" expanded="true" />
-            <element signature="e#16386#16390#1" expanded="true" />
-            <element signature="e#16926#16930#0" expanded="true" />
-            <element signature="e#17393#17397#0" expanded="true" />
-            <element signature="e#17397#17401#0" expanded="true" />
-            <element signature="e#17622#17626#0" expanded="true" />
-            <element signature="e#17626#17630#0" expanded="true" />
-            <element signature="e#17825#17829#0" expanded="true" />
-            <element signature="e#17829#17833#0" expanded="true" />
-            <element signature="e#17881#17885#0" expanded="true" />
-            <element signature="e#17885#17889#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/problem/dp/hdu5745.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -385,10 +311,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/js/up_and_right.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="63" column="18" selection-start-line="63" selection-start-column="18" selection-end-line="63" selection-end-column="18" />
+        <state>
+          <caret column="79" selection-start-column="79" selection-end-column="79" />
         </state>
       </provider>
     </entry>
