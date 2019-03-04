@@ -320,7 +320,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html">
+  <component name="RunManager" selected="JavaScript Debug.index.html (2)">
     <configuration name="ACM-ICPC北京赛区2018-D-Frog and Portal.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/ACM/problem/thinging/ACM-ICPC北京赛区2018-D-Frog and Portal.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -333,6 +333,9 @@
     <configuration name="index.html (1)" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:63342/ACM/problem/data_struct/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
+    <configuration name="index.html (2)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/ACM/problem/thinging/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="index.html" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:63342/ACM/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -341,6 +344,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.index.html (2)" />
         <item itemvalue="JavaScript Debug.ACM-ICPC北京赛区2018-D-Frog and Portal.html" />
         <item itemvalue="JavaScript Debug.cf_edu_60d.html" />
       </list>
