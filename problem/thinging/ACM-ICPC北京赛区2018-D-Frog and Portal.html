@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+
+    <title>ACM-ICPC北京赛区2018-D-Frog and Portal</title>
+</head>
+
+<body>
+<div id="myweb">
+
+    <!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
+    <script type="text/javascript" src="/ACM/js/up_and_right.js"></script>
+    <!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
+
+    <div id="left">
+        <div id="left_in">
+            <h1>
+                <center><a href="http://hihocoder.com/contest/icpcbeijing2018/problem/4" target="_blank">ACM-ICPC北京赛区2018-D-Frog
+                    and Portal</a></center>
+            </h1>
+
+            <div id="text">
+                题目大意 :<br>
+                &nbsp; &nbsp; &nbsp; &nbsp;有一只青蛙站在位置0，他可以选择往前跳一步或者两步，他希望跳到位置200上，他有多少种跳法呢?
+                这其实是个斐波拉契数，如果我们加强难度，假设每个位置上可以创建最多一个传送门，可以传送到任何地方，传送的规则是传送到不能传送为止
+                比方说，位置1上有个传送门，传送到2，2上有门传送到3，3又传送到4，4上没有传送门，于是当青蛙跑到1上的时候，他会被立刻传送到4上，当然他可以
+                选择从0跳过1，一次性跳到2，他就不会进入1的传送门，很可惜，2上面的传送门将它最终送到了4 ，当然如果传送门构成死循环，青蛙就永远无法出来了。<br>
+                &nbsp; &nbsp; &nbsp; &nbsp;现在要你构造传送门，使得青蛙有恰好k种办法跳到位置200，k在int内
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+            </div>
+
+            <script type="text/javascript" src="/ACM/js/solve_begin.js"></script>
+            <div>
+                &nbsp; &nbsp; &nbsp; &nbsp;现首先考虑到两段连续的不含有传送门的位置，中间若只隔着一个i到i到传送门，那么到终点到方案数
+                一定是几个斐波拉契数的积，很遗憾，斐波拉契数不是质数，它不具有像质数集合可以用几个元素的积来构造整数集合一样的性质，这个办法失效<br>
+                &nbsp; &nbsp; &nbsp; &nbsp;然后我们仔细思考，发现如果位置i的传送门传送到i-1，i-2，i-3。。。这些数的话，方案数是无穷大，<br>
+                &nbsp; &nbsp; &nbsp; &nbsp;第一段表明只同i->i的传送门不可能完成，第二段表示不能使用或者说不使用传送门i->i-k（k>0）比使用
+                更加优，于是我们得到了一个简单的推论:答案可以由i->i 与i->i+k两者结合得到<br>
+                &nbsp; &nbsp; &nbsp; &nbsp;紧接着我们开始分析前几个格子的跳跃方案数：<br>
+                方案 1 1 2 3 5<br>
+                位置 0 1 2 3 4<br>
+                &nbsp; &nbsp; &nbsp; &nbsp;考虑在位置3放一个传送门传送到i:<br>
+                方案 1 1 2 <span style="color:red">3</span> 2 2 4<br>
+                位置 0 1 2 <span style="color:red">3</span> 4 5 6<br>
+                &nbsp; &nbsp; &nbsp; &nbsp;这个时候我们应该警觉到了,方案数出现了4，出现了4，4不是斐波拉契数。再继续观察，位置3到底怎么回事？他对谁有贡献？<br>
+                &nbsp; &nbsp; &nbsp; &nbsp;如果我们假设让位置3跳到自己，他会对答案贡献0，如果我们让位置3跳到200，他会对答案贡献3<br>
+                &nbsp; &nbsp; &nbsp; &nbsp;选或不选+1 2 4的出现，让我们联想到了利用二进制，<br>
+                &nbsp; &nbsp; &nbsp; &nbsp;然后我们构建了一个周期为6的自动匹配的东西，<br>
+                方案 1 <span style="color:red">1</span> 1 1 2 <span style="color:green">3</span> ...<br>
+                位置 0 <span style="color:red">1</span> 2 3 4 <span style="color:green">5</span> ...<br>
+                &nbsp; &nbsp; &nbsp; &nbsp;绿色代表i->i死循环,红色部分可选死循环或者跳到终点，表示选或不选，6*32=192，我们在最后的地方连续弄两个
+                i->i就可以保证到达终点的一定是周期内部的方案。于是范围跨度194，传送门稳定66个，就可以根据输入的k的二进制
+                表示来调整红色部分的传送门即可。于是题目被解决了。
+
+
+            </div>
+            <script type="text/javascript" src="/ACM/js/solve_end.js"></script>
+
+            <script type="text/javascript" src="/ACM/js/code_begin.js"></script>
+            <div>
+                <pre><span class="cp">#include &lt;bits/stdc++.h&gt;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="n">choose</span><span class="p">(</span><span class="kt">int</span> <span
+                            class="n">i</span><span class="p">){</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %d</span><span
+                            class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span
+                            class="n">i</span><span class="o">+</span><span class="mi">1</span><span
+                            class="p">,</span><span class="mi">199</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %d</span><span
+                            class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span
+                            class="n">i</span><span class="o">+</span><span class="mi">5</span><span
+                            class="p">,</span><span class="n">i</span><span class="o">+</span><span
+                            class="mi">5</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="kt">void</span> <span class="n">no_choose</span><span class="p">(</span><span class="kt">int</span> <span
+                            class="n">i</span><span class="p">){</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %d</span><span
+                            class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span
+                            class="n">i</span><span class="o">+</span><span class="mi">1</span><span
+                            class="p">,</span><span class="n">i</span><span class="o">+</span><span
+                            class="mi">1</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %d</span><span
+                            class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span
+                            class="n">i</span><span class="o">+</span><span class="mi">5</span><span
+                            class="p">,</span><span class="n">i</span><span class="o">+</span><span
+                            class="mi">5</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="o">~</span><span class="n">scanf</span><span
+                            class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span
+                            class="o">&amp;</span><span class="n">n</span><span class="p">)){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;66</span><span
+                            class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                            class="o">=</span><span class="mi">0</span><span class="p">;</span><span
+                            class="n">i</span><span class="o">&lt;</span><span class="mi">32</span><span
+                            class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&amp;</span><span
+                            class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span
+                            class="n">i</span><span class="p">)){</span>
+                <span class="n">choose</span><span class="p">(</span><span class="mi">6</span><span
+                            class="o">*</span><span class="n">i</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="p">{</span>
+                <span class="n">no_choose</span><span class="p">(</span><span class="mi">6</span><span
+                            class="o">*</span><span class="n">i</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;197 197</span><span
+                            class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;198 198</span><span
+                            class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+            </div>
+            <script type="text/javascript" src="/ACM/js/code_end.js"></script>
+
+
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+
+
