@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+
+    <title>关于sqrt对负数开根号acos对大于1的数计算反三角函数值的问题</title>
+</head>
+
+<body>
+<div id="myweb">
+
+    <!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
+    <script type="text/javascript" src="/ACM/js/up_and_right.js"></script>
+    <!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
+
+    <div id="left">
+        <div id="left_in">
+            <h1>
+                <center><a href="http://codeforces.com/gym/102056/problem/F"target="_blank">关于sqrt对负数开根号acos对大于1的数计算反三角函数值的问题</a>
+                </center>
+            </h1>
+
+            <div id="text">
+                空间里面有一个实心球，两个点，问两点不经过实心球的路径的最小值.
+            </div>
+
+            <script type="text/javascript" src="/ACM/js/solve_begin.js"></script>
+            <div>
+                题目意思很简单，我们可能会用到余弦定理，但是，余弦定理有误差，我们可能会得到一些奇怪的数字，浮点数的误差导致
+                余弦定理计算出来了小于-1或者大于1的其他数字，当我们对这样的数字进行反三角函数运算时，会得到nan，当然sqrt
+                有时候也会碰到对负数开方，于是我们要重写这两个函数
+            </div>
+            <script type="text/javascript" src="/ACM/js/solve_end.js"></script>
+
+            <script type="text/javascript" src="/ACM/js/code_begin.js"></script>
+            <div>
+                <pre><span class="cp">#include&lt;bits/stdc++.h&gt;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">double</span> <span class="n">eps</span> <span class="o">=</span> <span
+                            class="mf">1e-12</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">double</span> <span class="n">INF</span> <span class="o">=</span> <span
+                            class="mf">1e18</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">double</span> <span class="n">PI</span> <span class="o">=</span> <span
+                            class="n">acos</span><span class="p">(</span><span class="o">-</span><span
+                            class="mf">1.0</span><span class="p">);</span>
+<span class="kt">double</span> <span class="n">ACOS</span><span class="p">(</span><span class="kt">double</span> <span
+                            class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span
+                            class="mi">1</span><span class="p">)</span>
+        <span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">&lt;-</span><span
+                            class="mi">1</span><span class="p">)</span>
+        <span class="n">x</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">acos</span><span class="p">(</span><span class="n">x</span><span
+                            class="p">);</span>
+<span class="p">}</span>
+<span class="kt">double</span> <span class="n">SQRT</span><span class="p">(</span><span class="kt">double</span> <span
+                            class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span
+                            class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span
+                            class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">struct</span> <span class="n">Point3D</span>
+<span class="p">{</span>
+    <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span
+                            class="p">,</span> <span class="n">z</span><span class="p">;</span>
+    <span class="n">Point3D</span><span class="p">()</span> <span class="p">{};</span>
+    <span class="n">Point3D</span><span class="p">(</span><span class="kt">double</span> <span class="n">xx</span><span
+                            class="p">,</span> <span class="kt">double</span> <span class="n">yy</span><span
+                            class="p">,</span><span class="kt">double</span> <span class="n">zz</span><span
+                            class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">xx</span><span class="p">;</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">yy</span><span class="p">;</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">zz</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">Point2D</span>
+<span class="p">{</span>
+    <span class="n">Point2D</span><span class="p">()</span> <span class="p">{};</span>
+    <span class="kt">double</span> <span class="n">x</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">y</span><span class="p">;</span>
+    <span class="n">Point2D</span><span class="p">(</span><span class="kt">double</span> <span class="n">xx</span><span
+                            class="p">,</span> <span class="kt">double</span> <span class="n">yy</span><span
+                            class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">xx</span><span class="p">;</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">yy</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="n">Point</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="n">Circle3D</span>
+<span class="p">{</span>
+    <span class="n">Point3D</span> <span class="n">o</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">r</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="k">struct</span> <span class="n">Circle</span>
+<span class="p">{</span>
+    <span class="n">Point2D</span> <span class="n">o</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">r</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+<span class="k">struct</span> <span class="n">Line</span>
+<span class="p">{</span>
+    <span class="n">Point</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span><span
+                            class="p">;</span>
+    <span class="n">Line</span><span class="p">()</span> <span class="p">{};</span>
+    <span class="n">Line</span><span class="p">(</span><span class="n">Point</span> <span class="n">a</span><span
+                            class="p">,</span> <span class="n">Point</span> <span class="n">b</span><span
+                            class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+    <span class="p">};</span>
+<span class="p">};</span>
+
+
+<span class="kt">double</span> <span class="n">dis</span><span class="p">(</span><span class="n">Point</span> <span
+                            class="n">a</span><span class="p">,</span> <span class="n">Point</span> <span
+                            class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">SQRT</span><span class="p">(</span><span class="n">pow</span><span
+                            class="p">(</span><span class="n">a</span><span class="p">.</span><span
+                            class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="p">.</span><span
+                            class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span
+                            class="o">+</span> <span class="n">pow</span><span class="p">(</span><span
+                            class="n">a</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span
+                            class="n">b</span><span class="p">.</span><span class="n">y</span><span
+                            class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+<span class="p">}</span>
+
+
+<span class="kt">double</span> <span class="n">dis</span><span class="p">(</span><span class="n">Point3D</span> <span
+                            class="n">a</span><span class="p">,</span> <span class="n">Point3D</span> <span
+                            class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">SQRT</span><span class="p">(</span><span class="n">pow</span><span
+                            class="p">(</span><span class="n">a</span><span class="p">.</span><span
+                            class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="p">.</span><span
+                            class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span
+                            class="o">+</span> <span class="n">pow</span><span class="p">(</span><span
+                            class="n">a</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span
+                            class="n">b</span><span class="p">.</span><span class="n">y</span><span
+                            class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span
+                            class="o">+</span> <span class="n">pow</span><span class="p">(</span><span
+                            class="n">a</span><span class="p">.</span><span class="n">z</span> <span class="o">-</span> <span
+                            class="n">b</span><span class="p">.</span><span class="n">z</span><span
+                            class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">double</span> <span class="n">solve</span><span class="p">(</span><span class="n">Point3D</span> <span
+                            class="n">s</span><span class="p">,</span> <span class="n">Point3D</span> <span
+                            class="n">t</span><span class="p">,</span> <span class="n">Circle3D</span> <span
+                            class="n">o</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">double</span> <span class="n">so</span><span class="o">=</span><span class="n">dis</span><span
+                            class="p">(</span><span class="n">s</span><span class="p">,</span><span
+                            class="n">o</span><span class="p">.</span><span class="n">o</span><span class="p">);</span>
+    <span class="kt">double</span> <span class="n">to</span><span class="o">=</span><span class="n">dis</span><span
+                            class="p">(</span><span class="n">t</span><span class="p">,</span><span
+                            class="n">o</span><span class="p">.</span><span class="n">o</span><span class="p">);</span>
+    <span class="kt">double</span> <span class="n">st</span><span class="o">=</span><span class="n">dis</span><span
+                            class="p">(</span><span class="n">s</span><span class="p">,</span><span
+                            class="n">t</span><span class="p">);</span>
+    <span class="kt">double</span> <span class="n">sita_sot</span><span class="o">=</span><span
+                            class="n">ACOS</span><span class="p">((</span><span class="n">so</span><span
+                            class="o">*</span><span class="n">so</span><span class="o">+</span><span class="n">to</span><span
+                            class="o">*</span><span class="n">to</span><span class="o">-</span><span class="n">st</span><span
+                            class="o">*</span><span class="n">st</span><span class="p">)</span><span
+                            class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">so</span><span
+                            class="o">/</span><span class="n">to</span><span class="p">);</span>
+    <span class="kt">double</span> <span class="n">sita_sto</span><span class="o">=</span><span
+                            class="n">ACOS</span><span class="p">((</span><span class="n">st</span><span
+                            class="o">*</span><span class="n">st</span><span class="o">+</span><span class="n">to</span><span
+                            class="o">*</span><span class="n">to</span><span class="o">-</span><span class="n">so</span><span
+                            class="o">*</span><span class="n">so</span><span class="p">)</span><span
+                            class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">st</span><span
+                            class="o">/</span><span class="n">to</span><span class="p">);</span>
+    <span class="kt">double</span> <span class="n">sita_tso</span><span class="o">=</span><span
+                            class="n">ACOS</span><span class="p">((</span><span class="n">st</span><span
+                            class="o">*</span><span class="n">st</span><span class="o">+</span><span class="n">so</span><span
+                            class="o">*</span><span class="n">so</span><span class="o">-</span><span class="n">to</span><span
+                            class="o">*</span><span class="n">to</span><span class="p">)</span><span
+                            class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">st</span><span
+                            class="o">/</span><span class="n">so</span><span class="p">);</span>
+
+
+    <span class="kt">double</span> <span class="n">p</span><span class="o">=</span><span class="p">(</span><span
+                            class="n">so</span><span class="o">+</span><span class="n">to</span><span class="o">+</span><span
+                            class="n">st</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span
+                            class="p">;</span>
+    <span class="kt">double</span> <span class="n">d</span><span class="o">=</span><span class="n">SQRT</span><span
+                            class="p">(</span><span class="n">p</span><span class="o">*</span><span
+                            class="p">(</span><span class="n">p</span><span class="o">-</span><span
+                            class="n">so</span><span class="p">)</span><span class="o">*</span><span
+                            class="p">(</span><span class="n">p</span><span class="o">-</span><span
+                            class="n">to</span><span class="p">)</span><span class="o">*</span><span
+                            class="p">(</span><span class="n">p</span><span class="o">-</span><span
+                            class="n">st</span><span class="p">))</span><span class="o">*</span><span
+                            class="mi">2</span><span class="o">/</span><span class="n">st</span><span class="p">;</span>
+
+
+    <span class="k">if</span><span class="p">(</span><span class="n">sita_sto</span><span class="o">&lt;</span><span
+                            class="n">PI</span><span class="o">/</span><span class="mi">2</span><span class="o">&amp;&amp;</span><span
+                            class="n">sita_tso</span><span class="o">&lt;</span><span class="n">PI</span><span
+                            class="o">/</span><span class="mi">2</span><span class="o">&amp;&amp;</span><span class="n">d</span><span
+                            class="o">&lt;</span><span class="n">o</span><span class="p">.</span><span
+                            class="n">r</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">double</span> <span class="n">sita_soa1</span><span class="o">=</span><span
+                            class="n">ACOS</span><span class="p">(</span><span class="n">o</span><span
+                            class="p">.</span><span class="n">r</span><span class="o">/</span><span
+                            class="n">so</span><span class="p">);</span>
+        <span class="kt">double</span> <span class="n">sita_toa2</span><span class="o">=</span><span
+                            class="n">ACOS</span><span class="p">(</span><span class="n">o</span><span
+                            class="p">.</span><span class="n">r</span><span class="o">/</span><span
+                            class="n">to</span><span class="p">);</span>
+
+        <span class="kt">double</span> <span class="n">sita</span><span class="o">=</span><span
+                            class="n">sita_sot</span><span class="o">-</span><span class="n">sita_soa1</span><span
+                            class="o">-</span><span class="n">sita_toa2</span><span class="p">;</span>
+
+        <span class="k">return</span> <span class="n">sita</span><span class="o">*</span><span class="n">o</span><span
+                            class="p">.</span><span class="n">r</span> <span class="o">+</span> <span
+                            class="n">so</span><span class="o">*</span><span class="n">sin</span><span
+                            class="p">(</span><span class="n">sita_soa1</span><span class="p">)</span> <span
+                            class="o">+</span> <span class="n">to</span><span class="o">*</span><span
+                            class="n">sin</span><span class="p">(</span><span class="n">sita_toa2</span><span class="p">);</span>
+
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">dis</span><span class="p">(</span><span class="n">s</span><span
+                            class="p">,</span> <span class="n">t</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="kt">double</span> <span class="n">solve</span><span class="p">(</span><span class="n">Point</span> <span
+                            class="n">s</span><span class="p">,</span> <span class="n">Point</span> <span
+                            class="n">t</span><span class="p">,</span> <span class="n">Circle</span> <span
+                            class="n">o</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">double</span> <span class="n">so</span><span class="o">=</span><span class="n">dis</span><span
+                            class="p">(</span><span class="n">s</span><span class="p">,</span><span
+                            class="n">o</span><span class="p">.</span><span class="n">o</span><span class="p">);</span>
+    <span class="kt">double</span> <span class="n">to</span><span class="o">=</span><span class="n">dis</span><span
+                            class="p">(</span><span class="n">t</span><span class="p">,</span><span
+                            class="n">o</span><span class="p">.</span><span class="n">o</span><span class="p">);</span>
+    <span class="kt">double</span> <span class="n">st</span><span class="o">=</span><span class="n">dis</span><span
+                            class="p">(</span><span class="n">s</span><span class="p">,</span><span
+                            class="n">t</span><span class="p">);</span>
+    <span class="kt">double</span> <span class="n">sita_sot</span><span class="o">=</span><span
+                            class="n">ACOS</span><span class="p">((</span><span class="n">so</span><span
+                            class="o">*</span><span class="n">so</span><span class="o">+</span><span class="n">to</span><span
+                            class="o">*</span><span class="n">to</span><span class="o">-</span><span class="n">st</span><span
+                            class="o">*</span><span class="n">st</span><span class="p">)</span><span
+                            class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">so</span><span
+                            class="o">/</span><span class="n">to</span><span class="p">);</span>
+    <span class="kt">double</span> <span class="n">sita_sto</span><span class="o">=</span><span
+                            class="n">ACOS</span><span class="p">((</span><span class="n">st</span><span
+                            class="o">*</span><span class="n">st</span><span class="o">+</span><span class="n">to</span><span
+                            class="o">*</span><span class="n">to</span><span class="o">-</span><span class="n">so</span><span
+                            class="o">*</span><span class="n">so</span><span class="p">)</span><span
+                            class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">st</span><span
+                            class="o">/</span><span class="n">to</span><span class="p">);</span>
+    <span class="kt">double</span> <span class="n">sita_tso</span><span class="o">=</span><span
+                            class="n">ACOS</span><span class="p">((</span><span class="n">st</span><span
+                            class="o">*</span><span class="n">st</span><span class="o">+</span><span class="n">so</span><span
+                            class="o">*</span><span class="n">so</span><span class="o">-</span><span class="n">to</span><span
+                            class="o">*</span><span class="n">to</span><span class="p">)</span><span
+                            class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">st</span><span
+                            class="o">/</span><span class="n">so</span><span class="p">);</span>
+
+
+    <span class="kt">double</span> <span class="n">p</span><span class="o">=</span><span class="p">(</span><span
+                            class="n">so</span><span class="o">+</span><span class="n">to</span><span class="o">+</span><span
+                            class="n">st</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span
+                            class="p">;</span>
+    <span class="kt">double</span> <span class="n">d</span><span class="o">=</span><span class="n">SQRT</span><span
+                            class="p">(</span><span class="n">p</span><span class="o">*</span><span
+                            class="p">(</span><span class="n">p</span><span class="o">-</span><span
+                            class="n">so</span><span class="p">)</span><span class="o">*</span><span
+                            class="p">(</span><span class="n">p</span><span class="o">-</span><span
+                            class="n">to</span><span class="p">)</span><span class="o">*</span><span
+                            class="p">(</span><span class="n">p</span><span class="o">-</span><span
+                            class="n">st</span><span class="p">))</span><span class="o">*</span><span
+                            class="mi">2</span><span class="o">/</span><span class="n">st</span><span class="p">;</span>
+
+
+    <span class="k">if</span><span class="p">(</span><span class="n">sita_sto</span><span class="o">&lt;</span><span
+                            class="n">PI</span><span class="o">/</span><span class="mi">2</span><span class="o">&amp;&amp;</span><span
+                            class="n">sita_tso</span><span class="o">&lt;</span><span class="n">PI</span><span
+                            class="o">/</span><span class="mi">2</span><span class="o">&amp;&amp;</span><span class="n">d</span><span
+                            class="o">&lt;</span><span class="n">o</span><span class="p">.</span><span
+                            class="n">r</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">double</span> <span class="n">sita_soa1</span><span class="o">=</span><span
+                            class="n">ACOS</span><span class="p">(</span><span class="n">o</span><span
+                            class="p">.</span><span class="n">r</span><span class="o">/</span><span
+                            class="n">so</span><span class="p">);</span>
+        <span class="kt">double</span> <span class="n">sita_toa2</span><span class="o">=</span><span
+                            class="n">ACOS</span><span class="p">(</span><span class="n">o</span><span
+                            class="p">.</span><span class="n">r</span><span class="o">/</span><span
+                            class="n">to</span><span class="p">);</span>
+
+        <span class="kt">double</span> <span class="n">sita</span><span class="o">=</span><span
+                            class="n">sita_sot</span><span class="o">-</span><span class="n">sita_soa1</span><span
+                            class="o">-</span><span class="n">sita_toa2</span><span class="p">;</span>
+
+        <span class="k">return</span> <span class="n">sita</span><span class="o">*</span><span class="n">o</span><span
+                            class="p">.</span><span class="n">r</span> <span class="o">+</span> <span
+                            class="n">so</span><span class="o">*</span><span class="n">sin</span><span
+                            class="p">(</span><span class="n">sita_soa1</span><span class="p">)</span> <span
+                            class="o">+</span> <span class="n">to</span><span class="o">*</span><span
+                            class="n">sin</span><span class="p">(</span><span class="n">sita_toa2</span><span class="p">);</span>
+
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">dis</span><span class="p">(</span><span class="n">s</span><span
+                            class="p">,</span> <span class="n">t</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">double</span> <span class="n">solve</span><span class="p">(</span><span class="kt">double</span> <span
+                            class="n">a</span><span class="p">,</span><span class="kt">double</span> <span
+                            class="n">b</span><span class="p">,</span><span class="kt">double</span> <span
+                            class="n">c</span><span class="p">,</span><span class="kt">double</span> <span
+                            class="n">r</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Point</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span
+                            class="p">;</span>
+    <span class="n">Circle</span> <span class="n">o</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">arcsita</span> <span class="o">=</span> <span class="p">(</span><span
+                            class="n">pow</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span
+                            class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span
+                            class="n">pow</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span
+                            class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span
+                            class="n">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span
+                            class="mi">2</span><span class="p">))</span> <span class="o">/</span> <span
+                            class="mi">2</span> <span class="o">/</span> <span class="n">b</span> <span
+                            class="o">/</span> <span class="n">c</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">sita</span> <span class="o">=</span> <span class="n">ACOS</span><span
+                            class="p">(</span><span class="n">arcsita</span><span class="p">);</span>
+
+    <span class="n">t</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span
+                            class="n">c</span> <span class="o">*</span> <span class="n">cos</span><span
+                            class="p">(</span><span class="n">sita</span><span class="p">);</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span
+                            class="n">c</span> <span class="o">*</span> <span class="n">sin</span><span
+                            class="p">(</span><span class="n">sita</span><span class="p">);</span>
+
+    <span class="n">o</span><span class="p">.</span><span class="n">o</span><span class="p">.</span><span
+                            class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span
+                            class="p">;</span>
+    <span class="n">o</span><span class="p">.</span><span class="n">o</span><span class="p">.</span><span
+                            class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span
+                            class="p">;</span>
+    <span class="n">o</span><span class="p">.</span><span class="n">r</span> <span class="o">=</span> <span
+                            class="n">r</span><span class="p">;</span>
+
+    <span class="n">s</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span
+                            class="n">b</span><span class="p">;</span>
+    <span class="n">s</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span
+                            class="mi">0</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">solve</span><span class="p">(</span><span class="n">s</span><span
+                            class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">o</span><span
+                            class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">T</span><span class="p">;</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span
+                            class="p">,</span> <span class="o">&amp;</span><span class="n">T</span><span
+                            class="p">);</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">T</span><span class="o">--</span><span
+                            class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Circle3D</span> <span class="n">o</span><span class="p">;</span>
+        <span class="n">Point3D</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span
+                            class="p">;</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lf%lf%lf%lf&quot;</span><span
+                            class="p">,</span> <span class="o">&amp;</span><span class="n">o</span><span
+                            class="p">.</span><span class="n">o</span><span class="p">.</span><span
+                            class="n">x</span><span class="p">,</span> <span class="o">&amp;</span><span
+                            class="n">o</span><span class="p">.</span><span class="n">o</span><span
+                            class="p">.</span><span class="n">y</span><span class="p">,</span> <span
+                            class="o">&amp;</span><span class="n">o</span><span class="p">.</span><span
+                            class="n">o</span><span class="p">.</span><span class="n">z</span><span
+                            class="p">,</span><span class="o">&amp;</span><span class="n">o</span><span
+                            class="p">.</span><span class="n">r</span><span class="p">);</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lf%lf%lf&quot;</span><span class="p">,</span> <span
+                            class="o">&amp;</span><span class="n">s</span><span class="p">.</span><span
+                            class="n">x</span><span class="p">,</span> <span class="o">&amp;</span><span
+                            class="n">s</span><span class="p">.</span><span class="n">y</span><span
+                            class="p">,</span> <span class="o">&amp;</span><span class="n">s</span><span
+                            class="p">.</span><span class="n">z</span><span class="p">);</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lf%lf%lf&quot;</span><span class="p">,</span> <span
+                            class="o">&amp;</span><span class="n">t</span><span class="p">.</span><span
+                            class="n">x</span><span class="p">,</span> <span class="o">&amp;</span><span
+                            class="n">t</span><span class="p">.</span><span class="n">y</span><span
+                            class="p">,</span> <span class="o">&amp;</span><span class="n">t</span><span
+                            class="p">.</span><span class="n">z</span><span class="p">);</span>
+        <span class="kt">double</span> <span class="n">a</span> <span class="o">=</span> <span class="n">dis</span><span
+                            class="p">(</span><span class="n">s</span><span class="p">,</span> <span
+                            class="n">t</span><span class="p">);</span>
+        <span class="kt">double</span> <span class="n">b</span> <span class="o">=</span> <span class="n">dis</span><span
+                            class="p">(</span><span class="n">s</span><span class="p">,</span> <span
+                            class="n">o</span><span class="p">.</span><span class="n">o</span><span class="p">);</span>
+        <span class="kt">double</span> <span class="n">c</span> <span class="o">=</span> <span class="n">dis</span><span
+                            class="p">(</span><span class="n">t</span><span class="p">,</span> <span
+                            class="n">o</span><span class="p">.</span><span class="n">o</span><span class="p">);</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">fabs</span><span class="p">(</span><span
+                            class="n">a</span><span class="p">)</span><span class="o">&lt;</span><span
+                            class="n">eps</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;0.0000000000</span><span
+                            class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%.8lf</span><span
+                            class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">solve</span><span
+                            class="p">(</span><span class="n">a</span><span class="p">,</span><span
+                            class="n">b</span><span class="p">,</span><span class="n">c</span><span
+                            class="p">,</span><span class="n">o</span><span class="p">.</span><span
+                            class="n">r</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+
+            </div>
+            <script type="text/javascript" src="/ACM/js/code_end.js"></script>
+
+
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+
+

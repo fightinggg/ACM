@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e505d993-0813-4b95-9e39-e1a7b5c097cb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/problem/thinging/ACM-ICPC北京赛区2018-D-Frog and Portal.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/problem/computational_geonetry/about_sqrt_and_acos.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/problem/computational_geonetry/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/problem/thinging/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/problem/thinging/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/problem/thinging/ACM-ICPC北京赛区2018-D-Frog_and_Portal.html" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
+            <state relative-caret-position="247">
+              <caret line="24" selection-start-line="24" selection-end-line="24" />
             </state>
           </provider>
         </entry>
@@ -30,88 +30,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/problem/thinging/ACM-ICPC北京赛区2018-D-Frog and Portal.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="20" column="87" selection-start-line="20" selection-start-column="87" selection-end-line="20" selection-end-column="87" />
+            <state relative-caret-position="240">
+              <caret line="16" lean-forward="true" selection-end-line="134" />
               <folding>
                 <element signature="e#734#740#0" expanded="true" />
-                <element signature="e#741#747#0" expanded="true" />
-                <element signature="e#748#754#0" expanded="true" />
-                <element signature="e#755#761#0" expanded="true" />
-                <element signature="e#1029#1035#0" expanded="true" />
-                <element signature="e#1036#1042#0" expanded="true" />
-                <element signature="e#1043#1049#0" expanded="true" />
-                <element signature="e#1050#1056#0" expanded="true" />
                 <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
                 <element signature="e#1356#1362#0" expanded="true" />
-                <element signature="e#1363#1369#0" expanded="true" />
-                <element signature="e#1370#1376#0" expanded="true" />
-                <element signature="e#1377#1383#0" expanded="true" />
-                <element signature="e#1527#1533#0" expanded="true" />
-                <element signature="e#1534#1540#0" expanded="true" />
-                <element signature="e#1541#1547#0" expanded="true" />
-                <element signature="e#1548#1554#0" expanded="true" />
-                <element signature="e#1622#1628#0" expanded="true" />
-                <element signature="e#1629#1635#0" expanded="true" />
-                <element signature="e#1636#1642#0" expanded="true" />
-                <element signature="e#1643#1649#0" expanded="true" />
                 <element signature="e#1790#1796#0" expanded="true" />
-                <element signature="e#1797#1803#0" expanded="true" />
-                <element signature="e#1804#1810#0" expanded="true" />
-                <element signature="e#1811#1817#0" expanded="true" />
-                <element signature="e#1926#1932#0" expanded="true" />
-                <element signature="e#1933#1939#0" expanded="true" />
-                <element signature="e#1940#1946#0" expanded="true" />
-                <element signature="e#1947#1953#0" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#2127#2133#0" expanded="true" />
-                <element signature="e#2134#2140#0" expanded="true" />
-                <element signature="e#2141#2147#0" expanded="true" />
-                <element signature="e#2148#2154#0" expanded="true" />
-                <element signature="e#2234#2240#0" expanded="true" />
-                <element signature="e#2241#2247#0" expanded="true" />
-                <element signature="e#2248#2254#0" expanded="true" />
-                <element signature="e#2255#2261#0" expanded="true" />
-                <element signature="e#2329#2335#0" expanded="true" />
-                <element signature="e#2336#2342#0" expanded="true" />
-                <element signature="e#2343#2349#0" expanded="true" />
-                <element signature="e#2350#2356#0" expanded="true" />
-                <element signature="e#2402#2408#0" expanded="true" />
-                <element signature="e#2409#2415#0" expanded="true" />
-                <element signature="e#2416#2422#0" expanded="true" />
-                <element signature="e#2423#2429#0" expanded="true" />
                 <element signature="n#style#0;n#span#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#3;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#3;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#5;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="e#2677#2683#0" expanded="true" />
-                <element signature="e#2684#2690#0" expanded="true" />
-                <element signature="e#2691#2697#0" expanded="true" />
-                <element signature="e#2698#2704#0" expanded="true" />
                 <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="e#3126#3130#0" expanded="true" />
-                <element signature="e#3143#3147#0" expanded="true" />
-                <element signature="e#3502#3508#0" expanded="true" />
-                <element signature="e#3562#3568#1" expanded="true" />
-                <element signature="e#3822#3828#0" expanded="true" />
-                <element signature="e#3882#3888#1" expanded="true" />
-                <element signature="e#4378#4384#0" expanded="true" />
-                <element signature="e#4438#4444#1" expanded="true" />
-                <element signature="e#4744#4750#0" expanded="true" />
-                <element signature="e#4804#4810#1" expanded="true" />
-                <element signature="e#5374#5380#0" expanded="true" />
-                <element signature="e#5382#5388#0" expanded="true" />
-                <element signature="e#5435#5440#1" expanded="true" />
-                <element signature="e#5575#5581#0" expanded="true" />
-                <element signature="e#5632#5638#1" expanded="true" />
-                <element signature="e#5894#5898#1" expanded="true" />
-                <element signature="e#6131#6136#1" expanded="true" />
-                <element signature="e#6208#6212#0" expanded="true" />
-                <element signature="e#6212#6216#0" expanded="true" />
-                <element signature="e#6862#6868#0" expanded="true" />
-                <element signature="e#6924#6930#1" expanded="true" />
-                <element signature="e#7040#7046#0" expanded="true" />
-                <element signature="e#7102#7108#1" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -120,62 +51,81 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/problem/thinging/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="240">
+              <caret line="16" column="18" selection-end-line="53" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="uml://JavaScript-modules-diagram//Users/s/Documents/GitHub/ACM/problem/thinging/ACM-ICPC北京赛区2018-D-Frog and Portal.html">
-          <provider selected="true" editor-type-id="UmlEditorProvider">
-            <state>
-              <ID>JavaScript-modules-diagram</ID>
-              <OriginalElement>$PROJECT_DIR$/problem/thinging/ACM-ICPC北京赛区2018-D-Frog and Portal.html</OriginalElement>
-              <nodes>
-                <node x="31.0" y="216.0">$PROJECT_DIR$/problem/thinging/ACM-ICPC北京赛区2018-D-Frog and Portal.html</node>
-                <node x="175.0" y="0.0">/ACM/js/code_begin.js</node>
-                <node x="0.0" y="116.0">/ACM/js/code_end.js</node>
-                <node x="378.0" y="146.0">/ACM/js/link.js</node>
-                <node x="2.0" y="306.0">/ACM/js/solve_begin.js</node>
-                <node x="158.0" y="407.0">/ACM/js/solve_end.js</node>
-                <node x="311.0" y="364.0">/ACM/js/up_and_right.js</node>
-              </nodes>
-              <notes />
-              <edges>
-                <edge source="$PROJECT_DIR$/problem/thinging/ACM-ICPC北京赛区2018-D-Frog and Portal.html" target="/ACM/js/link.js">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="$PROJECT_DIR$/problem/thinging/ACM-ICPC北京赛区2018-D-Frog and Portal.html" target="/ACM/js/solve_begin.js">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="$PROJECT_DIR$/problem/thinging/ACM-ICPC北京赛区2018-D-Frog and Portal.html" target="/ACM/js/code_end.js">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="$PROJECT_DIR$/problem/thinging/ACM-ICPC北京赛区2018-D-Frog and Portal.html" target="/ACM/js/solve_end.js">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="$PROJECT_DIR$/problem/thinging/ACM-ICPC北京赛区2018-D-Frog and Portal.html" target="/ACM/js/up_and_right.js">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="$PROJECT_DIR$/problem/thinging/ACM-ICPC北京赛区2018-D-Frog and Portal.html" target="/ACM/js/code_begin.js">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-              </edges>
-              <settings layout="Hierarchic Group" zoom="1.0" x="-90.0" y="148.0" />
-              <SelectedNodes>
-                <node>/ACM/js/up_and_right.js</node>
-              </SelectedNodes>
-              <Categories>
-                <Category>All</Category>
-              </Categories>
-              <VISIBILITY>Details</VISIBILITY>
+        <entry file="file://$PROJECT_DIR$/problem/computational_geonetry/about_sqrt_and_acos.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="77">
+              <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
+              <folding>
+                <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="e#1099#1103#0" expanded="true" />
+                <element signature="e#1116#1120#0" expanded="true" />
+                <element signature="e#2091#2095#1" expanded="true" />
+                <element signature="e#2353#2357#0" expanded="true" />
+                <element signature="e#2964#2968#1" expanded="true" />
+                <element signature="e#13076#13080#1" expanded="true" />
+                <element signature="e#13177#13182#0" expanded="true" />
+                <element signature="e#13182#13187#0" expanded="true" />
+                <element signature="e#13241#13245#1" expanded="true" />
+                <element signature="e#13342#13347#0" expanded="true" />
+                <element signature="e#13347#13352#0" expanded="true" />
+                <element signature="e#13399#13403#1" expanded="true" />
+                <element signature="e#19352#19356#1" expanded="true" />
+                <element signature="e#19453#19458#0" expanded="true" />
+                <element signature="e#19458#19463#0" expanded="true" />
+                <element signature="e#19517#19521#1" expanded="true" />
+                <element signature="e#19618#19623#0" expanded="true" />
+                <element signature="e#19623#19628#0" expanded="true" />
+                <element signature="e#19675#19679#1" expanded="true" />
+                <element signature="e#25025#25031#0" expanded="true" />
+                <element signature="e#25033#25039#0" expanded="true" />
+                <element signature="e#25087#25092#1" expanded="true" />
+                <element signature="e#25611#25617#0" expanded="true" />
+                <element signature="e#25629#25635#0" expanded="true" />
+                <element signature="e#25683#25688#1" expanded="true" />
+                <element signature="e#25856#25861#1" expanded="true" />
+                <element signature="e#26029#26034#1" expanded="true" />
+                <element signature="e#26201#26206#1" expanded="true" />
+                <element signature="e#26387#26393#0" expanded="true" />
+                <element signature="e#26402#26408#0" expanded="true" />
+                <element signature="e#26456#26461#1" expanded="true" />
+                <element signature="e#26581#26586#1" expanded="true" />
+                <element signature="e#26706#26711#1" expanded="true" />
+                <element signature="e#26892#26898#0" expanded="true" />
+                <element signature="e#26907#26913#0" expanded="true" />
+                <element signature="e#26961#26966#1" expanded="true" />
+                <element signature="e#27086#27091#1" expanded="true" />
+                <element signature="e#27211#27216#1" expanded="true" />
+                <element signature="e#28304#28308#1" expanded="true" />
+                <element signature="e#28480#28486#0" expanded="true" />
+                <element signature="e#28547#28553#1" expanded="true" />
+                <element signature="e#28769#28775#0" expanded="true" />
+                <element signature="e#28829#28835#1" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/problem/computational_geonetry/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="280">
+              <caret line="23" column="80" selection-start-line="23" selection-start-column="80" selection-end-line="23" selection-end-column="80" />
+              <folding>
+                <element signature="e#665#671#0" expanded="true" />
+                <element signature="e#671#677#0" expanded="true" />
+                <element signature="e#677#683#0" expanded="true" />
+                <element signature="e#683#689#0" expanded="true" />
+                <element signature="e#689#695#0" expanded="true" />
+                <element signature="e#695#701#0" expanded="true" />
+                <element signature="e#701#707#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -183,7 +133,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/problem/thinging/dfs_enumeration_partition.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
+            <state relative-caret-position="345">
               <caret line="23" column="12" selection-end-line="97" />
             </state>
           </provider>
@@ -252,6 +202,8 @@
         <option value="$PROJECT_DIR$/problem/thinging/ACM-ICPC北京赛区2018-D-Frog and Portal.html" />
         <option value="$PROJECT_DIR$/problem/thinging/index.html" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/problem/computational_geonetry/about_sqrt_and_acos.html" />
+        <option value="$PROJECT_DIR$/problem/computational_geonetry/index.html" />
       </list>
     </option>
   </component>
@@ -269,7 +221,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -286,12 +237,19 @@
               <item name="ACM" type="b2602c69:ProjectViewProjectNode" />
               <item name="ACM" type="462c0819:PsiDirectoryNode" />
               <item name="problem" type="462c0819:PsiDirectoryNode" />
+              <item name="computational_geonetry" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ACM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ACM" type="462c0819:PsiDirectoryNode" />
+              <item name="problem" type="462c0819:PsiDirectoryNode" />
               <item name="thinging" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -320,8 +278,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html">
+  <component name="RunManager" selected="JavaScript Debug.index.html (3)">
     <configuration name="ACM-ICPC北京赛区2018-D-Frog and Portal.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/ACM/problem/thinging/ACM-ICPC北京赛区2018-D-Frog and Portal.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="about_sqrt_and_acos.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/problem/computational_geonetry/about_sqrt_and_acos.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="bzoj2124.html" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:63342/ACM/problem/data_struct/bzoj2124.html" useBuiltInWebServerPort="true">
@@ -336,6 +297,9 @@
     <configuration name="index.html (2)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/ACM/problem/thinging/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
+    <configuration name="index.html (3)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/problem/computational_geonetry/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="index.html" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:63342/ACM/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -344,6 +308,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.index.html (3)" />
+        <item itemvalue="JavaScript Debug.about_sqrt_and_acos.html" />
         <item itemvalue="JavaScript Debug.index.html (2)" />
         <item itemvalue="JavaScript Debug.ACM-ICPC北京赛区2018-D-Frog and Portal.html" />
         <item itemvalue="JavaScript Debug.cf_edu_60d.html" />
@@ -372,12 +338,13 @@
       <workItem from="1551106495038" duration="43000" />
       <workItem from="1551618351384" duration="556000" />
       <workItem from="1551619248341" duration="77000" />
-      <workItem from="1551678801305" duration="3369000" />
+      <workItem from="1551678801305" duration="3778000" />
+      <workItem from="1551750737638" duration="828000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10448000" />
+    <option name="totallyTimeSpent" value="11685000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="6" y="56" width="1400" height="763" extended-state="0" />
@@ -476,40 +443,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/up_and_right.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="72" selection-start-line="8" selection-start-column="72" selection-end-line="8" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/problem/dp/cf_edu_60d.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="77" selection-start-line="20" selection-start-column="77" selection-end-line="20" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/problem/dp/hdu5745.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/problem/dp/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/problem/thinging/dfs_enumeration_partition.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="23" column="12" selection-end-line="97" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/new_file.html" />
+    <entry file="file://$PROJECT_DIR$/problem/thinging/ACM-ICPC北京赛区2018-D-Frog_and_Portal.html" />
+    <entry file="file://$PROJECT_DIR$/problem/thinging/hdu5738.html">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="uml://JavaScript-modules-diagram//Users/s/Documents/GitHub/ACM/problem/thinging/ACM-ICPC北京赛区2018-D-Frog and Portal.html">
       <provider selected="true" editor-type-id="UmlEditorProvider">
@@ -552,7 +489,7 @@
               <point x="0.0" y="0.0" />
             </edge>
           </edges>
-          <settings layout="Hierarchic Group" zoom="1.0" x="-90.0" y="148.0" />
+          <settings layout="Hierarchic Group" zoom="1.0" x="213.5" y="218.0" />
           <SelectedNodes>
             <node>/ACM/js/up_and_right.js</node>
           </SelectedNodes>
@@ -563,112 +500,140 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/new_file.html">
+    <entry file="file://$PROJECT_DIR$/problem/thinging/dfs_enumeration_partition.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="12" selection-start-line="21" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+        <state relative-caret-position="345">
+          <caret line="23" column="12" selection-end-line="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/up_and_right.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="72" selection-start-line="8" selection-start-column="72" selection-end-line="8" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/problem/dp/cf_edu_60d.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="77" selection-start-line="20" selection-start-column="77" selection-end-line="20" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/problem/dp/hdu5745.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/problem/dp/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/problem/thinging/ACM-ICPC北京赛区2018-D-Frog and Portal.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="20" column="87" selection-start-line="20" selection-start-column="87" selection-end-line="20" selection-end-column="87" />
+        <state relative-caret-position="240">
+          <caret line="16" lean-forward="true" selection-end-line="134" />
           <folding>
             <element signature="e#734#740#0" expanded="true" />
-            <element signature="e#741#747#0" expanded="true" />
-            <element signature="e#748#754#0" expanded="true" />
-            <element signature="e#755#761#0" expanded="true" />
-            <element signature="e#1029#1035#0" expanded="true" />
-            <element signature="e#1036#1042#0" expanded="true" />
-            <element signature="e#1043#1049#0" expanded="true" />
-            <element signature="e#1050#1056#0" expanded="true" />
             <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
             <element signature="e#1356#1362#0" expanded="true" />
-            <element signature="e#1363#1369#0" expanded="true" />
-            <element signature="e#1370#1376#0" expanded="true" />
-            <element signature="e#1377#1383#0" expanded="true" />
-            <element signature="e#1527#1533#0" expanded="true" />
-            <element signature="e#1534#1540#0" expanded="true" />
-            <element signature="e#1541#1547#0" expanded="true" />
-            <element signature="e#1548#1554#0" expanded="true" />
-            <element signature="e#1622#1628#0" expanded="true" />
-            <element signature="e#1629#1635#0" expanded="true" />
-            <element signature="e#1636#1642#0" expanded="true" />
-            <element signature="e#1643#1649#0" expanded="true" />
             <element signature="e#1790#1796#0" expanded="true" />
-            <element signature="e#1797#1803#0" expanded="true" />
-            <element signature="e#1804#1810#0" expanded="true" />
-            <element signature="e#1811#1817#0" expanded="true" />
-            <element signature="e#1926#1932#0" expanded="true" />
-            <element signature="e#1933#1939#0" expanded="true" />
-            <element signature="e#1940#1946#0" expanded="true" />
-            <element signature="e#1947#1953#0" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#2127#2133#0" expanded="true" />
-            <element signature="e#2134#2140#0" expanded="true" />
-            <element signature="e#2141#2147#0" expanded="true" />
-            <element signature="e#2148#2154#0" expanded="true" />
-            <element signature="e#2234#2240#0" expanded="true" />
-            <element signature="e#2241#2247#0" expanded="true" />
-            <element signature="e#2248#2254#0" expanded="true" />
-            <element signature="e#2255#2261#0" expanded="true" />
-            <element signature="e#2329#2335#0" expanded="true" />
-            <element signature="e#2336#2342#0" expanded="true" />
-            <element signature="e#2343#2349#0" expanded="true" />
-            <element signature="e#2350#2356#0" expanded="true" />
-            <element signature="e#2402#2408#0" expanded="true" />
-            <element signature="e#2409#2415#0" expanded="true" />
-            <element signature="e#2416#2422#0" expanded="true" />
-            <element signature="e#2423#2429#0" expanded="true" />
             <element signature="n#style#0;n#span#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#3;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#3;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#5;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="e#2677#2683#0" expanded="true" />
-            <element signature="e#2684#2690#0" expanded="true" />
-            <element signature="e#2691#2697#0" expanded="true" />
-            <element signature="e#2698#2704#0" expanded="true" />
             <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="e#3126#3130#0" expanded="true" />
-            <element signature="e#3143#3147#0" expanded="true" />
-            <element signature="e#3502#3508#0" expanded="true" />
-            <element signature="e#3562#3568#1" expanded="true" />
-            <element signature="e#3822#3828#0" expanded="true" />
-            <element signature="e#3882#3888#1" expanded="true" />
-            <element signature="e#4378#4384#0" expanded="true" />
-            <element signature="e#4438#4444#1" expanded="true" />
-            <element signature="e#4744#4750#0" expanded="true" />
-            <element signature="e#4804#4810#1" expanded="true" />
-            <element signature="e#5374#5380#0" expanded="true" />
-            <element signature="e#5382#5388#0" expanded="true" />
-            <element signature="e#5435#5440#1" expanded="true" />
-            <element signature="e#5575#5581#0" expanded="true" />
-            <element signature="e#5632#5638#1" expanded="true" />
-            <element signature="e#5894#5898#1" expanded="true" />
-            <element signature="e#6131#6136#1" expanded="true" />
-            <element signature="e#6208#6212#0" expanded="true" />
-            <element signature="e#6212#6216#0" expanded="true" />
-            <element signature="e#6862#6868#0" expanded="true" />
-            <element signature="e#6924#6930#1" expanded="true" />
-            <element signature="e#7040#7046#0" expanded="true" />
-            <element signature="e#7102#7108#1" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/problem/thinging/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="240">
+          <caret line="16" column="18" selection-end-line="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/problem/computational_geonetry/about_sqrt_and_acos.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
+        <state relative-caret-position="77">
+          <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
+          <folding>
+            <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="e#1099#1103#0" expanded="true" />
+            <element signature="e#1116#1120#0" expanded="true" />
+            <element signature="e#2091#2095#1" expanded="true" />
+            <element signature="e#2353#2357#0" expanded="true" />
+            <element signature="e#2964#2968#1" expanded="true" />
+            <element signature="e#13076#13080#1" expanded="true" />
+            <element signature="e#13177#13182#0" expanded="true" />
+            <element signature="e#13182#13187#0" expanded="true" />
+            <element signature="e#13241#13245#1" expanded="true" />
+            <element signature="e#13342#13347#0" expanded="true" />
+            <element signature="e#13347#13352#0" expanded="true" />
+            <element signature="e#13399#13403#1" expanded="true" />
+            <element signature="e#19352#19356#1" expanded="true" />
+            <element signature="e#19453#19458#0" expanded="true" />
+            <element signature="e#19458#19463#0" expanded="true" />
+            <element signature="e#19517#19521#1" expanded="true" />
+            <element signature="e#19618#19623#0" expanded="true" />
+            <element signature="e#19623#19628#0" expanded="true" />
+            <element signature="e#19675#19679#1" expanded="true" />
+            <element signature="e#25025#25031#0" expanded="true" />
+            <element signature="e#25033#25039#0" expanded="true" />
+            <element signature="e#25087#25092#1" expanded="true" />
+            <element signature="e#25611#25617#0" expanded="true" />
+            <element signature="e#25629#25635#0" expanded="true" />
+            <element signature="e#25683#25688#1" expanded="true" />
+            <element signature="e#25856#25861#1" expanded="true" />
+            <element signature="e#26029#26034#1" expanded="true" />
+            <element signature="e#26201#26206#1" expanded="true" />
+            <element signature="e#26387#26393#0" expanded="true" />
+            <element signature="e#26402#26408#0" expanded="true" />
+            <element signature="e#26456#26461#1" expanded="true" />
+            <element signature="e#26581#26586#1" expanded="true" />
+            <element signature="e#26706#26711#1" expanded="true" />
+            <element signature="e#26892#26898#0" expanded="true" />
+            <element signature="e#26907#26913#0" expanded="true" />
+            <element signature="e#26961#26966#1" expanded="true" />
+            <element signature="e#27086#27091#1" expanded="true" />
+            <element signature="e#27211#27216#1" expanded="true" />
+            <element signature="e#28304#28308#1" expanded="true" />
+            <element signature="e#28480#28486#0" expanded="true" />
+            <element signature="e#28547#28553#1" expanded="true" />
+            <element signature="e#28769#28775#0" expanded="true" />
+            <element signature="e#28829#28835#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/problem/computational_geonetry/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="23" column="80" selection-start-line="23" selection-start-column="80" selection-end-line="23" selection-end-column="80" />
+          <folding>
+            <element signature="e#665#671#0" expanded="true" />
+            <element signature="e#671#677#0" expanded="true" />
+            <element signature="e#677#683#0" expanded="true" />
+            <element signature="e#683#689#0" expanded="true" />
+            <element signature="e#689#695#0" expanded="true" />
+            <element signature="e#695#701#0" expanded="true" />
+            <element signature="e#701#707#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
