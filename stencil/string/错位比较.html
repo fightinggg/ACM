@@ -1,47 +1,37 @@
 <!DOCTYPE html>
 <html>
- 
+
 <head>
-   <meta charset="utf-8">
-	<script type="text/javascript" src="/ACM/js/link.js"></script>
-	<title>错位比较</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>错位比较</title>
 </head>
-
-<body>
-	<div id = "myweb">
-		
-<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
-<script type="text/javascript" src="/ACM/js/up_and_right.js"></script>
-<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
-		     
-    		     		<div id="left"><div id="left_in">
-     			<center><h1>错位比较</h1></center>
-     			<div id="text"></div>
-     			<div id="code">
-     				
-	
-<div class="normal_href">
-<a href="http://codeforces.com/contest/1043/problem/B"target="_blank" >
-	codeforces 1043B</a>
-</div>
-</br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-本质上让你求一个字符串可能的循环节，题目的第二个样例可以看作求序列
-1，2，2，1，2，的循环节显然可以是3或5，	于是算法出来了，我们只要求
-出最小的循环节就可以了，最小的循环节怎么来求呢，我们hash预处理原字
-符串以便后面O1查询区间hash值，对于字符串s如下图，我们对原字符串复
-制一份，错位比较红色竖线之间的子串，如果相等，意味着什么
-读者可以自行思考，于是我们已经找到了On的做法了，我们只要从小到大枚举
-蓝色区域即可
-</br>
-<img src="../img/字符串错位.jpg" style="height:100%;width:80%">
-</br>
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>错位比较</h1></center>
+    <div id="text"></div>
+    <div id="code">
 
 
-     			</div>
+        <div class="normal_href">
+            <a href="http://codeforces.com/contest/1043/problem/B" target="_blank">
+                codeforces 1043B</a>
+        </div>
+        </br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        本质上让你求一个字符串可能的循环节，题目的第二个样例可以看作求序列
+        1，2，2，1，2，的循环节显然可以是3或5， 于是算法出来了，我们只要求
+        出最小的循环节就可以了，最小的循环节怎么来求呢，我们hash预处理原字
+        符串以便后面O1查询区间hash值，对于字符串s如下图，我们对原字符串复
+        制一份，错位比较红色竖线之间的子串，如果相等，意味着什么
+        读者可以自行思考，于是我们已经找到了On的做法了，我们只要从小到大枚举
+        蓝色区域即可
+        </br>
+        <img src="../img/字符串错位.jpg" style="height:100%;width:80%">
+        </br>
 
-     		</div>
-     		
+
     </div>
-</body>
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
 </html>
 
