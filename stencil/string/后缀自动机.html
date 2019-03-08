@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>后缀自动机</title>
+</head>
+
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>后缀自动机</h1></center>
+    <hr>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后缀自动机是三个自动机里面最难的一个，难的地方不在与编码，在于他背后的
+    <span style="color:red">数学推导</span>，<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后缀自动机是建立在一颗后缀树上的，当然他不像AC自动机来源于KMP算法，不像回文自动机来源于
+    manacher算法一样,他并不是后缀数组算法的加强。<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一个字符串的后缀树肯定是非常庞大的，n个后缀，如果我们直接把它建立出来，那么空间复杂度和
+    时间复杂度无疑都是O(n^2),必须优化。<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们发现后缀树上的很多节点所代表的状态有某些共同点，毕竟他们都是同一个母串的后缀，
+    AC自动机所定义的节点代表的状态指的是:<span style="color:red">从根到此节点的路径连接成的字符串以及他的所有后缀。</span>而后缀自动机上
+    的节点所代表的状态指的是:<span style="color:red;"></spanst>
+
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>
