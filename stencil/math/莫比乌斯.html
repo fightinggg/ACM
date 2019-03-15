@@ -1,49 +1,73 @@
 <!DOCTYPE html>
 <html>
- 
+
 <head>
-   <meta charset="utf-8">
-	<script type="text/javascript" src="/ACM/js/link.js"></script>
-	<title>莫比乌斯</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>莫比乌斯</title>
 </head>
 
-<body>
-	<div id = "myweb">
-		
-<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
-<script type="text/javascript" src="/ACM/js/up_and_right.js"></script>
-<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
-		     
-     				     		<div id="left"><div id="left_in">
-     			<center><h1>莫比乌斯函数</h1></center>
-     			<div id="text"></div>
-     			<div id="code">
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+
+    <center><h1>莫比乌斯函数</h1></center>
+    <div id="text"></div>
+    <div id="code">
      				
 	<pre><span class="c1">//求单个值</span>
-<span class="n">ll</span> <span class="n">getmob</span><span class="p">(</span><span class="n">ll</span> <span class="n">a</span><span class="p">){</span>
-    <span class="n">ll</span> <span class="n">x</span><span class="o">=</span><span class="n">a</span><span class="p">,</span><span class="n">tmp</span><span class="o">=</span><span class="n">a</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">cnt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">now</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">j</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">j</span><span class="o">*</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">x</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+<span class="n">ll</span> <span class="n">getmob</span><span class="p">(</span><span class="n">ll</span> <span
+                class="n">a</span><span class="p">){</span>
+    <span class="n">ll</span> <span class="n">x</span><span class="o">=</span><span class="n">a</span><span
+                class="p">,</span><span class="n">tmp</span><span class="o">=</span><span class="n">a</span><span
+                class="p">;</span>
+    <span class="kt">int</span> <span class="n">cnt</span><span class="o">=</span><span class="mi">0</span><span
+                class="p">,</span><span class="n">now</span><span class="o">=</span><span class="mi">0</span><span
+                class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">j</span><span class="o">=</span><span
+                class="mi">2</span><span class="p">;</span><span class="n">j</span><span class="o">*</span><span
+                class="n">j</span><span class="o">&lt;=</span><span class="n">x</span><span class="p">;</span><span
+                class="n">j</span><span class="o">++</span><span class="p">){</span>
         <span class="n">now</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">%</span><span class="n">j</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
-            <span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="o">%</span><span class="n">j</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="n">now</span><span class="o">++</span><span class="p">,</span><span class="n">x</span><span class="o">/=</span><span class="n">j</span><span class="p">;</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">now</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">%</span><span
+                class="n">j</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="o">%</span><span
+                class="n">j</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span
+                class="n">now</span><span class="o">++</span><span class="p">,</span><span class="n">x</span><span
+                class="o">/=</span><span class="n">j</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">now</span><span class="o">&gt;</span><span
+                class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span
+                class="p">;</span>
             <span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
         <span class="p">}</span>
     <span class="p">}</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">!=</span><span class="mi">1</span><span class="p">)</span> <span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">cnt</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">)</span><span class="o">?-</span><span class="mi">1</span><span class="o">:</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">!=</span><span
+                class="mi">1</span><span class="p">)</span> <span class="n">cnt</span><span class="o">++</span><span
+                class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">cnt</span><span class="o">&amp;</span><span
+                class="mi">1</span><span class="p">)</span><span class="o">?-</span><span class="mi">1</span><span
+                class="o">:</span><span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="kt">int</span> <span class="n">getmu</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="kt">int</span> <span class="n">getmu</span><span class="p">(</span><span class="kt">int</span> <span
+                class="n">n</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">v</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
-     <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+    <span class="kt">int</span> <span class="n">v</span><span class="o">=</span><span class="mi">1</span><span
+                class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span
+                class="o">*</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span
+                class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+     <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span
+                class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
      <span class="p">{</span>
-        <span class="n">v</span><span class="o">=-</span><span class="n">v</span><span class="p">;</span><span class="n">n</span><span class="o">/=</span><span class="n">i</span><span class="p">;</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">v</span><span class="o">=-</span><span class="n">v</span><span class="p">;</span><span
+                class="n">n</span><span class="o">/=</span><span class="n">i</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span
+                class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span
+                class="k">return</span> <span class="mi">0</span><span class="p">;</span>
      <span class="p">}</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">!=</span><span class="mi">1</span><span class="p">)</span><span class="n">v</span><span class="o">=-</span><span class="n">v</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">!=</span><span
+                class="mi">1</span><span class="p">)</span><span class="n">v</span><span class="o">=-</span><span
+                class="n">v</span><span class="p">;</span>
     <span class="k">return</span> <span class="n">v</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -51,27 +75,60 @@
 <span class="c1">//最大可用范围[1,maxn),实际使用[1,maxn);</span>
 <span class="c1">//初始化要求vis,mu至0,maxn</span>
 <span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span><span class="p">;</span>
-<span class="kt">int</span> <span class="n">mu</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">sum</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">prime</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
-<span class="kt">bool</span> <span class="n">vis</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">mu</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span
+                class="n">sum</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span
+                class="n">prime</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+<span class="kt">bool</span> <span class="n">vis</span><span class="p">[</span><span class="n">maxn</span><span
+                class="p">];</span>
 <span class="kt">void</span> <span class="n">mobius_ini</span><span class="p">(){</span>
-    <span class="n">mu</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
-    <span class="n">prime</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">maxn</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">vis</span><span class="p">[</span><span class="n">i</span><span class="p">]){</span>
-            <span class="n">mu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
-            <span class="n">prime</span><span class="p">[</span><span class="o">++</span><span class="n">prime</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
+    <span class="n">mu</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span
+                class="o">=</span><span class="mi">1</span><span class="p">;</span>
+    <span class="n">prime</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span
+                class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span
+                class="o">&lt;</span><span class="n">maxn</span><span class="p">;</span><span class="n">i</span><span
+                class="o">++</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">vis</span><span
+                class="p">[</span><span class="n">i</span><span class="p">]){</span>
+            <span class="n">mu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
+                class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+            <span class="n">prime</span><span class="p">[</span><span class="o">++</span><span
+                class="n">prime</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span
+                class="o">=</span><span class="n">i</span><span class="p">;</span>
         <span class="p">}</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">prime</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&amp;&amp;</span><span class="n">i</span><span class="o">*</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">&lt;</span><span class="n">maxn</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
-            <span class="n">vis</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-                <span class="n">mu</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span><span class="o">=-</span><span class="n">mu</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span
+                class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span
+                class="o">&lt;=</span><span class="n">prime</span><span class="p">[</span><span class="mi">0</span><span
+                class="p">]</span><span class="o">&amp;&amp;</span><span class="n">i</span><span class="o">*</span><span
+                class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span
+                class="o">&lt;</span><span class="n">maxn</span><span class="p">;</span><span class="n">j</span><span
+                class="o">++</span><span class="p">){</span>
+            <span class="n">vis</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span
+                class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span><span
+                class="o">=</span><span class="kc">true</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">%</span><span
+                class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+                <span class="n">mu</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span
+                class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span><span
+                class="o">=-</span><span class="n">mu</span><span class="p">[</span><span class="n">i</span><span
+                class="p">];</span>
             <span class="k">else</span><span class="p">{</span>
-                <span class="n">mu</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+                <span class="n">mu</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span
+                class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span><span
+                class="o">=</span><span class="mi">0</span><span class="p">;</span>
                 <span class="k">break</span><span class="p">;</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">maxn</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">sum</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">sum</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">mu</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span
+                class="o">&lt;</span><span class="n">maxn</span><span class="p">;</span><span class="n">i</span><span
+                class="o">++</span><span class="p">)</span><span class="n">sum</span><span class="p">[</span><span
+                class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">sum</span><span
+                class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span
+                class="p">]</span><span class="o">+</span><span class="n">mu</span><span class="p">[</span><span
+                class="n">i</span><span class="p">];</span>
 <span class="p">}</span>
 <span class="cm">/*</span>
 <span class="cm">01: 1 02:-1 03:-1 04: 0 05:-1 06: 1 07:-1 08: 0 09: 0 10: 1 </span>
@@ -88,18 +145,8 @@
 </pre>
 
 
-
-
-
-     			</div>
-
-     		</div>
-     		
     </div>
-</body>
+
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
 </html>
-
-
-
-
-

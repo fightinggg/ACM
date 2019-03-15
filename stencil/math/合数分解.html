@@ -1,127 +1,217 @@
 <!DOCTYPE html>
 <html>
- 
+
 <head>
-  <meta charset="utf-8">
-	<script type="text/javascript" src="/ACM/js/link.js"></script>
-	<title>素因子分解</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>素因子分解</title>
 </head>
 
-<body>
-	<div id = "myweb">
-		
-<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
-<script type="text/javascript" src="/ACM/js/up_and_right.js"></script>
-<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
-		     
-     			     		<div id="left"><div id="left_in">
-     				<center><h1>素因子分解</h1></center>
-   
-     			
-     				<div id="text">
-     					<h1>大范围少调用</h1>
-     			</div>
-     			<div id="code">
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+
+
+    <center><h1>素因子分解</h1></center>
+
+
+    <div id="text">
+        <h1>大范围少调用</h1>
+    </div>
+    <div id="code">
      				<pre><span class="c1">//这个板子只能处理正数</span>
 <span class="c1">//预处理O（sqrt(n)），询问O（sqrt（n））</span>
 <span class="c1">//最大使用范围[1,MAXN),实际使用[1,MAXN);</span>
 <span class="c1">//调用find_ini() getfac（）</span>
-<span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
-<span class="k">const</span> <span class="n">ll</span> <span class="n">MAXN</span><span class="o">=</span><span class="mf">3e6</span><span class="o">+</span><span class="mi">5</span><span class="p">;</span>
-<span class="n">ll</span> <span class="n">prime</span><span class="p">[</span><span class="n">MAXN</span><span class="p">],</span><span class="n">prime_</span><span class="p">;</span>
-<span class="kt">bool</span> <span class="n">not_prime</span><span class="p">[</span><span class="n">MAXN</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="kc">true</span><span class="p">,</span><span class="kc">true</span><span class="p">};</span><span class="c1">//0,1</span>
+<span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span
+                                class="p">;</span>
+<span class="k">const</span> <span class="n">ll</span> <span class="n">MAXN</span><span class="o">=</span><span
+                                class="mf">3e6</span><span class="o">+</span><span class="mi">5</span><span
+                                class="p">;</span>
+<span class="n">ll</span> <span class="n">prime</span><span class="p">[</span><span class="n">MAXN</span><span
+                                class="p">],</span><span class="n">prime_</span><span class="p">;</span>
+<span class="kt">bool</span> <span class="n">not_prime</span><span class="p">[</span><span class="n">MAXN</span><span
+                                class="p">]</span><span class="o">=</span><span class="p">{</span><span
+                                class="kc">true</span><span class="p">,</span><span class="kc">true</span><span
+                                class="p">};</span><span class="c1">//0,1</span>
 
 <span class="kt">void</span> <span class="n">prime_ini</span><span class="p">(){</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">MAXN</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
-        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">not_prime</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="n">prime</span><span class="p">[</span><span class="n">prime_</span><span class="o">++</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="p">;</span><span class="c1">//把质数收录</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span
+                                class="mi">2</span><span class="p">;</span> <span class="n">i</span><span
+                                class="o">&lt;</span><span class="n">MAXN</span><span class="p">;</span> <span
+                                class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">not_prime</span><span
+                                class="p">[</span><span class="n">i</span><span class="p">])</span><span
+                                class="n">prime</span><span class="p">[</span><span class="n">prime_</span><span
+                                class="o">++</span><span class="p">]</span><span class="o">=</span><span
+                                class="n">i</span><span class="p">;</span><span class="c1">//把质数收录</span>
         
-        <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">prime_</span> <span class="o">&amp;&amp;</span> <span class="n">i</span><span class="o">*</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">&lt;</span><span class="n">MAXN</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">){</span>
-            <span class="n">not_prime</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span><span class="c1">//对每一个数字枚举他的最小因子</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="k">break</span><span class="p">;</span><span class="c1">//在往后的话就不是最小因子了</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">j</span><span
+                                class="o">=</span><span class="mi">0</span><span class="p">;</span> <span
+                                class="n">j</span><span class="o">&lt;</span><span class="n">prime_</span> <span
+                                class="o">&amp;&amp;</span> <span class="n">i</span><span class="o">*</span><span
+                                class="n">prime</span><span class="p">[</span><span class="n">j</span><span
+                                class="p">]</span><span class="o">&lt;</span><span class="n">MAXN</span><span class="p">;</span> <span
+                                class="n">j</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">not_prime</span><span class="p">[</span><span class="n">i</span><span
+                                class="o">*</span><span class="n">prime</span><span class="p">[</span><span
+                                class="n">j</span><span class="p">]]</span><span class="o">=</span><span
+                                class="kc">true</span><span class="p">;</span><span class="c1">//对每一个数字枚举他的最小因子</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">%</span><span
+                                class="n">prime</span><span class="p">[</span><span class="n">j</span><span
+                                class="p">]</span><span class="o">==</span><span class="mi">0</span><span
+                                class="p">)</span><span class="k">break</span><span class="p">;</span><span class="c1">//在往后的话就不是最小因子了</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="c1">//当x=0，1会异常，无意义的东西</span>
-<span class="n">ll</span> <span class="n">fac</span><span class="p">[</span><span class="mi">100</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span><span class="n">fac_</span><span class="p">;</span>
-<span class="kt">void</span> <span class="n">getfac</span><span class="p">(</span><span class="n">ll</span> <span class="n">x</span><span class="p">){</span>
-    <span class="n">fac_</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="c1">//清空fac</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">x</span><span class="o">/</span><span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">%</span><span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
-            <span class="n">fac</span><span class="p">[</span><span class="n">fac_</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-            <span class="n">fac</span><span class="p">[</span><span class="n">fac_</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-            <span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="o">%</span><span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
-                <span class="n">fac</span><span class="p">[</span><span class="n">fac_</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
-                <span class="n">x</span><span class="o">/=</span><span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="n">ll</span> <span class="n">fac</span><span class="p">[</span><span class="mi">100</span><span class="p">][</span><span
+                                class="mi">2</span><span class="p">],</span><span class="n">fac_</span><span
+                                class="p">;</span>
+<span class="kt">void</span> <span class="n">getfac</span><span class="p">(</span><span class="n">ll</span> <span
+                                class="n">x</span><span class="p">){</span>
+    <span class="n">fac_</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span
+                                class="c1">//清空fac</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span
+                                class="mi">0</span><span class="p">;</span> <span class="n">prime</span><span class="p">[</span><span
+                                class="n">i</span><span class="p">]</span><span class="o">&lt;=</span><span
+                                class="n">x</span><span class="o">/</span><span class="n">prime</span><span
+                                class="p">[</span><span class="n">i</span><span class="p">];</span> <span
+                                class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">%</span><span
+                                class="n">prime</span><span class="p">[</span><span class="n">i</span><span
+                                class="p">]</span><span class="o">==</span><span class="mi">0</span><span
+                                class="p">){</span>
+            <span class="n">fac</span><span class="p">[</span><span class="n">fac_</span><span class="p">][</span><span
+                                class="mi">0</span><span class="p">]</span><span class="o">=</span><span
+                                class="n">prime</span><span class="p">[</span><span class="n">i</span><span
+                                class="p">];</span>
+            <span class="n">fac</span><span class="p">[</span><span class="n">fac_</span><span class="p">][</span><span
+                                class="mi">1</span><span class="p">]</span><span class="o">=</span><span
+                                class="mi">0</span><span class="p">;</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="o">%</span><span
+                                class="n">prime</span><span class="p">[</span><span class="n">i</span><span
+                                class="p">]</span><span class="o">==</span><span class="mi">0</span><span
+                                class="p">){</span>
+                <span class="n">fac</span><span class="p">[</span><span class="n">fac_</span><span
+                                class="p">][</span><span class="mi">1</span><span class="p">]</span><span
+                                class="o">++</span><span class="p">;</span>
+                <span class="n">x</span><span class="o">/=</span><span class="n">prime</span><span
+                                class="p">[</span><span class="n">i</span><span class="p">];</span>
             <span class="p">}</span>
             <span class="n">fac_</span><span class="o">++</span><span class="p">;</span>
         <span class="p">}</span>
     <span class="p">}</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">!=</span><span class="mi">1</span><span class="p">){</span>
-        <span class="n">fac</span><span class="p">[</span><span class="n">fac_</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">x</span><span class="p">;</span>
-        <span class="n">fac</span><span class="p">[</span><span class="n">fac_</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">!=</span><span
+                                class="mi">1</span><span class="p">){</span>
+        <span class="n">fac</span><span class="p">[</span><span class="n">fac_</span><span class="p">][</span><span
+                                class="mi">0</span><span class="p">]</span><span class="o">=</span><span
+                                class="n">x</span><span class="p">;</span>
+        <span class="n">fac</span><span class="p">[</span><span class="n">fac_</span><span class="p">][</span><span
+                                class="mi">1</span><span class="p">]</span><span class="o">=</span><span
+                                class="mi">1</span><span class="p">;</span>
         <span class="n">fac_</span><span class="o">++</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 <span class="c1">//solved poj-1365</span>
 </pre>
-     			</div>
-     			
-     			
-     			
-     			
-     				<div id="text">
-     					<h1>小范围多调用</h1>
-     			</div>
-     			<div id="code">
+    </div>
+
+
+    <div id="text">
+        <h1>小范围多调用</h1>
+    </div>
+    <div id="code">
      				<pre><span class="c1">//这个板子只能处理正数</span>
 <span class="c1">//预处理O（n）合数分解O（lgn）</span>
 <span class="c1">//最大使用范围[1,MAXN),实际使用[1,MAXN);</span>
 <span class="c1">//调用find_ini() getfac（）</span>
-<span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
-<span class="k">const</span> <span class="n">ll</span> <span class="n">MAXN</span><span class="o">=</span><span class="mf">1e6</span><span class="o">+</span><span class="mi">5</span><span class="p">;</span>
-<span class="n">ll</span> <span class="n">prime</span><span class="p">[</span><span class="n">MAXN</span><span class="p">],</span><span class="n">prime_</span><span class="p">;</span>
-<span class="n">ll</span> <span class="n">min_fac</span><span class="p">[</span><span class="n">MAXN</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="o">-</span><span class="mi">9527</span><span class="p">,</span><span class="mi">1</span><span class="p">};</span><span class="c1">//0,1</span>
-<span class="kt">bool</span> <span class="n">not_prime</span><span class="p">[</span><span class="n">MAXN</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="kc">true</span><span class="p">,</span><span class="kc">true</span><span class="p">};</span><span class="c1">//0,1</span>
+<span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span
+                                class="p">;</span>
+<span class="k">const</span> <span class="n">ll</span> <span class="n">MAXN</span><span class="o">=</span><span
+                                class="mf">1e6</span><span class="o">+</span><span class="mi">5</span><span
+                                class="p">;</span>
+<span class="n">ll</span> <span class="n">prime</span><span class="p">[</span><span class="n">MAXN</span><span
+                                class="p">],</span><span class="n">prime_</span><span class="p">;</span>
+<span class="n">ll</span> <span class="n">min_fac</span><span class="p">[</span><span class="n">MAXN</span><span
+                                class="p">]</span><span class="o">=</span><span class="p">{</span><span
+                                class="o">-</span><span class="mi">9527</span><span class="p">,</span><span
+                                class="mi">1</span><span class="p">};</span><span class="c1">//0,1</span>
+<span class="kt">bool</span> <span class="n">not_prime</span><span class="p">[</span><span class="n">MAXN</span><span
+                                class="p">]</span><span class="o">=</span><span class="p">{</span><span
+                                class="kc">true</span><span class="p">,</span><span class="kc">true</span><span
+                                class="p">};</span><span class="c1">//0,1</span>
 
 <span class="kt">void</span> <span class="n">prime_ini</span><span class="p">(){</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">MAXN</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
-        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">not_prime</span><span class="p">[</span><span class="n">i</span><span class="p">]){</span>
-            <span class="n">prime</span><span class="p">[</span><span class="n">prime_</span><span class="o">++</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="p">;</span><span class="c1">//把质数收录</span>
-            <span class="n">min_fac</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span
+                                class="mi">2</span><span class="p">;</span> <span class="n">i</span><span
+                                class="o">&lt;</span><span class="n">MAXN</span><span class="p">;</span> <span
+                                class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">not_prime</span><span
+                                class="p">[</span><span class="n">i</span><span class="p">]){</span>
+            <span class="n">prime</span><span class="p">[</span><span class="n">prime_</span><span
+                                class="o">++</span><span class="p">]</span><span class="o">=</span><span
+                                class="n">i</span><span class="p">;</span><span class="c1">//把质数收录</span>
+            <span class="n">min_fac</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
+                                class="o">=</span><span class="n">i</span><span class="p">;</span>
         <span class="p">}</span>
         
-        <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">prime_</span> <span class="o">&amp;&amp;</span> <span class="n">i</span><span class="o">*</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">&lt;</span><span class="n">MAXN</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">){</span>
-            <span class="n">not_prime</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span><span class="c1">//对每一个数字枚举他的最小因子</span>
-            <span class="n">min_fac</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span><span class="o">=</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="k">break</span><span class="p">;</span><span class="c1">//在往后的话就不是最小因子了</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">j</span><span
+                                class="o">=</span><span class="mi">0</span><span class="p">;</span> <span
+                                class="n">j</span><span class="o">&lt;</span><span class="n">prime_</span> <span
+                                class="o">&amp;&amp;</span> <span class="n">i</span><span class="o">*</span><span
+                                class="n">prime</span><span class="p">[</span><span class="n">j</span><span
+                                class="p">]</span><span class="o">&lt;</span><span class="n">MAXN</span><span class="p">;</span> <span
+                                class="n">j</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">not_prime</span><span class="p">[</span><span class="n">i</span><span
+                                class="o">*</span><span class="n">prime</span><span class="p">[</span><span
+                                class="n">j</span><span class="p">]]</span><span class="o">=</span><span
+                                class="kc">true</span><span class="p">;</span><span class="c1">//对每一个数字枚举他的最小因子</span>
+            <span class="n">min_fac</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span
+                                class="n">prime</span><span class="p">[</span><span class="n">j</span><span
+                                class="p">]]</span><span class="o">=</span><span class="n">prime</span><span
+                                class="p">[</span><span class="n">j</span><span class="p">];</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">%</span><span
+                                class="n">prime</span><span class="p">[</span><span class="n">j</span><span
+                                class="p">]</span><span class="o">==</span><span class="mi">0</span><span
+                                class="p">)</span><span class="k">break</span><span class="p">;</span><span class="c1">//在往后的话就不是最小因子了</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="c1">//当x=0，1会异常，无意义的东西</span>
-<span class="n">ll</span> <span class="n">fac</span><span class="p">[</span><span class="mi">100</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span><span class="n">fac_</span><span class="p">;</span>
-<span class="kt">void</span> <span class="n">getfac</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">){</span>
+<span class="n">ll</span> <span class="n">fac</span><span class="p">[</span><span class="mi">100</span><span class="p">][</span><span
+                                class="mi">2</span><span class="p">],</span><span class="n">fac_</span><span
+                                class="p">;</span>
+<span class="kt">void</span> <span class="n">getfac</span><span class="p">(</span><span class="kt">int</span> <span
+                                class="n">x</span><span class="p">){</span>
     <span class="n">fac_</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-    <span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="o">!=</span><span class="mi">1</span><span class="p">){</span>
-        <span class="n">ll</span> <span class="n">little</span><span class="o">=</span><span class="n">min_fac</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
-        <span class="n">fac</span><span class="p">[</span><span class="n">fac_</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">little</span><span class="p">;</span>
-        <span class="n">fac</span><span class="p">[</span><span class="n">fac_</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-        <span class="k">while</span><span class="p">(</span><span class="n">little</span><span class="o">!=</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">min_fac</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">==</span><span class="n">little</span><span class="p">){</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="o">!=</span><span
+                                class="mi">1</span><span class="p">){</span>
+        <span class="n">ll</span> <span class="n">little</span><span class="o">=</span><span
+                                class="n">min_fac</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+        <span class="n">fac</span><span class="p">[</span><span class="n">fac_</span><span class="p">][</span><span
+                                class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">little</span><span
+                                class="p">;</span>
+        <span class="n">fac</span><span class="p">[</span><span class="n">fac_</span><span class="p">][</span><span
+                                class="mi">1</span><span class="p">]</span><span class="o">=</span><span
+                                class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">little</span><span class="o">!=</span><span
+                                class="mi">1</span> <span class="o">&amp;&amp;</span> <span
+                                class="n">min_fac</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span
+                                class="o">==</span><span class="n">little</span><span class="p">){</span>
             <span class="n">x</span><span class="o">/=</span><span class="n">little</span><span class="p">;</span>
-            <span class="n">fac</span><span class="p">[</span><span class="n">fac_</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+            <span class="n">fac</span><span class="p">[</span><span class="n">fac_</span><span class="p">][</span><span
+                                class="mi">1</span><span class="p">]</span><span class="o">++</span><span
+                                class="p">;</span>
         <span class="p">}</span>
         <span class="n">fac_</span><span class="o">++</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 <span class="c1">//solved poj-1365</span>
 </pre>
-     			</div>
-     			
-
-     		</div>
-     		
     </div>
-</body>
-</html>
 
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>

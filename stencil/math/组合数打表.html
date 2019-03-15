@@ -1,77 +1,130 @@
 <!DOCTYPE html>
 <html>
- 
+
 <head>
-   <meta charset="utf-8">
-	<script type="text/javascript" src="/ACM/js/link.js"></script>
-	<title>组合数打表</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>组合数打表</title>
 </head>
 
-<body>
-	<div id = "myweb">
-		
-<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
-<script type="text/javascript" src="/ACM/js/up_and_right.js"></script>
-<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
-		     
-     			     		<div id="left"><div id="left_in">
-     				<center><h1>组合数打表</h1></center>
-     			<div id="text">
-     				<h1>阶乘逆元</h1>
-     			</div>
-     			<div id="code">
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>组合数打表</h1></center>
+    <div id="text">
+        <h1>阶乘逆元</h1>
+    </div>
+    <div id="code">
      				
 	
 	<pre><span class="cp">#define ll long long</span>
-<span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span><span class="o">=</span><span class="mf">1e5</span><span class="p">;</span>
-<span class="k">const</span> <span class="kt">int</span> <span class="n">mod</span><span class="o">=</span><span class="mf">1e9</span><span class="o">+</span><span class="mi">7</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span><span class="o">=</span><span
+                class="mf">1e5</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">mod</span><span class="o">=</span><span
+                class="mf">1e9</span><span class="o">+</span><span class="mi">7</span><span class="p">;</span>
 
 <span class="n">ll</span> <span class="n">fac</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
 <span class="n">ll</span> <span class="n">inv</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
 <span class="kt">void</span> <span class="n">inv_ini</span><span class="p">()</span>
 <span class="p">{</span>
-    <span class="n">fac</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">maxn</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">fac</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span
+                class="o">=</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span
+                class="o">&lt;</span><span class="n">maxn</span><span class="p">;</span> <span class="n">i</span><span
+                class="o">++</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="n">fac</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">fac</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">i</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+        <span class="n">fac</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
+                class="o">=</span><span class="n">fac</span><span class="p">[</span><span class="n">i</span><span
+                class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span
+                class="n">i</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="n">inv</span><span class="p">[</span><span class="n">maxn</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">qpow</span><span class="p">(</span><span class="n">fac</span><span class="p">[</span><span class="n">maxn</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">mod</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="n">mod</span><span class="p">);</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">maxn</span><span class="o">-</span><span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span>
+    <span class="n">inv</span><span class="p">[</span><span class="n">maxn</span><span class="o">-</span><span
+                class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">qpow</span><span
+                class="p">(</span><span class="n">fac</span><span class="p">[</span><span class="n">maxn</span><span
+                class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">mod</span><span
+                class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="n">mod</span><span
+                class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                class="o">=</span><span class="n">maxn</span><span class="o">-</span><span class="mi">2</span><span
+                class="p">;</span> <span class="n">i</span><span class="o">&gt;=</span><span class="mi">0</span><span
+                class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="n">inv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">inv</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+        <span class="n">inv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
+                class="o">=</span><span class="n">inv</span><span class="p">[</span><span class="n">i</span><span
+                class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span
+                class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span
+                class="p">)</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre>
-  </br>  </br>  </br>
-  <h1>次数多，范围小，空间少</h1>
-<pre><span class="c1">// 预处理On，查询O1</span>
-<span class="n">ll</span> <span class="n">fac</span><span class="p">[</span><span class="n">maxn</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span><span class="n">inv</span><span class="p">[</span><span class="n">maxn</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span><span class="n">f</span><span class="p">[</span><span class="n">maxn</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">};</span>
-<span class="n">ll</span> <span class="n">c</span><span class="p">(</span><span class="n">ll</span> <span class="n">a</span><span class="p">,</span><span class="n">ll</span> <span class="n">b</span><span class="p">){</span><span class="c1">//c(1,2),c(4,8)</span>
-    <span class="k">return</span> <span class="n">fac</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">*</span><span class="n">inv</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">%</span><span class="n">mod</span><span class="o">*</span><span class="n">inv</span><span class="p">[</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">]</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+        </br>  </br>  </br>
+        <h1>次数多，范围小，空间少</h1>
+        <pre><span class="c1">// 预处理On，查询O1</span>
+<span class="n">ll</span> <span class="n">fac</span><span class="p">[</span><span class="n">maxn</span><span
+                    class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span
+                    class="p">,</span><span class="mi">1</span><span class="p">},</span><span class="n">inv</span><span
+                    class="p">[</span><span class="n">maxn</span><span class="p">]</span><span class="o">=</span><span
+                    class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span
+                    class="p">},</span><span class="n">f</span><span class="p">[</span><span class="n">maxn</span><span
+                    class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span
+                    class="p">,</span><span class="mi">1</span><span class="p">};</span>
+<span class="n">ll</span> <span class="n">c</span><span class="p">(</span><span class="n">ll</span> <span
+                    class="n">a</span><span class="p">,</span><span class="n">ll</span> <span class="n">b</span><span
+                    class="p">){</span><span class="c1">//c(1,2),c(4,8)</span>
+    <span class="k">return</span> <span class="n">fac</span><span class="p">[</span><span class="n">b</span><span
+                    class="p">]</span><span class="o">*</span><span class="n">inv</span><span class="p">[</span><span
+                    class="n">a</span><span class="p">]</span><span class="o">%</span><span class="n">mod</span><span
+                    class="o">*</span><span class="n">inv</span><span class="p">[</span><span class="n">b</span><span
+                    class="o">-</span><span class="n">a</span><span class="p">]</span><span class="o">%</span><span
+                    class="n">mod</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="kt">void</span> <span class="n">init</span><span class="p">(){</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">maxn</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-        <span class="n">fac</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">fac</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">i</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
-        <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">mod</span><span class="o">-</span><span class="n">mod</span><span class="o">/</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">[</span><span class="n">mod</span><span class="o">%</span><span class="n">i</span><span class="p">]</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
-        <span class="n">inv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">inv</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">&lt;</span><span class="n">maxn</span><span class="p">;</span><span
+                    class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">fac</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
+                    class="o">=</span><span class="n">fac</span><span class="p">[</span><span class="n">i</span><span
+                    class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span
+                    class="n">i</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span
+                    class="p">(</span><span class="n">mod</span><span class="o">-</span><span class="n">mod</span><span
+                    class="o">/</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span
+                    class="n">f</span><span class="p">[</span><span class="n">mod</span><span class="o">%</span><span
+                    class="n">i</span><span class="p">]</span><span class="o">%</span><span class="n">mod</span><span
+                    class="p">;</span>
+        <span class="n">inv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
+                    class="o">=</span><span class="n">inv</span><span class="p">[</span><span class="n">i</span><span
+                    class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span
+                    class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
+                    class="o">%</span><span class="n">mod</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-  </br>  </br>  </br>
-  <h1>次数少，代码少</h1>
+            </br>  </br>  </br>
+            <h1>次数少，代码少</h1>
 <span class="c1">// 查询On</span>
-<span class="n">ll</span> <span class="n">c</span><span class="p">(</span><span class="n">ll</span> <span class="n">m</span><span class="p">,</span><span class="n">ll</span> <span class="n">n</span><span class="p">){</span><span class="c1">//c(1,2),c(3,4)</span>
-    <span class="n">ll</span> <span class="n">ret</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">m</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">ret</span><span class="o">=</span><span class="n">ret</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">mod</span><span class="o">*</span><span class="n">qpow</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">mod</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+<span class="n">ll</span> <span class="n">c</span><span class="p">(</span><span class="n">ll</span> <span
+                    class="n">m</span><span class="p">,</span><span class="n">ll</span> <span class="n">n</span><span
+                    class="p">){</span><span class="c1">//c(1,2),c(3,4)</span>
+    <span class="n">ll</span> <span class="n">ret</span><span class="o">=</span><span class="mi">1</span><span
+                    class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">&lt;=</span><span class="n">m</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">++</span><span class="p">)</span><span class="n">ret</span><span class="o">=</span><span
+                    class="n">ret</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span
+                    class="o">-</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span
+                    class="p">)</span><span class="o">%</span><span class="n">mod</span><span class="o">*</span><span
+                    class="n">qpow</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span
+                    class="n">mod</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span
+                    class="o">%</span><span class="n">mod</span><span class="p">;</span>
     <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
 <span class="p">}</span>
 </pre>
 
 
-     			</div>
-
-     		</div>
-     		
     </div>
-</body>
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
 </html>

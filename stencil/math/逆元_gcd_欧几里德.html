@@ -1,24 +1,17 @@
-
 <!DOCTYPE html>
 <html>
- 
+
 <head>
-   <meta charset="utf-8">
-	<script type="text/javascript" src="/ACM/js/link.js"></script>
-	<title>gcd</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>gcd</title>
 </head>
 
-<body>
-	<div id = "myweb">
-		
-<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
-<script type="text/javascript" src="/ACM/js/up_and_right.js"></script>
-<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
-		     
-     				     		<div id="left"><div id="left_in">
-     			    			<center><h1>gcd逆元</h1></center>
-     			<div id="text"></div>
-     			<div id="code">
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>gcd逆元</h1></center>
+    <div id="text"></div>
+    <div id="code">
      				
 
 
@@ -28,25 +21,34 @@
 
 <span class="c1">//逆元表</span>
 <span class="c1">//预处理O(n)查询O(1)</span>
-<span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span><span class="o">=</span><span class="mf">1e7</span><span class="p">;</span>
-<span class="k">const</span> <span class="kt">int</span> <span class="n">mod</span><span class="o">=</span><span class="mf">1e9</span><span class="o">+</span><span class="mi">7</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span><span class="o">=</span><span
+                    class="mf">1e7</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">mod</span><span class="o">=</span><span
+                    class="mf">1e9</span><span class="o">+</span><span class="mi">7</span><span class="p">;</span>
 <span class="n">ll</span> <span class="n">inv</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
 <span class="kt">void</span> <span class="n">inv_ini</span><span class="p">()</span>
 <span class="p">{</span>
-    <span class="n">inv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">inv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">maxn</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-        <span class="n">inv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">mod</span> <span class="o">-</span> <span class="n">mod</span> <span class="o">/</span> <span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="n">inv</span><span class="p">[</span><span class="n">mod</span><span class="o">%</span><span class="n">i</span><span class="p">]</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+    <span class="n">inv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span
+                    class="n">inv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span
+                    class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="n">i</span> <span
+                    class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span
+                    class="o">&lt;</span> <span class="n">maxn</span><span class="p">;</span> <span
+                    class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">inv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span
+                    class="o">=</span> <span class="p">(</span><span class="n">mod</span> <span class="o">-</span> <span
+                    class="n">mod</span> <span class="o">/</span> <span class="n">i</span><span class="p">)</span><span
+                    class="o">*</span><span class="n">inv</span><span class="p">[</span><span class="n">mod</span><span
+                    class="o">%</span><span class="n">i</span><span class="p">]</span> <span class="o">%</span> <span
+                    class="n">mod</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="c1">//a对mod的逆元为qpow(a,mod-2,mod)</span>
 <span class="c1">//欧几里得算法没用(a,mod-2,mod)</span>
 </pre>
 
-     			</div>
-     		</div>
-     		
     </div>
-</body>
+
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
 </html>
-
-
