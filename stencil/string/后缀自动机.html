@@ -10,60 +10,101 @@
 <script type="text/javascript" src="/ACM/js/web_begin.js"></script>
 <div>
     <center><h1>后缀自动机</h1></center>
-    <span style="float: right;">------本文来源于学习陈立杰ppt后的感悟</span><br><br>
-    <span style="float: right;">------一个算法的创造本就不简单，你学起来当然难</span><br>
+    <span style="float: right;">------本文来源于学习陈立杰ppt后的感悟</span><br>
     <hr>
 
+    <h2>前言</h2>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    本文力争用理性分析的手段，来推测此算法发明者的思维过程，尝试感受其在设计此算法的时所展现出的思维方式，建议有其他自动机学习的基础，最好
+    已经学会AC自动机和回文自动机，后缀自动机很难，他和其他自动机不一样，它的状态更加复杂，一个算法的创作过程 很复杂，学起来当然会感到很难。
+    <br>
 
     <h2>后缀自动机为什么难？</h2>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后缀自动机是三个自动机里面最难的一个，难的地方不在与编码，在于他背后的
-    <span style="color:red">数学推导</span>，<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;想要完全理解后缀自动机，就必须深入理解什么叫自动机，这和AC自动机、回文
-    自动机不同，因为AC自动机、回文自动机背后的数学推导过于简单。<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    后缀自动机是三个自动机里面最难的一个，难的地方不在与编码，在于他背后的<span style="color:red">数学推导</span>，<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    想要完全理解后缀自动机，就必须深入理解什么叫自动机，这和AC自动机、回文 自动机不同，因为AC自动机、回文自动机背后的数学推导过于简单。<br>
 
     <h2>自动机</h2>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;百度百科里面说的很清楚，也很抽象。自动机，是一个五元组，包含字符集，状态集合，
-    初始状态，结束状态集合，状态转移函数。<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;五元组中，有四个包含了"状态"这个名词。难以理解的，正是这个状态。<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    百度百科里面说的很清楚，也很抽象。自动机，是一个五元组，包含字符集，状态集合， 初始状态，结束状态集合，状态转移函数。<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    五元组中，有四个包含了"状态"这个名词。难以理解的，正是这个状态。<br>
 
     <h2>状态是什么</h2>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此处的状态，其实和动态规划算法中出现的名词"状态"，是同一个东西。状态的
-    本质就是集合，是满足某种条件的所有元素的一个集合体，当然我们很多时候不好用计算机来储存这样的一个集合体，很多时候我们也不需要去储存他
-    ，更多的时候我们只需要储存这个集合体的某一个或者多个性质即可，<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    此处的状态，其实和动态规划算法中出现的名词"状态"，是同一个东西。状态的 本质就是集合，是满足某种条件的所有元素的一个集合体，当然我们很多
+    时候不好用计算机来储存这样的一个集合体，很多时候我们也不需要去储存他，更多的时候我们只需要储存这个集合体的某一个或者多个性质即可，<br>
 
     <h2>自动机的状态</h2>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;字符集好理解，状态集合就是自动机中所有的节点，状态转移函数就是自动机中节点之间
-    的边。初始状态就是自动机中字典树上的根，结束状态就是自动机之中包含了结束标记的节点。<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    字符集好理解，状态集合就是自动机中所有的节点，状态转移函数就是自动机中节点之间 的边。初始状态就是自动机中字典树上的根，结束状态就是自动
+    机之中包含了结束标记的节点。<br>
 
     <h2>后缀自动机和后缀数组有关吗？</h2>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后缀自动机是建立在一颗后缀树上的，当然他不像AC自动机来源于KMP算法，不像回文自动机来源于
-    manacher算法一样,他并不是后缀数组算法的加强。<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一个字符串的后缀树肯定是非常庞大的，n个后缀，如果我们直接把它建立出来，那么空间复杂度和
-    时间复杂度无疑都是O(n^2),必须优化。<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们发现后缀树上的很多节点所代表的状态有某些共同点，毕竟他们都是同一个母串的后缀，
-    AC自动机所定义的节点代表的状态指的是:<span style="color:red">从根到此节点的路径连接成的字符串以及他的所有后缀。</span>后缀自动机在这一点上
-    根AC自动机有点类似,此处暂时不先说。<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    后缀自动机是建立在一颗后缀树上的，当然他不像AC自动机来源于KMP算法，不像回文自动机来源于 manacher算法一样,他并不是后缀数组算法的加强。
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    一个字符串的后缀树肯定是非常庞大的，n个后缀，如果我们直接把它建立出来，那么空间复杂度和 时间复杂度无疑都是O(n^2),必须优化。<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    我们发现后缀树上的很多节点所代表的状态有某些共同点，毕竟他们都是同一个母串的后缀， AC自动机所定义的节点代表的状态指的是:<span style="
+    color:red">从根到此节点的路径连接成的字符串以及他的所有后缀。</span>后缀自动机在这一点上 根AC自动机有点类似,此处暂时不先说。<br>
 
     <h2>我们来创建一个最小状态数的后缀自动机</h2>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们先假设我们已经建立好了一个后缀自动机,<span style="color:grey">此自动机不一定状态数最少,后缀自动机的存
-    在性就不必证明了。</span>然后我们尝试分析这个不太完美的后缀自动机，来尝试优化他。
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    我们先假设我们已经建立好了一个后缀自动机,<span style="color:grey">此自动机不一定状态数最少,后缀自动机的存在性就不必证明了。</span>
+    然后我们尝试分析这个不太完美的后缀自动机，来尝试优化他。
 
-    <h2>约定一些术语</h2>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们称自动机的初始状态为init，转移函数为trans(state,str),表示状态state经过字符串str的
-    转移后得到的新的状态。<span style="color:grey">因为是术语，此处暂时不对状态做定义。</span>如果某个状态为结束状态，那么我们用end(state)=true来
-    表示。<br>
+    <h2>约定一些符号表示</h2>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    我们称自动机的初始状态为init，转移函数为trans(state,str),表示状态state经过字符串str的转移后得到的新的状态。<span style="color:grey">
+    因为是术语，此处暂时不对状态做定义。</span>如果某个状态为结束状态，那么我们用end(state)=true来表示。<br>
 
-    <h2>将状态形象化</h2>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们假设我们建立的后缀自动机，是一棵究极大的，n^2级别状态数量的自动机。我们先来定义此自动机的状态：
-    <span style="color:red">某个节点所代表的状态，就是母串的一个子串。</span><span style="color:grey">显然这不是一个好状态。</span>显然其中的字典树
-    的根节点root就是初始状态。<br>
+    <h2>将状态形象化，然后造一个暴力的后缀自动机</h2>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    我们假设我们建立的后缀自动机，是一棵究极大的，n^2级别状态数量的自动机。我们先来定义此自动机的状态：<span style="color:red">某个节点
+    所代表的状态，就是母串的一个子串。</span><span style="color:grey">显然这不是一个好状态。</span>显然其中的字典树 的根节点root就是初始状态
+    。<br>
 
     <h2>想办法来优化这个暴力的自动机</h2>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们必须减少状态，然而，一个串的子串数量明显就是平方级别的，根本就没有多余的状态，对此已经无解，必须
-    减少状态数量，我们考虑后缀自动机关心的是后缀，而不是子串，那么可能存在某些状态，他们在另外一种状态的定义下，是等价的。我们考虑某个状态state,如果存在某个字符串
-    str,使得end(trans(state,str))=true,那意味着什么？state状态中的元素：子串substring，追加上str，是一个结束状态。
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    我们必须减少状态，然而，一个串的子串数量明显就是平方级别的，根本就没有多余的状态，对此已经无解，必须减少状态数量，我们考虑后缀自动机关心
+    的是后缀，而不是子串，那么可能存在某些状态，他们在另外一种状态的定义下，是等价的。我们考虑某个状态state,如果存在某个字符串 str,使得end
+    (trans(state,str))=true,那意味着什么？state状态中的元素：子串substring，追加上str，是一个结束状态。
+
     <h2>再具体一点，我们来举例子</h2>
-    母串是abcabcde，考虑他的某个子串abc，显然此子串对应的状态在经历串abcde的转移后得到了终止状态，同时此状态
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    母串是abcabcde，考虑他的某个子串abc，显然此子串对应的状态trans(root,"abc")在经历串abcde的转移后得到了结束状态，同时此状态在经历串
+    de的转移后也可以得到结束状态，也就是说，子串abc对应的状态在经历串abcde或de的转移后可以得到结束状态。<br>
+
+    <h2>发现了可以优化的地方</h2>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    当我们考虑串bc、串c的时候，我们发此案这两个串能够转移到的结束状态根串abc一摸一样，这可不是开玩笑的。如果可能，我们将可以合并串abc、bc、
+    和c对应的状态，也就是说，trans(root,"abc"),trans(root,"bc"),trans(root,"c")可以用一个状态来表示。我们来仔细研究研究，为什么会发生这种
+    事情？如果某两个状态trans(root,str1),trans(root,str2)能够转移的结果是完全一样的，那意味着什么？先考虑trans(root,str)能够转移到某个
+    结束状态，也就是说str+??？将会成为母串的后缀。<br>
+
+    <h2>约定一些符号表示</h2>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    right(str)表示字符串str在母串中出现时的所有右端点的集合，suf(index)表示从下标为index开始的后缀，<br>
+
+    <h2>继续分析</h2>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    容易证明状态state=trans(root,str)能转移到的结束状态，就是对于所有在right(str)中的元素x，计算出的状态：trans(state，suf(x+1))
+    当right(str1)与right(str2)一摸一样的时候，其能够转移到的结束状态是一摸一样的，因为这只受到right集合的影响。既然一摸一样，有什么理由
+    不去利用这个优点呢？
+
+    <h2>开始实现优化</h2>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    我们尝试修改状态的定义，尝试把right集合一摸一样的串用一个状态来表示。让笔者来概括一下这个新状态:<span style="color:red">我们对母串
+    的每一个子串都统计一下right集合，将子串按照right集合分类，每一类就是一个状态。</span>如无特殊声明，下文的出现的状态将不再指的是原状态
+    ，而是表示新状态。
+
+    <h2>证明状态数是线性的</h2>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    证明分为两个部分，先证明right集合间的关系只有两种，包含关系和无交集关系，于是right集合间的关系可以用一颗叶子节点最多n个的树来表示。（n是
+    母串的长度。）再证明此树最多有2n个节点来完成证明。第一部分的证明：第二部分的证明很简单，笔者就不再赘述了。
 
 
 </div>
