@@ -11,16 +11,61 @@
 <script type="text/javascript" src="/ACM/js/web_begin.js"></script>
 <div>
     <center><h1>后缀自动机</h1></center>
+    <span style="float: right;">------本文来源于学习陈立杰ppt后的感悟</span><br><br>
+    <span style="float: right;">------一个算法的创造本就不简单，你学起来当然难</span><br>
     <hr>
+
+
+    <h2>后缀自动机为什么难？</h2>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后缀自动机是三个自动机里面最难的一个，难的地方不在与编码，在于他背后的
     <span style="color:red">数学推导</span>，<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;想要完全理解后缀自动机，就必须深入理解什么叫自动机，这和AC自动机、回文
+    自动机不同，因为AC自动机、回文自动机背后的数学推导过于简单。<br>
+
+    <h2>自动机</h2>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;百度百科里面说的很清楚，也很抽象。自动机，是一个五元组，包含字符集，状态集合，
+    初始状态，结束状态集合，状态转移函数。<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;五元组中，有四个包含了"状态"这个名词。难以理解的，正是这个状态。<br>
+
+    <h2>状态是什么</h2>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此处的状态，其实和动态规划算法中出现的名词"状态"，是同一个东西。状态的
+    本质就是集合，是满足某种条件的所有元素的一个集合体，当然我们很多时候不好用计算机来储存这样的一个集合体，很多时候我们也不需要去储存他
+    ，更多的时候我们只需要储存这个集合体的某一个或者多个性质即可，<br>
+
+    <h2>自动机的状态</h2>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;字符集好理解，状态集合就是自动机中所有的节点，状态转移函数就是自动机中节点之间
+    的边。初始状态就是自动机中字典树上的根，结束状态就是自动机之中包含了结束标记的节点。<br>
+
+    <h2>后缀自动机和后缀数组有关吗？</h2>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后缀自动机是建立在一颗后缀树上的，当然他不像AC自动机来源于KMP算法，不像回文自动机来源于
     manacher算法一样,他并不是后缀数组算法的加强。<br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一个字符串的后缀树肯定是非常庞大的，n个后缀，如果我们直接把它建立出来，那么空间复杂度和
     时间复杂度无疑都是O(n^2),必须优化。<br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们发现后缀树上的很多节点所代表的状态有某些共同点，毕竟他们都是同一个母串的后缀，
-    AC自动机所定义的节点代表的状态指的是:<span style="color:red">从根到此节点的路径连接成的字符串以及他的所有后缀。</span>而后缀自动机上
-    的节点所代表的状态指的是:<span style="color:red;"></spanst>
+    AC自动机所定义的节点代表的状态指的是:<span style="color:red">从根到此节点的路径连接成的字符串以及他的所有后缀。</span>后缀自动机在这一点上
+    根AC自动机有点类似,此处暂时不先说。<br>
+
+    <h2>我们来创建一个最小状态数的后缀自动机</h2>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们先假设我们已经建立好了一个后缀自动机,<span style="color:grey">此自动机不一定状态数最少,后缀自动机的存
+    在性就不必证明了。</span>然后我们尝试分析这个不太完美的后缀自动机，来尝试优化他。
+
+    <h2>约定一些术语</h2>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们称自动机的初始状态为init，转移函数为trans(state,str),表示状态state经过字符串str的
+    转移后得到的新的状态。<span style="color:grey">因为是术语，此处暂时不对状态做定义。</span>如果某个状态为结束状态，那么我们用end(state)=true来
+    表示。<br>
+
+    <h2>将状态形象化</h2>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们假设我们建立的后缀自动机，是一棵究极大的，n^2级别状态数量的自动机。我们先来定义此自动机的状态：
+    <span style="color:red">某个节点所代表的状态，就是母串的一个子串。</span><span style="color:grey">显然这不是一个好状态。</span>显然其中的字典树
+    的根节点root就是初始状态。<br>
+
+    <h2>想办法来优化这个暴力的自动机</h2>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们必须减少状态，然而，一个串的子串数量明显就是平方级别的，根本就没有多余的状态，对此已经无解，必须
+    减少状态数量，我们考虑后缀自动机关心的是后缀，而不是子串，那么可能存在某些状态，他们在另外一种状态的定义下，是等价的。我们考虑某个状态state,如果存在某个字符串
+    str,使得end(trans(state,str))=true,那意味着什么？state状态中的元素：子串substring，追加上str，是一个结束状态。
+    <h2>再具体一点，我们来举例子</h2>
+    母串是abcabcde，考虑他的某个子串abc，显然此子串对应的状态在经历串abcde的转移后得到了终止状态，同时此状态
+
 
 </div>
 <script type="text/javascript" src="/ACM/js/web_end.js"></script>
