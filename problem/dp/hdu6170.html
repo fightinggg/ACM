@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>hdu6170</title>
+</head>
+
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <h1>
+        <center><a href="http://acm.hdu.edu.cn/showproblem.php?pid=6170" target="_blank">hdu6170</a></center>
+    </h1>
+
+    <div id="text">
+        题目大意 :</br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 类似正则匹配</br>
+    </div>
+
+    <script type="text/javascript" src="/ACM/js/solve_begin.js"></script>
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    这个题开始的时候没有写出来，想到了状态的设法，如果设dp[i][j]代表第一个串的前i项能否匹配第二个串的前j项，状态个数很明显是n2的，然而一直苦于*符号的匹配，找不到好的转移方程，不管怎么想都是n3的转移复杂度，当s2[j]是*的时候，dp[i][j]<-dp[pre][j] 其中pre可以取的值的要求是：对于所有的pre<=k<=i   s1【k】=s1【i】
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    这个转移不是不可以优化，这显然是一个连续的区间，可以采取rmq预处理来实现降低时间复杂度到n2lgn，但是这样写似乎显得小题大做，并且时间复杂度不是很理想，可能卡在时间的边界上然后time limited。
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    最后看了题解，发现可以O(1)转移，但是网上的题解的证明过程显得苍白无力，甚至有不少代码是错的，ac不过是因为数据弱而已。
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    我想了很久，最终得到了*的转移： 考虑s1[i]和s1[i-1]是否相等，如果不相等的话，那么*要么贡献0次由dp[i][j-2]转移，要么贡献1次由dp[i][j-1]转移，复杂的是相等的情况，*贡献0次和1次是一样的，因为s1[i]和s1[i-1]相等，所以*可能贡献多次(多指的是大于等于二)。
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    分析贡献多次的时候:从dp[i][j]=1必要条件入手，因为多次，所以如果他少贡献一次的话，dp[i-1][j]也为1，且有条件s1[i-1]=s2[j-1]或s2[j-1]=='.'。
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    然后证明此必要条件的充分性，由于dp[i-1][j]=1且s1[i-1]和s2[j-1]是一样的，那么*多贡献一次就可以了。因为s1[i-1]和s2[j-1]是一样的，所以可以多贡献一次。
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    于是（dp[i-1][j]=1且s1[i-1]和s2[j-1]一样）与（贡献多次的dp[i][j]=1）等价。
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    这前的每一个细节都很重要，为什么要求s1[i-1]和s2[j-1]是一样的，如果不做此要求，就过不了这个例子：
+    <br>aa
+    <br>ab*
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    至于dp边界的处理，特别简单，我们改变输入数据s1 和s2为（“@@”+s1）和(“@@”+s2)，边界就特别特别简单了。
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    虽说简单，但我还是搞错了，忽略了一种情况因为少了下面的代码，
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    然后就过不了这个反例
+    <br>c
+    <br>a*b*c
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    因为什么呢?因为”@@”居然可以和”@@a*”匹配,简直是恐怖。
+    <script type="text/javascript" src="/ACM/js/solve_end.js"></script>
+
+    <script type="text/javascript" src="/ACM/js/code_begin.js"></script>
+    <div>
+        <pre><span class="cp">#include&lt;bits/stdc++.h&gt;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+    <span class="kt">int</span> <span class="n">T</span><span class="p">;</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d &quot;</span><span
+                    class="p">,</span><span class="o">&amp;</span><span class="n">T</span><span class="p">);</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">T</span><span class="o">--</span><span
+                    class="p">){</span>
+        <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span
+                    class="n">maxn</span><span class="o">=</span><span class="mi">2600</span><span class="p">;</span>
+        <span class="k">static</span> <span class="kt">char</span> <span class="n">s1</span><span
+                    class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">s2</span><span
+                    class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+        <span class="k">static</span> <span class="kt">int</span> <span class="n">dp</span><span class="p">[</span><span
+                    class="n">maxn</span><span class="p">][</span><span class="n">maxn</span><span class="p">];</span>
+        <span class="c1">//scanf(&quot;%s%s&quot;,s1+2,s2+2);</span>
+        <span class="n">gets</span><span class="p">(</span><span class="n">s1</span><span class="o">+</span><span
+                    class="mi">2</span><span class="p">);</span>
+        <span class="n">gets</span><span class="p">(</span><span class="n">s2</span><span class="o">+</span><span
+                    class="mi">2</span><span class="p">);</span>
+        <span class="n">s1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span
+                    class="o">=</span><span class="n">s2</span><span class="p">[</span><span class="mi">0</span><span
+                    class="p">]</span><span class="o">=</span><span class="n">s1</span><span class="p">[</span><span
+                    class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">s2</span><span
+                    class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span
+                    class="sc">&#39;@&#39;</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">l1</span><span class="o">=</span><span class="n">strlen</span><span
+                    class="p">(</span><span class="n">s1</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">l2</span><span class="o">=</span><span class="n">strlen</span><span
+                    class="p">(</span><span class="n">s2</span><span class="p">);</span>
+        <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span
+                    class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">dp</span><span
+                    class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span
+                    class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span
+                    class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">j</span><span
+                    class="o">&lt;</span><span class="n">l2</span><span class="p">;</span><span class="n">j</span><span
+                    class="o">++</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">s2</span><span class="p">[</span><span
+                    class="n">j</span><span class="p">]</span><span class="o">==</span><span
+                    class="sc">&#39;*&#39;</span><span class="p">)</span><span class="n">dp</span><span
+                    class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span
+                    class="p">]</span><span class="o">=</span><span class="n">dp</span><span class="p">[</span><span
+                    class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span
+                    class="mi">2</span><span class="p">];</span>
+            <span class="k">else</span> <span class="n">dp</span><span class="p">[</span><span class="mi">1</span><span
+                    class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span
+                    class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">&lt;</span><span class="n">l1</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">++</span><span class="p">){</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span
+                    class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">j</span><span
+                    class="o">&lt;</span><span class="n">l2</span><span class="p">;</span><span class="n">j</span><span
+                    class="o">++</span><span class="p">){</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">s2</span><span class="p">[</span><span
+                    class="n">j</span><span class="p">]</span><span class="o">==</span><span
+                    class="sc">&#39;.&#39;</span><span class="p">)</span><span class="n">dp</span><span
+                    class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span
+                    class="p">]</span><span class="o">=</span><span class="n">dp</span><span class="p">[</span><span
+                    class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span
+                    class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+                <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span
+                    class="n">s2</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span
+                    class="o">==</span><span class="sc">&#39;*&#39;</span><span class="p">){</span>
+                    <span class="k">if</span><span class="p">(</span><span class="n">s1</span><span
+                    class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">!=</span><span
+                    class="n">s1</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span
+                    class="mi">1</span><span class="p">]){</span><span class="c1">//最多贡献一次</span>
+                        <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span
+                    class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span
+                    class="n">j</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span
+                    class="o">||</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span
+                    class="p">];</span>
+                    <span class="p">}</span>
+                    <span class="k">else</span><span class="p">{</span>
+                        <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span
+                    class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span
+                    class="n">j</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span
+                    class="o">||</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span
+                    class="p">]</span><span class="o">||</span><span class="p">(</span><span class="n">dp</span><span
+                    class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span
+                    class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">&amp;&amp;</span><span
+                    class="p">(</span><span class="n">s1</span><span class="p">[</span><span class="n">i</span><span
+                    class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span
+                    class="n">s2</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span
+                    class="mi">1</span><span class="p">]</span><span class="o">||</span><span class="n">s2</span><span
+                    class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span
+                    class="p">]</span><span class="o">==</span><span class="sc">&#39;.&#39;</span><span
+                    class="p">));</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="n">dp</span><span class="p">[</span><span
+                    class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span
+                    class="o">=</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span
+                    class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span
+                    class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">&amp;&amp;</span><span
+                    class="n">s1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
+                    class="o">==</span><span class="n">s2</span><span class="p">[</span><span class="n">j</span><span
+                    class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">dp</span><span
+                    class="p">[</span><span class="n">l1</span><span class="o">-</span><span class="mi">1</span><span
+                    class="p">][</span><span class="n">l2</span><span class="o">-</span><span class="mi">1</span><span
+                    class="p">]</span><span class="o">?</span><span class="s">&quot;yes&quot;</span><span
+                    class="o">:</span><span class="s">&quot;no&quot;</span><span class="p">)</span><span class="o">&lt;&lt;</span><span
+                    class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm"> </span>
+<span class="cm"> --------aa</span>
+<span class="cm"> --------ab*</span>
+<span class="cm"> </span>
+<span class="cm"> */</span>
+</pre>
+    </div>
+    <script type="text/javascript" src="/ACM/js/code_end.js"></script>
+
+
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>
