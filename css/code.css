@@ -80,7 +80,7 @@
 }
 
 .block > [type="checkbox"]:checked + .case-block + .code_in {
-    max-height: 650px;
-    margin-bottom: 0px;
+    max-height: 9999px;
+    margin-bottom: 10px;
     overflow: scroll;
 }

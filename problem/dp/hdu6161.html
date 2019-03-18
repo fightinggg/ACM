@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>hdu6161</title>
+</head>
+
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <h1>
+        <center><a href="http://acm.hdu.edu.cn/showproblem.php?pid=6161" target="_blank">hdu6161</a></center>
+    </h1>
+
+    <div id="text">
+        题目大意 :<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        给你一颗很大的完全二叉树，节点编号从1到n，对于除了1号节点以外的其他节点x，他的父亲是x>>1,1号节点为根，节点x的初始权值为x<br>
+        给出两种操作：<br>
+        1.update u x 意味着更新节点u的权值为x<br>
+        2.query u 询问经过节点u的路径中，权值最大的条路径的权，（定义路径的权为路径上节点的权的和）<br>
+        操作一共有m次<br>
+        数据范围：n<1e8,m<1e5，x<1e10 时间：2s<br>
+
+    </div>
+
+    <script type="text/javascript" src="/ACM/js/solve_begin.js"></script>
+    <div>
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最开始考虑到这是一棵很大的树，我们不可能把这棵树建出来，太大了，空间肯定不够，注意到操作次数只有1e5，然后研究什么是最大路径的权？我们考虑任意一个节点u，他有三条边分别连向父亲fa，左儿子lson，右儿子rson，如果我们处理了以这三个点为起点且不经过u的路径的最值，那么我们就可以通过这三个数据转移过来。
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;再考虑到这棵树是有规律的，节点数远大于操作数，那么我们依据各种高级数据结构中常用的懒惰标记（懒修改）来优化空间复杂度,来假装建立了这棵树，我们访问哪个节点，我们就为哪个节点开辟空间，其他的我们设置懒惰标记，表示此节点，以及他的整颗子树都被放置懒标记。
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;处理完了空间以及询问操作，下一步是修改，当我们发现，我们修改了某个节点的值后，他以及他的祖先的向下的路径值都可能发生变化，这些节点的数量级是lg的，能够忍受，但是，这个节点的所有子孙向上的路径最值也有可能发生变化，这写节点的数量级是非常大的，远超线性。此时不能忽视，到此已经无解。
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;看过题解以后，发现自己的解法离正解已经很接近了，首先第一点，正解说用map来储存树结构，这样子就不必去储存边，且大大优化了编码难度，然而却牺牲了时间，因为我们如果通过指针建树的话，从一个节点走向另一个节点可以O(1)办到，但是用map不行，map在这个基本操作上是O(lg)级别的，这就导致用map的话最终时间复杂度多一个lg。但是可以证明，多此lg，依旧可以过题，时间不会超。
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二点，状态的选取：dp[x]代表以x为根的子树中以x为起点的路径的权的最大值。这个状态要好很多，相比我设的三个状态，第一他状态简单，第二单次修改的转移时间复杂度O(lgn)，因为他少一个向上的路径的状态，根本就不需要这个状态。
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;修改权值的转移方程：
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从下至上，若修改节点x，且father为x的父亲，brother为x的兄弟，lson为x的左儿子，rson为x的右儿子，w代表点权，dp代表状态值，则dp[x]=max(dp[lson],dp[rson])+w[x]，
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[father]=max(dp[x],dp[brother])+w[father]。。。按此方法一直更新到根即可。
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;询问路径的转移方程:
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;依旧从下至上。肯定要去三个值的，x往左儿子的dp[x<<1]，x往右儿子的dp[x<<1|1]，然而，取不到父亲的值了，因为我们就没有维护这个状态值，不过还是有办法来得到它，我们考虑x往父亲的方向的最大路径值，这其实也可以递归下去，我们设这种值叫做up,利用动态规划，自顶向下搜索：x往父亲的权，在父亲那里只有两个方向可以走，因为是从x过来的，肯定不能回去的，那就少了一个方向，如果父亲继续向上走，我们可以递归下去，如果父亲向下走，那就只能走兄弟方向的路径，决策出现了：up[x]=w[x]+max(up[father],dp[brother])
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;至此，更新和询问都已经解决，一个自底向上递归转移，一个自顶向下搜索转移。
+    </div>
+    <script type="text/javascript" src="/ACM/js/solve_end.js"></script>
+
+    <script type="text/javascript" src="/ACM/js/code_begin.js"></script>
+    <pre><span class="cp">#include&lt;bits/stdc++.h&gt;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span
+                class="p">;</span>
+
+<span class="k">struct</span> <span class="n">mydata</span><span class="p">{</span>
+    <span class="k">struct</span> <span class="n">node</span><span class="p">{</span>
+        <span class="n">ll</span> <span class="n">w</span><span class="p">,</span><span class="n">dp</span><span
+                class="p">;</span>
+        <span class="n">node</span><span class="p">()</span><span class="o">:</span><span class="n">w</span><span
+                class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">dp</span><span
+                class="p">(</span><span class="mi">0</span><span class="p">){}</span>
+        <span class="n">node</span><span class="p">(</span><span class="n">ll</span> <span class="n">w</span><span
+                class="p">,</span><span class="n">ll</span> <span class="n">dp</span><span class="p">)</span><span
+                class="o">:</span><span class="n">w</span><span class="p">(</span><span class="n">w</span><span
+                class="p">),</span><span class="n">dp</span><span class="p">(</span><span class="n">dp</span><span
+                class="p">){}</span>
+    <span class="p">};</span>
+    <span class="n">map</span><span class="o">&lt;</span><span class="n">ll</span><span class="p">,</span><span
+                class="n">node</span><span class="o">&gt;</span><span class="n">tree</span><span class="p">;</span>
+    <span class="n">ll</span> <span class="n">n</span><span class="p">;</span>
+
+    <span class="kt">void</span> <span class="n">ini</span><span class="p">(</span><span class="n">ll</span> <span
+                class="n">n</span><span class="p">){</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">n</span><span class="o">=</span><span
+                class="n">n</span><span class="p">;</span>
+        <span class="n">tree</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kr">inline</span> <span class="n">node</span> <span class="n">get</span><span class="p">(</span><span
+                class="n">ll</span> <span class="n">x</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span
+                class="n">n</span><span class="p">)</span><span class="k">return</span> <span class="n">node</span><span
+                class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span
+                class="p">);</span>
+
+        <span class="n">node</span> <span class="n">ret</span><span class="o">=</span><span class="n">tree</span><span
+                class="p">[</span><span class="n">x</span><span class="p">];</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">ret</span><span class="p">.</span><span
+                class="n">w</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span><span
+                class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+
+        <span class="n">ll</span> <span class="n">l</span><span class="o">=</span><span class="n">x</span><span
+                class="p">,</span><span class="n">r</span><span class="o">=</span><span class="n">x</span><span
+                class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">l</span><span class="o">&lt;=</span><span
+                class="n">n</span><span class="p">)</span><span class="n">l</span><span class="o">=</span><span
+                class="n">l</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">r</span><span class="o">&lt;=</span><span
+                class="n">n</span><span class="p">)</span><span class="n">r</span><span class="o">=</span><span
+                class="n">r</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="o">|</span><span
+                class="mi">1</span><span class="p">;</span>
+        <span class="n">l</span><span class="o">&gt;&gt;=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="n">r</span><span class="o">&gt;&gt;=</span><span class="mi">1</span><span class="p">;</span>
+
+        <span class="n">ll</span> <span class="n">big</span><span class="o">=</span><span class="n">l</span><span
+                class="o">&lt;=</span><span class="n">r</span><span class="o">?</span><span class="nl">r:</span><span
+                class="n">n</span><span class="p">;</span>
+        <span class="n">ll</span> <span class="n">dp</span><span class="o">=</span><span class="mi">0</span><span
+                class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">big</span><span class="o">&gt;=</span><span
+                class="n">x</span><span class="p">){</span>
+            <span class="n">dp</span><span class="o">+=</span><span class="n">big</span><span class="p">;</span>
+            <span class="n">big</span><span class="o">&gt;&gt;=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">tree</span><span class="p">[</span><span class="n">x</span><span
+                class="p">]</span><span class="o">=</span><span class="n">node</span><span class="p">(</span><span
+                class="n">x</span><span class="p">,</span><span class="n">dp</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="n">ll</span> <span
+                class="n">x</span><span class="p">,</span><span class="n">ll</span> <span class="n">w</span><span
+                class="p">){</span>
+        <span class="n">node</span> <span class="n">l</span><span class="o">=</span><span class="n">get</span><span
+                class="p">(</span><span class="n">x</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span
+                class="p">);</span><span class="c1">//lg</span>
+        <span class="n">node</span> <span class="n">r</span><span class="o">=</span><span class="n">get</span><span
+                class="p">(</span><span class="n">x</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span
+                class="o">|</span><span class="mi">1</span><span class="p">);</span><span class="c1">//lg</span>
+        <span class="n">tree</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span
+                class="o">=</span><span class="n">node</span><span class="p">(</span><span class="n">w</span><span
+                class="p">,</span><span class="n">max</span><span class="p">(</span><span class="n">l</span><span
+                class="p">.</span><span class="n">dp</span><span class="p">,</span><span class="n">r</span><span
+                class="p">.</span><span class="n">dp</span><span class="p">)</span><span class="o">+</span><span
+                class="n">w</span><span class="p">);</span><span class="c1">//lg</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span
+                class="mi">1</span><span class="p">)</span><span class="k">return</span><span class="p">;</span>
+        <span class="k">else</span> <span class="n">update</span><span class="p">(</span><span class="n">x</span><span
+                class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">,</span><span
+                class="n">get</span><span class="p">(</span><span class="n">x</span><span class="o">&gt;&gt;</span><span
+                class="mi">1</span><span class="p">).</span><span class="n">w</span><span class="p">);</span>
+    <span class="p">}</span><span class="c1">//lglg</span>
+
+    <span class="n">ll</span> <span class="n">query</span><span class="p">(</span><span class="n">ll</span> <span
+                class="n">x</span><span class="p">){</span>
+        <span class="n">ll</span> <span class="n">fa</span><span class="o">=</span><span
+                class="n">max_sum_up</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+        <span class="n">ll</span> <span class="n">l</span><span class="o">=</span><span class="n">get</span><span
+                class="p">(</span><span class="n">x</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span
+                class="p">).</span><span class="n">dp</span><span class="p">;</span>
+        <span class="n">ll</span> <span class="n">r</span><span class="o">=</span><span class="n">get</span><span
+                class="p">(</span><span class="n">x</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span
+                class="o">|</span><span class="mi">1</span><span class="p">).</span><span class="n">dp</span><span
+                class="p">;</span>
+        <span class="k">return</span> <span class="n">fa</span><span class="o">+</span><span class="n">l</span><span
+                class="o">+</span><span class="n">r</span><span class="o">-</span><span class="n">min</span><span
+                class="p">(</span><span class="n">min</span><span class="p">(</span><span class="n">l</span><span
+                class="p">,</span><span class="n">r</span><span class="p">),</span><span class="n">fa</span><span
+                class="p">)</span><span class="o">+</span><span class="n">get</span><span class="p">(</span><span
+                class="n">x</span><span class="p">).</span><span class="n">w</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">ll</span> <span class="n">max_sum_up</span><span class="p">(</span><span class="n">ll</span> <span
+                class="n">x</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span
+                class="mi">1</span><span class="p">)</span><span class="k">return</span> <span class="mi">0</span><span
+                class="p">;</span>
+        <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">x</span><span
+                class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">).</span><span class="n">w</span><span
+                class="o">+</span><span class="n">max</span><span class="p">(</span><span
+                class="n">max_sum_up</span><span class="p">(</span><span class="n">x</span><span
+                class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">),</span><span
+                class="n">get</span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span
+                class="mi">1</span><span class="p">).</span><span class="n">dp</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span><span class="n">tree</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+
+    <span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="mi">10</span><span
+                class="p">];</span>
+    <span class="n">ll</span> <span class="n">n</span><span class="p">,</span><span class="n">m</span><span
+                class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">x</span><span
+                class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="o">~</span><span class="n">scanf</span><span
+                class="p">(</span><span class="s">&quot;%lld%lld&quot;</span><span class="p">,</span><span class="o">&amp;</span><span
+                class="n">n</span><span class="p">,</span><span class="o">&amp;</span><span class="n">m</span><span
+                class="p">)){</span>
+        <span class="n">tree</span><span class="p">.</span><span class="n">ini</span><span class="p">(</span><span
+                class="n">n</span><span class="p">);</span>
+
+        <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span
+                class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span
+                class="o">&lt;</span><span class="n">m</span><span class="p">;</span><span class="n">i</span><span
+                class="o">++</span><span class="p">){</span>
+            <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span
+                class="p">,</span><span class="n">str</span><span class="p">);</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span
+                class="mi">0</span><span class="p">]</span><span class="o">==</span><span
+                class="sc">&#39;q&#39;</span><span class="p">){</span>
+                <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lld&quot;</span><span
+                class="p">,</span><span class="o">&amp;</span><span class="n">u</span><span class="p">);</span>
+                <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%lld</span><span class="se">\n</span><span
+                class="s">&quot;</span><span class="p">,</span><span class="n">tree</span><span class="p">.</span><span
+                class="n">query</span><span class="p">(</span><span class="n">u</span><span class="p">));</span>
+            <span class="p">}</span>
+            <span class="k">else</span><span class="p">{</span>
+                <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lld%lld&quot;</span><span
+                class="p">,</span><span class="o">&amp;</span><span class="n">u</span><span class="p">,</span><span
+                class="o">&amp;</span><span class="n">x</span><span class="p">);</span>
+                <span class="n">tree</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span
+                class="n">u</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+    <script type="text/javascript" src="/ACM/js/code_end.js"></script>
+
+
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>
