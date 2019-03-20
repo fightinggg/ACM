@@ -24,7 +24,7 @@ body {
     background: white;
     padding: 10px;
     margin-top: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     border: 3px black double;
 
 }
@@ -37,17 +37,15 @@ body {
 
 
 #left {
-    width: 795px;
-    float: left;
+    width: 100%;
+    background-color:white;
 }
 
 
 #left_in {
     background-color: white;
-    width: 773px;
-    float: left;
-    padding: 10px;
-    margin-bottom: 100px;
+    width: 980px;
+    padding: 10px  10px  10px  10px;
 }
 
 #text {
@@ -77,17 +75,20 @@ body {
 
 
 #right {
-    width: 195px;
-    float: right;
+    width: 100%;
+    margin-bottom: 30px;
+    overflow: scroll;
 }
 
 #right_in {
     background-color: white;
     border: 1px black dotted;
-    width: 173px;
+    width: 158px;
+    height: 220px;
     float: right;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 0px 10px 0px 10px;
+    margin:0px 10px 0px 10px;
+    overflow: scroll;
 }
 
 #right_in a {

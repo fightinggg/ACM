@@ -6,7 +6,6 @@ document.writeln('                   <div id="right_in">																								
 document.writeln('                        <h3><center> <a href="https://github.com/fightinggg/ACM">github</a></br>	</center></h3>																																		');
 document.writeln('                        <hr>																																																');
 document.writeln('                                                    <a href="https://github.com/fightinggg/ACM">github</a></br>													');
-document.writeln('                        <hr>																																																');
 document.writeln('                        </div>																																																');
 
 document.writeln('                   <div id="right_in">																																												');
@@ -21,7 +20,6 @@ document.writeln('                                                	<a href="http
 document.writeln('                                                	<a href="http://fightinggg.github.io/ACM/stencil/thinging">思维与算法</a></br>											');
 document.writeln('                                                	<a href="http://fightinggg.github.io/ACM/stencil/Yuki_technique/">黑科技</a></br>										');
 document.writeln('                                                	<a href="http://fightinggg.github.io/ACM/stencil/acm_head_file.html">快读</a></br>									');
-document.writeln('                        <hr>																																																');
 document.writeln('                        </div>																																																');
 
 document.writeln('                   <div id="right_in">																																												');
@@ -35,7 +33,6 @@ document.writeln('                                                	<a href="http
 document.writeln('                                                	<a href="http://fightinggg.github.io/ACM/problem/computational_geometry">计算几何</a></br>					');
 document.writeln('                                                	<a href="http://fightinggg.github.io/ACM/problem/thinging">思维与算法</a></br>										');
 document.writeln('                                                	<a href="http://fightinggg.github.io/ACM/problem/Yuki_technique/">黑科技</a></br>									');
-document.writeln('                        <hr>																																																');
 document.writeln('                        </div>																																																');
 
 document.writeln('                   <div id="right_in">																																												');
@@ -45,7 +42,6 @@ document.writeln('                                                    <a href="h
 document.writeln('                                                    <a href="https://www.codecogs.com/latex/eqneditor.php" target="_blank">数学公式</a></br>					');
 document.writeln('                                                    <a href="http://hzwer.com" target="_blank">hzwer</a></br>																			');
 document.writeln('                                                    <a href="http://www.jj20.com"  target="_blank">桌面高清背景图片</a></br>													');
-document.writeln('                        <hr>																																																');
 document.writeln('                        </div>																																																');
 
 document.writeln('                   <div id="right_in">																																												');
@@ -54,7 +50,6 @@ document.writeln('                        <hr>																																		
 document.writeln('                                                    <a href="https://blog.csdn.net/weixin_41863129" target="_blank">yg</a></br>											');
 document.writeln('                                                    <a href="https://decaku.github.io"  target="_blank">zwg</a></br>																	');
 document.writeln('                                                    <a href="https://www.cnblogs.com/chunibyo/"  target="_blank">wly</a></br>																	');
-document.writeln('                        <hr>																																																');
 document.writeln('                        </div>																																																');
 
 document.writeln('                    </div>																																																	');
