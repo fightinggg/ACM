@@ -7,7 +7,7 @@ body {
     background-position: center;
 
     color: black;
-    font-size: 15px;
+    font-size: 25px;
 }
 
 
@@ -84,7 +84,7 @@ body {
     background-color: white;
     border: 1px black dotted;
     width: 158px;
-    height: 220px;
+    height: 450px;
     float: right;
     padding: 0px 10px 0px 10px;
     margin:0px 10px 0px 10px;

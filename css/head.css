@@ -12,7 +12,7 @@ body {
 
 
 #myweb {
-    width: 1000px;
+    width: 1200px;
     margin: auto;
     z-index: 1;
     filter: alpha(Opacity=95);
@@ -37,16 +37,17 @@ body {
 
 
 #left {
-    width: 795px;
+    width: 1000px;
     float: left;
 }
 
 
 #left_in {
     background-color: white;
-    width: 773px;
+    width: 970px;
     float: left;
     padding: 10px;
+    margin-right: 10px;
     margin-bottom: 100px;
 }
 
@@ -76,14 +77,14 @@ body {
 
 
 #right {
-    width: 195px;
+    width: 200px;
     float: right;
 }
 
 #right_in {
     background-color: white;
     border: 1px black dotted;
-    width: 173px;
+    width: 178px;
     float: right;
     padding: 10px;
     margin-bottom: 10px;

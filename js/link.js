@@ -9,7 +9,7 @@ if (window.innerWidth > 1000) {
 
 
 document.writeln('   <link rel="stylesheet" type="text/css"  href="/ACM/css/head.css">');
-document.writeln('<link rel="stylesheet" href="/ACM/css/head_phone.css" type="text/css" media="screen and (max-width: 1000px)">')
+document.writeln('<link rel="stylesheet" href="/ACM/css/head_phone.css" type="text/css" media="screen and (max-width: 1100px)">')
 document.writeln('   <link rel="stylesheet" type="text/css"  href="/ACM/css/pastebin.css">');
 document.writeln('   <link rel="stylesheet" type="text/css"  href="/ACM/css/code.css">');
 
