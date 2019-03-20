@@ -1,13 +1,17 @@
 // 背景
-var random = Math.round( Math.random() * 6 );
-if (window.innerWidth>1000){
-	document.write('<style>body{ background-image: url(/ACM/img/'+random+'.jpg);!important;}</style>');
- }
+var random = Math.round(Math.random() * 6);
+if (window.innerWidth > 1000) {
+    document.write('<style>body{ background-image: url(/ACM/img/' + random + '.jpg);!important;}</style>');
+}
 
 
-document.writeln("   <link rel=\"stylesheet\" type=\"text/css\"  href=\"/ACM/css/head.css\">");
-document.writeln("   <link rel=\"stylesheet\" type=\"text/css\"  href=\"/ACM/css/pastebin.css\">");
-document.writeln("   <link rel=\"stylesheet\" type=\"text/css\"  href=\"/ACM/css/code.css\">");
+
+
+
+document.writeln('   <link rel="stylesheet" type="text/css"  href="/ACM/css/head.css">');
+document.writeln('<link rel="stylesheet" href="/ACM/css/head_phone.css" type="text/css" media="screen and (max-width: 1000px)">')
+document.writeln('   <link rel="stylesheet" type="text/css"  href="/ACM/css/pastebin.css">');
+document.writeln('   <link rel="stylesheet" type="text/css"  href="/ACM/css/code.css">');
 
 
 //自动提交

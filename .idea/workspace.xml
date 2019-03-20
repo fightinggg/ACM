@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e505d993-0813-4b95-9e39-e1a7b5c097cb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/stencil/math/群论.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/head.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/head.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/up_and_right.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/up_and_right.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/web_begin.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/web_begin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stencil/acm_head_file.html" beforeDir="false" afterPath="$PROJECT_DIR$/stencil/acm_head_file.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/link.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/link.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stencil/math/FFT.html" beforeDir="false" afterPath="$PROJECT_DIR$/stencil/math/FFT.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,12 +19,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/head.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="86" column="18" lean-forward="true" selection-start-line="86" selection-start-column="18" selection-end-line="86" selection-end-column="18" />
+            <state relative-caret-position="177">
+              <caret line="70" column="1" selection-start-line="70" selection-start-column="1" selection-end-line="70" selection-end-column="1" />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/head_phone.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-691" />
           </provider>
         </entry>
       </file>
@@ -33,7 +39,7 @@
         <entry file="file://$PROJECT_DIR$/stencil/math/快速幂.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="195">
-              <caret line="166" lean-forward="true" selection-start-line="166" selection-end-line="166" />
+              <caret line="166" selection-start-line="166" selection-end-line="166" />
               <folding>
                 <element signature="n#div#0;n#html#0;n#!!top" />
               </folding>
@@ -51,57 +57,26 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/stencil/math/逆元_gcd_欧几里德.html">
+        <entry file="file://$PROJECT_DIR$/js/solve_begin.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/link.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="54" lean-forward="true" selection-end-line="54" />
-              <folding>
-                <element signature="n#div#0;n#html#0;n#!!top" />
-              </folding>
+            <state relative-caret-position="165">
+              <caret line="11" column="119" lean-forward="true" selection-start-line="11" selection-start-column="119" selection-end-line="11" selection-end-column="119" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/solve_begin.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/link.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/stencil/math/群论.html">
+        <entry file="file://$PROJECT_DIR$/stencil/math/FFT.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            <state relative-caret-position="150">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
               <folding>
-                <element signature="e#291#297#0" expanded="true" />
-                <element signature="e#297#303#0" expanded="true" />
-                <element signature="e#303#309#0" expanded="true" />
-                <element signature="e#309#315#0" expanded="true" />
-                <element signature="e#315#321#0" expanded="true" />
-                <element signature="e#321#327#0" expanded="true" />
-                <element signature="e#327#333#0" expanded="true" />
-                <element signature="e#333#339#0" expanded="true" />
-                <element signature="e#371#377#0" expanded="true" />
-                <element signature="e#377#383#0" expanded="true" />
-                <element signature="e#383#389#0" expanded="true" />
-                <element signature="e#389#395#0" expanded="true" />
-                <element signature="e#395#401#0" expanded="true" />
-                <element signature="e#401#407#0" expanded="true" />
-                <element signature="e#407#413#0" expanded="true" />
-                <element signature="e#413#419#0" expanded="true" />
-                <element signature="e#490#496#0" expanded="true" />
-                <element signature="e#496#502#0" expanded="true" />
-                <element signature="e#502#508#0" expanded="true" />
-                <element signature="e#508#514#0" expanded="true" />
-                <element signature="e#514#520#0" expanded="true" />
-                <element signature="e#520#526#0" expanded="true" />
-                <element signature="e#526#532#0" expanded="true" />
-                <element signature="e#532#538#0" expanded="true" />
+                <element signature="n#div#0;n#html#0;n#!!top" />
               </folding>
             </state>
           </provider>
@@ -125,7 +100,7 @@
         <entry file="file://$PROJECT_DIR$/js/up_and_right.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="18" column="26" lean-forward="true" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+              <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -157,7 +132,6 @@
         <option value="$PROJECT_DIR$/js/begin.js" />
         <option value="$PROJECT_DIR$/js/web_end.js" />
         <option value="$PROJECT_DIR$/new.html" />
-        <option value="$PROJECT_DIR$/stencil/math/FFT.html" />
         <option value="$PROJECT_DIR$/stencil/math/index.html" />
         <option value="$PROJECT_DIR$/stencil/math/中间结论.html" />
         <option value="$PROJECT_DIR$/stencil/math/合数分解.html" />
@@ -189,11 +163,13 @@
         <option value="$PROJECT_DIR$/js/up_and_right.js" />
         <option value="$PROJECT_DIR$/js/web_begin.js" />
         <option value="$PROJECT_DIR$/css/head.css" />
+        <option value="$PROJECT_DIR$/stencil/math/FFT.html" />
+        <option value="$PROJECT_DIR$/js/link.js" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="y" value="23" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="97" />
     <option name="width" value="1440" />
     <option name="height" value="803" />
   </component>
@@ -274,7 +250,10 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.快速幂.html">
+  <component name="RunManager" selected="JavaScript Debug.FFT.html">
+    <configuration name="FFT.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/math/FFT.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="群论.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/math/群论.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -308,16 +287,13 @@
     <configuration name="bzoj2124.html" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:63342/ACM/problem/data_struct/bzoj2124.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="hdu6161.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/ACM/problem/dp/hdu6161.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
     <configuration name="index.html (1)" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:63342/ACM/problem/data_struct/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="index.html (2)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/ACM/problem/dp/index.html" useBuiltInWebServerPort="true">
+    <configuration name="index.html" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:63342/ACM/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="index.html" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:63342/ACM/index.html" useBuiltInWebServerPort="true">
+    <configuration name="link.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/js/link.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
     <configuration name="up_and_right.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/js/up_and_right.js" working-dir="$PROJECT_DIR$">
@@ -325,11 +301,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.FFT.html" />
+        <item itemvalue="Node.js.link.js" />
         <item itemvalue="JavaScript Debug.快速幂.html" />
         <item itemvalue="JavaScript Debug.群论.html" />
         <item itemvalue="JavaScript Debug.acm_head_file.html" />
-        <item itemvalue="JavaScript Debug.index.html (2)" />
-        <item itemvalue="JavaScript Debug.hdu6161.html" />
       </list>
     </recent_temporary>
   </component>
@@ -365,15 +341,15 @@
       <workItem from="1552895697372" duration="1201000" />
       <workItem from="1552897451417" duration="14000" />
       <workItem from="1552976164669" duration="473000" />
-      <workItem from="1552978731479" duration="4041000" />
+      <workItem from="1552978731479" duration="6819000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47984000" />
+    <option name="totallyTimeSpent" value="50762000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="803" extended-state="6" />
+    <frame x="0" y="97" width="1440" height="803" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18816067" />
@@ -399,13 +375,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/problem/computational_geonetry/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/end.js" />
     <entry file="file://$PROJECT_DIR$/js/begin.js" />
     <entry file="file://$PROJECT_DIR$/js/web_end.js">
@@ -846,16 +815,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/stencil/math/FFT.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="298" lean-forward="true" selection-start-line="298" selection-end-line="298" />
-          <folding>
-            <element signature="n#div#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/stencil/math/中间结论.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -972,9 +931,6 @@
     <entry file="file://$PROJECT_DIR$/js/solve_begin.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/link.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/code.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1084">
@@ -985,17 +941,20 @@
     <entry file="file://$PROJECT_DIR$/stencil/math/快速幂.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
-          <caret line="166" lean-forward="true" selection-start-line="166" selection-end-line="166" />
+          <caret line="166" selection-start-line="166" selection-end-line="166" />
           <folding>
             <element signature="n#div#0;n#html#0;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/css/pastebin.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/up_and_right.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="18" column="26" lean-forward="true" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -1006,13 +965,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/pastebin.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/head.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="86" column="18" lean-forward="true" selection-start-line="86" selection-start-column="18" selection-end-line="86" selection-end-column="18" />
+        <state relative-caret-position="177">
+          <caret line="70" column="1" selection-start-line="70" selection-start-column="1" selection-end-line="70" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/head_phone.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-691" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stencil/math/FFT.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="n#div#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/link.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="119" lean-forward="true" selection-start-line="11" selection-start-column="119" selection-end-line="11" selection-end-column="119" />
         </state>
       </provider>
     </entry>
