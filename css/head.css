@@ -48,7 +48,7 @@ body {
     float: left;
     padding: 10px;
     margin-right: 10px;
-    margin-bottom: 100px;
+    margin-bottom: 20px;
 }
 
 #text {
@@ -99,3 +99,9 @@ body {
     color: #555;
 }
 
+#down{
+    width:1200px;
+    margin-bottom: 1200px;
+    background-color: white;
+    float: left;
+}

@@ -1,5 +1,5 @@
 // 背景
-var random = Math.round(Math.random() * 6);
+var random = Math.round(Math.random() * 10);
 if (window.innerWidth > 1000) {
     document.write('<style>body{ background-image: url(/ACM/img/' + random + '.jpg);!important;}</style>');
 }
@@ -9,7 +9,7 @@ if (window.innerWidth > 1000) {
 
 
 document.writeln('   <link rel="stylesheet" type="text/css"  href="/ACM/css/head.css">');
-document.writeln('<link rel="stylesheet" href="/ACM/css/head_phone.css" type="text/css" media="screen and (max-width: 1100px)">')
+document.writeln('<link rel="stylesheet" href="/ACM/css/head_phone.css" type="text/css" media="screen and (max-width: 999px)">')
 document.writeln('   <link rel="stylesheet" type="text/css"  href="/ACM/css/pastebin.css">');
 document.writeln('   <link rel="stylesheet" type="text/css"  href="/ACM/css/code.css">');
 
