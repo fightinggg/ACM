@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e505d993-0813-4b95-9e39-e1a7b5c097cb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/problem/dp/bzoj5073.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/head.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/head.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/head_phone.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/head_phone.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/web_end.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/web_end.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/problem/dp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/problem/dp/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stencil/string/后缀数组.html" beforeDir="false" afterPath="$PROJECT_DIR$/stencil/string/后缀数组.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,20 +17,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/web_end.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/problem/dp/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+            <state relative-caret-position="45">
+              <caret line="3" column="117" selection-start-line="3" selection-start-column="117" selection-end-line="3" selection-end-column="117" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#center#2;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -52,16 +42,16 @@
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="450">
-              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/link.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="5" selection-end-line="21" />
+            <state relative-caret-position="315">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
             </state>
           </provider>
         </entry>
@@ -204,8 +194,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/problem/dp/bzoj5073.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="2" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
+            <state relative-caret-position="405">
+              <caret line="48" column="3" lean-forward="true" selection-start-line="48" selection-start-column="3" selection-end-line="48" selection-end-column="3" />
               <folding>
                 <element signature="e#421#427#0" expanded="true" />
                 <element signature="e#427#433#0" expanded="true" />
@@ -220,6 +210,15 @@
                 <element signature="e#2913#2917#0" expanded="true" />
                 <element signature="n#div#3;n#div#0;n#html#0;n#!!top" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/head_phone.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-386">
+              <caret line="46" column="6" lean-forward="true" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -282,15 +281,15 @@
         <option value="$PROJECT_DIR$/js/up_and_right.js" />
         <option value="$PROJECT_DIR$/js/web_begin.js" />
         <option value="$PROJECT_DIR$/stencil/math/FFT.html" />
-        <option value="$PROJECT_DIR$/css/head_phone.css" />
         <option value="$PROJECT_DIR$/js/link.js" />
         <option value="$PROJECT_DIR$/stencil/string/后缀数组.html" />
         <option value="$PROJECT_DIR$/problem/dp/cf_edu_60d.html" />
         <option value="$PROJECT_DIR$/problem/dp/bzoj5073.html" />
-        <option value="$PROJECT_DIR$/js/web_end.js" />
         <option value="$PROJECT_DIR$/problem/dp/index.html" />
         <option value="$PROJECT_DIR$/css/head.css" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/css/head_phone.css" />
+        <option value="$PROJECT_DIR$/js/web_end.js" />
       </list>
     </option>
   </component>
@@ -307,7 +306,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -340,6 +338,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -370,7 +369,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html">
+  <component name="RunManager" selected="Node.js.web_end.js">
     <configuration name="FFT.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/math/FFT.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -424,9 +423,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.index.html (2)" />
-        <item itemvalue="JavaScript Debug.bzoj5073.html" />
         <item itemvalue="Node.js.web_end.js" />
+        <item itemvalue="JavaScript Debug.bzoj5073.html" />
+        <item itemvalue="JavaScript Debug.index.html (2)" />
         <item itemvalue="JavaScript Debug.后缀数组.html" />
         <item itemvalue="JavaScript Debug.FFT.html" />
       </list>
@@ -469,14 +468,17 @@
       <workItem from="1553176653747" duration="124000" />
       <workItem from="1553255195283" duration="1381000" />
       <workItem from="1553256676375" duration="15000" />
+      <workItem from="1553257084318" duration="80000" />
+      <workItem from="1553257166700" duration="20000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54485000" />
+    <option name="totallyTimeSpent" value="54585000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="30" width="1440" height="803" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18816067" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -787,13 +789,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/head_phone.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1365">
-          <caret line="91" column="1" selection-start-line="91" selection-start-column="1" selection-end-line="91" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/stencil/string/后缀自动机.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -948,24 +943,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/head.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="870">
-          <caret line="58" column="21" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/web_end.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/problem/dp/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/head.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="634">
+          <caret line="58" column="21" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -979,7 +967,14 @@
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/link.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>
@@ -1112,8 +1107,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/problem/dp/bzoj5073.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="2" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
+        <state relative-caret-position="405">
+          <caret line="48" column="3" lean-forward="true" selection-start-line="48" selection-start-column="3" selection-end-line="48" selection-end-column="3" />
           <folding>
             <element signature="e#421#427#0" expanded="true" />
             <element signature="e#427#433#0" expanded="true" />
@@ -1131,10 +1126,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/link.js">
+    <entry file="file://$PROJECT_DIR$/css/head_phone.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="5" selection-end-line="21" />
+        <state relative-caret-position="-386">
+          <caret line="46" column="6" lean-forward="true" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/web_end.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="117" selection-start-line="3" selection-start-column="117" selection-end-line="3" selection-end-column="117" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#center#2;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
