@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+
+    <title>bzoj2121</title>
+</head>
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <h1>
+        <center><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=2121" target="_blank">bzoj2121</a></center>
+    </h1>
+
+    <div id="text">
+        题目大意 :<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BX正在进行一个字符串游戏，他手上有一个字符串L，以及其他一些字符串的集合S，然后他可以进行以下操作：对
+        于一个在集合S中的字符串p,如果p在L中出现，BX就可以选择是否将其删除，如果删除，则将删除后L分裂成的左右
+        两部分合并。举个例子，L='abcdefg' , S={'de'}，如果BX选择将'de'从L中删去，则删后的L='abcfg'。现在BX可
+        以进行任意多次操作（删的次数，顺序都随意），他想知道最后L串的最短长度是多少。
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+
+    <script type="text/javascript" src="/ACM/js/solve_begin.js"></script>
+    <div>
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这题好难，完全没有思路，看了题解后遇到这么复杂的dp状态，内心是崩溃的。
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设置dp[i][j][k][t]代表L串的闭区间i到j，能否删除到匹配第k个串到前t个字符。
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 转移的时候，
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 若匹配成功时，考虑第j位，若还在，且有L[j]==S[k][t],则可以由dp[i][j-1][k][t-1]转移过来
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 若此为不在，肯定是消完了，则考虑枚举ij中间的d，若存在一个k’,若dp[d][j][k’][len[k’]]==true
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (len[k’]代表k’串的长度），说明存在某方法消掉区间d..j 于是dp[i][j][k][t]可以由dp[i][d-1][k][t]转移过来。
+
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 综合：转移依赖于dp[i][j-1][k][t-1]、dp[d][j][k’][len[k’]]、dp[i][d-1][k][t]
+
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 仔细观察，区间长度是关键，这些区间长度都比区间ij小，我们只需要从小到大枚举区间长度，即可成功转移，
+
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 时间复杂度(151*151*31*21) *(151*31)
+
+
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 这里转移过程时间复杂度太大了，也不利于转移，我们紧接着发现一个可以优化的地方，dp[d][j][k’][len[k’]]这里的枚举k’是可以优化的，它的本质是看看能否消掉区间d..j，我们用另外一个数组crm[][]来记录一下即可，
+
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 于是时间复杂度(151*151*31*21) *31
+
+
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4*108这样的时间复杂度已经可以了，
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 我们再来看如何转移到答案，其实只需要crm[][]即可，我们用mln[]数组来代表前i项能留下的最短的串，
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mln[i]如果保留最后一个字符则可以由mln[i-1]+1转移
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 否则可以由mln[d]转移,前提是crm[d+1][i]=true,区间[d+1,i]可以被消掉。
+
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 最终答案在mln[strlen[L]]中。
+
+    </div>
+    <script type="text/javascript" src="/ACM/js/solve_end.js"></script>
+
+    <script type="text/javascript" src="/ACM/js/code_begin.js"></script>
+    <div>
+        <pre><span class="cp">#include&lt;bits/stdc++.h&gt;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">char</span> <span class="n">L</span><span class="p">[</span><span class="mi">160</span><span class="p">],</span><span class="n">S</span><span class="p">[</span><span class="mi">40</span><span class="p">][</span><span class="mi">30</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">len</span><span class="p">[</span><span class="mi">40</span><span class="p">];</span>
+<span class="kt">bool</span> <span class="n">crm</span><span class="p">[</span><span class="mi">160</span><span class="p">][</span><span class="mi">160</span><span class="p">];</span><span class="c1">//crm[i][j]  -&gt;   can remove L[i..j]</span>
+<span class="kt">int</span> <span class="n">mln</span><span class="p">[</span><span class="mi">160</span><span class="p">];</span><span class="c1">//mln[i]  -&gt;  min len  -&gt;   L[1..i]经过操作后能够变得最短的长度</span>
+<span class="kt">bool</span> <span class="n">dp</span><span class="p">[</span><span class="mi">160</span><span class="p">][</span><span class="mi">160</span><span class="p">][</span><span class="mi">40</span><span class="p">][</span><span class="mi">30</span><span class="p">];</span><span class="c1">//dp[i][j][k][t] -&gt;  代表L[i..j]能够删成串k的前t项</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+
+    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%s%d&quot;</span><span class="p">,</span><span class="n">L</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">len</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">strlen</span><span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="n">lenL</span><span class="o">=</span><span class="n">strlen</span><span class="p">(</span><span class="n">L</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">lenL</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">k</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">k</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">len_seg</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">len_seg</span><span class="o">&lt;=</span><span class="n">lenL</span><span class="p">;</span><span class="n">len_seg</span><span class="o">++</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">+</span><span class="n">len_seg</span><span class="o">-</span><span class="mi">1</span><span class="o">&lt;=</span><span class="n">lenL</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="n">len_seg</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">k</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">k</span><span class="o">++</span><span class="p">){</span>
+                <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">t</span><span class="o">&lt;=</span><span class="n">len</span><span class="p">[</span><span class="n">k</span><span class="p">];</span><span class="n">t</span><span class="o">++</span><span class="p">){</span>
+                    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">][</span><span class="n">t</span><span class="p">]</span><span class="o">=</span><span class="kc">false</span><span class="p">;</span>
+                    <span class="k">if</span><span class="p">(</span><span class="n">L</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">==</span><span class="n">S</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">t</span><span class="p">])</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">][</span><span class="n">t</span><span class="p">]</span><span class="o">=</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">k</span><span class="p">][</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+                    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">d</span><span class="o">=</span><span class="n">i</span><span class="p">;</span><span class="n">d</span><span class="o">&lt;=</span><span class="n">j</span><span class="p">;</span><span class="n">d</span><span class="o">++</span><span class="p">){</span>
+                        <span class="k">if</span><span class="p">(</span><span class="n">crm</span><span class="p">[</span><span class="n">d</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">&amp;&amp;</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">d</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">k</span><span class="p">][</span><span class="n">t</span><span class="p">])</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">][</span><span class="n">t</span><span class="p">]</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">][</span><span class="n">len</span><span class="p">[</span><span class="n">k</span><span class="p">]])</span><span class="n">crm</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">lenL</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">mln</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">mln</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">i</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">crm</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">])</span><span class="n">mln</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">min</span><span class="p">(</span><span class="n">mln</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">mln</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">mln</span><span class="p">[</span><span class="n">lenL</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+    </div>
+    <script type="text/javascript" src="/ACM/js/code_end.js"></script>
+
+
+
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>
+
