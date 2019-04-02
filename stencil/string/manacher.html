@@ -12,123 +12,119 @@
     <center><h1>manacher</h1></center>
     <div id="text"></div>
     <div id="code">
-     				<pre><span class="c1">//s[i]=ma[i*2+2]</span>
-<span class="c1">//mp[i]表示以i为中心的最长回文串的半径，且mp[i]-1 恰好为此回文串包含原字符串的字符的数量</span>
-<span class="c1">//可以证明ma字符串所包含的回文串总数=原字符串b所包含的回文串总数+2n+2</span>
-<span class="c1">//证明：</span>
-<span class="c1">//      先证明ma中单字符回文串总数为2n+2。-&gt;因为他有2n+2个字符</span>
-<span class="c1">//      再证明ma中每一个非单字符回文串一定包含了最长的回文子序列，此回文子序列，在原字符串中出现过，于是构成映射ma-&gt;s，为单射</span>
-<span class="c1">//      同理s中每一个回文串都可以拓展为一个最短的回文母串，此回文母串是ma的子串，于是构成映射s-&gt;ma，为单射</span>
-<span class="c1">//      于是ma与s互为满射，互为双射，一一对应</span>
-<span class="c1">//证毕</span>
+        <pre><span class="k">struct</span> <span class="n">Manacher</span><span class="p">{</span><span class="c1">//鉴于马拉车算法较复杂，此处有少量修改，</span>
+    <span class="c1">//s[i]=ma[i&lt;&lt;1]</span>
+    <span class="c1">//mp[i]表示以i为中心的最长回文串的半径，且mp[i]-1恰好为此回文串包含原字符串的字符的数量</span>
+    <span class="c1">//可以证明ma字符串所包含的回文串总数=原字符串b所包含的回文串总数+2n+2</span>
+    <span class="c1">//证明：</span>
+    <span class="c1">//      先证明ma中单字符回文串总数为2n+2。-&gt;因为他有2n+2个字符</span>
+    <span class="c1">//      再证明ma中每一个非单字符回文串一定包含了最长的回文子序列，此回文子序列，在原字符串中出现过，于是构成映射ma-&gt;s，为单射</span>
+    <span class="c1">//      同理s中每一个回文串都可以拓展为一个最短的回文母串，此回文母串是ma的子串，于是构成映射s-&gt;ma，为单射</span>
+    <span class="c1">//      于是ma与s互为满射，互为双射，一一对应</span>
+    <span class="c1">//证毕</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span
+                    class="n">maxn</span><span class="o">=</span><span class="mf">1e6</span><span
+                    class="o">+</span><span class="mi">666</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">ma</span><span class="p">[</span><span class="n">maxn</span><span
+                    class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">mp</span><span class="p">[</span><span class="n">maxn</span><span
+                    class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">],</span><span
+                    class="n">begat</span><span class="p">[</span><span class="n">maxn</span><span
+                    class="p">];</span><span class="c1">//begta[i]-&gt; 以i开头的回文串的数量  begin at</span>
 
-<span class="k">const</span> <span class="n">ll</span> <span class="n">maxn</span> <span class="o">=</span> <span
-                                class="mf">1e6</span><span class="o">+</span><span class="mi">666</span><span class="p">;</span>
-<span class="kt">char</span> <span class="n">ma</span><span class="p">[</span><span class="n">maxn</span> <span
-                                class="o">*</span> <span class="mi">2</span><span class="p">];</span>
-<span class="n">ll</span> <span class="n">mp</span><span class="p">[</span><span class="n">maxn</span> <span
-                                class="o">*</span> <span class="mi">2</span><span class="p">],</span><span class="n">dlta</span><span
-                                class="p">[</span><span class="n">maxn</span><span class="p">];</span>
-
-<span class="kt">void</span> <span class="n">Manacher</span><span class="p">(</span><span class="kt">char</span> <span
-                                class="n">str</span><span class="p">[],</span><span class="n">ll</span> <span class="n">len</span><span
-                                class="p">){</span>
-    <span class="n">ll</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span
-                                class="p">;</span>
-    <span class="n">ma</span><span class="p">[</span><span class="n">l</span><span class="o">++</span><span
-                                class="p">]</span> <span class="o">=</span> <span class="sc">&#39;$&#39;</span><span
-                                class="p">;</span>
-    <span class="n">ma</span><span class="p">[</span><span class="n">l</span><span class="o">++</span><span
-                                class="p">]</span> <span class="o">=</span> <span class="sc">&#39;#&#39;</span><span
-                                class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="n">i</span> <span
-                                class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span
-                                class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span> <span
-                                class="p">;</span> <span class="n">i</span><span class="o">++</span><span
-                                class="p">){</span>
+    <span class="kt">void</span> <span class="n">build</span><span class="p">(</span><span class="kt">char</span><span
+                    class="o">*</span><span class="n">str</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="n">len</span><span class="o">=</span><span class="n">strlen</span><span
+                    class="p">(</span><span class="n">str</span><span class="o">+</span><span class="mi">1</span><span
+                    class="p">),</span><span class="n">l</span><span class="o">=</span><span class="mi">0</span><span
+                    class="p">;</span>
         <span class="n">ma</span><span class="p">[</span><span class="n">l</span><span class="o">++</span><span
-                                class="p">]</span> <span class="o">=</span> <span class="n">str</span><span
-                                class="p">[</span><span class="n">i</span><span class="p">];</span>
+                    class="p">]</span><span class="o">=</span><span class="sc">&#39;$&#39;</span><span
+                    class="p">;</span><span class="c1">//$#.#.#.#.#.#.#.#</span>
         <span class="n">ma</span><span class="p">[</span><span class="n">l</span><span class="o">++</span><span
-                                class="p">]</span> <span class="o">=</span> <span class="sc">&#39;#&#39;</span><span
-                                class="p">;</span>
+                    class="p">]</span><span class="o">=</span><span class="sc">&#39;#&#39;</span><span
+                    class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">&lt;=</span><span class="n">len</span><span class="p">;</span><span
+                    class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">ma</span><span class="p">[</span><span class="n">l</span><span class="o">++</span><span
+                    class="p">]</span><span class="o">=</span><span class="n">str</span><span class="p">[</span><span
+                    class="n">i</span><span class="p">];</span>
+            <span class="n">ma</span><span class="p">[</span><span class="n">l</span><span class="o">++</span><span
+                    class="p">]</span><span class="o">=</span><span class="sc">&#39;#&#39;</span><span
+                    class="p">;</span>
         <span class="p">}</span>
-    <span class="n">ma</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span
-                                class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="n">ll</span> <span class="n">mx</span> <span class="o">=</span> <span class="mi">0</span><span
-                                class="p">,</span><span class="n">id</span> <span class="o">=</span> <span
-                                class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="n">i</span> <span
-                                class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span
-                                class="n">i</span> <span class="o">&lt;</span> <span class="n">l</span> <span class="p">;</span> <span
-                                class="n">i</span><span class="o">++</span><span class="p">){</span>
-        <span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span
-                                class="o">=</span> <span class="n">mx</span> <span class="o">&gt;</span> <span
-                                class="n">i</span> <span class="o">?</span> <span class="n">min</span><span
-                                class="p">(</span><span class="n">mp</span><span class="p">[</span><span
-                                class="mi">2</span> <span class="o">*</span> <span class="n">id</span> <span
-                                class="o">-</span> <span class="n">i</span><span class="p">],</span><span
-                                class="n">mx</span> <span class="o">-</span> <span class="n">i</span><span
-                                class="p">)</span> <span class="o">:</span> <span class="mi">1</span><span
-                                class="p">;</span>
-        <span class="k">while</span><span class="p">(</span><span class="n">ma</span><span class="p">[</span><span
-                                class="n">i</span> <span class="o">+</span> <span class="n">mp</span><span
-                                class="p">[</span><span class="n">i</span><span class="p">]]</span> <span
-                                class="o">==</span> <span class="n">ma</span><span class="p">[</span><span
-                                class="n">i</span> <span class="o">-</span> <span class="n">mp</span><span
-                                class="p">[</span><span class="n">i</span><span class="p">]])</span><span
-                                class="n">mp</span><span class="p">[</span><span class="n">i</span><span
-                                class="p">]</span><span class="o">++</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span
-                                class="n">mp</span><span class="p">[</span><span class="n">i</span><span
-                                class="p">]</span> <span class="o">&gt;</span> <span class="n">mx</span><span class="p">){</span>
-            <span class="n">mx</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span
-                                class="n">mp</span><span class="p">[</span><span class="n">i</span><span
-                                class="p">];</span>
-            <span class="n">id</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="n">ma</span><span class="p">[</span><span class="n">l</span><span class="p">]</span><span
+                    class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">mx</span><span class="o">=</span><span class="mi">0</span><span
+                    class="p">,</span><span class="n">id</span><span class="o">=</span><span class="mi">0</span><span
+                    class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">&lt;</span><span class="n">l</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">++</span><span class="p">){</span>
+            <span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
+                    class="o">=</span><span class="n">mx</span><span class="o">&gt;</span><span class="n">i</span> <span
+                    class="o">?</span> <span class="n">min</span><span class="p">(</span><span class="n">mp</span><span
+                    class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">id</span><span
+                    class="o">-</span><span class="n">i</span><span class="p">],</span><span class="n">mx</span><span
+                    class="o">-</span><span class="n">i</span><span class="p">)</span> <span class="o">:</span> <span
+                    class="mi">1</span><span class="p">;</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">ma</span><span class="p">[</span><span
+                    class="n">i</span><span class="o">+</span><span class="n">mp</span><span class="p">[</span><span
+                    class="n">i</span><span class="p">]]</span><span class="o">==</span><span class="n">ma</span><span
+                    class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">mp</span><span
+                    class="p">[</span><span class="n">i</span><span class="p">]])</span><span class="n">mp</span><span
+                    class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">++</span><span
+                    class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span
+                    class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
+                    class="o">&gt;</span><span class="n">mx</span><span class="p">){</span>
+                <span class="n">mx</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span
+                    class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+                <span class="n">id</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
             <span class="p">}</span>
         <span class="p">}</span>
-    <span class="c1">//dalt[i]-&gt; 以i开头的回文串的数量</span>
-    <span class="c1">//若不用dalt数组，此后可删掉</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span
-                                class="o">=</span><span class="mi">2</span><span class="p">;</span><span
-                                class="n">i</span><span class="o">&lt;</span><span class="n">l</span><span
-                                class="p">;</span><span class="n">i</span><span class="o">++</span><span
-                                class="p">){</span>
-        <span class="n">ll</span> <span class="n">s</span><span class="o">=</span><span class="n">i</span><span
-                                class="o">-</span><span class="n">mp</span><span class="p">[</span><span
-                                class="n">i</span><span class="p">]</span><span class="o">+</span><span
-                                class="mi">1</span><span class="p">;</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="o">&amp;</span><span
-                                class="mi">1</span><span class="p">)</span><span class="n">s</span><span
-                                class="o">++</span><span class="p">;</span>
-        <span class="n">s</span><span class="o">=</span><span class="n">s</span><span class="o">/</span><span
-                                class="mi">2</span><span class="o">-</span><span class="mi">1</span><span
-                                class="p">;</span>
-        <span class="n">ll</span> <span class="n">t</span><span class="o">=</span><span class="n">s</span><span
-                                class="o">+</span><span class="p">(</span><span class="n">mp</span><span
-                                class="p">[</span><span class="n">i</span><span class="p">]</span><span
-                                class="o">-</span><span class="mi">1</span><span class="o">+</span><span
-                                class="mi">1</span><span class="p">)</span><span class="o">/</span><span
-                                class="mi">2</span><span class="o">-</span><span class="mi">1</span><span
-                                class="p">;</span>
-        <span class="n">dlta</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span
-                                class="o">++</span><span class="p">;</span>
-        <span class="n">dlta</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span
-                                class="mi">1</span><span class="p">]</span><span class="o">--</span><span
-                                class="p">;</span>
-        <span class="p">}</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span
-                                class="mi">1</span><span class="p">;</span><span class="n">i</span><span
-                                class="o">&lt;=</span><span class="n">len</span><span class="p">;</span><span class="n">i</span><span
-                                class="o">++</span><span class="p">)</span><span class="n">dlta</span><span
-                                class="p">[</span><span class="n">i</span><span class="p">]</span><span
-                                class="o">+=</span><span class="n">dlta</span><span class="p">[</span><span
-                                class="n">i</span><span class="o">-</span><span class="mi">1</span><span
-                                class="p">];</span>
-    <span class="p">}</span>
-</pre>
 
+        <span class="c1">//若不用dalt数组，此后可删掉</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">&lt;=</span><span class="n">len</span><span class="p">;</span><span
+                    class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">begat</span><span
+                    class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span
+                    class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">&lt;</span><span class="n">l</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">++</span><span class="p">){</span>
+            <span class="kt">int</span> <span class="n">s</span><span class="o">=</span><span class="n">i</span><span
+                    class="o">-</span><span class="n">mp</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span
+                    class="c1">//ma串最长回文左端点s</span>
+            <span class="n">s</span><span class="o">=</span><span class="p">(</span><span class="n">s</span><span
+                    class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span
+                    class="mi">2</span><span class="p">;</span><span class="c1">//变为str串最长回文左端点，向上取整,因为str[i]对应smp[i&lt;&lt;1]</span>
+            <span class="kt">int</span> <span class="n">t</span><span class="o">=</span><span class="n">s</span><span
+                    class="o">+</span><span class="n">mp</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span
+                    class="mi">1</span><span class="p">;</span><span class="c1">//右端点</span>
+            <span class="n">begat</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span
+                    class="o">++</span><span class="p">;</span><span class="n">begat</span><span class="p">[</span><span
+                    class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span
+                    class="o">--</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">&lt;=</span><span class="n">len</span><span class="o">+</span><span
+                    class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span
+                    class="p">)</span><span class="n">begat</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">]</span><span class="o">+=</span><span class="n">begat</span><span class="p">[</span><span
+                    class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span><span
+                    class="c1">//+1是为了还原</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre>
     </div>
 </div>
 <script type="text/javascript" src="/ACM/js/web_end.js"></script>

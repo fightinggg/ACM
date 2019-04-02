@@ -160,82 +160,223 @@
 
 
     <div id="code">
-        <pre><span class="c1">//如果没有特殊要求，尽量选择合适的自动机，要算好内存</span>
-<span class="c1">//经过hdu1000测试，10000个map大概是10kb,对于1e6的字符串，不建议使用后缀自动机</span>
-<span class="k">typedef</span> <span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">IT</span><span class="p">;</span>
-<span class="k">struct</span> <span class="n">SAM</span><span class="p">{</span><span class="c1">//下标从1开始，0作为保留位，用于做哨兵</span>
-    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">MAXN</span><span class="o">=</span><span class="mf">1e5</span><span class="o">+</span><span class="mi">10</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">cnt</span><span class="p">,</span><span class="n">last</span><span class="p">,</span><span class="n">par</span><span class="p">[</span><span class="n">MAXN</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">],</span><span class="n">len</span><span class="p">[</span><span class="n">MAXN</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">];</span>
-    <span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span><span class="n">trans</span><span class="p">[</span><span class="n">MAXN</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">];</span><span class="c1">//map用于字符集特别大的时候，注意这里占内存可能会特别大</span>
+    <pre><span class="k">struct</span> <span class="n">SAM</span><span class="p">{</span><span class="c1">//下标从1开始，0作为保留位，用于做哨兵</span>
+    <span class="c1">//如果没有特殊要求，尽量选择合适的自动机，要算好内存</span>
+    <span class="c1">//经过hdu1000测试，10000个map大概是10kb,对于1e6的字符串，不建议使用后缀自动机</span>
+    <span class="k">typedef</span> <span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span
+                class="p">,</span><span class="kt">int</span><span class="o">&gt;::</span><span
+                class="n">iterator</span> <span class="n">IT</span><span class="p">;</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span
+                class="n">MAXN</span><span class="o">=</span><span class="mf">1e5</span><span class="o">+</span><span
+                class="mi">10</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">cnt</span><span class="p">,</span><span class="n">last</span><span
+                class="p">,</span><span class="n">par</span><span class="p">[</span><span class="n">MAXN</span><span
+                class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">],</span><span
+                class="n">len</span><span class="p">[</span><span class="n">MAXN</span><span
+                class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">];</span>
+    <span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span
+                class="kt">int</span><span class="o">&gt;</span><span class="n">trans</span><span
+                class="p">[</span><span class="n">MAXN</span><span class="o">&lt;&lt;</span><span
+                class="mi">1</span><span class="p">];</span><span class="c1">//map用于字符集特别大的时候，注意这里占内存可能会特别大</span>
 
-
-    <span class="kt">int</span> <span class="n">newnode</span><span class="p">(</span><span class="kt">int</span> <span class="n">parent</span><span class="p">,</span><span class="kt">int</span> <span class="n">length</span><span class="p">){</span>
-        <span class="n">par</span><span class="p">[</span><span class="o">++</span><span class="n">cnt</span><span class="p">]</span><span class="o">=</span><span class="n">parent</span><span class="p">;</span>
-        <span class="n">len</span><span class="p">[</span><span class="n">cnt</span><span class="p">]</span><span class="o">=</span><span class="n">length</span><span class="p">;</span>
-        <span class="n">trans</span><span class="p">[</span><span class="n">cnt</span><span class="p">].</span><span class="n">clear</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">newnode</span><span class="p">(</span><span class="kt">int</span> <span
+                class="n">parent</span><span class="p">,</span><span class="kt">int</span> <span class="n">length</span><span
+                class="p">){</span>
+        <span class="n">par</span><span class="p">[</span><span class="o">++</span><span class="n">cnt</span><span
+                class="p">]</span><span class="o">=</span><span class="n">parent</span><span class="p">;</span>
+        <span class="n">len</span><span class="p">[</span><span class="n">cnt</span><span class="p">]</span><span
+                class="o">=</span><span class="n">length</span><span class="p">;</span>
+        <span class="n">trans</span><span class="p">[</span><span class="n">cnt</span><span class="p">].</span><span
+                class="n">clear</span><span class="p">();</span>
         <span class="k">return</span> <span class="n">cnt</span><span class="p">;</span>
     <span class="p">}</span>
+
     <span class="kt">void</span> <span class="n">ini</span><span class="p">(){</span>
         <span class="n">cnt</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-        <span class="n">last</span><span class="o">=</span><span class="n">newnode</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+        <span class="n">last</span><span class="o">=</span><span class="n">newnode</span><span class="p">(</span><span
+                class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="kt">void</span> <span class="n">extend</span><span class="p">(</span><span class="kt">int</span> <span class="n">c</span><span class="p">){</span>
-        <span class="kt">int</span> <span class="n">p</span><span class="o">=</span><span class="n">last</span><span class="p">;</span>
-        <span class="kt">int</span> <span class="n">np</span><span class="o">=</span><span class="n">newnode</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">len</span><span class="p">[</span><span class="n">last</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span><span class="c1">//新建状态，先让parent指向根（1）</span>
-        <span class="k">while</span><span class="p">(</span><span class="n">p</span><span class="o">!=</span><span class="mi">0</span><span class="o">&amp;&amp;</span><span class="n">trans</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">find</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">==</span><span class="n">trans</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">end</span><span class="p">()){</span><span class="c1">//如果没有边，且不为空，根也是要转移的</span>
-            <span class="n">trans</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">c</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="p">;</span><span class="c1">//他们都没有向np转移的边，直接连过去</span>
-            <span class="n">p</span><span class="o">=</span><span class="n">par</span><span class="p">[</span><span class="n">p</span><span class="p">];</span><span class="c1">//往parent走</span>
+    <span class="kt">void</span> <span class="n">extend</span><span class="p">(</span><span class="kt">int</span> <span
+                class="n">c</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="n">p</span><span class="o">=</span><span class="n">last</span><span
+                class="p">;</span>
+        <span class="kt">int</span> <span class="n">np</span><span class="o">=</span><span class="n">newnode</span><span
+                class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">len</span><span
+                class="p">[</span><span class="n">last</span><span class="p">]</span><span class="o">+</span><span
+                class="mi">1</span><span class="p">);</span><span class="c1">//新建状态，先让parent指向根（1）</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">p</span><span class="o">!=</span><span
+                class="mi">0</span><span class="o">&amp;&amp;</span><span class="n">trans</span><span class="p">[</span><span
+                class="n">p</span><span class="p">].</span><span class="n">find</span><span class="p">(</span><span
+                class="n">c</span><span class="p">)</span><span class="o">==</span><span class="n">trans</span><span
+                class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">end</span><span
+                class="p">()){</span><span class="c1">//如果没有边，且不为空，根也是要转移的</span>
+            <span class="n">trans</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span
+                class="n">c</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span
+                class="p">;</span><span class="c1">//他们都没有向np转移的边，直接连过去</span>
+            <span class="n">p</span><span class="o">=</span><span class="n">par</span><span class="p">[</span><span
+                class="n">p</span><span class="p">];</span><span class="c1">//往parent走</span>
         <span class="p">}</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="o">!=</span><span class="mi">0</span><span class="p">){</span><span class="c1">//如果p==0，直接就结束了，什么都不用做，否则节点p是第一个拥有转移c的状态，他的祖先都有转移c</span>
-            <span class="kt">int</span> <span class="n">q</span><span class="o">=</span><span class="n">trans</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">c</span><span class="p">];</span><span class="c1">//q是p转移后的状态</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">len</span><span class="p">[</span><span class="n">q</span><span class="p">]</span><span class="o">==</span><span class="n">len</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="n">par</span><span class="p">[</span><span class="n">np</span><span class="p">]</span><span class="o">=</span><span class="n">q</span><span class="p">;</span><span class="c1">//len[q]是以前的最长串，len[p]+1是合并后的最长串，相等的话，不会影响，直接结束了，</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="o">!=</span><span
+                class="mi">0</span><span class="p">){</span><span class="c1">//如果p==0，直接就结束了，什么都不用做，否则节点p是第一个拥有转移c的状态，他的祖先都有转移c</span>
+            <span class="kt">int</span> <span class="n">q</span><span class="o">=</span><span
+                class="n">trans</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span
+                class="n">c</span><span class="p">];</span><span class="c1">//q是p转移后的状态</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">len</span><span class="p">[</span><span
+                class="n">q</span><span class="p">]</span><span class="o">==</span><span class="n">len</span><span
+                class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">+</span><span
+                class="mi">1</span><span class="p">)</span><span class="n">par</span><span class="p">[</span><span
+                class="n">np</span><span class="p">]</span><span class="o">=</span><span class="n">q</span><span
+                class="p">;</span><span class="c1">//len[q]是以前的最长串，len[p]+1是合并后的最长串，相等的话，不会影响，直接结束了，</span>
             <span class="k">else</span><span class="p">{</span>
-                <span class="kt">int</span> <span class="n">nq</span><span class="o">=</span><span class="n">newnode</span><span class="p">(</span><span class="n">par</span><span class="p">[</span><span class="n">q</span><span class="p">],</span><span class="n">len</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
-                <span class="n">trans</span><span class="p">[</span><span class="n">nq</span><span class="p">]</span><span class="o">=</span><span class="n">trans</span><span class="p">[</span><span class="n">q</span><span class="p">];</span><span class="c1">//copy出q来，</span>
-                <span class="n">par</span><span class="p">[</span><span class="n">np</span><span class="p">]</span><span class="o">=</span><span class="n">par</span><span class="p">[</span><span class="n">q</span><span class="p">]</span><span class="o">=</span><span class="n">nq</span><span class="p">;</span><span class="c1">//改变parent树的形态</span>
-                <span class="k">while</span><span class="p">(</span><span class="n">trans</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">c</span><span class="p">]</span><span class="o">==</span><span class="n">q</span><span class="p">){</span><span class="c1">//一直往上面走</span>
-                    <span class="n">trans</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">c</span><span class="p">]</span><span class="o">=</span><span class="n">nq</span><span class="p">;</span><span class="c1">//所有向q连边的状态都连向nq</span>
-                    <span class="n">p</span><span class="o">=</span><span class="n">par</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
+                <span class="kt">int</span> <span class="n">nq</span><span class="o">=</span><span
+                class="n">newnode</span><span class="p">(</span><span class="n">par</span><span class="p">[</span><span
+                class="n">q</span><span class="p">],</span><span class="n">len</span><span class="p">[</span><span
+                class="n">p</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span
+                class="p">);</span>
+                <span class="n">trans</span><span class="p">[</span><span class="n">nq</span><span
+                class="p">]</span><span class="o">=</span><span class="n">trans</span><span class="p">[</span><span
+                class="n">q</span><span class="p">];</span><span class="c1">//copy出q来，</span>
+                <span class="n">par</span><span class="p">[</span><span class="n">np</span><span class="p">]</span><span
+                class="o">=</span><span class="n">par</span><span class="p">[</span><span class="n">q</span><span
+                class="p">]</span><span class="o">=</span><span class="n">nq</span><span class="p">;</span><span
+                class="c1">//改变parent树的形态</span>
+                <span class="k">while</span><span class="p">(</span><span class="n">trans</span><span class="p">[</span><span
+                class="n">p</span><span class="p">][</span><span class="n">c</span><span class="p">]</span><span
+                class="o">==</span><span class="n">q</span><span class="p">){</span><span class="c1">//一直往上面走</span>
+                    <span class="n">trans</span><span class="p">[</span><span class="n">p</span><span
+                class="p">][</span><span class="n">c</span><span class="p">]</span><span class="o">=</span><span
+                class="n">nq</span><span class="p">;</span><span class="c1">//所有向q连边的状态都连向nq</span>
+                    <span class="n">p</span><span class="o">=</span><span class="n">par</span><span
+                class="p">[</span><span class="n">p</span><span class="p">];</span>
                 <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span>
-        <span class="n">last</span><span class="o">=</span><span class="n">np</span><span class="p">;</span><span class="c1">//最后的那个节点</span>
+        <span class="n">last</span><span class="o">=</span><span class="n">np</span><span class="p">;</span><span
+                class="c1">//最后的那个节点</span>
     <span class="p">}</span><span class="c1">//SAM到此结束</span>
 
     <span class="kt">int</span> <span class="n">count_all_substring</span><span class="p">(){</span><span class="c1">//本质不同的串,不必调用拓扑排序</span>
-        <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">cnt</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="c1">//不必计算根，因为根太特殊了，它代表的是空串，</span>
-            <span class="n">ret</span><span class="o">+=</span><span class="n">len</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">len</span><span class="p">[</span><span class="n">par</span><span class="p">[</span><span class="n">i</span><span class="p">]];</span><span class="c1">//每个节点存的串都是唯一的right集合，所以对所有状态求和即可</span>
+        <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span
+                class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span
+                class="o">&lt;=</span><span class="n">cnt</span><span class="p">;</span><span class="n">i</span><span
+                class="o">++</span><span class="p">){</span><span class="c1">//不必计算根，因为根太特殊了，它代表的是空串，</span>
+            <span class="n">ret</span><span class="o">+=</span><span class="n">len</span><span class="p">[</span><span
+                class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">len</span><span
+                class="p">[</span><span class="n">par</span><span class="p">[</span><span class="n">i</span><span
+                class="p">]];</span><span class="c1">//每个节点存的串都是唯一的right集合，所以对所有状态求和即可</span>
         <span class="p">}</span>
         <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="kt">int</span> <span class="n">bfn</span><span class="p">[</span><span class="n">MAXN</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">],</span><span class="n">bfn__</span><span class="p">[</span><span class="n">MAXN</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">];</span><span class="c1">//辅助数组,辅助数组用过以后会自动复原的，很神奇，也很好证明</span>
+    <span class="kt">int</span> <span class="n">bfn</span><span class="p">[</span><span class="n">MAXN</span><span
+                class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">],</span><span
+                class="n">bfn__</span><span class="p">[</span><span class="n">MAXN</span><span class="o">&lt;&lt;</span><span
+                class="mi">1</span><span class="p">];</span><span class="c1">//辅助数组</span>
     <span class="kt">void</span> <span class="n">sort</span><span class="p">(){</span><span class="c1">//拓扑排序,利用len的特性，len小的肯定是子孙，相同的顶多是兄弟，大的肯定是祖先级别的，</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">cnt</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">bfn__</span><span class="p">[</span><span class="n">len</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">++</span><span class="p">;</span><span class="c1">//len的值分布于1到n，对此计数</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">cnt</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">bfn__</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+=</span><span class="n">bfn__</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span><span class="c1">//统计前缀和</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">cnt</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">bfn</span><span class="p">[</span><span class="n">bfn__</span><span class="p">[</span><span class="n">len</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">--</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="p">;</span><span class="c1">//bfn[i]是排名为i的节点的编号，i从1开始</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span
+                class="o">&lt;=</span><span class="n">cnt</span><span class="p">;</span><span class="n">i</span><span
+                class="o">++</span><span class="p">)</span><span class="n">bfn__</span><span class="p">[</span><span
+                class="n">len</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span
+                class="o">++</span><span class="p">;</span><span class="c1">//len的值分布于1到n，对此计数</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span
+                class="o">&lt;=</span><span class="n">cnt</span><span class="p">;</span><span class="n">i</span><span
+                class="o">++</span><span class="p">)</span><span class="n">bfn__</span><span class="p">[</span><span
+                class="n">i</span><span class="p">]</span><span class="o">+=</span><span class="n">bfn__</span><span
+                class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span
+                class="p">];</span><span class="c1">//统计前缀和</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span
+                class="o">&lt;=</span><span class="n">cnt</span><span class="p">;</span><span class="n">i</span><span
+                class="o">++</span><span class="p">)</span><span class="n">bfn</span><span class="p">[</span><span
+                class="n">bfn__</span><span class="p">[</span><span class="n">len</span><span class="p">[</span><span
+                class="n">i</span><span class="p">]]</span><span class="o">--</span><span class="p">]</span><span
+                class="o">=</span><span class="n">i</span><span class="p">;</span><span class="c1">//bfn[i]是排名为i的节点的编号，i从1开始</span>
     <span class="p">}</span>
 
-    <span class="kt">int</span> <span class="n">right</span><span class="p">[</span><span class="n">MAXN</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">];</span><span class="c1">//right集合的大小</span>
+    <span class="kt">int</span> <span class="n">right</span><span class="p">[</span><span class="n">MAXN</span><span
+                class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">];</span><span
+                class="c1">//right集合的大小</span>
     <span class="kt">void</span> <span class="n">get_right</span><span class="p">(){</span><span class="c1">//先调用sort得到拓扑序，然后再来这里</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">bfn</span><span class="p">[</span><span class="n">cnt</span><span class="p">];</span><span class="n">i</span><span class="o">!=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">=</span><span class="n">par</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="n">right</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">cnt</span><span class="p">;</span><span class="n">i</span><span class="o">&gt;=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">--</span><span class="p">){</span><span class="c1">//1号节点为根，其实不需要</span>
-            <span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">bfn</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-            <span class="k">for</span><span class="p">(</span><span class="n">IT</span> <span class="n">it</span><span class="o">=</span><span class="n">trans</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">begin</span><span class="p">();</span><span class="n">it</span><span class="o">!=</span><span class="n">trans</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">end</span><span class="p">();</span><span class="n">it</span><span class="o">++</span><span class="p">){</span>
-                <span class="n">right</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">+=</span><span class="n">right</span><span class="p">[</span><span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">];</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                class="o">=</span><span class="n">bfn</span><span class="p">[</span><span class="n">cnt</span><span
+                class="p">];</span><span class="n">i</span><span class="o">!=</span><span class="mi">0</span><span
+                class="p">;</span><span class="n">i</span><span class="o">=</span><span class="n">par</span><span
+                class="p">[</span><span class="n">i</span><span class="p">])</span><span class="n">right</span><span
+                class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span
+                class="mi">1</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                class="o">=</span><span class="n">cnt</span><span class="p">;</span><span class="n">i</span><span
+                class="o">&gt;=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span
+                class="o">--</span><span class="p">){</span><span class="c1">//1号节点为根，其实不需要</span>
+            <span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">bfn</span><span
+                class="p">[</span><span class="n">i</span><span class="p">];</span>
+            <span class="k">for</span><span class="p">(</span><span class="n">IT</span> <span class="n">it</span><span
+                class="o">=</span><span class="n">trans</span><span class="p">[</span><span class="n">j</span><span
+                class="p">].</span><span class="n">begin</span><span class="p">();</span><span class="n">it</span><span
+                class="o">!=</span><span class="n">trans</span><span class="p">[</span><span class="n">j</span><span
+                class="p">].</span><span class="n">end</span><span class="p">();</span><span class="n">it</span><span
+                class="o">++</span><span class="p">){</span>
+                <span class="n">right</span><span class="p">[</span><span class="n">j</span><span
+                class="p">]</span><span class="o">+=</span><span class="n">right</span><span class="p">[</span><span
+                class="n">it</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">];</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
+
+    <span class="c1">//最长公共子串，先对一个串建立后缀自动机，然后让另外一个串在其上面匹配，此函数不要求bfs序以及right集合</span>
+    <span class="kt">int</span> <span class="n">query_lcs</span><span class="p">(</span><span
+                class="kt">char</span><span class="o">*</span><span class="n">s</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span
+                class="p">;</span>
+        <span class="kt">int</span> <span class="n">l</span><span class="o">=</span><span class="n">strlen</span><span
+                class="p">(</span><span class="n">s</span><span class="o">+</span><span class="mi">1</span><span
+                class="p">);</span>
+        <span class="kt">int</span> <span class="n">cur</span><span class="o">=</span><span class="mi">1</span><span
+                class="p">;</span>
+        <span class="kt">int</span> <span class="n">length</span><span class="o">=</span><span class="mi">0</span><span
+                class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span
+                class="o">&lt;=</span><span class="n">l</span><span class="p">;</span><span class="n">i</span><span
+                class="o">++</span><span class="p">){</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">cur</span><span class="o">!=</span><span
+                class="mi">1</span><span class="o">&amp;&amp;</span><span class="n">trans</span><span class="p">[</span><span
+                class="n">cur</span><span class="p">].</span><span class="n">find</span><span class="p">(</span><span
+                class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span
+                class="o">==</span><span class="n">trans</span><span class="p">[</span><span class="n">cur</span><span
+                class="p">].</span><span class="n">end</span><span class="p">()){</span>
+                <span class="n">cur</span><span class="o">=</span><span class="n">par</span><span
+                class="p">[</span><span class="n">cur</span><span class="p">];</span>
+                <span class="n">length</span><span class="o">=</span><span class="n">len</span><span
+                class="p">[</span><span class="n">cur</span><span class="p">];</span>
+            <span class="p">}</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">trans</span><span class="p">[</span><span
+                class="n">cur</span><span class="p">].</span><span class="n">find</span><span class="p">(</span><span
+                class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span
+                class="o">!=</span><span class="n">trans</span><span class="p">[</span><span class="n">cur</span><span
+                class="p">].</span><span class="n">end</span><span class="p">()){</span>
+                <span class="n">cur</span><span class="o">=</span><span class="n">trans</span><span
+                class="p">[</span><span class="n">cur</span><span class="p">][</span><span class="n">s</span><span
+                class="p">[</span><span class="n">i</span><span class="p">]];</span>
+                <span class="n">length</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span><span class="p">{</span>
+
+            <span class="p">}</span>
+            <span class="n">ret</span><span class="o">=</span><span class="n">max</span><span class="p">(</span><span
+                class="n">ret</span><span class="p">,</span><span class="n">length</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="p">}</span>
+
 <span class="p">};</span>
 </pre>
     </div>
-
-
-
-
-
 
 
 </div>

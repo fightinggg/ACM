@@ -35,129 +35,136 @@
     </div>
 
     <div id="code">
-        <pre><span class="k">struct</span> <span class="n">palindrome_tree</span><span class="p">{</span>
+<pre><span class="k">struct</span> <span class="n">palindrome_tree</span><span class="p">{</span>
     <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span
-                    class="n">maxn</span><span class="o">=</span><span class="mf">1e5</span><span
-                    class="o">+</span><span class="mi">5</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">nex</span><span class="p">[</span><span class="n">maxn</span><span
-                    class="p">][</span><span class="mi">26</span><span class="p">],</span><span
-                    class="n">len</span><span class="p">[</span><span class="n">maxn</span><span
-                    class="p">],</span><span class="n">suf</span><span class="p">[</span><span
-                    class="n">maxn</span><span class="p">],</span><span class="n">num</span><span
-                    class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+            class="n">maxn</span><span class="o">=</span><span class="mf">1.2e5</span><span class="o">+</span><span
+            class="mi">5</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">trans</span><span class="p">[</span><span class="n">maxn</span><span
+            class="p">][</span><span class="mi">26</span><span class="p">],</span><span class="n">len</span><span
+            class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">suf</span><span
+            class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">num</span><span
+            class="p">[</span><span class="n">maxn</span><span class="p">];</span>
     <span class="c1">//字典树一样,len代表回文长度,suf指向回文后缀,类似于fail指针，num是最长后缀的数量，经过calc之后是后缀数量</span>
     <span class="kt">int</span> <span class="n">last</span><span class="p">,</span><span class="n">cnt</span><span
-                    class="p">;</span><span class="c1">//last是上一个回文后缀，cnt是所有节点数</span>
+            class="p">;</span><span class="c1">//last是上一个回文后缀，cnt是所有节点数</span>
 
     <span class="kt">int</span> <span class="n">new_node</span><span class="p">(</span><span class="kt">int</span> <span
-                    class="n">_len</span><span class="p">,</span><span class="kt">int</span> <span class="n">_suf</span><span
-                    class="p">,</span><span class="kt">int</span> <span class="n">_num</span><span
-                    class="p">){</span><span class="c1">//长度，后缀，数量</span>
+            class="n">_len</span><span class="p">,</span><span class="kt">int</span> <span class="n">_suf</span><span
+            class="p">,</span><span class="kt">int</span> <span class="n">_num</span><span class="p">){</span><span
+            class="c1">//长度，后缀，数量</span>
         <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
-                    class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">&lt;</span><span class="mi">26</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">++</span><span class="p">)</span><span class="n">nex</span><span class="p">[</span><span
-                    class="n">cnt</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span
-                    class="o">=</span><span class="mi">0</span><span class="p">;</span>
+            class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span
+            class="mi">26</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span
+            class="p">)</span><span class="n">trans</span><span class="p">[</span><span class="n">cnt</span><span
+            class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span
+            class="p">;</span>
         <span class="n">len</span><span class="p">[</span><span class="n">cnt</span><span class="p">]</span><span
-                    class="o">=</span><span class="n">_len</span><span class="p">;</span>
+            class="o">=</span><span class="n">_len</span><span class="p">;</span>
         <span class="n">suf</span><span class="p">[</span><span class="n">cnt</span><span class="p">]</span><span
-                    class="o">=</span><span class="n">_suf</span><span class="p">;</span>
+            class="o">=</span><span class="n">_suf</span><span class="p">;</span>
         <span class="n">num</span><span class="p">[</span><span class="n">cnt</span><span class="p">]</span><span
-                    class="o">=</span><span class="n">_num</span><span class="p">;</span>
+            class="o">=</span><span class="n">_num</span><span class="p">;</span>
         <span class="k">return</span> <span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="kt">void</span> <span class="n">ini</span><span class="p">(</span><span class="kt">char</span><span
-                    class="o">*</span><span class="n">s</span><span class="p">){</span><span
-                    class="c1">//s是要建立回文自动机的字符串</span>
+    <span class="kt">void</span> <span class="n">ini</span><span class="p">(){</span>
+        <span class="n">cnt</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
         <span class="kt">int</span> <span class="n">root_even</span><span class="o">=</span><span
-                    class="n">new_node</span><span class="p">(</span><span class="mi">0</span><span
-                    class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span
-                    class="p">);</span><span class="c1">//=1</span>
+            class="n">new_node</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span
+            class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span
+            class="c1">//=1</span>
         <span class="kt">int</span> <span class="n">root_odd</span><span class="o">=</span><span
-                    class="n">new_node</span><span class="p">(</span><span class="o">-</span><span
-                    class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span
-                    class="mi">0</span><span class="p">);</span><span class="c1">//=0</span>
-        <span class="n">last</span> <span class="o">=</span> <span class="n">root_odd</span><span class="p">;</span>
+            class="n">new_node</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span
+            class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span
+            class="c1">//=0</span>
+        <span class="n">last</span><span class="o">=</span><span class="n">root_odd</span><span class="p">;</span>
+    <span class="p">}</span>
 
-        <span class="kt">int</span> <span class="n">len</span><span class="o">=</span><span class="p">(</span><span
-                    class="kt">int</span><span class="p">)</span><span class="n">strlen</span><span
-                    class="p">(</span><span class="n">s</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">query_longest_palindrom</span><span class="p">(){</span>
+        <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">1</span><span
+            class="p">;</span>
         <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
-                    class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span
-                    class="o">&lt;</span><span class="n">len</span><span class="p">;</span> <span
-                    class="n">i</span><span class="o">++</span><span class="p">)</span><span
-                    class="n">insert</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span
-                    class="n">i</span><span class="p">);</span>
+            class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span
+            class="n">cnt</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span
+            class="p">){</span>
+            <span class="n">ret</span><span class="o">=</span><span class="n">max</span><span class="p">(</span><span
+            class="n">ret</span><span class="p">,</span><span class="n">len</span><span class="p">[</span><span
+            class="n">i</span><span class="p">]);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">build</span><span class="p">(</span><span class="kt">char</span><span
+            class="o">*</span><span class="n">s</span><span class="p">){</span><span
+            class="c1">//s是要建立回文自动机的字符串,下标从1开始</span>
+        <span class="kt">int</span> <span class="n">len</span><span class="o">=</span><span class="p">(</span><span
+            class="kt">int</span><span class="p">)</span><span class="n">strlen</span><span class="p">(</span><span
+            class="n">s</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+            class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span
+            class="n">len</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span
+            class="p">)</span><span class="n">extend</span><span class="p">(</span><span class="n">s</span><span
+            class="p">,</span><span class="n">i</span><span class="p">);</span>
         <span class="n">calc</span><span class="p">();</span>
     <span class="p">}</span>
 
-    <span class="kt">void</span> <span class="n">insert</span><span class="p">(</span><span class="kt">char</span><span
-                    class="o">*</span><span class="n">s</span><span class="p">,</span><span class="kt">int</span> <span
-                    class="n">cur</span><span class="p">){</span>
+    <span class="kt">void</span> <span class="n">extend</span><span class="p">(</span><span class="kt">char</span><span
+            class="o">*</span><span class="n">s</span><span class="p">,</span><span class="kt">int</span> <span
+            class="n">cur</span><span class="p">){</span>
         <span class="kt">int</span> <span class="n">w</span><span class="o">=</span><span class="n">s</span><span
-                    class="p">[</span><span class="n">cur</span><span class="p">]</span><span class="o">-</span><span
-                    class="sc">&#39;a&#39;</span><span class="p">;</span><span class="c1">//当前结点的值</span>
-        <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">last</span><span
-                    class="p">;</span><span class="c1">//上一次匹配到的回文后缀</span>
+            class="p">[</span><span class="n">cur</span><span class="p">]</span><span class="o">-</span><span
+            class="sc">&#39;a&#39;</span><span class="p">;</span><span class="c1">//当前结点的值</span>
+        <span class="kt">int</span> <span class="n">p</span><span class="o">=</span><span class="n">last</span><span
+            class="p">;</span><span class="c1">//上一次匹配到的回文后缀</span>
         <span class="k">while</span><span class="p">(</span> <span class="n">s</span><span class="p">[</span><span
-                    class="n">cur</span><span class="o">-</span><span class="n">len</span><span class="p">[</span><span
-                    class="n">p</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span
-                    class="p">]</span> <span class="o">!=</span> <span class="n">s</span><span class="p">[</span><span
-                    class="n">cur</span><span class="p">])</span>
-            <span class="n">p</span> <span class="o">=</span> <span class="n">suf</span><span class="p">[</span><span
-                    class="n">p</span><span class="p">];</span>
-        <span class="c1">//现在p结点的cur儿子</span>
-        <span class="c1">//要么是匹配成功的最长非自身回文后缀</span>
-        <span class="c1">//要么是自身这一个字符</span>
+            class="n">cur</span><span class="o">-</span><span class="n">len</span><span class="p">[</span><span
+            class="n">p</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span
+            class="p">]</span> <span class="o">!=</span> <span class="n">s</span><span class="p">[</span><span
+            class="n">cur</span><span class="p">])</span> <span class="n">p</span><span class="o">=</span><span
+            class="n">suf</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
+        <span class="c1">//现在p结点的cur儿子,要么是匹配成功的最长非自身回文后缀,要么是自身这一个字符</span>
 
-
-        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">nex</span><span
-                    class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">w</span><span
-                    class="p">]){</span><span class="c1">//如果此回文后缀未出现过，要创建节点</span>
-            <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span
-                    class="n">suf</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
-            <span class="c1">//我们来找他的suffix link回边，</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">trans</span><span
+            class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">w</span><span class="p">]){</span><span
+            class="c1">//如果此回文后缀未出现过，要创建节点</span>
+            <span class="kt">int</span> <span class="n">v</span><span class="o">=</span><span class="n">suf</span><span
+            class="p">[</span><span class="n">p</span><span class="p">];</span><span
+            class="c1">//我们来找他的suffix link回边，</span>
             <span class="k">while</span><span class="p">(</span> <span class="n">s</span><span class="p">[</span><span
-                    class="n">cur</span><span class="o">-</span><span class="n">len</span><span class="p">[</span><span
-                    class="n">v</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span
-                    class="p">]</span> <span class="o">!=</span> <span class="n">s</span><span class="p">[</span><span
-                    class="n">cur</span><span class="p">]</span> <span class="p">)</span>
-                <span class="n">v</span> <span class="o">=</span> <span class="n">suf</span><span
-                    class="p">[</span><span class="n">v</span><span class="p">];</span>
+            class="n">cur</span><span class="o">-</span><span class="n">len</span><span class="p">[</span><span
+            class="n">v</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span
+            class="p">]</span> <span class="o">!=</span> <span class="n">s</span><span class="p">[</span><span
+            class="n">cur</span><span class="p">]</span> <span class="p">)</span><span class="n">v</span><span
+            class="o">=</span><span class="n">suf</span><span class="p">[</span><span class="n">v</span><span class="p">];</span>
             <span class="c1">//此时意味着找到了suffix link 是v的儿子</span>
-            <span class="n">nex</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span
-                    class="n">w</span><span class="p">]</span><span class="o">=</span><span
-                    class="n">new_node</span><span class="p">(</span><span class="n">len</span><span
-                    class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">+</span><span
-                    class="mi">2</span><span class="p">,</span><span class="n">nex</span><span class="p">[</span><span
-                    class="n">v</span><span class="p">][</span><span class="n">w</span><span class="p">],</span><span
-                    class="mi">0</span><span class="p">);</span>
+            <span class="n">trans</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span
+            class="n">w</span><span class="p">]</span><span class="o">=</span><span class="n">new_node</span><span
+            class="p">(</span><span class="n">len</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span
+            class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="n">trans</span><span
+            class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">w</span><span class="p">],</span><span
+            class="mi">0</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="n">last</span> <span class="o">=</span> <span class="n">nex</span><span class="p">[</span><span
-                    class="n">p</span><span class="p">][</span><span class="n">w</span><span class="p">];</span><span
-                    class="c1">//这一次匹配到的回文后缀</span>
+        <span class="n">last</span><span class="o">=</span><span class="n">trans</span><span class="p">[</span><span
+            class="n">p</span><span class="p">][</span><span class="n">w</span><span class="p">];</span><span
+            class="c1">//这一次匹配到的回文后缀</span>
         <span class="n">num</span><span class="p">[</span><span class="n">last</span><span class="p">]</span><span
-                    class="o">++</span><span class="p">;</span>
+            class="o">++</span><span class="p">;</span>
     <span class="p">}</span>
 
 
     <span class="kt">void</span> <span class="n">calc</span><span class="p">(){</span>
-        <span class="k">for</span><span class="p">(</span> <span class="kt">int</span> <span class="n">i</span> <span
-                    class="o">=</span> <span class="n">cnt</span><span class="o">-</span><span class="mi">1</span><span
-                    class="p">;</span> <span class="o">~</span><span class="n">i</span><span class="p">;</span> <span
-                    class="n">i</span><span class="o">--</span> <span class="p">)</span>
-            <span class="n">num</span><span class="p">[</span><span class="n">suf</span><span class="p">[</span><span
-                    class="n">i</span><span class="p">]]</span> <span class="o">+=</span> <span
-                    class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-        <span class="c1">//结点创建顺序保证了suf[i]&lt;i</span>
+        <span class="k">for</span><span class="p">(</span> <span class="kt">int</span> <span class="n">i</span><span
+            class="o">=</span><span class="n">cnt</span><span class="o">-</span><span class="mi">1</span><span
+            class="p">;</span> <span class="o">~</span><span class="n">i</span><span class="p">;</span> <span class="n">i</span><span
+            class="o">--</span> <span class="p">)</span><span class="n">num</span><span class="p">[</span><span
+            class="n">suf</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span
+            class="o">+=</span> <span class="n">num</span><span class="p">[</span><span class="n">i</span><span
+            class="p">];</span><span class="c1">//结点创建顺序保证了suf[i]&lt;i</span>
     <span class="p">}</span>
 
-<span class="p">}</span>
+<span class="p">};</span>
 </pre>
-
     </div>
 
 </div>

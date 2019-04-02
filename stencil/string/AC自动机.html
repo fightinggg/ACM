@@ -35,28 +35,15 @@
     </div>
 
     <div id="code">
-        <pre><span class="k">struct</span> <span class="n">trie</span><span class="p">{</span>
-    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span
-                    class="n">maxn</span><span class="o">=</span><span class="mf">1e6</span><span
-                    class="o">+</span><span class="mi">5</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">nex</span><span class="p">[</span><span class="n">maxn</span><span
-                    class="p">][</span><span class="mi">26</span><span class="p">],</span><span
-                    class="n">fail</span><span class="p">[</span><span class="n">maxn</span><span
-                    class="p">],</span><span class="n">end</span><span class="p">[</span><span
-                    class="n">maxn</span><span class="p">];</span>
-    <span class="kt">int</span> <span class="n">root</span><span class="p">,</span><span class="n">cnt</span><span
-                    class="p">;</span>
+        <pre><span class="k">struct</span> <span class="n">Aho_Corasick_automation</span><span class="p">{</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span><span class="o">=</span><span class="mf">1e6</span><span class="o">+</span><span class="mi">5</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">trans</span><span class="p">[</span><span class="n">maxn</span><span class="p">][</span><span class="mi">26</span><span class="p">],</span><span class="n">fail</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">end</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">root</span><span class="p">,</span><span class="n">cnt</span><span class="p">;</span>
 
     <span class="kr">inline</span> <span class="kt">int</span> <span class="n">new_node</span><span class="p">(){</span>
         <span class="c1">//fail指针不需要初始化,因为在bfs的时候他被更新</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
-                    class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">&lt;</span><span class="mi">26</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">++</span><span class="p">)</span><span class="n">nex</span><span class="p">[</span><span
-                    class="n">cnt</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span
-                    class="o">=</span><span class="mi">0</span><span class="p">;</span>
-        <span class="n">end</span><span class="p">[</span><span class="n">cnt</span><span class="p">]</span><span
-                    class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">26</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">trans</span><span class="p">[</span><span class="n">cnt</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="n">end</span><span class="p">[</span><span class="n">cnt</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
         <span class="k">return</span> <span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
     <span class="p">}</span>
 
@@ -65,147 +52,64 @@
         <span class="n">root</span><span class="o">=</span><span class="n">new_node</span><span class="p">();</span>
     <span class="p">}</span>
 
-    <span class="kt">void</span> <span class="n">insert</span><span class="p">(</span><span class="kt">char</span> <span
-                    class="n">buf</span><span class="p">[]){</span>
-        <span class="kt">int</span> <span class="n">len</span><span class="o">=</span><span class="p">(</span><span
-                    class="kt">int</span><span class="p">)</span><span class="n">strlen</span><span
-                    class="p">(</span><span class="n">buf</span><span class="p">);</span>
-        <span class="kt">int</span> <span class="n">u</span><span class="o">=</span><span class="n">root</span><span
-                    class="p">;</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
-                    class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">&lt;</span><span class="n">len</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">++</span><span class="p">){</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">nex</span><span class="p">[</span><span
-                    class="n">u</span><span class="p">][</span><span class="n">buf</span><span class="p">[</span><span
-                    class="n">i</span><span class="p">]</span><span class="o">-</span><span
-                    class="sc">&#39;a&#39;</span><span class="p">]</span><span class="o">==</span><span
-                    class="mi">0</span><span class="p">)</span>
-                <span class="n">nex</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span
-                    class="n">buf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
-                    class="o">-</span><span class="sc">&#39;a&#39;</span><span class="p">]</span><span
-                    class="o">=</span><span class="n">new_node</span><span class="p">();</span>
-            <span class="n">u</span><span class="o">=</span><span class="n">nex</span><span class="p">[</span><span
-                    class="n">u</span><span class="p">][</span><span class="n">buf</span><span class="p">[</span><span
-                    class="n">i</span><span class="p">]</span><span class="o">-</span><span
-                    class="sc">&#39;a&#39;</span><span class="p">];</span>
+    <span class="kt">void</span> <span class="n">extend</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="n">buf</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="n">len</span><span class="o">=</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">strlen</span><span class="p">(</span><span class="n">buf</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">u</span><span class="o">=</span><span class="n">root</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">len</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">trans</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">buf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;a&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">trans</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">buf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;a&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">new_node</span><span class="p">();</span>
+            <span class="n">u</span><span class="o">=</span><span class="n">trans</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">buf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;a&#39;</span><span class="p">];</span>
         <span class="p">}</span>
-        <span class="n">end</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span
-                    class="o">++</span><span class="p">;</span>
+        <span class="n">end</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="kt">void</span> <span class="n">get_fail</span><span class="p">(){</span>
-        <span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span
-                    class="o">&gt;</span><span class="n">q</span><span class="p">;</span>
-        <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span
-                    class="n">root</span><span class="p">);</span>
-        <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">q</span><span
-                    class="p">.</span><span class="n">empty</span><span class="p">()){</span>
-            <span class="kt">int</span> <span class="n">u</span><span class="o">=</span><span class="n">q</span><span
-                    class="p">.</span><span class="n">front</span><span class="p">();</span><span
-                    class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
-            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
-                    class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">&lt;</span><span class="mi">26</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">++</span><span class="p">){</span>
-                <span class="k">if</span><span class="p">(</span><span class="n">nex</span><span class="p">[</span><span
-                    class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span
-                    class="o">==</span><span class="mi">0</span><span class="p">){</span>
-                    <span class="n">nex</span><span class="p">[</span><span class="n">u</span><span
-                    class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">=-</span><span
-                    class="n">abs</span><span class="p">(</span><span class="n">nex</span><span class="p">[</span><span
-                    class="n">fail</span><span class="p">[</span><span class="n">u</span><span class="p">]][</span><span
-                    class="n">i</span><span class="p">]);</span><span class="c1">//采用负数来表示非树边。。</span>
+        <span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="n">q</span><span class="p">;</span>
+        <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+        <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span>
+            <span class="kt">int</span> <span class="n">u</span><span class="o">=</span><span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span><span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">26</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">trans</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+                    <span class="n">trans</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">=-</span><span class="n">abs</span><span class="p">(</span><span class="n">trans</span><span class="p">[</span><span class="n">fail</span><span class="p">[</span><span class="n">u</span><span class="p">]][</span><span class="n">i</span><span class="p">]);</span><span class="c1">//采用负数来表示非树边。。</span>
                 <span class="p">}</span>
                 <span class="k">else</span><span class="p">{</span>
-                    <span class="n">q</span><span class="p">.</span><span class="n">push</span><span
-                    class="p">(</span><span class="n">nex</span><span class="p">[</span><span class="n">u</span><span
-                    class="p">][</span><span class="n">i</span><span class="p">]);</span>
-                    <span class="n">fail</span><span class="p">[</span><span class="n">nex</span><span
-                    class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span
-                    class="p">]]</span><span class="o">=</span><span class="n">abs</span><span class="p">(</span><span
-                    class="n">nex</span><span class="p">[</span><span class="n">fail</span><span class="p">[</span><span
-                    class="n">u</span><span class="p">]][</span><span class="n">i</span><span class="p">]);</span>
-                    <span class="k">if</span><span class="p">(</span><span class="n">u</span><span
-                    class="o">==</span><span class="n">root</span><span class="p">)</span><span
-                    class="n">fail</span><span class="p">[</span><span class="n">nex</span><span class="p">[</span><span
-                    class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">]]</span><span
-                    class="o">=</span><span class="n">root</span><span class="p">;</span>
+                    <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">trans</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">]);</span>
+                    <span class="n">fail</span><span class="p">[</span><span class="n">trans</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">]]</span><span class="o">=</span><span class="n">abs</span><span class="p">(</span><span class="n">trans</span><span class="p">[</span><span class="n">fail</span><span class="p">[</span><span class="n">u</span><span class="p">]][</span><span class="n">i</span><span class="p">]);</span>
+                    <span class="k">if</span><span class="p">(</span><span class="n">u</span><span class="o">==</span><span class="n">root</span><span class="p">)</span><span class="n">fail</span><span class="p">[</span><span class="n">trans</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">]]</span><span class="o">=</span><span class="n">root</span><span class="p">;</span>
                 <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
 
-    <span class="kt">int</span> <span class="n">query</span><span class="p">(</span><span class="kt">char</span> <span
-                    class="n">buf</span><span class="p">[]){</span><span class="c1">//统计母串里面出现了几种子串</span>
-        <span class="kt">int</span> <span class="n">len</span><span class="o">=</span><span class="p">(</span><span
-                    class="kt">int</span><span class="p">)</span><span class="n">strlen</span><span
-                    class="p">(</span><span class="n">buf</span><span class="p">);</span>
-        <span class="kt">int</span> <span class="n">u</span><span class="o">=</span><span class="n">root</span> <span
-                    class="p">,</span><span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span
-                    class="p">;</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
-                    class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">&lt;</span><span class="n">len</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">++</span><span class="p">){</span>
-            <span class="n">u</span><span class="o">=</span><span class="n">abs</span><span class="p">(</span><span
-                    class="n">nex</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span
-                    class="n">buf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
-                    class="o">-</span><span class="sc">&#39;a&#39;</span><span class="p">]);</span>
-            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span
-                    class="o">=</span><span class="n">u</span><span class="p">;</span><span class="n">p</span><span
-                    class="o">!=</span><span class="n">root</span><span class="p">;</span><span class="n">p</span><span
-                    class="o">=</span><span class="n">fail</span><span class="p">[</span><span class="n">p</span><span
-                    class="p">]){</span>
-                <span class="k">if</span><span class="p">(</span><span class="n">end</span><span class="p">[</span><span
-                    class="n">p</span><span class="p">]</span><span class="o">==-</span><span class="mi">1</span><span
-                    class="p">)</span><span class="k">break</span><span class="p">;</span>
-                <span class="n">ret</span><span class="o">+=</span><span class="n">end</span><span
-                    class="p">[</span><span class="n">p</span><span class="p">];</span>
-                <span class="n">end</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span
-                    class="o">=-</span><span class="mi">1</span><span class="p">;</span><span class="c1">//为什么要搞-1呢？可以用来剪枝，预防这样的特殊数据-&gt; aaaaaaaaaaa......</span>
+    <span class="kt">int</span> <span class="n">query</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="n">buf</span><span class="p">){</span><span class="c1">//统计母串里面出现了几种子串</span>
+        <span class="kt">int</span> <span class="n">len</span><span class="o">=</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">strlen</span><span class="p">(</span><span class="n">buf</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">u</span><span class="o">=</span><span class="n">root</span> <span class="p">,</span><span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">len</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">u</span><span class="o">=</span><span class="n">abs</span><span class="p">(</span><span class="n">trans</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">buf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;a&#39;</span><span class="p">]);</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="o">=</span><span class="n">u</span><span class="p">;</span><span class="n">p</span><span class="o">!=</span><span class="n">root</span><span class="p">;</span><span class="n">p</span><span class="o">=</span><span class="n">fail</span><span class="p">[</span><span class="n">p</span><span class="p">]){</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">end</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">==-</span><span class="mi">1</span><span class="p">)</span><span class="k">break</span><span class="p">;</span>
+                <span class="n">ret</span><span class="o">+=</span><span class="n">end</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
+                <span class="n">end</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span><span class="c1">//为什么要搞-1呢？可以用来剪枝，预防这样的特殊数据-&gt; aaaaaaaaaaa......</span>
             <span class="p">}</span>
         <span class="p">}</span>
         <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="kt">void</span> <span class="n">debug</span><span class="p">(){</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
-                    class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">&lt;</span><span class="mi">35</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">++</span><span class="p">)</span><span class="n">printf</span><span
-                    class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span
-                    class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span
-                    class="o">&lt;</span><span class="mi">26</span><span class="p">;</span><span class="n">j</span><span
-                    class="o">++</span><span class="p">){</span>
-            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%2c&quot;</span><span
-                    class="p">,</span><span class="n">j</span><span class="o">+</span><span
-                    class="sc">&#39;a&#39;</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">35</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">26</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%2c&quot;</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="sc">&#39;a&#39;</span><span class="p">);</span>
         <span class="p">}</span>
         <span class="n">puts</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
-                    class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">&lt;</span><span class="n">cnt</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">++</span><span class="p">){</span>
-            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;id=%3d | fail=%3d | end=%3d | chi=[&quot;</span><span
-                    class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">fail</span><span
-                    class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">end</span><span
-                    class="p">[</span><span class="n">i</span><span class="p">]);</span>
-            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span
-                    class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span
-                    class="o">&lt;</span><span class="mi">26</span><span class="p">;</span><span class="n">j</span><span
-                    class="o">++</span><span class="p">){</span>
-                <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%2d&quot;</span><span
-                    class="p">,</span><span class="n">nex</span><span class="p">[</span><span class="n">i</span><span
-                    class="p">][</span><span class="n">j</span><span class="p">]);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">cnt</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;id=%3d | fail=%3d | end=%3d | chi=[&quot;</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">fail</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">end</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">26</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+                <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%2d&quot;</span><span class="p">,</span><span class="n">trans</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
             <span class="p">}</span>
-            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;]</span><span
-                    class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="p">}</span>
-
-<span class="p">}</span><span class="n">ac</span><span class="p">;</span>
+<span class="p">};</span>
 </pre>
     </div>
 
