@@ -13,11 +13,41 @@
     <center><h1>凸四边形不等式优化dp</h1></center>
 
     <div id="text">
-        <h2>决策单调性</h2>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于一类一维dp,若有转移dp[i]=min\max(dp[j]+w(i,j))&nbsp;0&#60;j&#60;i，并假定pri[i]
+        <h2>决策单调性<span style="color: grey">  算法竞赛进阶指南</span></h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于一类一维dp,若有转移dp[i]=min\max(dp[j]+w(i,j))&nbsp;0&#60;j&#60;i，并假定pri[i]
         为到dp[i]的最优转移j，如果pri[i]关于i单调，那么我们称该dp具有决策单调性。<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于一类二维dp,如果有转移dp[i,j]=min\max(dp[i][k]+dp[k+1][j]+w(i,j))&nbsp;i&#60;=k&#60;j
         并假定pro[i][j]为到dp[i][j]的最优转移k,如果pri[i][j]关于i单调，且关于j单调，那么我们称该dp具有决策单调性。
+
+        <h2>新增定义</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果存在转移dp[j]->dp[i]不管此转移是否最优，我们都把j叫做一个决策点。<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;强化的决策单调性：对于某一维dp，如果在某决策点集合中，若x为到dp(i)的最优
+        决策，则对于所有的大于i的j，x依旧是此决策点集合中的最优决策。
+        二维同理。
+
+
+        <h2>强化的决策单调性优化一维dp</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当此dp满足强化的决策单调性的
+        时候，我们可以用单调队列来优化dp,此单调队列维护一个数据结构，该数据结构维护一个决策数组,当我们处理dp[i]的时候，该数组维护了dp[i]到dp[n]的在[1,i)中的最优决策点。
+        显然该决策数组单调增，我们拿出最优队首，为dp[i]赋值，下一步应该是更新该决策数组，怎么更新呢，我们二分即可。
+
+        <h2>用二分更新决策数组</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;先证明,对于新加进来的决策，对于旧决策数组的影响具有单调性，即存在一个分界点，分界点左边，新决策不如旧决策，分界点右边，新决策优于旧决策，
+        首先，我们假设新决策的影响不具有单调性，即新决策的影响杂乱无章，在这种情况下，我们取出靠左边的决策为新决策的元素的下标，根据强化的决策单调性，此元素右边的
+        元素的当前最优决策值必须且只能为i，因为当前大于等于i的决策只有i。矛盾发生，故新决策的影响具有单调性。<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当于是我们二分出这个点即可解决 ，
+
+        <h2>单调队列优化</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为什么我们要用单调队列呢，我们先考虑，如果我们采取线段树优化，那么更新决策数组显然是lg级别的，但是
+        二分新决策边界的时候，复杂度为lg*lg，因为单点查询是lg级别的，再加个二分就双lg了。<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了时间复杂度<span style="color: grey">好写</span>，我们采取单调队列来维护，单调队列维护一个三元组
+        分别是决策点和目前以此决策点为最优决策的dp，因为这是个区间，所有要用两个数来维护。<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更新的时候，直接修改队尾的三元组即可，查询的时候，暴力枚举队尾的三元组，如果新决策完全不如旧决策，
+        此次修改结束，如果队尾的决策完全不如新决策弹掉了队尾，修改新队尾的区间为后缀区间，继续枚举，如果新决策优于队尾决策的一部分，二分出位置后直接修改即可。<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;很容易证明单调队列优化的时间复杂度是lg的，优于线段树。
+
+        <h2></h2>
+
     </div>
 </div>
 <script type="text/javascript" src="/ACM/js/web_end.js"></script>
