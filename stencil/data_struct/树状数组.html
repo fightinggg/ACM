@@ -1,175 +1,572 @@
 <!DOCTYPE html>
 <html>
- 
+
 <head>
- <meta charset="utf-8">
-	<script type="text/javascript" src="/ACM/js/link.js"></script>
-	<title>一维树状数组</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>树状数组</title>
 </head>
 
-<body>
-	<div id = "myweb">
-		
-<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
-<script type="text/javascript" src="/ACM/js/up_and_right.js"></script>
-<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
-		     
-     		     		<div id="left"><div id="left_in">
-     			<center><h1>一维树状数组</h1></center>
-     			
-		树状数组这种数据结构利用二进制来优化区间。<br />
-<br />
-假设我们要维护区间&nbsp[1,n]<br />
-<br />
-定义树状数组的第i个元素维护了区间[i&(i-1)+1，i]<br />
-<br />
-&nbsp<br />
-<br />
-那么他究竟可以解决哪些区间问题？<br />
-<br />
-先考虑点更新，区间查询：<br />
-<br />
-点更新的话要解一个不定不等式：i&(i-1)&lt=x&lt=i<br />
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp如果更新点x，就要更新树状数组对应的所有第i个元素<br />
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp可以证明如果i1是一个解，且存在另一个大于i1的最小的解i2，则i2=i1+i1&(-i1)。笔者不想证明。<br />
-<br />
-区间查询因情况不定：<br />
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp既然定义树状数组的第i个元素维护了区间[i&(i-1)+1，i]，那么第j=i&(i-1)个元素将维护区间[j&(j-1)+1，i&(i-1)]......<br />
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp可以证明任何一个前缀区间都可以用有限（Olgn）个树状数组元素来维护。笔者不想证明。<br />
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp故我们可以很容易解决前缀区间和，前缀区间最值。<br />
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp任意区间和满足区间减法，容易处理。<br />
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp任意区间最值却不满足，但我们可以递归处理。<br />
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp利用原区间与树状数组共同维护<br />
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp若x&lt=y&(-y)<br />
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp则query(x,y)-&gtquery(x,y&(-y))和query(y&(-y)+1,y);<br />
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp若x&gty&(-y)<br />
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp则query(x,y)-&gtquery(x,y-1)和y这个点的单点值<br />
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp但建议迭代实现<br />
-<br />
-再考虑区间更新点查询<br />
-<br />
-这个常用于区间和，<br />
-<br />
-对于序列a[1],a[2],a[3]...(以后简写为序列a)用于维护区间[1,N]；定义序列a的前i项和表示我们维护区间的点i的值。<br />
-<br />
-可以证明序列a唯一存在，笔者不想证明。<br />
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp如果我们要更新区间[x,y]，只用修改a[x]和a[y+1]的值<br />
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp如果我们要查询区间点i的值，只用查询序列a的前i项和<br />
-<br />
-这里已经转移到对新序列a的点修改区间查询了，over<br />
-<br />
-最后考虑区间更新区间查询<br />
-<br />
-这个也常用于区间和，<br />
-<br />
-此处序列a与上面的序列a一样。<br />
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp如果我们要更新区间[x,y]，只用修改a[x]和a[y+1]的值<br />
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp如果我们要查询区间[1,i&nbsp]，只用查询序列a的前i项和的前i项和(多几个字）<br />
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp可以证明下述结论<br />
-<br />
 
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <img alt="\sum_{i=1}^{N}\sum_{j=1}^{i} a_{j}=\sum_{j=1}^{N} (N+1-j)a_{j} =(N+1)\sum_{j=1}^{N} a_{j}-\sum_{j=1}^{N} ja_{j}" class="mathcode" src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20%5Csum_%7Bi%3D1%7D%5E%7BN%7D%5Csum_%7Bj%3D1%7D%5E%7Bi%7D%20a_%7Bj%7D%3D%5Csum_%7Bj%3D1%7D%5E%7BN%7D%20%28N&amp;plus;1-j%29a_%7Bj%7D%20%3D%28N&amp;plus;1%29%5Csum_%7Bj%3D1%7D%5E%7BN%7D%20a_%7Bj%7D-%5Csum_%7Bj%3D1%7D%5E%7BN%7D%20ja_%7Bj%7D" /><br />
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp很明显变成了查询序列a的前缀和以及序列a[1],2a[2],3a[3],4a[4]...的前缀和<br />
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp那么我们再为序列a[1],2a[2],3a[3],4a[4]...也搞一个点更新区间查询树状数组来维护就行了<br />
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp于是前缀区间查询已经解决，任意区间查询用区间减法就可以得到<br />
-<br />
-     			<div id="code">
-     				
-<span style="color: green;font: 20px;">//点更新区间查询,最大可用范围[1,N），实际使用[1,n]</span><br />
-<span style="color: green;font: 20px;">//初始化N，n，初始化tree[]为0</span><br />
-<span style="color: green;font: 20px;">//函数输入，函数返回值输出</span><br />
-<span style="color: blue;font: 20px;">const</span>&nbsp<span style="color: blue;font: 20px;">int</span>&nbspN;<br />
-<span style="color: blue;font: 20px;">int</span>&nbspn;<br />
-<span style="color: blue;font: 20px;">int</span>&nbsptree[N];<br />
-<br />
-<span style="color: blue;font: 20px;">void</span>&nbspadd(<span style="color: blue;font: 20px;">int</span>&nbspk,<span style="color: blue;font: 20px;">int</span>&nbspd){<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspi=k;i&lt=n;i+=i&-i)tree[i]+=d;<br />
-}<br />
-<span style="color: blue;font: 20px;">int</span>&nbspsigma(<span style="color: blue;font: 20px;">int</span>&nbspk){<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">int</span>&nbspret=0;<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspi=k;i;i-=i&-i)ret+=tree[i];<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">return</span>&nbspret;<br />
-}<br />
-<span style="color: blue;font: 20px;">int</span>&nbspsigma(<span style="color: blue;font: 20px;">int</span>&nbspu,<span style="color: blue;font: 20px;">int</span>&nbspv){<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">return</span>&nbspsigma(v)-sigma(u-1);<br />
-}<br />
-<span style="color: green;font: 20px;">///////////////////////////////////////////////////////////////</span><br />
-<br />
-<span style="color: green;font: 20px;">//区间更新点查询,最大可用范围[1,N）,实际使用[1,n]</span><br />
-<span style="color: green;font: 20px;">//初始化N，n初始化tree[]为0</span><br />
-<span style="color: green;font: 20px;">//函数输入，函数返回值输出</span><br />
-<span style="color: blue;font: 20px;">const</span>&nbsp<span style="color: blue;font: 20px;">int</span>&nbspN;<br />
-<span style="color: blue;font: 20px;">int</span>&nbspn;<br />
-<span style="color: blue;font: 20px;">int</span>&nbsptree[N];<br />
-<br />
-<span style="color: blue;font: 20px;">void</span>&nbspadd(<span style="color: blue;font: 20px;">int</span>&nbspk,<span style="color: blue;font: 20px;">int</span>&nbspd){<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspi=k;i&lt=n;i+=i&-i)tree[i]+=d;<br />
-}<br />
-<span style="color: blue;font: 20px;">void</span>&nbspadd(<span style="color: blue;font: 20px;">int</span>&nbspu,<span style="color: blue;font: 20px;">int</span>&nbspv,<span style="color: blue;font: 20px;">int</span>&nbspd){<br />
-&nbsp&nbsp&nbsp&nbspadd(u,d);<br />
-&nbsp&nbsp&nbsp&nbspadd(v+1,-d);<br />
-}<br />
-<span style="color: blue;font: 20px;">int</span>&nbspsigma(<span style="color: blue;font: 20px;">int</span>&nbspk){<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">int</span>&nbspret=0;<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspi=k;i;i-=i&-i)ret+=tree[i];<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">return</span>&nbspret;<br />
-}<br />
-<span style="color: green;font: 20px;">/////////////////////////////////////////////////////////////////</span><br />
-<br />
-<br />
-<br />
-<span style="color: green;font: 20px;">//区间更新区间查询,最大可用范围[1,N）,实际使用[1,n]</span><br />
-<span style="color: green;font: 20px;">//初始化N，n初始化tree[]、tree2[]为0</span><br />
-<span style="color: green;font: 20px;">//函数输入，函数返回值输出</span><br />
-<span style="color: blue;font: 20px;">const</span>&nbsp<span style="color: blue;font: 20px;">int</span>&nbspN;<br />
-<span style="color: blue;font: 20px;">int</span>&nbspn;<br />
-<span style="color: blue;font: 20px;">int</span>&nbsptree[N],tree2[N];<br />
-<br />
-<span style="color: blue;font: 20px;">void</span>&nbspadd(<span style="color: blue;font: 20px;">int</span>&nbspk,<span style="color: blue;font: 20px;">int</span>&nbspd){<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspi=k;i&lt=n;i+=i&-i)tree[i]+=d,tree2[i]+=k*d;<br />
-}<br />
-<span style="color: blue;font: 20px;">void</span>&nbspadd(<span style="color: blue;font: 20px;">int</span>&nbspu,<span style="color: blue;font: 20px;">int</span>&nbspv,<span style="color: blue;font: 20px;">int</span>&nbspd){<br />
-&nbsp&nbsp&nbsp&nbspadd(u,d);<br />
-&nbsp&nbsp&nbsp&nbspadd(v+1,-d);<br />
-}<br />
-<span style="color: blue;font: 20px;">int</span>&nbspsigma(<span style="color: blue;font: 20px;">int</span>&nbspk){<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">int</span>&nbspret=0;<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspi=k;i;i-=i&-i)ret+=(k+1)*tree[i]-tree2[i];<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">return</span>&nbspret;<br />
-}<br />
-<span style="color: blue;font: 20px;">int</span>&nbspsigma(<span style="color: blue;font: 20px;">int</span>&nbspu,<span style="color: blue;font: 20px;">int</span>&nbspv){<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">return</span>&nbspsigma(v)-sigma(u-1);<br />
-}<br />
-<span style="color: green;font: 20px;">///////////////////////////////////////////////////////////////</span><br />
-	
-     			</div>
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>一维树状数组</h1></center>
 
-     		</div>
-     		
+    <div id="text">
+        <h2>笔者眼中的一维树状数组</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一维树状数组，是一棵左偏树，他的每一个节点，维护的是一段区间的和,若该节点的
+        下标为i，那么他维护的区间就是(i&(i-1),i] ，熟悉位运算的人应该都知道，i&(i-1)与i的关系：i&(i-1)和i去掉i的二进制中的最低位的1后的值
+        相等。<span style="color:red">并且，树状数组就是做单点修改，前缀区间查询的数据结构。</span> <span style="color:grey">为了利
+		于描述，下文暂时称一维树状数组为树状数组</span>
+
+        <h2>树状数组询问操作</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;原数组的前缀区间查询，根据定义，我们很容易知道，区间[1,x] 一定能够被树状数组的某些节点所表示的区间
+        并来表达，且唯一表达，且表达式最多lg(x)项，因为x的二进制中最多lg个1。于是任意前缀区间就能够在树状数组中查询得到。
+
+        <h2>树状数组更新操作</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;原数组的点修改，我们必须找到所有包含了该点的树状数组节点，若要修改的点的下标为i，根据定义我们解不等式
+        (x&(x-1))+1&lt;=i&lt;=x,可以证明可以证明如果a是一个解，且存在另一个大于a的最小的解b，则b=a+a&-a。于是我们根据此操作
+        一步一步去更新树状数组节点即可，此节点数目lg级别
+
+        <h2>树状数组的用途</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;根据定义，我们可以很容易的维护很多关于单点修改，前缀区间查询的操作，比如前缀最值、
+        前缀区间和。
+
+        <h2>区间加法与区间减法</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果对于作用于区间[x,y]上的区间运算f(x,y)满足 若对于所有的a&lt;b&lt;=c可以根据f(a,b-1)和f(b,c)算出
+        f(a,c)，则此运算满足区间加法<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果对于作用于区间[x,y]上的区间运算f(x,y)满足 若对于所有的a&lt;b&lt;=c可以根据f(a,c)和f(b,c)算出
+        f(a,b-1)，则此运算满足区间减法<br>
+
+
+        <h2>让用途更广</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于所有满足区间减法的操作，比如说:区间和，区间异或和。我们可以根据前缀区间
+        相减，得到任意区间的区间和与区间异或和。
+
+        <h2>差分操作</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果我们要对一个区间进行修改，我们有这样一种做法，在区间起点加一个标记，在区间末尾
+        再加一个标记，于是我们就<span style="color:red;">表面</span>修改了此数组的一个区间,查询的话，查前缀和就可以了，由于本文重点不在此，简要
+        举个例子，对于一个数组，我们如果说要经常修改某些区间的值:整个区间的所有元素加上一个d，我们可以考虑这样做，让区间起点+d,区间末尾右边的元素-d,
+        当修改完之后，我们对此数组做一遍前缀和就能得到修改结果。我们称表面修改的数组为差分数组，差分数组的前缀和就是我们要的原数组。
+
+        <h2>再广一点</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;考虑一个维护区间和的数组，如果要对随机区间修改，对单点查询怎么办呢？我们维护此数组
+        的差分数组，原数组的区间修改就是差分数组的点修改，原数组的点查询就是差分数组的前缀区间查询，于是我们解决了这个问题
+
+        <h2>还能更加广</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果我们不仅仅满足与点查询，我们还要前缀和区间查询，也能办到，再来理一下，原数组的前缀
+        和区间查询等于差分数组的二阶前缀和区间查询，我们假定a为差分数组：<br>
+        <img alt="\sum_{i=1}^{N}\sum_{j=1}^{i} a_{j}=\sum_{j=1}^{N} (N+1-j)a_{j} =(N+1)\sum_{j=1}^{N} a_{j}-\sum_{j=1}^{N} ja_{j}"
+             class="mathcode"
+             src="https://private.codecogs.com/gif.latex?%5Cdpi%7B150%7D%20%5Csum_%7Bi%3D1%7D%5E%7BN%7D%5Csum_%7Bj%3D1%7D%5E%7Bi%7D%20a_%7Bj%7D%3D%5Csum_%7Bj%3D1%7D%5E%7BN%7D%20%28N&amp;plus;1-j%29a_%7Bj%7D%20%3D%28N&amp;plus;1%29%5Csum_%7Bj%3D1%7D%5E%7BN%7D%20a_%7Bj%7D-%5Csum_%7Bj%3D1%7D%5E%7BN%7D%20ja_%7Bj%7D">
+        <br>
+        这里很明显了，我们维护一个原数组的差分数组ai和另一个数组i*ai的点修改区间查询即可。
     </div>
-</body>
+
+
+    <div id="text">
+        <center><h1>二维树状数组</h1></center>
+        <h2>提升纬度</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们定义,在二维数据结构中，让点(x,y)维护点(x&(x-1)+1,y&(y-1)+1)到(x,y)的矩阵的区间信息，根据
+        之前的推导，使用类似的方法，可以得出在每一维上最多lg个节点，故两维一起最多lg*lg个节点。类似的也可以得出更新的时候，节点依旧是lg*lg个。
+
+        <h2>二维的差分和任意区间维护此处不做细分析</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果我们维护了二维前缀区间<span style="color: grey">定义前缀区间为:(1,1)到(x,y)
+    的矩形区间。</span>的信息，根据容斥原理，任意区间很容易算出来了，差分是一样的。
+
+        <h2>二维的区间修改，区间和查询</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一样的，是差分数组的二阶前缀和，化简公式如下:<br>
+        <a href="https://www.codecogs.com/eqnedit.php?latex=\sum_{i=1}^{x}&space;\sum_{ii=1}^{i}&space;\sum_{j=1}^{y}&space;\sum_{jj=1}^{i}&space;a[ii][jj]\\&space;=&space;\sum_{ii=1}^{x}&space;\sum_{jj=1}^{y}&space;(x-ii&plus;1)*(y-jj&plus;1)a[ii][jj]\\&space;=&space;\sum_{ii=1}^{x}&space;\sum_{jj=1}^{y}&space;(x&plus;1-ii)*(y&plus;1-jj)a[ii][jj]\\&space;=\sum_{ii=1}^{x}&space;\sum_{jj=1}^{y}&space;(x&plus;1)*(y&plus;1)a[ii][jj]&space;-\sum_{ii=1}^{x}&space;\sum_{jj=1}^{y}&space;ii*(y&plus;1)a[ii][jj]&space;\\&space;.\quad.\quad&space;-\sum_{ii=1}^{x}&space;\sum_{jj=1}^{y}&space;jj*(x&plus;1)a[ii][jj]&space;&plus;\sum_{ii=1}^{x}&space;\sum_{jj=1}^{y}&space;ii*jja[ii][jj]\\&space;=(x&plus;1)*(y&plus;1)\sum_{ii=1}^{x}&space;\sum_{jj=1}^{y}&space;a[ii][jj]-(y&plus;1)\sum_{ii=1}^{x}&space;\sum_{jj=1}^{y}&space;iia[ii][jj]&space;\\.\quad.\quad&space;-(x&plus;1)\sum_{ii=1}^{x}&space;\sum_{jj=1}^{y}&space;jja[ii][jj]&plus;\sum_{ii=1}^{x}&space;\sum_{jj=1}^{y}&space;ii*jja[ii][jj]"
+           target="_blank"><img
+                src="https://latex.codecogs.com/gif.latex?\sum_{i=1}^{x}&space;\sum_{ii=1}^{i}&space;\sum_{j=1}^{y}&space;\sum_{jj=1}^{i}&space;a[ii][jj]\\&space;=&space;\sum_{ii=1}^{x}&space;\sum_{jj=1}^{y}&space;(x-ii&plus;1)*(y-jj&plus;1)a[ii][jj]\\&space;=&space;\sum_{ii=1}^{x}&space;\sum_{jj=1}^{y}&space;(x&plus;1-ii)*(y&plus;1-jj)a[ii][jj]\\&space;=\sum_{ii=1}^{x}&space;\sum_{jj=1}^{y}&space;(x&plus;1)*(y&plus;1)a[ii][jj]&space;-\sum_{ii=1}^{x}&space;\sum_{jj=1}^{y}&space;ii*(y&plus;1)a[ii][jj]&space;\\&space;.\quad.\quad&space;-\sum_{ii=1}^{x}&space;\sum_{jj=1}^{y}&space;jj*(x&plus;1)a[ii][jj]&space;&plus;\sum_{ii=1}^{x}&space;\sum_{jj=1}^{y}&space;ii*jja[ii][jj]\\&space;=(x&plus;1)*(y&plus;1)\sum_{ii=1}^{x}&space;\sum_{jj=1}^{y}&space;a[ii][jj]-(y&plus;1)\sum_{ii=1}^{x}&space;\sum_{jj=1}^{y}&space;iia[ii][jj]&space;\\.\quad.\quad&space;-(x&plus;1)\sum_{ii=1}^{x}&space;\sum_{jj=1}^{y}&space;jja[ii][jj]&plus;\sum_{ii=1}^{x}&space;\sum_{jj=1}^{y}&space;ii*jja[ii][jj]"
+                title="\sum_{i=1}^{x} \sum_{ii=1}^{i} \sum_{j=1}^{y} \sum_{jj=1}^{i} a[ii][jj]\\ = \sum_{ii=1}^{x} \sum_{jj=1}^{y} (x-ii+1)*(y-jj+1)a[ii][jj]\\ = \sum_{ii=1}^{x} \sum_{jj=1}^{y} (x+1-ii)*(y+1-jj)a[ii][jj]\\ =\sum_{ii=1}^{x} \sum_{jj=1}^{y} (x+1)*(y+1)a[ii][jj] -\sum_{ii=1}^{x} \sum_{jj=1}^{y} ii*(y+1)a[ii][jj] \\ .\quad.\quad -\sum_{ii=1}^{x} \sum_{jj=1}^{y} jj*(x+1)a[ii][jj] +\sum_{ii=1}^{x} \sum_{jj=1}^{y} ii*jja[ii][jj]\\ =(x+1)*(y+1)\sum_{ii=1}^{x} \sum_{jj=1}^{y} a[ii][jj]-(y+1)\sum_{ii=1}^{x} \sum_{jj=1}^{y} iia[ii][jj] \\.\quad.\quad -(x+1)\sum_{ii=1}^{x} \sum_{jj=1}^{y} jja[ii][jj]+\sum_{ii=1}^{x} \sum_{jj=1}^{y} ii*jja[ii][jj]"/></a>
+        <br>
+        于是我们维护四个普通树状数组即可
+    </div>
+
+    <div id="code">
+        <pre><span class="k">struct</span> <span class="n">Binary_Indexed_Tree</span><span class="p">{</span>
+    <span class="c1">//点更新区间查询,最大可用范围[1,N），实际使用[1,n]</span>
+    <span class="c1">//初始化N，n，初始化tree[]为0</span>
+    <span class="c1">//函数输入，函数返回值输出</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">N</span><span
+                    class="p">;</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">tree</span><span
+                    class="p">[</span><span class="n">N</span><span class="p">];</span>
+
+    <span class="kt">void</span> <span class="n">ini</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">_n</span><span class="p">){</span>
+        <span class="n">n</span><span class="o">=</span><span class="n">_n</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">++</span><span class="p">)</span><span class="n">tree</span><span class="p">[</span><span
+                    class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span
+                    class="p">;</span>
+    <span class="p">};</span>
+    <span class="kt">void</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">k</span><span class="p">,</span><span class="kt">int</span> <span class="n">d</span><span
+                    class="p">){</span><span class="k">for</span><span class="p">(</span><span
+                    class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">k</span><span
+                    class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span
+                    class="p">;</span><span class="n">i</span><span class="o">+=</span><span class="n">i</span><span
+                    class="o">&amp;-</span><span class="n">i</span><span class="p">)</span><span
+                    class="n">tree</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
+                    class="o">+=</span><span class="n">d</span><span class="p">;}</span>
+    <span class="kt">int</span> <span class="n">sigma</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">k</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span
+                    class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="n">k</span><span class="p">;</span><span class="n">i</span><span
+                    class="p">;</span><span class="n">i</span><span class="o">-=</span><span class="n">i</span><span
+                    class="o">&amp;-</span><span class="n">i</span><span class="p">)</span><span
+                    class="n">ret</span><span class="o">+=</span><span class="n">tree</span><span
+                    class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">sigma</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">u</span><span class="p">,</span><span class="kt">int</span> <span class="n">v</span><span
+                    class="p">){</span><span class="k">return</span> <span class="n">sigma</span><span
+                    class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">-</span><span
+                    class="n">sigma</span><span class="p">(</span><span class="n">u</span><span class="o">-</span><span
+                    class="mi">1</span><span class="p">);}</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">Binary_Indexed_Tree</span><span class="p">{</span>
+    <span class="c1">//区间更新点查询,最大可用范围[1,N）,实际使用[1,n]</span>
+    <span class="c1">//初始化N，n初始化tree[]为0</span>
+    <span class="c1">//函数输入，函数返回值输出</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">N</span><span
+                    class="p">;</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">tree</span><span
+                    class="p">[</span><span class="n">N</span><span class="p">];</span>
+
+    <span class="kt">void</span> <span class="n">ini</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">_n</span><span class="p">){</span>
+        <span class="n">n</span><span class="o">=</span><span class="n">_n</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">++</span><span class="p">)</span><span class="n">tree</span><span class="p">[</span><span
+                    class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span
+                    class="p">;</span>
+    <span class="p">};</span>
+    <span class="kt">void</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">k</span><span class="p">,</span><span class="kt">int</span> <span class="n">d</span><span
+                    class="p">){</span><span class="k">for</span><span class="p">(</span><span
+                    class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">k</span><span
+                    class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span
+                    class="p">;</span><span class="n">i</span><span class="o">+=</span><span class="n">i</span><span
+                    class="o">&amp;-</span><span class="n">i</span><span class="p">)</span><span
+                    class="n">tree</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
+                    class="o">+=</span><span class="n">d</span><span class="p">;}</span>
+    <span class="kt">void</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">u</span><span class="p">,</span><span class="kt">int</span> <span class="n">v</span><span
+                    class="p">,</span><span class="kt">int</span> <span class="n">d</span><span class="p">){</span>
+        <span class="n">add</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span
+                    class="n">d</span><span class="p">);</span>
+        <span class="n">add</span><span class="p">(</span><span class="n">v</span><span class="o">+</span><span
+                    class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="n">d</span><span
+                    class="p">);</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">sigma</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">k</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span
+                    class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="n">k</span><span class="p">;</span><span class="n">i</span><span
+                    class="p">;</span><span class="n">i</span><span class="o">-=</span><span class="n">i</span><span
+                    class="o">&amp;-</span><span class="n">i</span><span class="p">)</span><span
+                    class="n">ret</span><span class="o">+=</span><span class="n">tree</span><span
+                    class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">Binary_Indexed_Tree</span><span class="p">{</span>
+    <span class="c1">//区间更新区间查询,最大可用范围[1,N）,实际使用[1,n]</span>
+    <span class="c1">//初始化N，n初始化tree[]、tree2[]为0</span>
+    <span class="c1">//函数输入，函数返回值输出</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">N</span><span
+                    class="p">;</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">tree</span><span
+                    class="p">[</span><span class="n">N</span><span class="p">],</span><span class="n">tree2</span><span
+                    class="p">[</span><span class="n">N</span><span class="p">];</span>
+
+    <span class="kt">void</span> <span class="n">ini</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">_n</span><span class="p">){</span>
+        <span class="n">n</span><span class="o">=</span><span class="n">_n</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">++</span><span class="p">)</span><span class="n">tree</span><span class="p">[</span><span
+                    class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span
+                    class="p">;</span>
+    <span class="p">};</span>
+    <span class="kt">void</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">k</span><span class="p">,</span><span class="kt">int</span> <span class="n">d</span><span
+                    class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="n">k</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">+=</span><span class="n">i</span><span class="o">&amp;-</span><span
+                    class="n">i</span><span class="p">)</span><span class="n">tree</span><span class="p">[</span><span
+                    class="n">i</span><span class="p">]</span><span class="o">+=</span><span class="n">d</span><span
+                    class="p">,</span><span class="n">tree2</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">]</span><span class="o">+=</span><span class="n">k</span><span class="o">*</span><span
+                    class="n">d</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">u</span><span class="p">,</span><span class="kt">int</span> <span class="n">v</span><span
+                    class="p">,</span><span class="kt">int</span> <span class="n">d</span><span class="p">){</span>
+        <span class="n">add</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span
+                    class="n">d</span><span class="p">);</span>
+        <span class="n">add</span><span class="p">(</span><span class="n">v</span><span class="o">+</span><span
+                    class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="n">d</span><span
+                    class="p">);</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">sigma</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">k</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span
+                    class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="n">k</span><span class="p">;</span><span class="n">i</span><span
+                    class="p">;</span><span class="n">i</span><span class="o">-=</span><span class="n">i</span><span
+                    class="o">&amp;-</span><span class="n">i</span><span class="p">)</span><span
+                    class="n">ret</span><span class="o">+=</span><span class="p">(</span><span class="n">k</span><span
+                    class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span
+                    class="n">tree</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
+                    class="o">-</span><span class="n">tree2</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">];</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">sigma</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">u</span><span class="p">,</span><span class="kt">int</span> <span class="n">v</span><span
+                    class="p">){</span>
+        <span class="k">return</span> <span class="n">sigma</span><span class="p">(</span><span class="n">v</span><span
+                    class="p">)</span><span class="o">-</span><span class="n">sigma</span><span class="p">(</span><span
+                    class="n">u</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+
+<span class="k">struct</span> <span class="n">Binary_Indexed_Tree</span><span class="p">{</span>
+    <span class="c1">//二维点更新区间查询,最大可用范围[1,N)[1,N),实际使用[1,n]</span>
+    <span class="c1">//初始化N，n初始化tree[][]为0</span>
+    <span class="c1">//函数参数输入，函数返回值输出</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">N</span><span
+                    class="p">;</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">tree</span><span
+                    class="p">[</span><span class="n">N</span><span class="p">][</span><span class="n">N</span><span
+                    class="p">];</span>
+    <span class="kt">void</span> <span class="n">ini</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">_n</span><span class="p">){</span>
+        <span class="n">n</span><span class="o">=</span><span class="n">_n</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">++</span><span class="p">){</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span
+                    class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span
+                    class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span
+                    class="o">++</span><span class="p">){</span>
+                <span class="n">tree</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span
+                    class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">x</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span
+                    class="p">,</span><span class="kt">int</span> <span class="n">d</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="n">x</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">+=</span><span class="n">i</span><span class="o">&amp;-</span><span
+                    class="n">i</span><span class="p">)</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span
+                    class="o">=</span><span class="n">y</span><span class="p">;</span><span class="n">j</span><span
+                    class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span
+                    class="o">+=</span><span class="n">j</span><span class="o">&amp;-</span><span
+                    class="n">j</span><span class="p">)</span>
+                <span class="n">tree</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">+=</span><span
+                    class="n">d</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">sigma</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">x</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span
+                    class="p">){</span>
+        <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span
+                    class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="n">x</span><span class="p">;</span><span class="n">i</span><span
+                    class="p">;</span><span class="n">i</span><span class="o">-=</span><span class="n">i</span><span
+                    class="o">&amp;-</span><span class="n">i</span><span class="p">)</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span
+                    class="o">=</span><span class="n">y</span><span class="p">;</span><span class="n">j</span><span
+                    class="p">;</span><span class="n">j</span><span class="o">-=</span><span class="n">j</span><span
+                    class="o">&amp;-</span><span class="n">j</span><span class="p">)</span>
+                <span class="n">ret</span><span class="o">+=</span><span class="n">tree</span><span
+                    class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span
+                    class="p">];</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">sigma</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">x1</span><span class="p">,</span><span class="kt">int</span> <span
+                    class="n">y1</span><span class="p">,</span><span class="kt">int</span> <span
+                    class="n">x2</span><span class="p">,</span><span class="kt">int</span> <span
+                    class="n">y2</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">x1</span><span class="o">&gt;</span><span
+                    class="n">x2</span><span class="p">)</span><span class="n">swap</span><span class="p">(</span><span
+                    class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">y1</span><span class="o">&gt;</span><span
+                    class="n">y2</span><span class="p">)</span><span class="n">swap</span><span class="p">(</span><span
+                    class="n">y1</span><span class="p">,</span><span class="n">y2</span><span class="p">);</span>
+        <span class="n">x1</span><span class="o">--</span><span class="p">;</span><span class="n">y1</span><span
+                    class="o">--</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">sigma</span><span class="p">(</span><span class="n">x1</span><span
+                    class="p">,</span><span class="n">y1</span><span class="p">)</span><span class="o">+</span><span
+                    class="n">sigma</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span
+                    class="n">y2</span><span class="p">)</span><span class="o">-</span><span class="n">sigma</span><span
+                    class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">y2</span><span
+                    class="p">)</span><span class="o">-</span><span class="n">sigma</span><span class="p">(</span><span
+                    class="n">x2</span><span class="p">,</span><span class="n">y1</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">Binary_Indexed_Tree</span><span class="p">{</span>
+    <span class="c1">//二维区间更新点查询,最大可用范围[1,N)[1,N),实际使用[1,n]</span>
+    <span class="c1">//初始化N，n初始化tree[][]为0</span>
+    <span class="c1">//函数参数输入，函数返回值输出</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">N</span><span
+                    class="p">;</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">tree</span><span
+                    class="p">[</span><span class="n">N</span><span class="p">][</span><span class="n">N</span><span
+                    class="p">];</span>
+    <span class="kt">void</span> <span class="n">ini</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">_n</span><span class="p">){</span>
+        <span class="n">n</span><span class="o">=</span><span class="n">_n</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">++</span><span class="p">){</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span
+                    class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span
+                    class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span
+                    class="o">++</span><span class="p">){</span>
+                <span class="n">tree</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span
+                    class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">x</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span
+                    class="p">,</span><span class="kt">int</span> <span class="n">d</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="n">x</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">+=</span><span class="n">i</span><span class="o">&amp;-</span><span
+                    class="n">i</span><span class="p">)</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span
+                    class="o">=</span><span class="n">y</span><span class="p">;</span><span class="n">j</span><span
+                    class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span
+                    class="o">+=</span><span class="n">j</span><span class="o">&amp;-</span><span
+                    class="n">j</span><span class="p">)</span>
+                <span class="n">tree</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">+=</span><span
+                    class="n">d</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">x1</span><span class="p">,</span><span class="kt">int</span> <span
+                    class="n">y1</span><span class="p">,</span><span class="kt">int</span> <span
+                    class="n">x2</span><span class="p">,</span><span class="kt">int</span> <span
+                    class="n">y2</span><span class="p">,</span><span class="kt">int</span> <span class="n">d</span><span
+                    class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">x1</span><span class="o">&gt;</span><span
+                    class="n">x2</span><span class="p">)</span><span class="n">swap</span><span class="p">(</span><span
+                    class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">y1</span><span class="o">&gt;</span><span
+                    class="n">y2</span><span class="p">)</span><span class="n">swap</span><span class="p">(</span><span
+                    class="n">y1</span><span class="p">,</span><span class="n">y2</span><span class="p">);</span>
+        <span class="n">add</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span
+                    class="n">y1</span><span class="p">,</span><span class="n">d</span><span class="p">);</span>
+        <span class="n">add</span><span class="p">(</span><span class="n">x2</span><span class="o">+</span><span
+                    class="mi">1</span><span class="p">,</span><span class="n">y2</span><span class="o">+</span><span
+                    class="mi">1</span><span class="p">,</span><span class="n">d</span><span class="p">);</span>
+        <span class="n">add</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span
+                    class="n">y2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span
+                    class="o">-</span><span class="n">d</span><span class="p">);</span>
+        <span class="n">add</span><span class="p">(</span><span class="n">x2</span><span class="o">+</span><span
+                    class="mi">1</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span
+                    class="o">-</span><span class="n">d</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">sigma</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">x</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span
+                    class="p">){</span>
+        <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span
+                    class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="n">x</span><span class="p">;</span><span class="n">i</span><span
+                    class="p">;</span><span class="n">i</span><span class="o">-=</span><span class="n">i</span><span
+                    class="o">&amp;-</span><span class="n">i</span><span class="p">)</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span
+                    class="o">=</span><span class="n">y</span><span class="p">;</span><span class="n">j</span><span
+                    class="p">;</span><span class="n">j</span><span class="o">-=</span><span class="n">j</span><span
+                    class="o">&amp;-</span><span class="n">j</span><span class="p">)</span>
+                <span class="n">ret</span><span class="o">+=</span><span class="n">tree</span><span
+                    class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span
+                    class="p">];</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">Binary_Indexed_Tree</span><span class="p">{</span>
+    <span class="c1">//二维区间更新区间查询,最大可用范围[1,N)[1,N),实际使用[1,n]</span>
+    <span class="c1">//初始化N，n初始化tree[][]、treeij[][]、treei[][]、treej[][]为0</span>
+    <span class="c1">//函数参数输入，函数返回值输出</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">N</span><span
+                    class="p">;</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">tree</span><span
+                    class="p">[</span><span class="n">N</span><span class="p">][</span><span class="n">N</span><span
+                    class="p">],</span><span class="n">treeij</span><span class="p">[</span><span
+                    class="n">N</span><span class="p">][</span><span class="n">N</span><span class="p">],</span><span
+                    class="n">treei</span><span class="p">[</span><span class="n">N</span><span class="p">][</span><span
+                    class="n">N</span><span class="p">],</span><span class="n">treej</span><span class="p">[</span><span
+                    class="n">N</span><span class="p">][</span><span class="n">N</span><span class="p">];</span>
+
+    <span class="kt">void</span> <span class="n">ini</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">_n</span><span class="p">){</span>
+        <span class="n">n</span><span class="o">=</span><span class="n">_n</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">++</span><span class="p">){</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span
+                    class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span
+                    class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span
+                    class="o">++</span><span class="p">){</span>
+                <span class="n">tree</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span
+                    class="n">treei</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span
+                    class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">treej</span><span
+                    class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span
+                    class="p">]</span><span class="o">=</span><span class="n">treeij</span><span class="p">[</span><span
+                    class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span
+                    class="o">=</span><span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">x</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span
+                    class="p">,</span><span class="kt">int</span> <span class="n">d</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="n">x</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">+=</span><span class="n">i</span><span class="o">&amp;-</span><span
+                    class="n">i</span><span class="p">)</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span
+                    class="o">=</span><span class="n">y</span><span class="p">;</span><span class="n">j</span><span
+                    class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span
+                    class="o">+=</span><span class="n">j</span><span class="o">&amp;-</span><span
+                    class="n">j</span><span class="p">){</span>
+                <span class="n">tree</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">+=</span><span
+                    class="n">d</span><span class="p">;</span>
+                <span class="n">treei</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">+=</span><span
+                    class="n">x</span><span class="o">*</span><span class="n">d</span><span class="p">;</span>
+                <span class="n">treej</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">+=</span><span
+                    class="n">y</span><span class="o">*</span><span class="n">d</span><span class="p">;</span>
+                <span class="n">treeij</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">+=</span><span
+                    class="n">x</span><span class="o">*</span><span class="n">y</span><span class="o">*</span><span
+                    class="n">d</span><span class="p">;</span>
+            <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">x1</span><span class="p">,</span><span class="kt">int</span> <span
+                    class="n">y1</span><span class="p">,</span><span class="kt">int</span> <span
+                    class="n">x2</span><span class="p">,</span><span class="kt">int</span> <span
+                    class="n">y2</span><span class="p">,</span><span class="kt">int</span> <span class="n">d</span><span
+                    class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">x1</span><span class="o">&gt;</span><span
+                    class="n">x2</span><span class="p">)</span><span class="n">swap</span><span class="p">(</span><span
+                    class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">y1</span><span class="o">&gt;</span><span
+                    class="n">y2</span><span class="p">)</span><span class="n">swap</span><span class="p">(</span><span
+                    class="n">y1</span><span class="p">,</span><span class="n">y2</span><span class="p">);</span>
+        <span class="n">x2</span><span class="o">++</span><span class="p">,</span><span class="n">y2</span><span
+                    class="o">++</span><span class="p">;</span>
+        <span class="n">add</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span
+                    class="n">y1</span><span class="p">,</span><span class="n">d</span><span class="p">);</span>
+        <span class="n">add</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span
+                    class="n">y2</span><span class="p">,</span><span class="n">d</span><span class="p">);</span>
+        <span class="n">add</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span
+                    class="n">y2</span><span class="p">,</span><span class="o">-</span><span class="n">d</span><span
+                    class="p">);</span>
+        <span class="n">add</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span
+                    class="n">y1</span><span class="p">,</span><span class="o">-</span><span class="n">d</span><span
+                    class="p">);</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">sigma</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">x</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span
+                    class="p">){</span>
+        <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span
+                    class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="n">x</span><span class="p">;</span><span class="n">i</span><span
+                    class="p">;</span><span class="n">i</span><span class="o">-=</span><span class="n">i</span><span
+                    class="o">&amp;-</span><span class="n">i</span><span class="p">)</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span
+                    class="o">=</span><span class="n">y</span><span class="p">;</span><span class="n">j</span><span
+                    class="p">;</span><span class="n">j</span><span class="o">-=</span><span class="n">j</span><span
+                    class="o">&amp;-</span><span class="n">j</span><span class="p">){</span>
+                <span class="n">ret</span><span class="o">+=</span><span class="p">(</span><span class="n">x</span><span
+                    class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span
+                    class="p">(</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span
+                    class="p">)</span><span class="o">*</span><span class="n">tree</span><span class="p">[</span><span
+                    class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span
+                    class="o">+</span><span class="n">treeij</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">][</span><span class="n">j</span><span class="p">];</span>
+                <span class="n">ret</span><span class="o">-=</span><span class="p">(</span><span class="n">x</span><span
+                    class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span
+                    class="n">treej</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span
+                    class="n">j</span><span class="p">]</span><span class="o">+</span><span class="p">(</span><span
+                    class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span
+                    class="o">*</span><span class="n">treei</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">][</span><span class="n">j</span><span class="p">];</span>
+            <span class="p">}</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">sigma</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">x1</span><span class="p">,</span><span class="kt">int</span> <span
+                    class="n">y1</span><span class="p">,</span><span class="kt">int</span> <span
+                    class="n">x2</span><span class="p">,</span><span class="kt">int</span> <span
+                    class="n">y2</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">x1</span><span class="o">&gt;</span><span
+                    class="n">x2</span><span class="p">)</span><span class="n">swap</span><span class="p">(</span><span
+                    class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">y1</span><span class="o">&gt;</span><span
+                    class="n">y2</span><span class="p">)</span><span class="n">swap</span><span class="p">(</span><span
+                    class="n">y1</span><span class="p">,</span><span class="n">y2</span><span class="p">);</span>
+        <span class="n">x1</span><span class="o">--</span><span class="p">,</span><span class="n">y1</span><span
+                    class="o">--</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">sigma</span><span class="p">(</span><span class="n">x1</span><span
+                    class="p">,</span><span class="n">y1</span><span class="p">)</span><span class="o">+</span><span
+                    class="n">sigma</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span
+                    class="n">y2</span><span class="p">)</span><span class="o">-</span><span class="n">sigma</span><span
+                    class="p">(</span><span class="n">x2</span><span class="p">,</span><span class="n">y1</span><span
+                    class="p">)</span><span class="o">-</span><span class="n">sigma</span><span class="p">(</span><span
+                    class="n">x1</span><span class="p">,</span><span class="n">y2</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre>
+    </div>
+
+
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
 </html>
-
-
-

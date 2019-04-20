@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>凸四边形不等式优化dp</title>
+</head>
+
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>凸四边形不等式优化dp</h1></center>
+
+    <div id="text">
+        <h2>决策单调性</h2>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于一类一维dp,若有转移dp[i]=min\max(dp[j]+w(i,j))&nbsp;0&#60;j&#60;i，并假定pri[i]
+        为到dp[i]的最优转移j，如果pri[i]关于i单调，那么我们称该dp具有决策单调性。<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于一类二维dp,如果有转移dp[i,j]=min\max(dp[i][k]+dp[k+1][j]+w(i,j))&nbsp;i&#60;=k&#60;j
+        并假定pro[i][j]为到dp[i][j]的最优转移k,如果pri[i][j]关于i单调，且关于j单调，那么我们称该dp具有决策单调性。
+    </div>
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>
