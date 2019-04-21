@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>莫队算法</title>
+</head>
+
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>莫队算法</h1></center>
+
+    <div id="text">
+        <span style="color: red">1.http://codeforces.com/contest/617/problem/E给出n个数的序列和数字k,q次询问,每次询问给出[L,R],求这个区间内有多少个连续
+            区间的异或和等于k。<br></span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;预处理前缀异或和，化简区间为两个点异或值为k，再来莫队。<br><br><br>
+
+
+        <span style="color: red">2.hdu5213 给你一个n个数的序列a，给你q个询问，每次询问给两个不相交的区间，求a[i]+a[j]=k的方案数，i属于第一个区间，j属于第二个区
+            间。<br></span>
+        (1≤N≤30000) (2≤K≤2*N) (1≤ai≤N)(1≤M≤30000) (1≤Li≤Ri&lt;Ui≤Vi≤N)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;化简多区间为单区间询问，再来莫队<br><br><br>
+
+        <span style="color: red">3.fzu2226 给定一个含有n个数字的数列，每个数字都有一个值a[i]（下标从1开始）。定义第i个数字和第j个数字间的距离dis(i,j)=abs(i-j)
+        。接下来给出q个询问，每次询问一个区间[l,r]，要求求出一对数字(i,j)(l<=i<=j<=r),使得a[i]=a[j]并且dis(i,j)最大，由于这样的数对
+                可能有多个，因此答案只要输出dis。<br></span>
+        N<=10^5 Q<=10^4 1<=a[i]<=10^3 1<=l<=r<=n<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;莫队的时候，维护区间中每个值出现的最左下标和最右下标。<br><br><br>
+
+        <span style="color: red">4.hdu4638 给你一个长度为n的序列，m个询问，每次查询给一个区间，我们来划分这个区间，对于划分出的任意一个子区间，他的所有元素构成的
+        集合所包含的数必须是一段连续的区间，然后定义区间的代价为区间长度的平方，定义划分的代价为划分结束后所有划分出的子区间的代价的和，询
+            问此代价最高时的划分出的子区间的个数。<br></span>
+        (1<=n ,m<=100000)。(1<=L<=R<=n)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以证明，划分不唯一，但是多种划分之间存在联系，我们把划分操作看成切割原区
+        间，定义划分的操作为切割点的位置的集合，若两个划分不一样，我们对这两个划分操作切割点集取交集，交集构成新的划分，此划分优于前两个划
+        分。于是按照能合并就合并的贪心，我们可以找的最优划分。考虑莫队，当区间变化的时候：添加一个数，如果他左右的数字都存在，显然段数-1
+        若左右存在某一个，段数不变，若左右均不存在，则段数+1 ，删除同理。<br><br><br>
+
+
+        <span style="color: red">5.hdu4676 给你一个排列，q个区间询问，对区间内部所有i&lt;j，求和gcd(ai,aj)</span><br>
+        (1<=n<= 20000)(1<=Q<=20000)<br>
+        <a href="https://www.codecogs.com/eqnedit.php?latex=n=id(n)=(1*\varphi)(n)=\sum_{d|n}\varphi(d)&space;\\&space;\sum_{L\leq&space;i<j\leq&space;R}gcd(a_i,a_j)&space;\\=\sum_{L\leq&space;i<j\leq&space;R}\sum_{d|gcd(a_i,a_j)}\varphi(d)&space;\\=\sum_{L\leq&space;i<j\leq&space;R}\sum_{d|a_i}\sum_{d|a_j}\varphi(d)&space;\\=\sum_{d}\valphi(d)*C_{\sum_{i=L}^{R}[d|a_i]}^2"
+           target="_blank"><img
+                src="https://latex.codecogs.com/gif.latex?n=id(n)=(1*\varphi)(n)=\sum_{d|n}\varphi(d)&space;\\&space;\sum_{L\leq&space;i<j\leq&space;R}gcd(a_i,a_j)&space;\\=\sum_{L\leq&space;i<j\leq&space;R}\sum_{d|gcd(a_i,a_j)}\varphi(d)&space;\\=\sum_{L\leq&space;i<j\leq&space;R}\sum_{d|a_i}\sum_{d|a_j}\varphi(d)&space;\\=\sum_{d}\valphi(d)*C_{\sum_{i=L}^{R}[d|a_i]}^2"
+                title="n=id(n)=(1*\varphi)(n)=\sum_{d|n}\varphi(d) \\ \sum_{L\leq i<j\leq R}gcd(a_i,a_j) \\=\sum_{L\leq i<j\leq R}\sum_{d|gcd(a_i,a_j)}\varphi(d) \\=\sum_{L\leq i<j\leq R}\sum_{d|a_i}\sum_{d|a_j}\varphi(d) \\=\sum_{d}\valphi(d)*C_{\sum_{i=L}^{R}[d|a_i]}^2"/></a>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;反演出结果后，直接莫队，对新加进来的数，枚举他的因子，计算莫队区间的变化。
+
+
+    </div>
+
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>

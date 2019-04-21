@@ -46,7 +46,31 @@
         此次修改结束，如果队尾的决策完全不如新决策弹掉了队尾，修改新队尾的区间为后缀区间，继续枚举，如果新决策优于队尾决策的一部分，二分出位置后直接修改即可。<br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;很容易证明单调队列优化的时间复杂度是lg的，优于线段树。
 
-        <h2></h2>
+        <h2>决策单调性优化二维dp</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个就特别简单了，dp[i][j]的转移在dp[i][j-1]和dp[i+1][j]之间枚举即可。
+
+
+        <h2>四边形不等式</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于二元数论函数，w(i,j)，若满足a&lt;=b&lt;=c&lt;=d恒有 w(a,d)+w(b,c)
+        >=w(a,c)+w(b,d)则该二元函数满足四边形不等式<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;他的充要条件是: 若a&lt;b 恒有w(a,b+1)+w(a+1,b)>=w(a,b)+w(a+1,b+1) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以理解为，交叉和大于包含和
+
+        <h2>区间包含单调性</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于二元数论函数，i&lt;j的w(i,j) 我们将参数看做区间，定义区间的包含为偏序关系，
+        若w的值关于该偏序关系单调，则称该函数具有区间包含单调性。
+
+
+
+        <h2>什么时候可以使用这些优化？</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于一维dp[i]=min\max(dp[j]+w(i,j))&nbsp;,若w满足四边形不等式则，此dp满足决策单调性，
+        并且，满足强化的决策单调性。<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于二维dp[i,j]=min\max(dp[i][k]+dp[k+1][j]+w(i,j))&nbsp;若w满足四边形不等式，且w满足区间
+        包含单调性，则dp满足四边形不等式，且具有决策单调性。
+
+
+
+        <h3>未完结</h3>
 
     </div>
 </div>

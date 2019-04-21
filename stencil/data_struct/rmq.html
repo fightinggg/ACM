@@ -1,120 +1,84 @@
 <!DOCTYPE html>
 <html>
- 
+
 <head>
-   <meta charset="utf-8">
-	<script type="text/javascript" src="/ACM/js/link.js"></script>
-	<title>rmq倍增</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>rmq倍增</title>
 </head>
 
-<body>
-	<div id = "myweb">
-		
-<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
-<script type="text/javascript" src="/ACM/js/up_and_right.js"></script>
-<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
-		     
-     		     		<div id="left"><div id="left_in">
-     			
-	<center><h1>rmq倍增</h1></center>
-	
-	rmq倍增常用维护区间最值，但不支持区间修改（强行修改太麻烦了）<br />
-rmq优点在于O(1)查询区间最值<br />
-rmq利用dp，如果要维护序列a[0],a[1],a[2]...<br />
-我们建立dp[x][y]表示区间[x,x+2^y)的信息<br />
-预处理时候dp[i][j]-&gt&nbspdp[i][j-1]+++dp[i+2^(j-1)][j-1],<br />
-查询的时候对于区间[x,y],我们总可以找到一个n使得2^n&lty-x+1且2^(n+1)&gty-x+1;<br />
-那么区间[x,y]转移到了dp[x][n]+++dp[y+1-2^(n)][n];几乎可以O1处理<br />
-并且可以用于二分找值<br />
-附上代码<br />
 
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>rmq倍增</h1></center>
 
+    <div id="code">
+        <pre><span class="k">struct</span> <span class="n">RMQ</span><span class="p">{</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">lgmaxn</span><span class="o">=</span><span class="mi">12</span><span class="p">;</span>
+    <span class="k">static</span> <span class="kt">int</span> <span class="n">lg</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">mx</span><span class="p">[</span><span class="n">maxn</span><span class="p">][</span><span class="n">lgmaxn</span><span class="p">];</span>
 
-     			<div id="code">
-     				
-<br />
-<span style="color: blue;font: 20px;">const</span>&nbsp<span style="color: blue;font: 20px;">int</span>&nbspmaxn=1e5+10;
-<br />
-<span style="color: blue;font: 20px;">int</span>&nbspmm[maxn],rmq[maxn][20],num[maxn];
-<br />
+    <span class="n">RMQ</span><span class="p">(){</span><span class="c1">//构造函数</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">lg</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">!=</span><span class="mi">1</span><span class="p">){</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">maxn</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span> <span class="c1">//因为lg(1)=0</span>
+                <span class="n">lg</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="o">&amp;-</span><span class="n">i</span><span class="p">)</span><span class="o">==</span><span class="n">i</span><span class="o">?</span><span class="n">lg</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="o">:</span><span class="n">lg</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 
-<br />
-<span style="color: green;font: 20px;">//别忘了调用st()
-</span><br />
-<span style="color: green;font: 20px;">//st表存储左闭右开区间的最小值
-</span><br />
+    <span class="kt">void</span> <span class="n">build</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">mx</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">lg</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">j</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+                <span class="n">mx</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">max</span><span class="p">(</span><span class="n">mx</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">mx</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">))][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="p">}</span>
 
-<br />
-<span style="color: green;font: 20px;">//初始化输入：全局数组:num&nbsp&nbsp区间起点l，区间终点r，
-</span><br />
-<span style="color: green;font: 20px;">//初始化输出：st表-&gtrmq数组
-</span><br />
-<span style="color: green;font: 20px;">//查询输入：区间起点l，区间终点r，
-</span><br />
-<span style="color: green;font: 20px;">//查询输出：区间最小值，
-</span><br />
-<span style="color: green;font: 20px;">//二分输入：区间起点l，区间终点r，数值x
-</span><br />
-<span style="color: green;font: 20px;">//二分输出：区间从左往右第一个小于x的值的下标
-</span><br />
+    <span class="kt">int</span> <span class="n">query</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span><span class="kt">int</span> <span class="n">r</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="n">k</span><span class="o">=</span><span class="n">lg</span><span class="p">[</span><span class="n">r</span><span class="o">-</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+        <span class="k">return</span> <span class="n">max</span><span class="p">(</span><span class="n">mx</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">k</span><span class="p">],</span><span class="n">mx</span><span class="p">[</span><span class="n">r</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">k</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">k</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre>
 
-<br />
-<span style="color: blue;font: 20px;">void</span>&nbspst(<span style="color: blue;font: 20px;">int</span>&nbspl,<span style="color: blue;font: 20px;">int</span>&nbspr){
-<br />
-&nbsp&nbsp&nbsp&nbspmm[0]=-1;
-<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspi=1;i&ltmaxn;i++){
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspmm[i]=((i&i-1)==0)?mm[i-1]+1:mm[i-1];
-<br />
-&nbsp&nbsp&nbsp&nbsp}<span style="color: green;font: 20px;">//如果卡常，可以放外面
-</span><br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspi=l;i&lt=r;i++)rmq[i][0]=num[i];
-<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspj=1;j&lt=mm[r-l+1];j++)
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">for</span>(<span style="color: blue;font: 20px;">int</span>&nbspi=l;i+(1&lt&ltj)-1&lt=r;i++)
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsprmq[i][j]=min(rmq[i][j-1],rmq[i+(1&lt&lt(j-1))][j-1]);
-<br />
-}
-<br />
-
-<br />
-<span style="color: blue;font: 20px;">int</span>&nbspquery(<span style="color: blue;font: 20px;">int</span>&nbspl,<span style="color: blue;font: 20px;">int</span>&nbspr){
-<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">int</span>&nbspk=mm[r-l+1];
-<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">return</span>&nbspmin(rmq[l][k],rmq[r-(1&lt&ltk)+1][k]);
-<br />
-}
-<br />
-
-<br />
-<span style="color: blue;font: 20px;">int</span>&nbspbinary_search(<span style="color: blue;font: 20px;">int</span>&nbspl,<span style="color: blue;font: 20px;">int</span>&nbspr,<span style="color: blue;font: 20px;">int</span>&nbspx){
-<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">while</span>(l&ltr){
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">int</span>&nbspmid=(l+r)&gt&gt1;
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">int</span>&nbspa=query(l,mid);
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">if</span>(a&lt=x)r=mid;
-<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">else</span>&nbspl=mid+1;
-<br />
-&nbsp&nbsp&nbsp&nbsp}
-<br />
-&nbsp&nbsp&nbsp&nbsp<span style="color: blue;font: 20px;">return</span>&nbspl;
-<br />
-}<br />
-	
-	
-     			</div>
-
-     </div></div>
-     		
     </div>
-</body>
-</html>
+    <div id="code">
+        <pre><span class="kr">inline</span> <span class="kt">int</span> <span class="n">max</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">,</span><span class="kt">int</span> <span class="n">c</span><span class="p">,</span><span class="kt">int</span> <span class="n">d</span><span class="p">){</span><span class="k">return</span> <span class="n">max</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">),</span><span class="n">max</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">));}</span>
+<span class="k">struct</span> <span class="n">RMQ2</span><span class="p">{</span><span class="c1">//写的时候下标从0开始，可以当作下标为1开始来使用</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span><span class="o">=</span><span class="mi">310</span><span class="p">,</span><span class="n">lgmaxn</span><span class="o">=</span><span class="mi">9</span><span class="p">;</span><span class="c1">//确保 ( 1&lt;&lt;(lgmaxn-1) ) &gt; maxn</span>
+    <span class="k">static</span> <span class="kt">int</span> <span class="n">lg</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span><span class="c1">//log2(x)向下取整</span>
+    <span class="kt">int</span> <span class="n">mx</span><span class="p">[</span><span class="n">maxn</span><span class="p">][</span><span class="n">maxn</span><span class="p">][</span><span class="n">lgmaxn</span><span class="p">][</span><span class="n">lgmaxn</span><span class="p">];</span>
+    <span class="n">RMQ2</span><span class="p">(){</span><span class="c1">//构造函数不用管的</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">lg</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">!=</span><span class="mi">1</span><span class="p">){</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">maxn</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span> <span class="c1">//因为lg(1)=0</span>
+                <span class="n">lg</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="o">&amp;-</span><span class="n">i</span><span class="p">)</span><span class="o">==</span><span class="n">i</span><span class="o">?</span><span class="n">lg</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="o">:</span><span class="n">lg</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">build</span><span class="p">(</span><span class="kt">int</span> <span class="n">row</span><span class="p">,</span><span class="kt">int</span> <span class="n">col</span><span class="p">,</span><span class="kt">int</span> <span class="n">a</span><span class="p">[][</span><span class="n">maxn</span><span class="p">]){</span><span class="c1">//[0,row],[0,col]</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">row</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">col</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="n">mx</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
 
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">ii</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">ii</span><span class="p">)</span><span class="o">&lt;=</span><span class="n">row</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">ii</span><span class="o">++</span><span class="p">){</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">jj</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">jj</span><span class="p">)</span><span class="o">&lt;=</span><span class="n">col</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">jj</span><span class="o">++</span><span class="p">){</span>
+                <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">ii</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">&lt;=</span><span class="n">row</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+                    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">jj</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">&lt;=</span><span class="n">col</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">){</span>
+                        <span class="k">if</span>     <span class="p">(</span><span class="n">ii</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span><span class="n">mx</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">]</span><span class="o">=</span><span class="n">max</span><span class="p">(</span><span class="n">mx</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">jj</span><span class="p">],</span><span class="n">mx</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">))][</span><span class="n">j</span><span class="p">][</span><span class="n">ii</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">jj</span><span class="p">]);</span>
+                        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">jj</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span><span class="n">mx</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">]</span><span class="o">=</span><span class="n">max</span><span class="p">(</span><span class="n">mx</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">mx</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">jj</span><span class="o">-</span><span class="mi">1</span><span class="p">))][</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">query</span><span class="p">(</span><span class="kt">int</span> <span class="n">r1</span><span class="p">,</span><span class="kt">int</span> <span class="n">c1</span><span class="p">,</span><span class="kt">int</span> <span class="n">r2</span><span class="p">,</span><span class="kt">int</span> <span class="n">c2</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">r1</span><span class="o">&gt;</span><span class="n">r2</span><span class="p">)</span><span class="n">swap</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span><span class="n">r2</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">c1</span><span class="o">&gt;</span><span class="n">c2</span><span class="p">)</span><span class="n">swap</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span><span class="n">c2</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">kr</span><span class="o">=</span><span class="n">lg</span><span class="p">[</span><span class="n">r2</span><span class="o">-</span><span class="n">r1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">r3</span><span class="o">=</span><span class="n">r2</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">kr</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">kc</span><span class="o">=</span><span class="n">lg</span><span class="p">[</span><span class="n">c2</span><span class="o">-</span><span class="n">c1</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">c3</span><span class="o">=</span><span class="n">c2</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">kc</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">max</span><span class="p">(</span><span class="n">mx</span><span class="p">[</span><span class="n">r1</span><span class="p">][</span><span class="n">c1</span><span class="p">][</span><span class="n">kr</span><span class="p">][</span><span class="n">kc</span><span class="p">],</span><span class="n">mx</span><span class="p">[</span><span class="n">r1</span><span class="p">][</span><span class="n">c3</span><span class="p">][</span><span class="n">kr</span><span class="p">][</span><span class="n">kc</span><span class="p">],</span>
+                   <span class="n">mx</span><span class="p">[</span><span class="n">r3</span><span class="p">][</span><span class="n">c3</span><span class="p">][</span><span class="n">kr</span><span class="p">][</span><span class="n">kc</span><span class="p">],</span><span class="n">mx</span><span class="p">[</span><span class="n">r3</span><span class="p">][</span><span class="n">c1</span><span class="p">][</span><span class="n">kr</span><span class="p">][</span><span class="n">kc</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">};</span><span class="kt">int</span> <span class="n">RMQ2</span><span class="o">::</span><span class="n">lg</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+</pre>
+    </div>
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>
