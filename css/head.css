@@ -77,6 +77,23 @@ body {
 }
 
 
+
+#normal_href {
+    background-color: white;
+}
+
+#normal_href a {
+    color: blue;
+    text-decoration: none;
+}
+
+#normal_href a:hover {
+    color: #555;
+}
+
+
+
+
 #right {
     width: 200px;
     float: right;
