@@ -22,7 +22,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N个不同的正整数A[i]，找出由这些数组成的最长的等差数列。N&lt;=1e4,A[i]&lt;=1e9<br>
         </span>
     <h2>题解</h2>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i][j]代表最后两项的下标为i和j,i<j, dp[i][j] <-dp[k][i] if(a[k]+a[j]==2*a[i])<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i][j]代表最后两项的下标为i和j,i&lt;j, dp[i][j] &lt;-dp[k][i] if(a[k]+a[j]==2*a[i])<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从大到小枚举j,则k单调，故复杂度O(n)。<br>
     </div>
 </div>

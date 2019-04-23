@@ -24,7 +24,7 @@
         </span>
     <h2>题解</h2>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i]代表在第i个位置放一个暖气，能温暖前i个格子的最少安装的暖气数，<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i]&lt;-dp[j]&nbsp;(i-j<r)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i]&lt;-dp[j]&nbsp;(i-j&lt;r)<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;答案在dp[n-r+1,n]上<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;明显dp可以用单调队列优化，维护一个i单调增，dp值单调减的单调队列即可。<br>
     </div>
