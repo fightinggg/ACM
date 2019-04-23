@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>cf522C</title>
+</head>
+
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>cf522C</h1></center>
+    <div id="text">
+    <h2>题意</h2>
+        <span style="color:red">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;给一个序列，让你构造一个相等长度的序列，构造的序列中每个元素的取值范围都为[1,5]。<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;构造要求：<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. 若原序列a[i]==a[i+1]，那么构造的序列b[i]!=b[i+1]；<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. 若原序列a[i]>a[i+1]，那么构造的序列b[i]>b[i+1]；<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. 若原序列a[i]<a[i+1]，那么构造的序列b[i]<b[i+1]；<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若答案存在，输出任意一个，否则输出-1。<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1≤𝑛≤105)<br>
+        </span>
+    <h2>题解</h2>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开一个dp[N][5]，填完了前i位且第i位是k的方案是否可行<br>
+    </div>
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>

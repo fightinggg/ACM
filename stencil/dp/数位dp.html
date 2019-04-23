@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>数位dp</title>
+</head>
+
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>数位dp</h1></center>
+
+    <div id="text">
+        <h2>常见数位dp</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果一个在数字上的计数问题只与数位和数的大小有关的时候
+        我们可以尝试用数位dp来解决。最经典的就像不要62那道题。
+        <h2>数位dp状态</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们常常设dp[val][len][limit][lead]来表示以val开头
+        数位长度剩余len(包含val)，limit表示数有没有上限<span style="color: grey">后面发现这一维度没有作用
+    </span>。lead表示val及以前是否含有前导数，<span style="color: grey">来特判某些跟前导0有关的题目</span>
+    </div>
+
+    <div id="code">
+        <pre><span class="n">ll</span> <span class="n">dfs</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="n">num</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pre</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pos</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">limit</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">lead</span><span class="p">){</span><span class="c1">//try to fill the pos bit</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">pos</span><span class="o">==</span><span class="n">n</span><span class="p">)</span><span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">else</span><span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">limit</span><span class="o">&amp;&amp;</span><span class="n">dp</span><span class="p">[</span><span class="n">pre</span><span class="o">==</span><span class="mi">6</span><span class="p">][</span><span class="n">num</span><span class="p">[</span><span class="n">pos</span><span class="p">]][</span><span class="n">n</span><span class="o">-</span><span class="n">pos</span><span class="p">][</span><span class="n">lead</span><span class="p">]</span><span class="o">!=-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">pre</span><span class="o">==</span><span class="mi">6</span><span class="p">][</span><span class="n">num</span><span class="p">[</span><span class="n">pos</span><span class="p">]][</span><span class="n">n</span><span class="o">-</span><span class="n">pos</span><span class="p">][</span><span class="n">lead</span><span class="p">];</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">upper</span><span class="o">=</span><span class="n">limit</span> <span class="o">?</span> <span class="n">num</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">:</span> <span class="mi">9</span><span class="p">;</span>
+            <span class="n">ll</span> <span class="n">ans</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">upper</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">4</span><span class="p">)</span><span class="k">continue</span><span class="p">;</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">pre</span><span class="o">==</span><span class="mi">6</span><span class="o">&amp;&amp;</span><span class="n">i</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span><span class="k">continue</span><span class="p">;</span>
+                <span class="n">ans</span><span class="o">+=</span><span class="n">dfs</span><span class="p">(</span><span class="n">num</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">pos</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">limit</span><span class="o">&amp;&amp;</span><span class="n">i</span><span class="o">==</span><span class="n">upper</span><span class="p">,</span><span class="n">lead</span><span class="o">||</span><span class="n">i</span><span class="o">!=</span><span class="mi">0</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">limit</span><span class="p">)</span> <span class="n">dp</span><span class="p">[</span><span class="n">pre</span><span class="o">==</span><span class="mi">6</span><span class="p">][</span><span class="n">num</span><span class="p">[</span><span class="n">pos</span><span class="p">]][</span><span class="n">n</span><span class="o">-</span><span class="n">pos</span><span class="p">][</span><span class="n">lead</span><span class="p">]</span><span class="o">=</span><span class="n">ans</span><span class="p">;</span>
+            <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre><
+
+    </div>
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>
