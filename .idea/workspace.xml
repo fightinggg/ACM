@@ -3,22 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e505d993-0813-4b95-9e39-e1a7b5c097cb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/web_begin.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/web_begin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reading_problem/51NOD1009..html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reading_problem/51NOD1405..html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reading_problem/CCF有趣的数..html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reading_problem/hdu3208..html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reading_problem/indexs/51NOD.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/indexs/51NOD.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reading_problem/indexs/hdu.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/indexs/hdu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reading_problem/indexs/容斥原理.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/indexs/容斥原理.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reading_problem/indexs/数位DP.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/indexs/数位DP.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reading_problem/indexs/普通动态规划.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/indexs/普通动态规划.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reading_problem/indexs/杂类oj.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/indexs/杂类oj.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reading_problem/indexs/树形DP.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/indexs/树形DP.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reading_problem/indexs/矩阵快速幂.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/indexs/矩阵快速幂.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reading_problem/indexs/计蒜客.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/indexs/计蒜客.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reading_problem/计蒜客A2000..html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reading_problem/计蒜客A2012..html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem/indexs/reading_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/indexs/reading_index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -32,18 +17,9 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/reading_problem/indexs/reading_index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/up_and_right.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
+            <state relative-caret-position="555">
               <caret line="37" selection-start-line="37" selection-end-line="37" />
             </state>
           </provider>
@@ -52,17 +28,40 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/web_begin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
-              <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+            <state relative-caret-position="675">
+              <caret line="45" selection-start-line="45" selection-end-line="45" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/reading_problem/indexs/hdu.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="6" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
+            <state relative-caret-position="330">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/reading_problem/hdu3208.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/reading_problem/reading.cpp">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/reading_problem/indexs/2019.2.22.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -195,10 +194,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="34" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="106" />
     <option name="y" value="23" />
-    <option name="width" value="1375" />
+    <option name="width" value="1086" />
     <option name="height" value="809" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -225,6 +224,12 @@
               <item name="ACM" type="b2602c69:ProjectViewProjectNode" />
               <item name="ACM" type="462c0819:PsiDirectoryNode" />
               <item name="reading_problem" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ACM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ACM" type="462c0819:PsiDirectoryNode" />
+              <item name="reading_problem" type="462c0819:PsiDirectoryNode" />
+              <item name="indexs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ACM" type="b2602c69:ProjectViewProjectNode" />
@@ -269,23 +274,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.hdu.html">
-    <configuration name="51NOD1009..html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/reading_problem/51NOD1009..html" useBuiltInWebServerPort="true">
+  <component name="RunManager" selected="JavaScript Debug.2019.2.22.html">
+    <configuration name="2019.2.22.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/reading_problem/indexs/2019.2.22.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="计蒜客A2000..html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/reading_problem/计蒜客A2000..html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="CCF有趣的数..html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/reading_problem/CCF有趣的数..html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="广义组合数.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/ACM/stencil/math/广义组合数.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="斜率优化.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/ACM/stencil/dp/斜率优化.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="bzoj2124.html" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:63342/ACM/problem/data_struct/bzoj2124.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="hdu3208.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/reading_problem/hdu3208.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="hdu.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/reading_problem/indexs/hdu.html" useBuiltInWebServerPort="true">
@@ -305,11 +307,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.2019.2.22.html" />
+        <item itemvalue="JavaScript Debug.hdu3208.html" />
         <item itemvalue="JavaScript Debug.hdu.html" />
         <item itemvalue="JavaScript Debug.reading_index.html" />
         <item itemvalue="JavaScript Debug.计蒜客A2000..html" />
-        <item itemvalue="JavaScript Debug.CCF有趣的数..html" />
-        <item itemvalue="JavaScript Debug.51NOD1009..html" />
       </list>
     </recent_temporary>
   </component>
@@ -382,18 +384,19 @@
       <workItem from="1555956225744" duration="56000" />
       <workItem from="1555977383246" duration="394000" />
       <workItem from="1555985591200" duration="870000" />
-      <workItem from="1555987486938" duration="316000" />
+      <workItem from="1555987486938" duration="676000" />
+      <workItem from="1555988836583" duration="16000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82176000" />
+    <option name="totallyTimeSpent" value="82552000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="34" y="23" width="1375" height="809" extended-state="1" />
+    <frame x="106" y="23" width="1086" height="809" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18094535" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23004694" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -416,35 +419,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/web_end.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="117" selection-start-line="3" selection-start-column="117" selection-end-line="3" selection-end-column="117" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#center#2;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/problem/dp/bzoj2121.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="53" column="10" selection-start-line="53" selection-start-column="10" selection-end-line="53" selection-end-column="10" />
-          <folding>
-            <element signature="e#463#469#0" expanded="true" />
-            <element signature="n#div#1;n#div#0;n#html#0;n#!!top" />
-            <element signature="n#pre#0;n#div#2;n#div#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/stencil/string/AC自动机.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1680">
-          <caret line="112" column="6" selection-start-line="112" selection-start-column="6" selection-end-line="112" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/stencil/string/后缀自动机.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5640">
@@ -915,85 +889,10 @@
     <entry file="file://$PROJECT_DIR$/stencil/graph_theory/最短路.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/reading_problem/51NOD1009..html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
-          <folding>
-            <element signature="e#360#366#0" expanded="true" />
-            <element signature="e#366#372#0" expanded="true" />
-            <element signature="e#372#378#0" expanded="true" />
-            <element signature="e#378#384#0" expanded="true" />
-            <element signature="e#384#390#0" expanded="true" />
-            <element signature="e#390#396#0" expanded="true" />
-            <element signature="e#396#402#0" expanded="true" />
-            <element signature="e#402#408#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/reading_problem/CCF有趣的数..html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#356#362#0" expanded="true" />
-            <element signature="e#362#368#0" expanded="true" />
-            <element signature="e#368#374#0" expanded="true" />
-            <element signature="e#374#380#0" expanded="true" />
-            <element signature="e#380#386#0" expanded="true" />
-            <element signature="e#386#392#0" expanded="true" />
-            <element signature="e#392#398#0" expanded="true" />
-            <element signature="e#398#404#0" expanded="true" />
-            <element signature="e#539#545#0" expanded="true" />
-            <element signature="e#545#551#0" expanded="true" />
-            <element signature="e#715#721#0" expanded="true" />
-            <element signature="e#721#727#0" expanded="true" />
-            <element signature="e#727#733#0" expanded="true" />
-            <element signature="e#733#739#0" expanded="true" />
-            <element signature="e#739#745#0" expanded="true" />
-            <element signature="e#745#751#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/reading_problem/51NOD1405..html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="15" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#360#366#0" expanded="true" />
-            <element signature="e#366#372#0" expanded="true" />
-            <element signature="e#372#378#0" expanded="true" />
-            <element signature="e#378#384#0" expanded="true" />
-            <element signature="e#384#390#0" expanded="true" />
-            <element signature="e#390#396#0" expanded="true" />
-            <element signature="e#396#402#0" expanded="true" />
-            <element signature="e#402#408#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/reading_problem/计蒜客A2000..html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="70" selection-start-line="20" selection-start-column="70" selection-end-line="20" selection-end-column="70" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#358#364#0" expanded="true" />
-            <element signature="e#364#370#0" expanded="true" />
-            <element signature="e#370#376#0" expanded="true" />
-            <element signature="e#376#382#0" expanded="true" />
-            <element signature="e#382#388#0" expanded="true" />
-            <element signature="e#388#394#0" expanded="true" />
-            <element signature="e#394#400#0" expanded="true" />
-            <element signature="e#400#406#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/reading_problem/51NOD1009..html" />
+    <entry file="file://$PROJECT_DIR$/reading_problem/CCF有趣的数..html" />
+    <entry file="file://$PROJECT_DIR$/reading_problem/51NOD1405..html" />
+    <entry file="file://$PROJECT_DIR$/reading_problem/计蒜客A2000..html" />
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -1001,28 +900,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/reading_problem/hdu3208..html">
+    <entry file="file://$PROJECT_DIR$/reading_problem/hdu3208..html" />
+    <entry file="file://$PROJECT_DIR$/reading_problem/计蒜客A2012..html" />
+    <entry file="file://$PROJECT_DIR$/reading_problem/indexs/reading_index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        <state relative-caret-position="285">
+          <caret line="23" column="19" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/reading_problem/计蒜客A2012..html">
+    <entry file="file://$PROJECT_DIR$/js/up_and_right.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/web_begin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reading_problem/indexs/hdu.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
-          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#358#364#0" expanded="true" />
-            <element signature="e#364#370#0" expanded="true" />
-            <element signature="e#370#376#0" expanded="true" />
-            <element signature="e#376#382#0" expanded="true" />
-            <element signature="e#382#388#0" expanded="true" />
-            <element signature="e#388#394#0" expanded="true" />
-            <element signature="e#394#400#0" expanded="true" />
-            <element signature="e#400#406#0" expanded="true" />
-          </folding>
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>
@@ -1064,31 +968,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/up_and_right.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="37" selection-start-line="37" selection-end-line="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/web_begin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/reading_problem/indexs/reading_index.html">
+    <entry file="file://$PROJECT_DIR$/reading_problem/hdu3208.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+          <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/reading_problem/indexs/hdu.html">
+    <entry file="file://$PROJECT_DIR$/reading_problem/reading.cpp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reading_problem/indexs/2019.2.22.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="6" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
+        <state relative-caret-position="375">
+          <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
         </state>
       </provider>
     </entry>
