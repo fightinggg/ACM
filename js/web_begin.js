@@ -39,6 +39,12 @@ document.writeln('                                                	<a href="http
 document.writeln('                        </div>																																																');
 
 document.writeln('                   <div id="right_in">																																												');
+document.writeln('                        <h3><center>阅题</center></h3>																																				');
+document.writeln('                        <hr>																																																');
+document.writeln('                                                    <a href="http://fightinggg.github.io/ACM/reading_problem/indexs/reading_index.html" target="_blank">阅题</a></br>											');
+document.writeln('                        </div>																																																');
+
+document.writeln('                   <div id="right_in">																																												');
 document.writeln('                        <h3><center>珍藏网站</center></h3>																																		');
 document.writeln('                        <hr>																																																');
 document.writeln('                                                    <a href="https://gcc.gnu.org/onlinedocs/gcc/Other-Builtins.html" target="_blank">gcc内建函数</a></br>	');
