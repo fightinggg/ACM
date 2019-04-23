@@ -2,10 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e505d993-0813-4b95-9e39-e1a7b5c097cb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/stencil/dp/数位dp.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reading_problem/indexs/reading_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/indexs/reading_index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reading_problem/indexs/普通动态规划.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/indexs/普通动态规划.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem/51NOD1009.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/51NOD1009.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem/51NOD1405.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/51NOD1405.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem/CCF有趣的数.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/CCF有趣的数.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem/cf517B.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/cf517B.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem/cf517D.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/cf517D.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem/cf518A.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/cf518A.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem/cf521F1.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/cf521F1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem/cf521F2.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/cf521F2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem/cf522C.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/cf522C.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem/cf523C.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/cf523C.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem/hdu3208.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/hdu3208.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem/计蒜客A2000.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/计蒜客A2000.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem/计蒜客A2012.html" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem/计蒜客A2012.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,47 +29,39 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/reading_problem/indexs/2019.2.22.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/stencil/dp/数位dp.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="640">
-              <caret line="44" selection-start-line="44" selection-end-line="44" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/reading_problem/cf517B.html">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/reading_problem/cf521F2.html">
+        <entry file="file://$PROJECT_DIR$/reading_problem/CCF有趣的数.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/reading_problem/cf521F1.html">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/reading_problem/cf521F2.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="23" column="79" selection-start-line="23" selection-start-column="79" selection-end-line="23" selection-end-column="79" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/reading_problem/cf523C.html">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/new.html">
+        <entry file="file://$PROJECT_DIR$/reading_problem/cf517D.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" selection-end-line="16" />
+            <state relative-caret-position="210">
+              <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -67,8 +69,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stencil/graph_theory/网络流24题.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="38" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
+            <state relative-caret-position="157">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
             </state>
           </provider>
         </entry>
@@ -218,11 +220,6 @@
               <item name="ACM" type="462c0819:PsiDirectoryNode" />
               <item name="reading_problem" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="ACM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ACM" type="462c0819:PsiDirectoryNode" />
-              <item name="stencil" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -261,14 +258,14 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.cf523C.html">
-    <configuration name="2019.2.22.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/reading_problem/indexs/2019.2.22.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="JavaScript Debug.cf517D.html">
     <configuration name="bzoj2124.html" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:63342/ACM/problem/data_struct/bzoj2124.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="cf517B.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/reading_problem/cf517B.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="cf517D.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/reading_problem/cf517D.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="cf521F2.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/reading_problem/cf521F2.html" useBuiltInWebServerPort="true">
@@ -291,11 +288,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.cf523C.html" />
+        <item itemvalue="JavaScript Debug.cf517D.html" />
         <item itemvalue="JavaScript Debug.cf521F2.html" />
+        <item itemvalue="JavaScript Debug.cf523C.html" />
         <item itemvalue="JavaScript Debug.cf517B.html" />
         <item itemvalue="JavaScript Debug.数位dp.html" />
-        <item itemvalue="JavaScript Debug.2019.2.22.html" />
       </list>
     </recent_temporary>
   </component>
@@ -372,11 +369,12 @@
       <workItem from="1555988836583" duration="16000" />
       <workItem from="1556004090066" duration="680000" />
       <workItem from="1556010659047" duration="20000" />
+      <workItem from="1556010975900" duration="183000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83252000" />
+    <option name="totallyTimeSpent" value="83435000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="70" y="23" width="1086" height="809" extended-state="0" />
@@ -405,26 +403,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/problem/dp/hdu5745.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="234" selection-start-line="234" selection-end-line="234" />
-          <folding>
-            <element signature="n#div#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/stencil/string/错位比较.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="35" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/img/1.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/stencil/acm_head_file.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -866,17 +844,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/stencil/dp/数位dp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="44" selection-start-line="44" selection-end-line="44" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/new.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/stencil/graph_theory/网络流24题.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="38" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -911,25 +893,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/stencil/dp/数位dp.html">
+    <entry file="file://$PROJECT_DIR$/reading_problem/cf523C.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stencil/graph_theory/网络流24题.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="44" selection-start-line="44" selection-end-line="44" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="157">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reading_problem/cf517D.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/reading_problem/cf517B.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/reading_problem/cf521F2.html">
+    <entry file="file://$PROJECT_DIR$/reading_problem/CCF有趣的数.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/reading_problem/cf523C.html">
+    <entry file="file://$PROJECT_DIR$/reading_problem/cf521F1.html">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reading_problem/cf521F2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="79" selection-start-line="23" selection-start-column="79" selection-end-line="23" selection-end-column="79" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
