@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>51NOD1084</title>
+</head>
+
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>51NOD1084</h1></center>
+    <div id="text">
+    <h2>链接</h2>
+        <div id="normal_href">
+            <a href="https://www.51nod.com/Challenge/Problem.html#!#problemId=1084" target="_blank">https://www.51nod.com/Challenge/Problem.html#!#problemId=1084</a><br>
+        </div>
+    <h2>题意</h2>
+        <span style="color:red">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一个M*N矩阵中有不同的正整数，经过这个格子，就能获得相应价值的奖励，先从左上走到右下，再从右下走到左上。第1遍时只能向下和向右走，第2遍时只能向上和向左走。两次如果经过同一个格子，则该格子的奖励只计算一次，求能够获得的最大价值。<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2 &lt;= M, N &lt;= 200)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1 &lt;= A[i,j] &lt;= 10000)<br>
+        </span>
+    <h2>题解</h2>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;将两条路都看做从左上角出发，dp[i][j][k][l]代表第一次走到(i,j)第二次走到（k,l）的最大价值，<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;转移方程很好写，看似n^4个状态，但是能够注意到i+j=k+l才是合法状态，于是状态变为n^3<br>
+    </div>
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>

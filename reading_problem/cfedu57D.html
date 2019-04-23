@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>cfedu57D</title>
+</head>
+
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>cfedu57D</h1></center>
+    <div id="text">
+    <h2>链接</h2>
+        <div id="normal_href">
+            <a href="http://codeforces.com/contest/1096/problem/D" target="_blank">http://codeforces.com/contest/1096/problem/D</a><br>
+        </div>
+    <h2>题意</h2>
+        <span style="color:red">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;给你一个长度为n的字符串，每个点有一个删除的代价，问让字符串中不存在子序列hard的最小删除代价。<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&lt;=n&lt;=1e5<br>
+        </span>
+    <h2>题解</h2>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i][0] 前缀i不包含子序列h的最小代价<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i][1] 前缀i不包含子序列ha的最小代价<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i][2] 前缀i不包含子序列har的最小代价<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i][3] 前缀i不包含子序列hard的最小代价<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当碰到h的时候，会影响dp[i-1][0] &nbsp; 若删除 &nbsp; 转移到dp[i][0] &nbsp; 若不删除 &nbsp; 转移到dp[i][1]<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当碰到a的时候，会影响dp[i-1][1] &nbsp; 若删除 &nbsp; 转移到dp[i][1] &nbsp; 若不删除 &nbsp; 转移到dp[i][2]<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br>
+    </div>
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>

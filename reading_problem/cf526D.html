@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>cf526D</title>
+</head>
+
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>cf526D</h1></center>
+    <div id="text">
+    <h2>链接</h2>
+        <div id="normal_href">
+            <a href="https://codeforces.com/contest/1084/problem/D" target="_blank">https://codeforces.com/contest/1084/problem/D</a><br>
+        </div>
+    <h2>题意</h2>
+        <span style="color:red">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;给你一棵树，在树中找出一条路径（也可以只有一个点），让这条路径(点权和-边权和)最大。<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;树的节点最多3e5，权值最大1e9<br>
+        </span>
+    <h2>题解</h2>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;随便找个节点当根，dp1[i]代表以i为根的子树上，经过i点，走向子树的路径的最大权值，dp2[i]为次大。得到此数组之后，定义路径的深度节点为路径上的所有节点中，深度最小的那个节点，枚举每个节点作为深度节点的时候的最大权值路径，如果dp2<0则取dp1,否则取dp1+dp2转移<br>
+    </div>
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>
