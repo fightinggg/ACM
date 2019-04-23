@@ -12,33 +12,106 @@
 <div>
     <center><h1>fft</h1></center>
     <div id="code">
-        <pre><span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span><span class="o">=</span><span class="mf">4e6</span><span class="c1">//开四倍所有数组。准确的数值是乘法结果数组的2进制对齐那么大。这个值小于四倍，</span>
-<span class="k">const</span> <span class="kt">double</span> <span class="n">pi</span><span class="o">=</span><span class="n">acos</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">);</span>
+        <pre><span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span><span
+                class="o">=</span><span class="mf">4e6</span><span
+                class="c1">//开四倍所有数组。准确的数值是乘法结果数组的2进制对齐那么大。这个值小于四倍，</span>
+<span class="k">const</span> <span class="kt">double</span> <span class="n">pi</span><span class="o">=</span><span
+                    class="n">acos</span><span class="p">(</span><span class="o">-</span><span
+                    class="mf">1.0</span><span class="p">);</span>
 
 <span class="k">struct</span> <span class="n">cp</span><span class="p">{</span>
-    <span class="kt">double</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">;</span>
-    <span class="n">cp</span><span class="p">(</span><span class="kt">double</span> <span class="n">X</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="kt">double</span> <span class="n">Y</span><span class="o">=</span><span class="mi">0</span><span class="p">){</span><span class="n">x</span><span class="o">=</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">Y</span><span class="p">;}</span>
-    <span class="n">cp</span> <span class="k">operator</span> <span class="o">+</span> <span class="p">(</span><span class="n">cp</span> <span class="n">b</span><span class="p">){</span><span class="k">return</span> <span class="n">cp</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">b</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">b</span><span class="p">.</span><span class="n">y</span><span class="p">);}</span>
-    <span class="n">cp</span> <span class="k">operator</span> <span class="o">-</span> <span class="p">(</span><span class="n">cp</span> <span class="n">b</span><span class="p">){</span><span class="k">return</span> <span class="n">cp</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">b</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">-</span><span class="n">b</span><span class="p">.</span><span class="n">y</span><span class="p">);}</span>
-    <span class="n">cp</span> <span class="k">operator</span> <span class="o">*</span> <span class="p">(</span><span class="n">cp</span> <span class="n">b</span><span class="p">){</span><span class="k">return</span> <span class="n">cp</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">b</span><span class="p">.</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="o">*</span><span class="n">b</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="o">*</span><span class="n">b</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">y</span><span class="o">*</span><span class="n">b</span><span class="p">.</span><span class="n">x</span><span class="p">);}</span>
+    <span class="kt">double</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span
+                    class="p">;</span>
+    <span class="n">cp</span><span class="p">(</span><span class="kt">double</span> <span class="n">X</span><span
+                    class="o">=</span><span class="mi">0</span><span class="p">,</span><span
+                    class="kt">double</span> <span class="n">Y</span><span class="o">=</span><span
+                    class="mi">0</span><span class="p">){</span><span class="n">x</span><span class="o">=</span><span
+                    class="n">X</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span
+                    class="n">Y</span><span class="p">;}</span>
+    <span class="n">cp</span> <span class="k">operator</span> <span class="o">+</span> <span class="p">(</span><span
+                    class="n">cp</span> <span class="n">b</span><span class="p">){</span><span
+                    class="k">return</span> <span class="n">cp</span><span class="p">(</span><span
+                    class="n">x</span><span class="o">+</span><span class="n">b</span><span class="p">.</span><span
+                    class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span
+                    class="n">b</span><span class="p">.</span><span class="n">y</span><span class="p">);}</span>
+    <span class="n">cp</span> <span class="k">operator</span> <span class="o">-</span> <span class="p">(</span><span
+                    class="n">cp</span> <span class="n">b</span><span class="p">){</span><span
+                    class="k">return</span> <span class="n">cp</span><span class="p">(</span><span
+                    class="n">x</span><span class="o">-</span><span class="n">b</span><span class="p">.</span><span
+                    class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">-</span><span
+                    class="n">b</span><span class="p">.</span><span class="n">y</span><span class="p">);}</span>
+    <span class="n">cp</span> <span class="k">operator</span> <span class="o">*</span> <span class="p">(</span><span
+                    class="n">cp</span> <span class="n">b</span><span class="p">){</span><span
+                    class="k">return</span> <span class="n">cp</span><span class="p">(</span><span
+                    class="n">x</span><span class="o">*</span><span class="n">b</span><span class="p">.</span><span
+                    class="n">x</span><span class="o">-</span><span class="n">y</span><span class="o">*</span><span
+                    class="n">b</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span
+                    class="n">x</span><span class="o">*</span><span class="n">b</span><span class="p">.</span><span
+                    class="n">y</span><span class="o">+</span><span class="n">y</span><span class="o">*</span><span
+                    class="n">b</span><span class="p">.</span><span class="n">x</span><span class="p">);}</span>
 <span class="p">};</span>
 
 <span class="c1">// opt = 1 把系数表达式变为点值表达式</span>
 <span class="c1">// opt =-1 把点值表达式变成系数表达式</span>
 <span class="c1">// 传参的时候必须要求n为2的bits次方</span>
 <span class="kt">int</span> <span class="n">r</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
-<span class="kt">void</span> <span class="n">fft</span><span class="p">(</span><span class="n">cp</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="kt">int</span> <span class="n">bits</span><span class="p">,</span><span class="kt">int</span> <span class="n">opt</span><span class="p">){</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
-        <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">]</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">)</span><span class="o">|</span><span class="p">((</span><span class="n">i</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">bits</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&lt;</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">a</span><span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]]);</span>
+<span class="kt">void</span> <span class="n">fft</span><span class="p">(</span><span class="n">cp</span> <span
+                    class="o">*</span><span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span
+                    class="n">n</span><span class="p">,</span><span class="kt">int</span> <span
+                    class="n">bits</span><span class="p">,</span><span class="kt">int</span> <span
+                    class="n">opt</span><span class="p">){</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span
+                    class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="o">++</span><span
+                    class="n">i</span><span class="p">){</span>
+        <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span
+                    class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span
+                    class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">]</span><span
+                    class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">)</span><span
+                    class="o">|</span><span class="p">((</span><span class="n">i</span><span class="o">&amp;</span><span
+                    class="mi">1</span><span class="p">)</span><span class="o">&lt;&lt;</span><span
+                    class="p">(</span><span class="n">bits</span><span class="o">-</span><span class="mi">1</span><span
+                    class="p">));</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&lt;</span><span
+                    class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span
+                    class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span
+                    class="n">i</span><span class="p">],</span><span class="n">a</span><span class="p">[</span><span
+                    class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]]);</span>
     <span class="p">}</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">k</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">k</span><span class="o">&lt;&lt;=</span><span class="mi">1</span><span class="p">){</span>
-        <span class="n">cp</span> <span class="n">wn</span><span class="o">=</span><span class="n">cp</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">pi</span><span class="o">/</span><span class="n">k</span><span class="p">),</span><span class="n">opt</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span class="o">/</span><span class="n">k</span><span class="p">));</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">+=</span><span class="p">(</span><span class="n">k</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">)){</span>
-            <span class="n">cp</span> <span class="n">w</span><span class="o">=</span><span class="n">cp</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
-            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">k</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">,</span><span class="n">w</span><span class="o">=</span><span class="n">w</span><span class="o">*</span><span class="n">wn</span><span class="p">){</span>
-                <span class="n">cp</span> <span class="n">x</span><span class="o">=</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">],</span><span class="n">y</span><span class="o">=</span><span class="n">w</span><span class="o">*</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="o">+</span><span class="n">k</span><span class="p">];</span>
-                <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">,</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="o">+</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span
+                    class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">k</span><span
+                    class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">k</span><span
+                    class="o">&lt;&lt;=</span><span class="mi">1</span><span class="p">){</span>
+        <span class="n">cp</span> <span class="n">wn</span><span class="o">=</span><span class="n">cp</span><span
+                    class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">pi</span><span
+                    class="o">/</span><span class="n">k</span><span class="p">),</span><span class="n">opt</span><span
+                    class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span
+                    class="o">/</span><span class="n">k</span><span class="p">));</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span
+                    class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span
+                    class="o">+=</span><span class="p">(</span><span class="n">k</span><span
+                    class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">)){</span>
+            <span class="n">cp</span> <span class="n">w</span><span class="o">=</span><span class="n">cp</span><span
+                    class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span
+                    class="p">);</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span
+                    class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span
+                    class="o">&lt;</span><span class="n">k</span><span class="p">;</span> <span class="o">++</span><span
+                    class="n">j</span><span class="p">,</span><span class="n">w</span><span class="o">=</span><span
+                    class="n">w</span><span class="o">*</span><span class="n">wn</span><span class="p">){</span>
+                <span class="n">cp</span> <span class="n">x</span><span class="o">=</span><span class="n">a</span><span
+                    class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span
+                    class="p">],</span><span class="n">y</span><span class="o">=</span><span class="n">w</span><span
+                    class="o">*</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span
+                    class="o">+</span><span class="n">j</span><span class="o">+</span><span class="n">k</span><span
+                    class="p">];</span>
+                <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span
+                    class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">x</span><span
+                    class="o">+</span><span class="n">y</span><span class="p">,</span><span class="n">a</span><span
+                    class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span
+                    class="o">+</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span
+                    class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">;</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
@@ -47,20 +120,117 @@
 <span class="c1">// 没有必要分x和y的长度,没有意义，对时间复杂度影响不大</span>
 <span class="c1">// 传数组使用闭区间[0,n-1],n-1为多项式最高次数</span>
 <span class="c1">// xy甚至可以传一个x或y一样的参数 例如mul(f,g,f,n,m)等价于f*=g</span>
-<span class="n">cp</span> <span class="n">cpa</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">cpb</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span><span class="c1">//经测试, 两个1e6的多项式乘起来大概的时间700ms, </span>
-<span class="kt">void</span> <span class="n">mul</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="n">x</span><span class="p">,</span><span class="kt">int</span><span class="o">*</span><span class="n">y</span><span class="p">,</span><span class="kt">int</span><span class="o">*</span><span class="n">xy</span><span class="p">,</span><span class="kt">int</span> <span class="n">xn</span><span class="p">,</span><span class="kt">int</span> <span class="n">yn</span><span class="p">){</span>
-    <span class="kt">int</span> <span class="n">exn</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">bits</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-    <span class="k">while</span><span class="p">(</span><span class="n">exn</span><span class="o">-</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="n">xn</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">yn</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="n">exn</span><span class="o">&lt;&lt;=</span><span class="mi">1</span><span class="p">,</span><span class="n">bits</span><span class="o">++</span><span class="p">;</span><span class="c1">//exn为xy数组拓展的长度，bits为lg(exn)</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span> <span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">xn</span> <span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">cpa</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">cp</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mi">0</span><span class="p">);</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">xn</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">exn</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">cpa</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">cp</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="c1">//按0补齐</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span> <span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">yn</span> <span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">cpb</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">cp</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mi">0</span><span class="p">);</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">yn</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">exn</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">cpb</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">cp</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="c1">//按0补齐</span>
-    <span class="n">fft</span><span class="p">(</span><span class="n">cpa</span><span class="p">,</span><span class="n">exn</span><span class="p">,</span><span class="n">bits</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="n">fft</span><span class="p">(</span><span class="n">cpb</span><span class="p">,</span><span class="n">exn</span><span class="p">,</span><span class="n">bits</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="c1">//化为点值表示法</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">exn</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">cpa</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">cpa</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">cpb</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="c1">//乘</span>
-    <span class="n">fft</span><span class="p">(</span><span class="n">cpa</span><span class="p">,</span><span class="n">exn</span><span class="p">,</span><span class="n">bits</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span><span class="c1">//化为系数表示法</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">exn</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="n">xy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">cpa</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">x</span><span class="o">/</span><span class="n">exn</span><span class="o">+</span><span class="mf">0.5</span><span class="p">;</span><span class="c1">//赋值结果</span>
+<span class="n">cp</span> <span class="n">cpa</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span
+                    class="n">cpb</span><span class="p">[</span><span class="n">maxn</span><span
+                    class="p">];</span><span class="c1">//经测试, 两个1e6的多项式乘起来大概的时间700ms, </span>
+<span class="kt">void</span> <span class="n">mul</span><span class="p">(</span><span class="kt">int</span><span
+                    class="o">*</span><span class="n">x</span><span class="p">,</span><span class="kt">int</span><span
+                    class="o">*</span><span class="n">y</span><span class="p">,</span><span class="kt">int</span><span
+                    class="o">*</span><span class="n">xy</span><span class="p">,</span><span class="kt">int</span> <span
+                    class="n">xn</span><span class="p">,</span><span class="kt">int</span> <span
+                    class="n">yn</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">exn</span><span class="o">=</span><span class="mi">1</span><span
+                    class="p">,</span><span class="n">bits</span><span class="o">=</span><span class="mi">0</span><span
+                    class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">exn</span><span class="o">-</span><span
+                    class="mi">1</span> <span class="o">&lt;</span> <span class="n">xn</span><span
+                    class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">yn</span><span
+                    class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="n">exn</span><span
+                    class="o">&lt;&lt;=</span><span class="mi">1</span><span class="p">,</span><span
+                    class="n">bits</span><span class="o">++</span><span class="p">;</span><span class="c1">//exn为xy数组拓展的长度，bits为lg(exn)</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="mi">0</span> <span class="p">;</span><span class="n">i</span><span
+                    class="o">&lt;</span><span class="n">xn</span> <span class="p">;</span><span class="n">i</span><span
+                    class="o">++</span><span class="p">)</span><span class="n">cpa</span><span class="p">[</span><span
+                    class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">cp</span><span
+                    class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">],</span><span class="mi">0</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="n">xn</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">&lt;</span><span class="n">exn</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">++</span><span class="p">)</span><span class="n">cpa</span><span class="p">[</span><span
+                    class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">cp</span><span
+                    class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span
+                    class="p">);</span><span class="c1">//按0补齐</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="mi">0</span> <span class="p">;</span><span class="n">i</span><span
+                    class="o">&lt;</span><span class="n">yn</span> <span class="p">;</span><span class="n">i</span><span
+                    class="o">++</span><span class="p">)</span><span class="n">cpb</span><span class="p">[</span><span
+                    class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">cp</span><span
+                    class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">],</span><span class="mi">0</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="n">yn</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">&lt;</span><span class="n">exn</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">++</span><span class="p">)</span><span class="n">cpb</span><span class="p">[</span><span
+                    class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">cp</span><span
+                    class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span
+                    class="p">);</span><span class="c1">//按0补齐</span>
+    <span class="n">fft</span><span class="p">(</span><span class="n">cpa</span><span class="p">,</span><span class="n">exn</span><span
+                    class="p">,</span><span class="n">bits</span><span class="p">,</span><span class="mi">1</span><span
+                    class="p">);</span><span class="n">fft</span><span class="p">(</span><span class="n">cpb</span><span
+                    class="p">,</span><span class="n">exn</span><span class="p">,</span><span class="n">bits</span><span
+                    class="p">,</span><span class="mi">1</span><span class="p">);</span><span
+                    class="c1">//化为点值表示法</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span
+                    class="o">&lt;</span><span class="n">exn</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">++</span><span class="p">)</span><span class="n">cpa</span><span class="p">[</span><span
+                    class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">cpa</span><span
+                    class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span
+                    class="n">cpb</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span
+                    class="c1">//乘</span>
+    <span class="n">fft</span><span class="p">(</span><span class="n">cpa</span><span class="p">,</span><span class="n">exn</span><span
+                    class="p">,</span><span class="n">bits</span><span class="p">,</span><span class="o">-</span><span
+                    class="mi">1</span><span class="p">);</span><span class="c1">//化为系数表示法</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span
+                    class="o">&lt;</span><span class="n">exn</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">++</span><span class="p">)</span><span class="n">xy</span><span class="p">[</span><span
+                    class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">cpa</span><span
+                    class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">x</span><span
+                    class="o">/</span><span class="n">exn</span><span class="o">+</span><span class="mf">0.5</span><span
+                    class="p">;</span><span class="c1">//赋值结果</span>
 <span class="p">}</span>
 </pre>
+
+    </div>
+
+
+    <div id="text">
+
+        <div id="normal_href"><a href="https://nanti.jisuanke.com/t/26219" rel="nofollow"
+                                 target="_blank">1. 2018宁夏网络赛H题：</a>
+        </div>
+        <span style="color: red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            给你类似剪刀石头布游戏的五种手势和十种克制关系。每种手势克制其他两种手势并被另外两种手势克制。给你两个字符串分别表示A，B的
+            手势顺序，A长B短，你可以随意挪动B相对于A的位置，求B最多能赢多少次？<br>
+        </span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若两个串为<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;abcde和ede<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;则共有三种方法来决斗，<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;abcde<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eda<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;abcde<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eda<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;abcde<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eda<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为每一个字符标上指数，将一个串逆置后，发现是fft<br>
+    </div>
+
+    <div id="text">
+        <div id="normal_href">
+            <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=4259" rel="nofollow" target="_blank">2. BZOJ4259</a>
+        </div>
+        <span style="color: red">
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;给你两个字符串原串和匹配串，串里只包含小写字母和∗,∗可以表示任意字符，问匹配串在原串
+不同位置中出现多少次，起始位置不同即不同位置。<br>
+
+        </span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们还是利用上一题逆置短串构造卷积的方法，我们把*的值当作赋为0，pow(str1[i]−str2[i],2)*str1[i]*str2[i]
+        化简消去负数项即可
 
     </div>
 
