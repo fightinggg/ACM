@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>大范围贪心，小范围暴力</title>
+</head>
+
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>大范围贪心，小范围暴力</h1></center>
+    <div id="text">
+        <h2>大范围贪心，小范围暴力</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这一类做法，通常不是很好想，但是很多题目都能这样做。<br>
+        <h2>来个例题分析一下</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有一个超级大的背包，物品的价值等于容量，但是物品只有8种容量分别为1-8
+        给你每个物品的数量ai，和背包总容量w，问能背走的最大价值是多少 w&lt;1e18;
+        <h2>朴素背包</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设dp[i][j]为前i类物品，背满j是否可行,复杂度8*n
+        <h2>思考为什么这么大？</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态过多，状态冗余，可能存在某些能合并的状态
+        <h2>分解背包</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;840是1-8的数的lcm, 于是我们可以把背包W分为 840*k + (W-840*k) 两个部分。
+        且后一部分小于840*8
+
+        <h2>为什么要这么分?</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;先谈谈唯一分解<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们对每一种放法 ，进行唯一分解:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;先把每一类容量相等的物品唯一分解为两部分, 第一部分的总容量为840的一个倍数，第二部分总容量小于840<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;比方说某种方法选择了1000个1，3000个2，5000个3...<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么我们将其唯一分解为:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1*840+160个1,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7*420+ 60个2,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17*280+240个3<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;然后讲每类容量为840的倍数的那一部分合在一起:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;于是成了(1*840+7*420*2+17*280*3) + 160*1+60*2+240*3+0*4+0*5+...<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=840*25 + 160*1+60*2+240*3+0*4+0*5+...<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这就是唯一分解。
+        <h2>根据唯一分解优化dp</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;然后我们考虑，为什么这一题不能使用，背包，因为容量大？物品多？是的，<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但是这些都只是表面上的。我们深入思考，能不能把某些没有意义的方案合并到一个状态里面呢？<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们不要设dp[i][j]表示什么前i类物品装满容量j是否可行这样的状态。因为这是8*n级别的状态<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们根据唯一分解，设dp[k][i][j]代表背包的第一个部分容量为840*k,第二部分为前i类物品装满容量j<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若值为1，代表可行，否则不可行。<br>
+        <h2>状态的个数</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显然k&lt;n/840,i&lt;8,&nbsp;j&lt;840*8<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在的状态数为(n/840)*8*(840*8)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态数目变多了。转移也更加复杂，看似此状态还不如朴素做法。
+        <h2>单调性</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这一点应该是很容易想到的。这个dp[k][i][j],具有单调性，一定存在某个值t,
+        使得dp[k][i][j]的值在i和j固定，k&lt;=t的时候全为1，在k>t的时候全为0<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显然这个t是最优的<br>
+        <h2>优化</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们换一种状态的设法，设dp[i][j]为只取前i类物品的方案的唯一分解下，不考虑背包容量上限，第二部分容量为j，第一部分的k能取到的大值。
+        <h2>转移方程</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i][j] ---> dp[i+1][j+t*i]  t是选取的数量，j+t*i<8*840
+        <h2>这样的做法就已经很快了。</h2>
+
+    </div>
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>

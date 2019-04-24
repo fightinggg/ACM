@@ -239,9 +239,6 @@ void dfs(string name){
     closedir(dir);
 }
 
-
-
-
 int main() {
     string name="/Users/s/Documents/GitHub/ACM/reading_problem_txt/";
     dfs(name);
