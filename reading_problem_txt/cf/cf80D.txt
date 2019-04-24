@@ -1,0 +1,12 @@
+####
+cf80D
+####
+cf 分块 2019.2.23
+####
+http://codeforces.com/contest/103/problem/D
+####
+给出一个长度为N(<3e5)的数列，再给出M(<3e5)个询问，询问输入x和y，你需要输出sum(a[x+ky]) x+ky=N
+4S
+####
+对y<sqrt(n)打表，其他的暴力计算。
+####

@@ -22,13 +22,13 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长度为n(1e5)的数组，值域为1到200，且每个数的旁边必有一个大于等于它的数。有些数字被擦掉了，问共有几种填充的方案满足上述要求。<br>
         </span>
     <h2>题解</h2>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i][j][0] 填完了前i位且第i位填j,且第i位小于i-1位<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i][j][1] 填完了前i位且第i位填j,且第i位等于i-1位<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i][j][2] 填完了前i位且第i位填j,且第i位大于i-1位<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i][j][0]&nbsp;填完了前i位且第i位填j,且第i位小于i-1位<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i][j][1]&nbsp;填完了前i位且第i位填j,且第i位等于i-1位<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i][j][2]&nbsp;填完了前i位且第i位填j,且第i位大于i-1位<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i][j][0] &lt;- dp[i-1][k][0],dp[i-1][k][1],              j&lt;k<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i][j][1] &lt;- dp[i-1][k][0],dp[i-1][k][1],dp[i-1][k][2] j=k<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i][j][2] &lt;- dp[i-1][k][0],dp[i-1][k][1],dp[i-1][k][2] j>k<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i][j][0]&nbsp;&lt;---&nbsp;dp[i-1][k][0],dp[i-1][k][1],&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j&lt;k<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i][j][1]&nbsp;&lt;---&nbsp;dp[i-1][k][0],dp[i-1][k][1],dp[i-1][k][2]&nbsp;j=k<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i][j][2]&nbsp;&lt;---&nbsp;dp[i-1][k][0],dp[i-1][k][1],dp[i-1][k][2]&nbsp;j&gt;k<br>
     </div>
 </div>
 <script type="text/javascript" src="/ACM/js/web_end.js"></script>

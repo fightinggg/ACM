@@ -18,6 +18,45 @@ struct blog{
     vector<string> problem,solve;
     set<string> tag;
 
+
+    void make_blog(string&str){
+        while(true){
+            size_t found=str.find("&");
+            if(found==string::npos)break;
+            str.replace(found,1,"####");
+        }
+        while(true){
+            size_t found=str.find("####");
+            if(found==string::npos)break;
+            str.replace(found,4,"&amp;");
+        }
+        while(true){
+            size_t found=str.find("\"");
+            if(found==string::npos)break;
+            str.replace(found,1,"&quot;");
+        }
+        while(true){
+            size_t found=str.find(" ");
+            if(found==string::npos)break;
+            str.replace(found,1,"&nbsp;");
+        }
+        while(true){
+            size_t found=str.find("<");
+            if(found==string::npos)break;
+            str.replace(found,1,"&lt;");
+        }
+        while(true){
+            size_t found=str.find(">");
+            if(found==string::npos)break;
+            str.replace(found,1,"&gt;");
+        }
+    }
+    void make_blog(){
+        for(int i=0;i<problem.size();i++)make_blog(problem[i]);
+        for(int i=0;i<solve.size();i++)make_blog(solve[i]);
+    }
+
+
     blog(string s){//file name
         if(s.size()>=4&&s.substr(s.size()-4)==".txt"){
             cout<<s<<endl;
@@ -50,6 +89,8 @@ struct blog{
             }assert(buf=="####");
 
             in>>link;assert(buf=="####");
+
+            make_blog();
         }
     }
 
@@ -72,10 +113,17 @@ struct blog{
         out<<"    <center><h1>"+name+"</h1></center>"<<endl;
         //do it
         out<<"    <div id=\"text\">"<<endl;
+
+        out<<"    <h2>链接</h2>"<<endl;
+        out<<"        <div id=\"normal_href\">"<<endl;
+        out<<"            <a href=\""+link+"\" target=\"_blank\">"+link+"</a><br>"<<endl;
+        out<<"        </div>"<<endl;
+        
         out<<"    <h2>题意</h2>"<<endl;
         out<<"        <span style=\"color:red\">"<<endl;
         for(int i=0;i<problem.size();i++)out<<"            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<<problem[i]<<"<br>"<<endl;
         out<<"        </span>"<<endl;
+
         out<<"    <h2>题解</h2>"<<endl;
         for(int i=0;i<solve.size();  i++)out<<"            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<<solve[i]<<"<br>"<<endl;
         out<<"    </div>"<<endl;
@@ -197,7 +245,7 @@ void dfs(string name){
 
 
 int main() {
-    string name="./Desktop/ACM/";
+    string name="/Users/s/Documents/GitHub/ACM/reading_problem_txt/";
     dfs(name);
     get_index1();
     get_index2();

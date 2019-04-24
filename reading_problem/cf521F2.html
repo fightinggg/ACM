@@ -25,7 +25,7 @@
         </span>
     <h2>题解</h2>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i][j]前i个点选j个特殊点，且第j个点在位置i<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i][j]=max(dp[ii][j-1]) i-ii-1&lt;=k<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp[i][j]=max(dp[ii][j-1])&nbsp;i-ii-1&lt;=k<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;先不管j，维护一个i单调增，dp值单调减的队列即可。<br>
     </div>
 </div>

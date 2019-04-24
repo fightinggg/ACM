@@ -1,0 +1,32 @@
+%choose XeLaTeX
+\documentclass[fleqn]{article}
+\usepackage{ctex}
+\usepackage{geometry}
+\usepackage{amssymb} %maths
+\usepackage{amsmath} %maths
+\geometry{a4paper,scale=0.9}
+
+\begin{document}
+\Large
+\begin{flalign*}
+&f(x)=\sum_{i=1}^{x}i\\
+&dp_i=dp_j+a_i+f(i-j-1)
+\end{flalign*}
+if j>k and  choose j is better
+\begin{flalign*}
+&dp_j+a_i+\frac{(i-j)(i-j-1)}{2}<dp_k+a_i+\frac{(i-k)(i-k-1)}{2}\\
+&dp_j-dp_k<\frac{(i-k)(i-k-1)}{2}-\frac{(i-j)(i-j-1)}{2}\\
+&dp_j-dp_k<\frac{(i-k)(i-k-1)-(i-j)(i-j-1)}{2}\\
+&dp_j-dp_k<\frac{(i^2-(2k+1)i+k^2+k)-(i^2-(2j+1)i+j^2+j)}{2}\\
+&dp_j-dp_k<\frac{(2j-2k)i+(k^2+k-j^2-j)}{2}\\
+&dp_j-dp_k<\frac{(j-k)*2i+(k+j+1)(k-j)}{2}\\
+&dp_j-dp_k<\frac{(j-k)(2i-1-j-k)}{2}\\
+&\frac{dp_j-dp_k}{j-k}<\frac{2i-1-j-k}{2}\\
+&\frac{dp_j-dp_k}{j-k}+\frac{j+k+1}{2}<i\\
+&\frac{dp_j-dp_k+\frac{(j+k+1)(j-k)}{2}}{j-k}<i\\
+&\frac{dp_j-dp_k+\frac{j^2-k^2+j-k}{2}}{j-k}<i\\
+&\frac{dp_j-dp_k+\frac{j(j+1)}{2}-\frac{k(k+1)}{2}}{j-k}<i\\
+&\frac{(dp_j+\frac{j(j+1)}{2})-(dp_k+\frac{k(k+1)}{2})}{j-k}<i\\
+\end{flalign*}
+\end{document}
+

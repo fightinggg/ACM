@@ -1,0 +1,30 @@
+%choose XeLaTeX
+\documentclass[fleqn]{article}
+\usepackage{ctex}
+\usepackage{geometry}
+\usepackage{amssymb} %maths
+\usepackage{amsmath} %maths
+\geometry{a4paper,scale=0.9}
+
+\begin{document}
+\Large?\\
+dp[i][j]代表前i天在j地休息的最小平方和\\
+sum[j]代表前j段路的长度的和\\
+\begin{flalign*}
+&dp_{(i,j)}=dp_{(i-1,k)}+(sum_j-sum_k)^2
+\end{flalign*}
+
+if u>v and u is better than v
+
+\begin{flalign*}
+&dp_{(i-1,u)}+(sum_j-sum_u)^2<dp_{(i-1,v)}+(sum_j-sum_v)^2\\
+&dp_{(i-1,u)}-dp_{(i-1,v)}<(sum_j-sum_v)^2-(sum_j-sum_u)^2\\
+&dp_{(i-1,u)}-dp_{(i-1,v)}<(2sum_j-sum_v-sum_u)(sum_u-sum_v)\\
+&\frac{dp_{(i-1,u)}-dp_{(i-1,v)}}{sum_u-sum_v}<2sum_j-sum_v-sum_u\\
+&\frac{dp_{(i-1,u)}-dp_{(i-1,v)}}{sum_u-sum_v}+sum_v+sum_u<2sum_j\\
+&\frac{dp_{(i-1,u)}-dp_{(i-1,v)}+sum_u^2-sum_v^2}{sum_u-sum_v}<2sum_j\\
+&\frac{(dp_{(i-1,u)}+sum_u^2)-(dp_{(i-1,v)}+sum_v^2)}{sum_u-sum_v}<2sum_j
+\end{flalign*}
+下凹曲线
+\end{document}
+

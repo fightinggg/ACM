@@ -1,0 +1,12 @@
+####
+51NOD1055
+####
+51NOD 普通动态规划 2019.2.23
+####
+https://www.51nod.com/Challenge/Problem.html#!#problemId=1055
+####
+N个不同的正整数A[i]，找出由这些数组成的最长的等差数列。N<;=1e4,A[i]<=1e9
+####
+dp[i][j]代表最后两项的下标为i和j,i<j, dp[i][j] <--- dp[k][i] if(a[k]+a[j]==2*a[i])
+从大到小枚举j,则k单调，故复杂度O(n)。
+####
