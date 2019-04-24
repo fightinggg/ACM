@@ -20,16 +20,14 @@ struct blog{
 
 
     void make_blog(string&str){
+        
+        int found = -1;
         while(true){
-            size_t found=str.find("&");
+            found=str.find("&",found+1);
             if(found==string::npos)break;
-            str.replace(found,1,"####");
+            str.replace(found,1,"&amp");
         }
-        while(true){
-            size_t found=str.find("####");
-            if(found==string::npos)break;
-            str.replace(found,4,"&amp;");
-        }
+
         while(true){
             size_t found=str.find("\"");
             if(found==string::npos)break;

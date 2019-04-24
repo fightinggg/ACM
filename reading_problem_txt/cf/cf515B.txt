@@ -9,7 +9,7 @@ http://codeforces.com/contest/1066/problem/B
 1<=n<=1e3
 ####
 dp[i]代表在第i个位置放一个暖气，能温暖前i个格子的最少安装的暖气数，
-dp[i] <--- dp[j] ;(i-j<r)
+dp[i] <--- dp[j] (i-j<r)
 答案在dp[n-r+1,n]上
 明显dp可以用单调队列优化，维护一个i单调增，dp值单调减的单调队列即可。
 ####
