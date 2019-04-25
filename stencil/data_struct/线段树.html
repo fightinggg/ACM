@@ -1,121 +1,357 @@
 <!DOCTYPE html>
 <html>
- 
+
 <head>
-  <meta charset="utf-8">
-	<script type="text/javascript" src="/ACM/js/link.js"></script>
-	<title>线段树</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>线段树</title>
 </head>
 
-<body>
-	<div id = "myweb">
-		
-<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
-<script type="text/javascript" src="/ACM/js/up_and_right.js"></script>
-<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
-		     
-     		     		<div id="left"><div id="left_in">
-     			 <center><h1>线段树</h1></center>
-     			<div id="text">
-  
-	
-	线段树是树状数组的强化版，它才是真正的树，它每次对区间进行二分，每一个深度都维护了整个区间，在同一深度里面，每个节点维护的区间长度大致相同，而每深入一层又大致比上一层多一倍的节点，故空间复杂度为Onlgn<br />
-线段树一般采用二叉树结构<br />
-每个非叶子节点维护一个区间[l,r]，令mid=(l+r)&gt&gt1,则该节点的左儿子维护[l,mid]，右儿子维护[mid+1,r]；<br />
-每个叶子节点维护一个点；<br />
-线段树是一颗接近平衡的树。&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br />
-因此当我们对于一个长度为n区间[l,r]进行操作的时候，我们就要操作所有与这些区间相关节点，这些节点数目接近2*N，笔者不想证明。要操作2*N个节点，，，，复杂度过高，，，问题无法解决。<br />
-我们的操作相当于对树进行函数递归。<br />
-这里我们把这个问题简化一下，对于那些节点对应区间属于[l,r]的我们分为一类，对于那些节点对应区间与[l,r]有交集，但不是[l,r]的子区间的节点我们分为第二类，第二类节点一定是某个第一类节点的父亲节点，借此我们可以在函数回溯时候利用区间加法处理，容易解决。<br />
-我们容易发现第一类节点数目接近ON而第二类节点数目接近OlgN，第二类节点一个一个处理可以接受，第一类节点必须安排一下。可以证明第一类节点恰好可以用OlgN颗子树的所有节点唯一表达，笔者不想证明。<br />
-在这里我们简化问题为对于OlgN个节点以及OlgN颗子树的操作，<br />
-现在我们只需要考虑对某颗子树进行操作<br />
-当我们进行修改的时候，我们试着只对该子树的根进行修改，并为其加入一个懒惰标记，表示他的所有子孙都有一个与懒惰标记有关的操作还未进行，(例如整段区间加上d，我们就设懒惰标记为d)&nbsp，如此区间修改就不用跑到叶子节点，就成了OlgN<br />
-当我们进行查询时，每当我们查询一个节点，我们要查询的恰好为该节点所对应的区间，直接就处理了；如果不是该区间，而是该区间的某个子区间，那么我们考虑把该区间的懒惰标记下放到左右儿子，然后递归左右儿子，回溯答案。over<br />
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br />
-为什么线段树快，因为它把区间分成OlgN个处理，并且每次在树上只跑了OlgN个节点，依据区间加法处理询问，依据区间加法回溯处理修改，依据懒惰标记不实时更新叶子节点。所以线段树快。<br />
-为什么我在开头说线段树是树状数组的强化版，因为树状数组虽然能依据区间加法处理询问，也可以依靠区间加法处理更新，但是它的非叶子节点过少，导致复杂的数据维护时程序较为复杂，不太好处理。<br />
-赋上代码（ACM采取堆结构模拟二叉树简化代码量）<br />
 
-     			</div>
-     			<div id="code">
-     				
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>线段树</h1></center>
+
+    <div id="text">
+        <h2>线段树</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;线段树是树状数组的强化版，它每次对区间进行二分，每一个深度都维护了整个区间，在同一深度里面，每个节点维护的区间长度大致相同，而每深入一层又大致比上一层多一倍的节点，故空间复杂度为Onlgn<br>
+        <h2>节点信息</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每个非叶子节点维护一个区间[l,r]，令mid=(l+r)&gt&gt1,则该节点的左儿子维护[l,mid]，右儿子维护[mid+1,r]；<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每个叶子节点维护一个点；<br>
+        <h2>线段树的平衡性</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;线段树是一颗几乎完全平衡的树。<br>
+        <h2>线段树的区间操作</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因此当我们对于一个长度为n区间[l,r]进行操作的时候，我们就要操作所有与这些区间相关节点，这些节点数目接近2*N。要操作2*N个节点，，，，复杂度过高，，，问题无法解决。<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们的操作相当于对树进行函数递归。<br>
+        <h2>对节点分类</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里我们把这个问题简化一下，对于那些节点对应区间属于[l,r]的我们分为一类，对于那些节点对应区间与[l,r]有交集，但不是[l,r]的子区间的节点我们分为第二类，第二类节点一定是某个第一类节点的父亲节点，借此我们可以在函数回溯时候利用区间加法处理，容易解决。<br>
+        <h2>继续分析复杂度</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们容易发现第一类节点数目接近ON而第二类节点数目接近OlgN，第二类节点一个一个处理可以接受，第一类节点必须安排一下。可以证明第一类节点恰好可以用OlgN颗子树的所有节点唯一表达。<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这里我们简化问题为对于OlgN个节点以及OlgN颗子树的操作，<br>
+        <h2>子树的操作</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在我们只需要考虑对某颗子树进行操作<br>
+        <h2>懒惰标记（懒修改）</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当我们进行修改的时候，我们试着只对该子树的根进行修改，并为其加入一个懒惰标记，表示他的所有子孙都有一个与懒惰标记有关的操作还未进行，(例如整段区间加上d，我们就设懒惰标记为d)&nbsp，如此区间修改就不用跑到叶子节点，就成了OlgN<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当我们进行查询时，每当我们查询一个节点，我们要查询的恰好为该节点所对应的区间，直接就处理了；如果不是该区间，而是该区间的某个子区间，那么我们考虑把该区间的懒惰标记下放到左右儿子，然后递归左右儿子，回溯答案。over<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为什么线段树快，因为它把区间分成OlgN个处理，并且每次在树上只跑了OlgN个节点，依据区间加法处理询问，依据区间加法回溯处理修改，依据懒惰标记不实时更新叶子节点。所以线段树快。<br>
+        <h2>线段树和树状数组</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为什么我在开头说线段树是树状数组的强化版，因为树状数组虽然能依据区间加法处理询问，也可以依靠区间加法处理更新，但是它的非叶子节点过少，导致复杂的数据维护时程序较为复杂，不太好处理。<br>
+    </div>
+
+    <div id="code">
+
 <pre><span class="cp">#define ls (u&lt;&lt;1)</span>
 <span class="cp">#define rs (u&lt;&lt;1|1)</span>
 <span class="cp">#define ml ((l+r)&gt;&gt;1)</span>
 <span class="cp">#define mr (ml+1)</span>
 <span class="k">struct</span> <span class="n">segment_tree</span><span class="p">{</span>
-    <span class="k">static</span> <span class="k">const</span> <span class="n">ll</span> <span class="n">maxn</span><span class="o">=</span><span class="mf">2.1e5</span><span class="p">;</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="n">ll</span> <span
+            class="n">maxn</span><span class="o">=</span><span class="mf">2.1e5</span><span class="p">;</span>
     <span class="n">ll</span> <span class="n">n</span><span class="p">;</span>
-    <span class="n">ll</span> <span class="n">a</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">tree</span><span class="p">[</span><span class="n">maxn</span><span class="o">&lt;&lt;</span><span class="mi">2</span><span class="p">],</span><span class="n">lazy</span><span class="p">[</span><span class="n">maxn</span><span class="o">&lt;&lt;</span><span class="mi">2</span><span class="p">];</span>
+    <span class="n">ll</span> <span class="n">a</span><span class="p">[</span><span class="n">maxn</span><span
+            class="p">],</span><span class="n">tree</span><span class="p">[</span><span class="n">maxn</span><span
+            class="o">&lt;&lt;</span><span class="mi">2</span><span class="p">],</span><span class="n">lazy</span><span
+            class="p">[</span><span class="n">maxn</span><span class="o">&lt;&lt;</span><span class="mi">2</span><span
+            class="p">];</span>
     <span class="c1">//////////////</span>
     <span class="c1">//树链剖分接口</span>
-    <span class="n">ll</span> <span class="n">rnk</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+    <span class="n">ll</span> <span class="n">rnk</span><span class="p">[</span><span class="n">maxn</span><span
+            class="p">];</span>
     <span class="c1">//////////////</span>
-    <span class="kt">void</span> <span class="n">pushdown</span><span class="p">(</span><span class="n">ll</span> <span class="n">u</span><span class="p">,</span><span class="n">ll</span> <span class="n">l</span><span class="p">,</span><span class="n">ll</span> <span class="n">r</span><span class="p">){</span>
+    <span class="kt">void</span> <span class="n">pushdown</span><span class="p">(</span><span class="n">ll</span> <span
+            class="n">u</span><span class="p">,</span><span class="n">ll</span> <span class="n">l</span><span class="p">,</span><span
+            class="n">ll</span> <span class="n">r</span><span class="p">){</span>
         <span class="c1">//lazy[ls]+=lazy[u];</span>
         <span class="c1">//lazy[rs]+=lazy[u];</span>
         <span class="c1">//tree[ls]+=lazy[u]*(ml-l+1);</span>
         <span class="c1">//tree[rs]+=lazy[u]*(r-mr+1);</span>
-        <span class="n">lazy</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="n">lazy</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span
+            class="o">=</span><span class="mi">0</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="kt">void</span> <span class="n">pushup</span><span class="p">(</span><span class="n">ll</span> <span class="n">u</span><span class="p">){</span>
+    <span class="kt">void</span> <span class="n">pushup</span><span class="p">(</span><span class="n">ll</span> <span
+            class="n">u</span><span class="p">){</span>
         <span class="c1">//tree[u]=tree[ls]+tree[rs];</span>
     <span class="p">}</span>
-    <span class="kt">void</span> <span class="n">build</span><span class="p">(</span><span class="n">ll</span> <span class="n">nn</span><span class="p">){</span>
+    <span class="kt">void</span> <span class="n">build</span><span class="p">(</span><span class="n">ll</span> <span
+            class="n">nn</span><span class="p">){</span>
         <span class="n">n</span><span class="o">=</span><span class="n">nn</span><span class="p">;</span>
-        <span class="n">build</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">build</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span
+            class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
     <span class="p">}</span>
-    
-    
-    <span class="kt">void</span> <span class="n">build</span><span class="p">(</span><span class="n">ll</span> <span class="n">l</span><span class="p">,</span><span class="n">ll</span> <span class="n">r</span><span class="p">,</span><span class="n">ll</span> <span class="n">u</span><span class="p">){</span>
-        <span class="n">lazy</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">l</span><span class="o">==</span><span class="n">r</span><span class="p">){</span>
+
+
+    <span class="kt">void</span> <span class="n">build</span><span class="p">(</span><span class="n">ll</span> <span
+            class="n">l</span><span class="p">,</span><span class="n">ll</span> <span class="n">r</span><span class="p">,</span><span
+            class="n">ll</span> <span class="n">u</span><span class="p">){</span>
+        <span class="n">lazy</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span
+            class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">l</span><span class="o">==</span><span
+            class="n">r</span><span class="p">){</span>
             <span class="c1">//tree[u]=a[rnk[l]];</span>
             <span class="k">return</span> <span class="p">;</span>
         <span class="p">}</span>
-        
-        <span class="n">build</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">ml</span><span class="p">,</span><span class="n">ls</span><span class="p">);</span>
-        <span class="n">build</span><span class="p">(</span><span class="n">mr</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">rs</span><span class="p">);</span>
+
+        <span class="n">build</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span
+            class="n">ml</span><span class="p">,</span><span class="n">ls</span><span class="p">);</span>
+        <span class="n">build</span><span class="p">(</span><span class="n">mr</span><span class="p">,</span><span
+            class="n">r</span><span class="p">,</span><span class="n">rs</span><span class="p">);</span>
         <span class="n">pushup</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
     <span class="p">}</span>
-    <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="n">ll</span> <span class="n">ql</span><span class="p">,</span><span class="n">ll</span> <span class="n">qr</span><span class="p">,</span><span class="n">ll</span> <span class="n">d</span><span class="p">){</span>
-        <span class="n">update</span><span class="p">(</span><span class="n">ql</span><span class="p">,</span><span class="n">qr</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="n">ll</span> <span
+            class="n">ql</span><span class="p">,</span><span class="n">ll</span> <span class="n">qr</span><span
+            class="p">,</span><span class="n">ll</span> <span class="n">d</span><span class="p">){</span>
+        <span class="n">update</span><span class="p">(</span><span class="n">ql</span><span class="p">,</span><span
+            class="n">qr</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="mi">1</span><span
+            class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
     <span class="p">}</span>
-    <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="n">ll</span> <span class="n">ql</span><span class="p">,</span><span class="n">ll</span> <span class="n">qr</span><span class="p">,</span><span class="n">ll</span> <span class="n">d</span><span class="p">,</span><span class="n">ll</span> <span class="n">u</span><span class="p">,</span><span class="n">ll</span> <span class="n">l</span><span class="p">,</span><span class="n">ll</span> <span class="n">r</span><span class="p">){</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">ql</span><span class="o">&lt;=</span><span class="n">l</span><span class="o">&amp;&amp;</span><span class="n">r</span><span class="o">&lt;=</span><span class="n">qr</span><span class="p">){</span>
+    <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="n">ll</span> <span
+            class="n">ql</span><span class="p">,</span><span class="n">ll</span> <span class="n">qr</span><span
+            class="p">,</span><span class="n">ll</span> <span class="n">d</span><span class="p">,</span><span class="n">ll</span> <span
+            class="n">u</span><span class="p">,</span><span class="n">ll</span> <span class="n">l</span><span class="p">,</span><span
+            class="n">ll</span> <span class="n">r</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">ql</span><span class="o">&lt;=</span><span
+            class="n">l</span><span class="o">&amp;&amp;</span><span class="n">r</span><span class="o">&lt;=</span><span
+            class="n">qr</span><span class="p">){</span>
             <span class="c1">//tree[u]+=(r-l+1)*d;</span>
             <span class="c1">//lazy[u]+=d;</span>
             <span class="k">return</span> <span class="p">;</span>
         <span class="p">}</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">lazy</span><span class="p">[</span><span class="n">u</span><span class="p">])</span><span class="n">pushdown</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">ql</span><span class="o">&lt;=</span><span class="n">ml</span><span class="p">)</span><span class="n">update</span><span class="p">(</span><span class="n">ql</span><span class="p">,</span><span class="n">qr</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">ls</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">ml</span><span class="p">);</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">qr</span><span class="o">&gt;=</span><span class="n">mr</span><span class="p">)</span><span class="n">update</span><span class="p">(</span><span class="n">ql</span><span class="p">,</span><span class="n">qr</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">rs</span><span class="p">,</span><span class="n">mr</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">lazy</span><span class="p">[</span><span
+            class="n">u</span><span class="p">])</span><span class="n">pushdown</span><span class="p">(</span><span
+            class="n">u</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span
+            class="n">r</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">ql</span><span class="o">&lt;=</span><span
+            class="n">ml</span><span class="p">)</span><span class="n">update</span><span class="p">(</span><span
+            class="n">ql</span><span class="p">,</span><span class="n">qr</span><span class="p">,</span><span class="n">d</span><span
+            class="p">,</span><span class="n">ls</span><span class="p">,</span><span class="n">l</span><span
+            class="p">,</span><span class="n">ml</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">qr</span><span class="o">&gt;=</span><span
+            class="n">mr</span><span class="p">)</span><span class="n">update</span><span class="p">(</span><span
+            class="n">ql</span><span class="p">,</span><span class="n">qr</span><span class="p">,</span><span class="n">d</span><span
+            class="p">,</span><span class="n">rs</span><span class="p">,</span><span class="n">mr</span><span class="p">,</span><span
+            class="n">r</span><span class="p">);</span>
         <span class="n">pushup</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
     <span class="p">}</span>
-    <span class="n">ll</span> <span class="n">query</span><span class="p">(</span><span class="n">ll</span> <span class="n">ql</span><span class="p">,</span><span class="n">ll</span> <span class="n">qr</span><span class="p">){</span>
-        <span class="k">return</span> <span class="n">query</span><span class="p">(</span><span class="n">ql</span><span class="p">,</span><span class="n">qr</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
+    <span class="n">ll</span> <span class="n">query</span><span class="p">(</span><span class="n">ll</span> <span
+            class="n">ql</span><span class="p">,</span><span class="n">ll</span> <span class="n">qr</span><span
+            class="p">){</span>
+        <span class="k">return</span> <span class="n">query</span><span class="p">(</span><span class="n">ql</span><span
+            class="p">,</span><span class="n">qr</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span
+            class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
     <span class="p">}</span>
-    <span class="n">ll</span> <span class="n">query</span><span class="p">(</span><span class="n">ll</span> <span class="n">ql</span><span class="p">,</span><span class="n">ll</span> <span class="n">qr</span><span class="p">,</span><span class="n">ll</span> <span class="n">u</span><span class="p">,</span><span class="n">ll</span> <span class="n">l</span><span class="p">,</span><span class="n">ll</span> <span class="n">r</span><span class="p">){</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">ql</span><span class="o">&lt;=</span><span class="n">l</span><span class="o">&amp;&amp;</span><span class="n">r</span><span class="o">&lt;=</span><span class="n">qr</span><span class="p">)</span><span class="k">return</span> <span class="n">tree</span><span class="p">[</span><span class="n">u</span><span class="p">];</span>
-        <span class="n">ll</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">lazy</span><span class="p">[</span><span class="n">u</span><span class="p">])</span><span class="n">pushdown</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">ql</span><span class="o">&lt;=</span><span class="n">ml</span><span class="p">)</span><span class="n">ret</span><span class="o">+=</span><span class="n">query</span><span class="p">(</span><span class="n">ql</span><span class="p">,</span><span class="n">qr</span><span class="p">,</span><span class="n">ls</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">ml</span><span class="p">);</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">qr</span><span class="o">&gt;=</span><span class="n">mr</span><span class="p">)</span><span class="n">ret</span><span class="o">+=</span><span class="n">query</span><span class="p">(</span><span class="n">ql</span><span class="p">,</span><span class="n">qr</span><span class="p">,</span><span class="n">rs</span><span class="p">,</span><span class="n">mr</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
+    <span class="n">ll</span> <span class="n">query</span><span class="p">(</span><span class="n">ll</span> <span
+            class="n">ql</span><span class="p">,</span><span class="n">ll</span> <span class="n">qr</span><span
+            class="p">,</span><span class="n">ll</span> <span class="n">u</span><span class="p">,</span><span class="n">ll</span> <span
+            class="n">l</span><span class="p">,</span><span class="n">ll</span> <span class="n">r</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">ql</span><span class="o">&lt;=</span><span
+            class="n">l</span><span class="o">&amp;&amp;</span><span class="n">r</span><span class="o">&lt;=</span><span
+            class="n">qr</span><span class="p">)</span><span class="k">return</span> <span class="n">tree</span><span
+            class="p">[</span><span class="n">u</span><span class="p">];</span>
+        <span class="n">ll</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span
+            class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">lazy</span><span class="p">[</span><span
+            class="n">u</span><span class="p">])</span><span class="n">pushdown</span><span class="p">(</span><span
+            class="n">u</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span
+            class="n">r</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">ql</span><span class="o">&lt;=</span><span
+            class="n">ml</span><span class="p">)</span><span class="n">ret</span><span class="o">+=</span><span
+            class="n">query</span><span class="p">(</span><span class="n">ql</span><span class="p">,</span><span
+            class="n">qr</span><span class="p">,</span><span class="n">ls</span><span class="p">,</span><span class="n">l</span><span
+            class="p">,</span><span class="n">ml</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">qr</span><span class="o">&gt;=</span><span
+            class="n">mr</span><span class="p">)</span><span class="n">ret</span><span class="o">+=</span><span
+            class="n">query</span><span class="p">(</span><span class="n">ql</span><span class="p">,</span><span
+            class="n">qr</span><span class="p">,</span><span class="n">rs</span><span class="p">,</span><span class="n">mr</span><span
+            class="p">,</span><span class="n">r</span><span class="p">);</span>
         <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">};</span>
 </pre>
-	
-     			</div>
 
-     		</div>
-     		
+
     </div>
-</body>
+
+
+    <div id="code">
+                <pre><span class="cp">#define ml ((l+r)&gt;&gt;1)</span>
+<span class="cp">#define mr (ml+1)</span>
+<span class="k">struct</span> <span class="n">segment_tree</span><span class="p">{</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span
+                            class="n">maxn</span><span class="o">=</span><span class="mi">50000</span><span
+                            class="p">;</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">ct</span><span
+                            class="p">;</span>
+    <span class="kt">int</span> <span class="n">sum</span><span class="p">[</span><span class="n">maxn</span><span
+                            class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">],</span><span class="n">lz</span><span
+                            class="p">[</span><span class="n">maxn</span><span class="o">&lt;&lt;</span><span
+                            class="mi">1</span><span class="p">],</span><span class="n">ls</span><span
+                            class="p">[</span><span class="n">maxn</span><span class="o">&lt;&lt;</span><span
+                            class="mi">1</span><span class="p">],</span><span class="n">rs</span><span
+                            class="p">[</span><span class="n">maxn</span><span class="o">&lt;&lt;</span><span
+                            class="mi">1</span><span class="p">];</span>
+
+    <span class="kt">void</span> <span class="n">pushup</span><span class="p">(</span><span class="kt">int</span> <span
+                            class="n">u</span><span class="p">){</span><span class="n">sum</span><span
+                            class="p">[</span><span class="n">u</span><span class="p">]</span><span
+                            class="o">=</span><span class="n">sum</span><span class="p">[</span><span
+                            class="n">ls</span><span class="p">[</span><span class="n">u</span><span class="p">]]</span><span
+                            class="o">+</span><span class="n">sum</span><span class="p">[</span><span
+                            class="n">rs</span><span class="p">[</span><span class="n">u</span><span
+                            class="p">]];}</span>
+    <span class="kt">void</span> <span class="n">pushdown</span><span class="p">(</span><span
+                            class="kt">int</span> <span class="n">u</span><span class="p">,</span><span
+                            class="kt">int</span> <span class="n">l</span><span class="p">,</span><span
+                            class="kt">int</span> <span class="n">r</span><span class="p">){</span>
+        <span class="n">lz</span><span class="p">[</span><span class="n">ls</span><span class="p">[</span><span
+                            class="n">u</span><span class="p">]]</span><span class="o">+=</span><span
+                            class="n">lz</span><span class="p">[</span><span class="n">u</span><span class="p">];</span>
+        <span class="n">lz</span><span class="p">[</span><span class="n">rs</span><span class="p">[</span><span
+                            class="n">u</span><span class="p">]]</span><span class="o">+=</span><span
+                            class="n">lz</span><span class="p">[</span><span class="n">u</span><span class="p">];</span>
+        <span class="n">sum</span><span class="p">[</span><span class="n">ls</span><span class="p">[</span><span
+                            class="n">u</span><span class="p">]]</span><span class="o">+=</span><span
+                            class="n">lz</span><span class="p">[</span><span class="n">u</span><span
+                            class="p">]</span><span class="o">*</span><span class="p">(</span><span
+                            class="n">ml</span><span class="o">-</span><span class="n">l</span><span
+                            class="o">+</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">sum</span><span class="p">[</span><span class="n">rs</span><span class="p">[</span><span
+                            class="n">u</span><span class="p">]]</span><span class="o">+=</span><span
+                            class="n">lz</span><span class="p">[</span><span class="n">u</span><span
+                            class="p">]</span><span class="o">*</span><span class="p">(</span><span
+                            class="n">r</span><span class="o">-</span><span class="n">mr</span><span
+                            class="o">+</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">lz</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span
+                            class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">build</span><span class="p">(</span><span class="kt">int</span> <span
+                            class="n">_n</span><span class="p">,</span><span class="kt">int</span><span
+                            class="o">*</span><span class="n">a</span><span class="p">){</span><span class="n">ct</span><span
+                            class="o">=</span><span class="mi">0</span><span class="p">;</span><span
+                            class="n">build</span><span class="p">(</span><span class="n">ct</span><span
+                            class="o">++</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span
+                            class="n">n</span><span class="o">=</span><span class="n">_n</span><span
+                            class="p">,</span><span class="n">a</span><span class="p">);}</span><span class="c1">//下标从0开始</span>
+    <span class="kt">void</span> <span class="n">build</span><span class="p">(</span><span class="kt">int</span> <span
+                            class="n">u</span><span class="p">,</span><span class="kt">int</span> <span
+                            class="n">l</span><span class="p">,</span><span class="kt">int</span> <span
+                            class="n">r</span><span class="p">,</span><span class="kt">int</span><span
+                            class="o">*</span><span class="n">a</span><span class="p">){</span>
+        <span class="n">lz</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span
+                            class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="c1">// 因为懒惰标记不会被pushup影响到</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">l</span><span class="o">==</span><span
+                            class="n">r</span><span class="p">){</span>
+            <span class="n">sum</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span
+                            class="o">=</span><span class="n">a</span><span class="p">[</span><span
+                            class="n">l</span><span class="p">];</span><span class="c1">// 不需要考虑ls和rs</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">build</span><span class="p">(</span><span class="n">ls</span><span class="p">[</span><span
+                            class="n">u</span><span class="p">]</span><span class="o">=</span><span
+                            class="n">ct</span><span class="o">++</span><span class="p">,</span><span class="n">l</span><span
+                            class="p">,</span><span class="n">ml</span><span class="p">,</span><span
+                            class="n">a</span><span class="p">);</span>
+        <span class="n">build</span><span class="p">(</span><span class="n">rs</span><span class="p">[</span><span
+                            class="n">u</span><span class="p">]</span><span class="o">=</span><span
+                            class="n">ct</span><span class="o">++</span><span class="p">,</span><span
+                            class="n">mr</span><span class="p">,</span><span class="n">r</span><span
+                            class="p">,</span><span class="n">a</span><span class="p">);</span>
+        <span class="n">pushup</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="kt">int</span> <span
+                            class="n">ql</span><span class="p">,</span><span class="kt">int</span> <span
+                            class="n">qr</span><span class="p">,</span><span class="kt">int</span> <span
+                            class="n">d</span><span class="p">){</span><span class="n">update</span><span
+                            class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">ql</span><span
+                            class="p">,</span><span class="n">qr</span><span class="p">,</span><span
+                            class="n">d</span><span class="p">,</span><span class="mi">1</span><span
+                            class="p">,</span><span class="n">n</span><span class="p">);}</span>
+    <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="kt">int</span> <span
+                            class="n">u</span><span class="p">,</span><span class="kt">int</span> <span
+                            class="n">ql</span><span class="p">,</span><span class="kt">int</span> <span
+                            class="n">qr</span><span class="p">,</span><span class="kt">int</span> <span
+                            class="n">d</span><span class="p">,</span><span class="kt">int</span> <span
+                            class="n">l</span><span class="p">,</span><span class="kt">int</span> <span
+                            class="n">r</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">ql</span><span class="o">&lt;=</span><span
+                            class="n">l</span><span class="o">&amp;&amp;</span><span class="n">r</span><span class="o">&lt;=</span><span
+                            class="n">qr</span><span class="p">){</span>
+            <span class="n">sum</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span
+                            class="o">+=</span><span class="p">(</span><span class="n">r</span><span
+                            class="o">-</span><span class="n">l</span><span class="o">+</span><span
+                            class="mi">1</span><span class="p">)</span><span class="o">*</span><span
+                            class="n">d</span><span class="p">;</span>
+            <span class="n">lz</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span
+                            class="o">+=</span><span class="n">d</span><span class="p">;</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">lz</span><span class="p">[</span><span
+                            class="n">u</span><span class="p">])</span><span class="n">pushdown</span><span
+                            class="p">(</span><span class="n">u</span><span class="p">,</span><span
+                            class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">ql</span><span class="o">&lt;=</span><span
+                            class="n">ml</span><span class="p">)</span><span class="n">update</span><span
+                            class="p">(</span><span class="n">ls</span><span class="p">[</span><span
+                            class="n">u</span><span class="p">],</span><span class="n">ql</span><span class="p">,</span><span
+                            class="n">qr</span><span class="p">,</span><span class="n">d</span><span
+                            class="p">,</span><span class="n">l</span><span class="p">,</span><span
+                            class="n">ml</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">mr</span><span class="o">&lt;=</span><span
+                            class="n">qr</span><span class="p">)</span><span class="n">update</span><span
+                            class="p">(</span><span class="n">rs</span><span class="p">[</span><span
+                            class="n">u</span><span class="p">],</span><span class="n">ql</span><span class="p">,</span><span
+                            class="n">qr</span><span class="p">,</span><span class="n">d</span><span
+                            class="p">,</span><span class="n">mr</span><span class="p">,</span><span
+                            class="n">r</span><span class="p">);</span>
+        <span class="n">pushup</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="n">query</span><span class="p">(</span><span class="kt">int</span> <span
+                            class="n">ql</span><span class="p">,</span><span class="kt">int</span> <span
+                            class="n">qr</span><span class="p">){</span><span class="k">return</span> <span class="n">query</span><span
+                            class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">ql</span><span
+                            class="p">,</span><span class="n">qr</span><span class="p">,</span><span class="mi">1</span><span
+                            class="p">,</span><span class="n">n</span><span class="p">);}</span>
+    <span class="kt">int</span> <span class="n">query</span><span class="p">(</span><span class="kt">int</span> <span
+                            class="n">u</span><span class="p">,</span><span class="kt">int</span> <span
+                            class="n">ql</span><span class="p">,</span><span class="kt">int</span> <span
+                            class="n">qr</span><span class="p">,</span><span class="kt">int</span> <span
+                            class="n">l</span><span class="p">,</span><span class="kt">int</span> <span
+                            class="n">r</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">ql</span><span class="o">&lt;=</span><span
+                            class="n">l</span><span class="o">&amp;&amp;</span><span class="n">r</span><span class="o">&lt;=</span><span
+                            class="n">qr</span><span class="p">)</span><span class="k">return</span> <span
+                            class="n">sum</span><span class="p">[</span><span class="n">u</span><span
+                            class="p">];</span>
+        <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span
+                            class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">lz</span><span class="p">[</span><span
+                            class="n">u</span><span class="p">])</span><span class="n">pushdown</span><span
+                            class="p">(</span><span class="n">u</span><span class="p">,</span><span
+                            class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">ql</span><span class="o">&lt;=</span><span
+                            class="n">ml</span><span class="p">)</span><span class="n">ret</span><span
+                            class="o">+=</span><span class="n">query</span><span class="p">(</span><span
+                            class="n">ls</span><span class="p">[</span><span class="n">u</span><span class="p">],</span><span
+                            class="n">ql</span><span class="p">,</span><span class="n">qr</span><span class="p">,</span><span
+                            class="n">l</span><span class="p">,</span><span class="n">ml</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">mr</span><span class="o">&lt;=</span><span
+                            class="n">qr</span><span class="p">)</span><span class="n">ret</span><span
+                            class="o">+=</span><span class="n">query</span><span class="p">(</span><span
+                            class="n">rs</span><span class="p">[</span><span class="n">u</span><span class="p">],</span><span
+                            class="n">ql</span><span class="p">,</span><span class="n">qr</span><span class="p">,</span><span
+                            class="n">mr</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span><span class="n">tree</span><span class="p">;</span>
+</pre>
+    </div>
+
+
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
 </html>
 
 
 
-
-	
