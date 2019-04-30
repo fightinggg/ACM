@@ -1,7 +1,7 @@
 ####
 牛客练习赛41B
 ####
-牛客 计数dp 2019.2.24
+牛客 计数dp 2019.4.24
 ####
 https://ac.nowcoder.com/acm/contest/373/B
 ####

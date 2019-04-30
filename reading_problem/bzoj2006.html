@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>bzoj2006</title>
+</head>
+
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>bzoj2006</h1></center>
+    <div id="text">
+    <h2>链接</h2>
+        <div id="normal_href">
+            <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=2006" target="_blank">https://www.lydsy.com/JudgeOnline/problem.php?id=2006</a><br>
+        </div>
+    <h2>题意</h2>
+        <span style="color:red">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;给一个长为n的序列，输入一个询问k,l,r,从中选出k个长度介于[l,r]中的不同的区间，最大化&nbsp;k个子段和&nbsp;的和，<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n&lt;5e5&nbsp;&nbsp;20s&nbsp;<br>
+        </span>
+    <h2>题解</h2>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;先想一个暴力算法，我们把所有长度介于[l,r]的子段的和都求出来，放进一个堆，然后取出前k大<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;然后来优化它，我们观察取出前k大的方法，是一个一个取出来的，这就说明了，一次只取出了一个，这就是突破点于是我们这样来做，我们对每一种区间按终点分类，显然可能取出来的，一定是以当前终点为终点的所有区间中最大的那一个，那我们就维护数列f[]<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f[i]代表以i为终点的所有可取且未取区间中区间和最大的那一个，于是我们这样来查询，每次取出f数组的最大值，然后更新f数组，如何更新呢？我们再多记录一个信息，记录当前的f[i]是原先所有以i为终点的所有选择中的第几大，假设现在这个是第k大，当我们取出来之后，只要更新f[i]即可，更新可选择的第k+1大<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们来加速这个过程，发现f可以用堆来维护,用一个三元组:&nbsp;&lt;EndAt,val,kth&gt;分别代表该区间以EndAt为结尾，区间和为val，此区间是所有以EndAt为终点的可选区间的第kth大，此三元祖按照val建堆即可。<br>
+    </div>
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>

@@ -1,7 +1,7 @@
 ####
 cfedu60D
 ####
-cf 普通动态规划 矩阵快速幂 2019.2.24
+cf 普通动态规划 矩阵快速幂 2019.4.24
 ####
 http://codeforces.com/contest/1117/problem/D
 ####

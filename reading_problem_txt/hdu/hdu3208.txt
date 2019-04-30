@@ -1,7 +1,7 @@
 ####
 hdu3208
 ####
-hdu 普通动态规划 容斥原理 2019.2.22
+hdu 普通动态规划 容斥原理 2019.4.22
 ####
 http://acm.hdu.edu.cn/showproblem.php?pid=3208
 ####

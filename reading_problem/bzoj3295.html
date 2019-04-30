@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>bzoj3295</title>
+</head>
+
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>bzoj3295</h1></center>
+    <div id="text">
+    <h2>链接</h2>
+        <div id="normal_href">
+            <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=3295" target="_blank">https://www.lydsy.com/JudgeOnline/problem.php?id=3295</a><br>
+        </div>
+    <h2>题意</h2>
+        <span style="color:red">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;给一个序列，长度为n（&lt;1e5)，m个操作，每次删除一个数，删除数后要求你输出删除前整个序列的逆序对的个数<br>
+        </span>
+    <h2>题解</h2>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用树状数组套主席树,维护权值线段树，被删除的数的前面的区间上有多少个数大于被删除数，被删除的数的后面的区间有多少个数小于被删除数，<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个很容易在线段树上实现，更新的话，是主席树的套路更新。<br>
+    </div>
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>

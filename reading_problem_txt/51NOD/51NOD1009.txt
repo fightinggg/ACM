@@ -1,7 +1,7 @@
 ####
 51NOD1009
 ####
-51NOD 数位DP 2019.2.22
+51NOD 数位DP 2019.4.22
 ####
 https://www.51nod.com/Challenge/Problem.html#!#problemId=1009
 ####

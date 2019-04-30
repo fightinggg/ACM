@@ -1,7 +1,7 @@
 ####
 cf522C
 ####
-cf 普通动态规划 2019.2.23
+cf 普通动态规划 2019.4.23
 ####
 http://codeforces.com/contest/1079/problem/C
 ####

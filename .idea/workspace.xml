@@ -3,7 +3,32 @@
   <component name="ChangeListManager">
     <list default="true" id="e505d993-0813-4b95-9e39-e1a7b5c097cb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/51NOD/51NOD1009.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/51NOD/51NOD1009.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/51NOD/51NOD1055.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/51NOD/51NOD1055.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/51NOD/51NOD1084.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/51NOD/51NOD1084.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/51NOD/51NOD1405.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/51NOD/51NOD1405.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/cf/cf511D.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/cf/cf511D.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/cf/cf515B.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/cf/cf515B.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/cf/cf517B.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/cf/cf517B.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/cf/cf517D.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/cf/cf517D.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/cf/cf518D.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/cf/cf518D.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/cf/cf521F1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/cf/cf521F1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/cf/cf521F2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/cf/cf521F2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/cf/cf522C.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/cf/cf522C.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/cf/cf523C.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/cf/cf523C.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/cf/cf526D.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/cf/cf526D.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/cf/cf531F.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/cf/cf531F.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/cf/cf544E.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/cf/cf544E.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/cf/cf80D.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/cf/cf80D.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/cf/cfedu57D.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/cf/cfedu57D.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/cf/cfedu60D.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/cf/cfedu60D.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/cf/cfedu61F.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/cf/cfedu61F.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/cf/cfedu63D.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/cf/cfedu63D.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/hdu/hdu3208.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/hdu/hdu3208.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/不出名的oj/CCF有趣的数.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/不出名的oj/CCF有趣的数.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/牛客/牛客练习赛41B.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/牛客/牛客练习赛41B.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/计蒜客/计蒜客A2000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/计蒜客/计蒜客A2000.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reading_problem_txt/计蒜客/计蒜客A2012.txt" beforeDir="false" afterPath="$PROJECT_DIR$/reading_problem_txt/计蒜客/计蒜客A2012.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stencil/data_struct/主席树.html" beforeDir="false" afterPath="$PROJECT_DIR$/stencil/data_struct/主席树.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -17,11 +42,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stencil/string/后缀自动机.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
               <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/stencil/data_struct/主席树.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="636">
+              <caret line="78" column="55" selection-start-line="78" selection-start-column="55" selection-end-line="78" selection-end-column="55" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -44,7 +83,7 @@
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
-              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
             </state>
           </provider>
         </entry>
@@ -275,6 +314,9 @@
     <configuration name="主席树.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/data_struct/主席树.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
+    <configuration name="主席树.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/data_struct/主席树.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="线段树.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/data_struct/线段树.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -397,11 +439,12 @@
       <workItem from="1556598242912" duration="902000" />
       <workItem from="1556600036983" duration="57000" />
       <workItem from="1556600130930" duration="93000" />
+      <workItem from="1556609339858" duration="178000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93689000" />
+    <option name="totallyTimeSpent" value="93867000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -705,6 +748,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/stencil/string/后缀自动机.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/stencil/data_struct/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -714,6 +764,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/stencil/data_struct/划分树.html">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/new.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -750,38 +807,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/stencil/data_struct/主席树.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+        <state relative-caret-position="636">
+          <caret line="78" column="55" selection-start-line="78" selection-start-column="55" selection-end-line="78" selection-end-column="55" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#318#324#0" expanded="true" />
-            <element signature="e#324#330#0" expanded="true" />
-            <element signature="e#330#336#0" expanded="true" />
-            <element signature="e#336#342#0" expanded="true" />
-            <element signature="e#342#348#0" expanded="true" />
-            <element signature="e#348#354#0" expanded="true" />
-            <element signature="e#354#360#0" expanded="true" />
-            <element signature="e#360#366#0" expanded="true" />
-            <element signature="e#589#595#0" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/stencil/string/后缀自动机.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
         </state>
       </provider>
     </entry>

@@ -1,7 +1,7 @@
 ####
 51NOD1084
 ####
-51NOD 普通动态规划 2019.2.23
+51NOD 普通动态规划 2019.4.23
 ####
 https://www.51nod.com/Challenge/Problem.html#!#problemId=1084
 ####

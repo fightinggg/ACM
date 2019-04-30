@@ -1,7 +1,7 @@
 ####
 cf517B
 ####
-cf 思维 2019.2.23
+cf 思维 2019.4.23
 ####
 http://codeforces.com/contest/1072/problem/B
 ####

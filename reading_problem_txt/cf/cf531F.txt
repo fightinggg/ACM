@@ -1,7 +1,7 @@
 ####
 cf531F
 ####
-cf 状压dp 2019.2.23
+cf 状压dp 2019.4.23
 ####
 https://codeforces.com/contest/1102/problem/F
 ####
