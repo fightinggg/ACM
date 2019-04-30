@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e505d993-0813-4b95-9e39-e1a7b5c097cb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stencil/data_struct/主席树.html" beforeDir="false" afterPath="$PROJECT_DIR$/stencil/data_struct/主席树.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -15,127 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/stencil/string/manacher.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="38" column="33" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
-              <folding>
-                <element signature="e#497#501#0" expanded="true" />
-                <element signature="e#501#505#0" expanded="true" />
-                <element signature="e#1034#1038#0" expanded="true" />
-                <element signature="e#1038#1042#0" expanded="true" />
-                <element signature="e#1224#1228#0" expanded="true" />
-                <element signature="e#1228#1232#0" expanded="true" />
-                <element signature="e#1421#1425#0" expanded="true" />
-                <element signature="e#6249#6253#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/stencil/data_struct/主席树.html">
+        <entry file="file://$PROJECT_DIR$/stencil/string/后缀自动机.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="753">
-              <caret line="218" column="6" selection-start-line="218" selection-start-column="6" selection-end-line="218" selection-end-column="6" />
-              <folding>
-                <element signature="e#318#324#0" expanded="true" />
-                <element signature="e#324#330#0" expanded="true" />
-                <element signature="e#330#336#0" expanded="true" />
-                <element signature="e#336#342#0" expanded="true" />
-                <element signature="e#342#348#0" expanded="true" />
-                <element signature="e#348#354#0" expanded="true" />
-                <element signature="e#354#360#0" expanded="true" />
-                <element signature="e#360#366#0" expanded="true" />
-                <element signature="e#589#595#0" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#3281#3287#0" expanded="true" />
-                <element signature="e#3287#3293#0" expanded="true" />
-                <element signature="e#3293#3299#0" expanded="true" />
-                <element signature="e#3299#3305#0" expanded="true" />
-                <element signature="e#3305#3311#0" expanded="true" />
-                <element signature="e#3311#3317#0" expanded="true" />
-                <element signature="e#3317#3323#0" expanded="true" />
-                <element signature="e#3323#3329#0" expanded="true" />
-                <element signature="e#3302#3308#0" expanded="true" />
-                <element signature="e#3308#3314#0" expanded="true" />
-                <element signature="e#3314#3320#0" expanded="true" />
-                <element signature="e#3320#3326#0" expanded="true" />
-                <element signature="e#3326#3332#0" expanded="true" />
-                <element signature="e#3332#3338#0" expanded="true" />
-                <element signature="e#3338#3344#0" expanded="true" />
-                <element signature="e#3344#3350#0" expanded="true" />
-                <element signature="e#3413#3419#0" expanded="true" />
-                <element signature="e#3419#3425#0" expanded="true" />
-                <element signature="e#3425#3431#0" expanded="true" />
-                <element signature="e#3431#3437#0" expanded="true" />
-                <element signature="e#3437#3443#0" expanded="true" />
-                <element signature="e#3443#3449#0" expanded="true" />
-                <element signature="e#3449#3455#0" expanded="true" />
-                <element signature="e#3455#3461#0" expanded="true" />
-                <element signature="e#3554#3560#0" expanded="true" />
-                <element signature="e#3560#3566#0" expanded="true" />
-                <element signature="e#3566#3572#0" expanded="true" />
-                <element signature="e#3572#3578#0" expanded="true" />
-                <element signature="e#3578#3584#0" expanded="true" />
-                <element signature="e#3584#3590#0" expanded="true" />
-                <element signature="e#3590#3596#0" expanded="true" />
-                <element signature="e#3596#3602#0" expanded="true" />
-                <element signature="e#3724#3730#0" expanded="true" />
-                <element signature="e#3730#3736#0" expanded="true" />
-                <element signature="e#3736#3742#0" expanded="true" />
-                <element signature="e#3742#3748#0" expanded="true" />
-                <element signature="e#3748#3754#0" expanded="true" />
-                <element signature="e#3754#3760#0" expanded="true" />
-                <element signature="e#3760#3766#0" expanded="true" />
-                <element signature="e#3766#3772#0" expanded="true" />
-                <element signature="e#5179#5184#1" expanded="true" />
-                <element signature="e#6789#6793#0" expanded="true" />
-                <element signature="e#6793#6797#0" expanded="true" />
-                <element signature="e#6949#6953#0" expanded="true" />
-                <element signature="e#9275#9279#0" expanded="true" />
-                <element signature="e#9279#9283#0" expanded="true" />
-                <element signature="e#9433#9437#0" expanded="true" />
-                <element signature="e#11792#11796#0" expanded="true" />
-                <element signature="e#11817#11821#0" expanded="true" />
-                <element signature="e#11869#11873#0" expanded="true" />
-                <element signature="e#11880#11885#0" expanded="true" />
-                <element signature="e#12069#12074#1" expanded="true" />
-                <element signature="e#13341#13345#0" expanded="true" />
-                <element signature="e#13345#13349#0" expanded="true" />
-                <element signature="e#13501#13505#0" expanded="true" />
-                <element signature="e#15305#15310#0" expanded="true" />
-                <element signature="e#15928#15933#0" expanded="true" />
-                <element signature="e#16381#16385#1" expanded="true" />
-                <element signature="e#16764#16768#0" expanded="true" />
-                <element signature="e#16768#16772#0" expanded="true" />
-                <element signature="e#17052#17056#1" expanded="true" />
-                <element signature="e#17661#17665#1" expanded="true" />
-                <element signature="e#18144#18148#0" expanded="true" />
-                <element signature="e#18459#18463#1" expanded="true" />
-                <element signature="e#19091#19095#1" expanded="true" />
-                <element signature="e#19927#19931#1" expanded="true" />
-                <element signature="e#20559#20563#1" expanded="true" />
-                <element signature="e#22486#22490#0" expanded="true" />
-                <element signature="e#22490#22494#0" expanded="true" />
-                <element signature="e#26604#26608#1" expanded="true" />
-                <element signature="e#28785#28789#1" expanded="true" />
-                <element signature="e#29071#29075#0" expanded="true" />
-                <element signature="e#29309#29313#0" expanded="true" />
-                <element signature="e#29689#29693#0" expanded="true" />
-                <element signature="e#29693#29697#0" expanded="true" />
-                <element signature="e#29768#29772#0" expanded="true" />
-                <element signature="e#30553#30557#0" expanded="true" />
-                <element signature="e#31991#31996#1" expanded="true" />
-                <element signature="e#33558#33562#0" expanded="true" />
-                <element signature="e#33562#33566#0" expanded="true" />
-                <element signature="e#33718#33722#0" expanded="true" />
-                <element signature="e#38537#38541#0" expanded="true" />
-                <element signature="e#38541#38545#0" expanded="true" />
-                <element signature="e#38695#38699#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="180">
+              <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -143,8 +29,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stencil/data_struct/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="99" selection-start-line="19" selection-start-column="99" selection-end-line="19" selection-end-column="99" />
+            <state relative-caret-position="210">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
@@ -157,8 +43,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="28" column="90" selection-start-line="28" selection-start-column="90" selection-end-line="28" selection-end-column="90" />
+            <state relative-caret-position="255">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
             </state>
           </provider>
         </entry>
@@ -273,7 +159,6 @@
         <option value="$PROJECT_DIR$/stencil/dp/index.html" />
         <option value="$PROJECT_DIR$/stencil/thinging/莫队算法.html" />
         <option value="$PROJECT_DIR$/stencil/thinging/index.html" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/stencil/graph_theory/网络流24题.html" />
         <option value="$PROJECT_DIR$/css/head.css" />
         <option value="$PROJECT_DIR$/stencil/string/hash.html" />
@@ -288,6 +173,7 @@
         <option value="$PROJECT_DIR$/stencil/data_struct/线段树.html" />
         <option value="$PROJECT_DIR$/new.html" />
         <option value="$PROJECT_DIR$/stencil/string/manacher.html" />
+        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/stencil/data_struct/主席树.html" />
       </list>
     </option>
@@ -304,6 +190,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -322,11 +209,16 @@
               <item name="stencil" type="462c0819:PsiDirectoryNode" />
               <item name="data_struct" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ACM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ACM" type="462c0819:PsiDirectoryNode" />
+              <item name="stencil" type="462c0819:PsiDirectoryNode" />
+              <item name="string" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -369,6 +261,9 @@
       <method v="2" />
     </configuration>
     <configuration name="大范围贪心，小范围暴力.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/thinging/大范围贪心，小范围暴力.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="主席树.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/data_struct/主席树.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="主席树.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/data_struct/主席树.html" useBuiltInWebServerPort="true">
@@ -500,11 +395,13 @@
       <workItem from="1556543106500" duration="1423000" />
       <workItem from="1556596415777" duration="1787000" />
       <workItem from="1556598242912" duration="902000" />
+      <workItem from="1556600036983" duration="57000" />
+      <workItem from="1556600130930" duration="93000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93539000" />
+    <option name="totallyTimeSpent" value="93689000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -533,13 +430,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/reading_problem/indexs/2019.2.22.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/stencil/dp/数位dp.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
@@ -817,20 +707,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/stencil/data_struct/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="99" selection-start-line="19" selection-start-column="99" selection-end-line="19" selection-end-column="99" />
+        <state relative-caret-position="210">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/stencil/data_struct/划分树.html">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="90" selection-start-line="28" selection-start-column="90" selection-end-line="28" selection-end-column="90" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/new.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -867,11 +750,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/stencil/data_struct/主席树.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="753">
-          <caret line="218" column="6" selection-start-line="218" selection-start-column="6" selection-end-line="218" selection-end-column="6" />
+        <state relative-caret-position="210">
+          <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
           <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
             <element signature="e#318#324#0" expanded="true" />
             <element signature="e#324#330#0" expanded="true" />
             <element signature="e#330#336#0" expanded="true" />
@@ -883,91 +774,14 @@
             <element signature="e#589#595#0" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#3281#3287#0" expanded="true" />
-            <element signature="e#3287#3293#0" expanded="true" />
-            <element signature="e#3293#3299#0" expanded="true" />
-            <element signature="e#3299#3305#0" expanded="true" />
-            <element signature="e#3305#3311#0" expanded="true" />
-            <element signature="e#3311#3317#0" expanded="true" />
-            <element signature="e#3317#3323#0" expanded="true" />
-            <element signature="e#3323#3329#0" expanded="true" />
-            <element signature="e#3302#3308#0" expanded="true" />
-            <element signature="e#3308#3314#0" expanded="true" />
-            <element signature="e#3314#3320#0" expanded="true" />
-            <element signature="e#3320#3326#0" expanded="true" />
-            <element signature="e#3326#3332#0" expanded="true" />
-            <element signature="e#3332#3338#0" expanded="true" />
-            <element signature="e#3338#3344#0" expanded="true" />
-            <element signature="e#3344#3350#0" expanded="true" />
-            <element signature="e#3413#3419#0" expanded="true" />
-            <element signature="e#3419#3425#0" expanded="true" />
-            <element signature="e#3425#3431#0" expanded="true" />
-            <element signature="e#3431#3437#0" expanded="true" />
-            <element signature="e#3437#3443#0" expanded="true" />
-            <element signature="e#3443#3449#0" expanded="true" />
-            <element signature="e#3449#3455#0" expanded="true" />
-            <element signature="e#3455#3461#0" expanded="true" />
-            <element signature="e#3554#3560#0" expanded="true" />
-            <element signature="e#3560#3566#0" expanded="true" />
-            <element signature="e#3566#3572#0" expanded="true" />
-            <element signature="e#3572#3578#0" expanded="true" />
-            <element signature="e#3578#3584#0" expanded="true" />
-            <element signature="e#3584#3590#0" expanded="true" />
-            <element signature="e#3590#3596#0" expanded="true" />
-            <element signature="e#3596#3602#0" expanded="true" />
-            <element signature="e#3724#3730#0" expanded="true" />
-            <element signature="e#3730#3736#0" expanded="true" />
-            <element signature="e#3736#3742#0" expanded="true" />
-            <element signature="e#3742#3748#0" expanded="true" />
-            <element signature="e#3748#3754#0" expanded="true" />
-            <element signature="e#3754#3760#0" expanded="true" />
-            <element signature="e#3760#3766#0" expanded="true" />
-            <element signature="e#3766#3772#0" expanded="true" />
-            <element signature="e#5179#5184#1" expanded="true" />
-            <element signature="e#6789#6793#0" expanded="true" />
-            <element signature="e#6793#6797#0" expanded="true" />
-            <element signature="e#6949#6953#0" expanded="true" />
-            <element signature="e#9275#9279#0" expanded="true" />
-            <element signature="e#9279#9283#0" expanded="true" />
-            <element signature="e#9433#9437#0" expanded="true" />
-            <element signature="e#11792#11796#0" expanded="true" />
-            <element signature="e#11817#11821#0" expanded="true" />
-            <element signature="e#11869#11873#0" expanded="true" />
-            <element signature="e#11880#11885#0" expanded="true" />
-            <element signature="e#12069#12074#1" expanded="true" />
-            <element signature="e#13341#13345#0" expanded="true" />
-            <element signature="e#13345#13349#0" expanded="true" />
-            <element signature="e#13501#13505#0" expanded="true" />
-            <element signature="e#15305#15310#0" expanded="true" />
-            <element signature="e#15928#15933#0" expanded="true" />
-            <element signature="e#16381#16385#1" expanded="true" />
-            <element signature="e#16764#16768#0" expanded="true" />
-            <element signature="e#16768#16772#0" expanded="true" />
-            <element signature="e#17052#17056#1" expanded="true" />
-            <element signature="e#17661#17665#1" expanded="true" />
-            <element signature="e#18144#18148#0" expanded="true" />
-            <element signature="e#18459#18463#1" expanded="true" />
-            <element signature="e#19091#19095#1" expanded="true" />
-            <element signature="e#19927#19931#1" expanded="true" />
-            <element signature="e#20559#20563#1" expanded="true" />
-            <element signature="e#22486#22490#0" expanded="true" />
-            <element signature="e#22490#22494#0" expanded="true" />
-            <element signature="e#26604#26608#1" expanded="true" />
-            <element signature="e#28785#28789#1" expanded="true" />
-            <element signature="e#29071#29075#0" expanded="true" />
-            <element signature="e#29309#29313#0" expanded="true" />
-            <element signature="e#29689#29693#0" expanded="true" />
-            <element signature="e#29693#29697#0" expanded="true" />
-            <element signature="e#29768#29772#0" expanded="true" />
-            <element signature="e#30553#30557#0" expanded="true" />
-            <element signature="e#31991#31996#1" expanded="true" />
-            <element signature="e#33558#33562#0" expanded="true" />
-            <element signature="e#33562#33566#0" expanded="true" />
-            <element signature="e#33718#33722#0" expanded="true" />
-            <element signature="e#38537#38541#0" expanded="true" />
-            <element signature="e#38541#38545#0" expanded="true" />
-            <element signature="e#38695#38699#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stencil/string/后缀自动机.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
         </state>
       </provider>
     </entry>
