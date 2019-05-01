@@ -1,0 +1,20 @@
+####
+bzoj3527
+####
+bzoj fft 2019.4.30
+####
+https://www.lydsy.com/JudgeOnline/problem.php?id=3527
+####
+那是一张图片
+####
+E_j=\sum_{i=0}^{j-1}{\frac{q_i}{(i-j)^2}}-\sum_{i=j+1}^{n}{\frac{q_i}{(i-j)^2}}\\
+ if f[I]=\frac{1}{i*i}\\
+E_j=\sum_{I=0}^{j-1}{q_i*f(j-i)}-\sum_{I=j+1}^{n}{q_i*f(i-j)}\\
+前面一项下标和为定值，后面一项下标差为定值
+fft
+####
+
+
+
+
+

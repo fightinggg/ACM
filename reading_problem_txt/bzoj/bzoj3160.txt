@@ -1,0 +1,18 @@
+####
+bzoj3160
+####
+bzoj fft 2019.4.30
+####
+https://www.lydsy.com/JudgeOnline/problem.php?id=3160
+####
+在一个只含有a,b的字符串中选一个子序列，
+1.不能是子串
+2.位置和字符都关于某条对称轴对称
+####
+枚举对称轴在下标i处，大致推导如下
+\sum_{x}{[a[i+x]==a[i-x]]}\\
+C-\sum_{x}{(a[i+x]-a[i-x])^2}\\
+C-\sum{(a[I+x]^2+a[i-x]^2-2a[I+x]a[I-x]}\\
+C+2\sum{a[I+x]a[i-x]}
+fft
+####
