@@ -1,19 +1,59 @@
+
+
+
+
+
+<!--源码不好看的啦-->
+<!--真的不好看-->
+<!--\prod_{i=1...n}{(2i-1)}  \%2^{64}\\-->
+<!--suppose\quad that\quad f(x,n)=(2x+1)(2x+3)(2x+5)...(2x+2n-1)\%2^{64}\\-->
+<!--then \quad the \quad 0th \quad item \quad of \quad f(x,n) \quad is \quad answer\\-->
+<!--we \quad can \quad try \quad to\quad calculate \quad f(x,n) \quad by \quad f(x,\left \lfloor \frac{n}{2} \right \rfloor)  \\-->
+<!--let \quad y=x+n\\-->
+<!--then \quad f(y,n)=(2y+1)(2y+3)(2y+5)...(2y+2n-1)\%2^{64}\\-->
+<!--so \quad f(x+n,n)=(2x+2n+1)(2x+2n+3)(2x+2n+5)...(2y+4n-1)\%2^{64}\\-->
+<!--Surprisedly \quad we \quad find \quad that \quad f(x,2n)=f(x,n)*f(x+n,n)\\-->
+<!--which \quad means \quad we \quad can \quad calculate\quad  f(x,2n)\quad  by\quad f(x,n) \quad easy\\-->
+<!--\\-->
+<!--becase \quad we \quad can \quad calculate \quad f(x+n,n)\quad by \quad f(x,n) \\-->
+<!--but \quad we \quad can't \quad calculate \quad it \quad faster \quad because\quad of\quad the\quad huge\quad numbers \quad of \quad item\\-->
+<!--considering \quad that \quad we \quad need \quad mod \quad 2^{64} , we\quad can \quad reserve \quad  the \quad items \quad with \quad index \quad less\quad  than\quad  64\\-->
+<!--because \quad the \quad useful \quad information \quad is  \quad the \quad 0th \quad item \\-->
+<!--and \quad in \quad f(x,n)\quad when \quad the\quad index\quad of\quad x \quad is \quad larger \quad than\quad 63 ,the \quad coefficient \quad of \quad it \quad must\quad divisible\quad 2^{64}\\-->
+<!--it \quad has \quad no \quad contribution \quad to \quad answer \quad and \quad f(x+n,n)\\-->
+<!--so \quad we \quad can \quad solve \quad it \quad by \quad this \quad way-->
+<!--\\-->
+<!--for \quad every \quad polynomial \quad we \quad reserve\quad the \quad first \quad 64\quad  items \quad of\quad x-->
+<!--\\ and  \quad then \quad calculate \quad f(x,n) \quad by-->
+<!--\left\{\begin{matrix}-->
+<!--\quad  f(x,\left \lfloor \frac{n}{2} \right \rfloor)*f(x+\left \lfloor \frac{n}{2} \right \rfloor,\left \lfloor \frac{n}{2} \right \rfloor)\quad if \quad n\%2=0\\-->
+<!--\quad  f(x,\left \lfloor \frac{n}{2} \right \rfloor)*f(x+\left \lfloor \frac{n}{2} \right \rfloor,\left \lfloor \frac{n}{2} \right \rfloor)*(2x+2n-1) \quad if \quad n\%2=1-->
+<!--\end{matrix}\right.-->
+<!--\\-->
+<!--and \quad we \quad can \quad get \quad the \quad answer \quad no \quad more \quad than \quad lg \quad times \quad recursion\\-->
+<!--because \quad of \quad the \quad 64 \quad items \quad only \quad and \quad we \quad don't\quad care \quad the \quad higher \quad  items  ,\\-->
+<!--it \quad is \quad very \quad fast \quad to \quad get \quad f(x,n)\quad by \quad f(x+n,n)-->
+<!--\\-->
+<!--so\quad the\quad  total\quad  time\quad  complexity \quad is \quad O(lgn)-->
+
+
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <script type="text/javascript" src="/ACM/js/link.js"></script>
-    <title>多项式倍增</title>
+    <title>多项式倍增加速阶乘取模</title>
 </head>
 
 
 <script type="text/javascript" src="/ACM/js/web_begin.js"></script>
 <div>
-    <center><h1>多项式倍增</h1></center>
+    <center><h1>多项式倍增加速阶乘取模</h1></center>
 
 
-    让你用lg的时间复杂度求下面这东西(n<1e18)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: grey">latex不能用中文，太烦了</span>
+    让你用lg的时间复杂度求下面这东西(n<1e18)<br>
     <a href="https://www.codecogs.com/eqnedit.php?latex=\prod_{i=1...n}{(2i-1)}&space;\%2^{64}\\&space;suppose\quad&space;that\quad&space;f(x,n)=(2x&plus;1)(2x&plus;3)(2x&plus;5)...(2x&plus;2n-1)\%2^{64}\\&space;then&space;\quad&space;the&space;\quad&space;0th&space;\quad&space;item&space;\quad&space;of&space;\quad&space;f(x,n)&space;\quad&space;is&space;\quad&space;answer\\&space;we&space;\quad&space;can&space;\quad&space;try&space;\quad&space;to\quad&space;calculate&space;\quad&space;f(x,n)&space;\quad&space;by&space;\quad&space;f(x,\left&space;\lfloor&space;\frac{n}{2}&space;\right&space;\rfloor)&space;\\&space;let&space;\quad&space;y=x&plus;n\\&space;then&space;\quad&space;f(y,n)=(2y&plus;1)(2y&plus;3)(2y&plus;5)...(2y&plus;2n-1)\%2^{64}\\&space;so&space;\quad&space;f(x&plus;n,n)=(2x&plus;2n&plus;1)(2x&plus;2n&plus;3)(2x&plus;2n&plus;5)...(2y&plus;4n-1)\%2^{64}\\&space;Surprisedly&space;\quad&space;we&space;\quad&space;find&space;\quad&space;that&space;\quad&space;f(x,2n)=f(x,n)*f(x&plus;n,n)\\&space;which&space;\quad&space;means&space;\quad&space;we&space;\quad&space;can&space;\quad&space;calculate\quad&space;f(x,2n)\quad&space;by\quad&space;f(x,n)&space;\quad&space;easy\\" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\prod_{i=1...n}{(2i-1)}&space;\%2^{64}\\&space;suppose\quad&space;that\quad&space;f(x,n)=(2x&plus;1)(2x&plus;3)(2x&plus;5)...(2x&plus;2n-1)\%2^{64}\\&space;then&space;\quad&space;the&space;\quad&space;0th&space;\quad&space;item&space;\quad&space;of&space;\quad&space;f(x,n)&space;\quad&space;is&space;\quad&space;answer\\&space;we&space;\quad&space;can&space;\quad&space;try&space;\quad&space;to\quad&space;calculate&space;\quad&space;f(x,n)&space;\quad&space;by&space;\quad&space;f(x,\left&space;\lfloor&space;\frac{n}{2}&space;\right&space;\rfloor)&space;\\&space;let&space;\quad&space;y=x&plus;n\\&space;then&space;\quad&space;f(y,n)=(2y&plus;1)(2y&plus;3)(2y&plus;5)...(2y&plus;2n-1)\%2^{64}\\&space;so&space;\quad&space;f(x&plus;n,n)=(2x&plus;2n&plus;1)(2x&plus;2n&plus;3)(2x&plus;2n&plus;5)...(2y&plus;4n-1)\%2^{64}\\&space;Surprisedly&space;\quad&space;we&space;\quad&space;find&space;\quad&space;that&space;\quad&space;f(x,2n)=f(x,n)*f(x&plus;n,n)\\&space;which&space;\quad&space;means&space;\quad&space;we&space;\quad&space;can&space;\quad&space;calculate\quad&space;f(x,2n)\quad&space;by\quad&space;f(x,n)&space;\quad&space;easy\\" title="\prod_{i=1...n}{(2i-1)} \%2^{64}\\ suppose\quad that\quad f(x,n)=(2x+1)(2x+3)(2x+5)...(2x+2n-1)\%2^{64}\\ then \quad the \quad 0th \quad item \quad of \quad f(x,n) \quad is \quad answer\\ we \quad can \quad try \quad to\quad calculate \quad f(x,n) \quad by \quad f(x,\left \lfloor \frac{n}{2} \right \rfloor) \\ let \quad y=x+n\\ then \quad f(y,n)=(2y+1)(2y+3)(2y+5)...(2y+2n-1)\%2^{64}\\ so \quad f(x+n,n)=(2x+2n+1)(2x+2n+3)(2x+2n+5)...(2y+4n-1)\%2^{64}\\ Surprisedly \quad we \quad find \quad that \quad f(x,2n)=f(x,n)*f(x+n,n)\\ which \quad means \quad we \quad can \quad calculate\quad f(x,2n)\quad by\quad f(x,n) \quad easy\\" /></a>
 
 
@@ -24,7 +64,23 @@
 
 
     <a href="https://www.codecogs.com/eqnedit.php?latex=\\&space;for&space;\quad&space;every&space;\quad&space;polynomial&space;\quad&space;we&space;\quad&space;reserve\quad&space;the&space;\quad&space;first&space;\quad&space;64\quad&space;items&space;\quad&space;of\quad&space;x&space;\\&space;and&space;\quad&space;then&space;\quad&space;calculate&space;\quad&space;f(x,n)&space;\quad&space;by&space;\left\{\begin{matrix}&space;\quad&space;f(x,\left&space;\lfloor&space;\frac{n}{2}&space;\right&space;\rfloor)*f(x&plus;\left&space;\lfloor&space;\frac{n}{2}&space;\right&space;\rfloor,\left&space;\lfloor&space;\frac{n}{2}&space;\right&space;\rfloor)\quad&space;if&space;\quad&space;n\%2=0\\&space;\quad&space;f(x,\left&space;\lfloor&space;\frac{n}{2}&space;\right&space;\rfloor)*f(x&plus;\left&space;\lfloor&space;\frac{n}{2}&space;\right&space;\rfloor,\left&space;\lfloor&space;\frac{n}{2}&space;\right&space;\rfloor)*(2x&plus;2n-1)&space;\quad&space;if&space;\quad&space;n\%2=1&space;\end{matrix}\right.&space;\\&space;and&space;\quad&space;we&space;\quad&space;can&space;\quad&space;get&space;\quad&space;the&space;\quad&space;answer&space;\quad&space;no&space;\quad&space;more&space;\quad&space;than&space;\quad&space;lg&space;\quad&space;times&space;\quad&space;recursion\\&space;because&space;\quad&space;of&space;\quad&space;the&space;\quad&space;64&space;\quad&space;items&space;\quad&space;only&space;\quad&space;and&space;\quad&space;we&space;\quad&space;don't\quad&space;care&space;\quad&space;the&space;\quad&space;higher&space;\quad&space;items&space;,\\&space;it&space;\quad&space;is&space;\quad&space;very&space;\quad&space;fast&space;\quad&space;to&space;\quad&space;get&space;\quad&space;f(x,n)\quad&space;by&space;\quad&space;f(x&plus;n,n)&space;\\&space;so\quad&space;the\quad&space;total\quad&space;time\quad&space;complexity&space;\quad&space;is&space;\quad&space;O(lgn)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\\&space;for&space;\quad&space;every&space;\quad&space;polynomial&space;\quad&space;we&space;\quad&space;reserve\quad&space;the&space;\quad&space;first&space;\quad&space;64\quad&space;items&space;\quad&space;of\quad&space;x&space;\\&space;and&space;\quad&space;then&space;\quad&space;calculate&space;\quad&space;f(x,n)&space;\quad&space;by&space;\left\{\begin{matrix}&space;\quad&space;f(x,\left&space;\lfloor&space;\frac{n}{2}&space;\right&space;\rfloor)*f(x&plus;\left&space;\lfloor&space;\frac{n}{2}&space;\right&space;\rfloor,\left&space;\lfloor&space;\frac{n}{2}&space;\right&space;\rfloor)\quad&space;if&space;\quad&space;n\%2=0\\&space;\quad&space;f(x,\left&space;\lfloor&space;\frac{n}{2}&space;\right&space;\rfloor)*f(x&plus;\left&space;\lfloor&space;\frac{n}{2}&space;\right&space;\rfloor,\left&space;\lfloor&space;\frac{n}{2}&space;\right&space;\rfloor)*(2x&plus;2n-1)&space;\quad&space;if&space;\quad&space;n\%2=1&space;\end{matrix}\right.&space;\\&space;and&space;\quad&space;we&space;\quad&space;can&space;\quad&space;get&space;\quad&space;the&space;\quad&space;answer&space;\quad&space;no&space;\quad&space;more&space;\quad&space;than&space;\quad&space;lg&space;\quad&space;times&space;\quad&space;recursion\\&space;because&space;\quad&space;of&space;\quad&space;the&space;\quad&space;64&space;\quad&space;items&space;\quad&space;only&space;\quad&space;and&space;\quad&space;we&space;\quad&space;don't\quad&space;care&space;\quad&space;the&space;\quad&space;higher&space;\quad&space;items&space;,\\&space;it&space;\quad&space;is&space;\quad&space;very&space;\quad&space;fast&space;\quad&space;to&space;\quad&space;get&space;\quad&space;f(x,n)\quad&space;by&space;\quad&space;f(x&plus;n,n)&space;\\&space;so\quad&space;the\quad&space;total\quad&space;time\quad&space;complexity&space;\quad&space;is&space;\quad&space;O(lgn)" title="\\ for \quad every \quad polynomial \quad we \quad reserve\quad the \quad first \quad 64\quad items \quad of\quad x \\ and \quad then \quad calculate \quad f(x,n) \quad by \left\{\begin{matrix} \quad f(x,\left \lfloor \frac{n}{2} \right \rfloor)*f(x+\left \lfloor \frac{n}{2} \right \rfloor,\left \lfloor \frac{n}{2} \right \rfloor)\quad if \quad n\%2=0\\ \quad f(x,\left \lfloor \frac{n}{2} \right \rfloor)*f(x+\left \lfloor \frac{n}{2} \right \rfloor,\left \lfloor \frac{n}{2} \right \rfloor)*(2x+2n-1) \quad if \quad n\%2=1 \end{matrix}\right. \\ and \quad we \quad can \quad get \quad the \quad answer \quad no \quad more \quad than \quad lg \quad times \quad recursion\\ because \quad of \quad the \quad 64 \quad items \quad only \quad and \quad we \quad don't\quad care \quad the \quad higher \quad items ,\\ it \quad is \quad very \quad fast \quad to \quad get \quad f(x,n)\quad by \quad f(x+n,n) \\ so\quad the\quad total\quad time\quad complexity \quad is \quad O(lgn)" /></a>
-
+    <div id="text">
+        假设f(x,n)=(2x+1)(2x+3)(2x+5)...(2x+2n-1)%64<br>
+        然后这东西的0次项系数就是答案<br>
+        我们尝试通过f(x,n/2)来求f(x,n)<br>
+        令y=x+n<br>
+        则f(y,n)=(2y+1)(2y+3)(2y+5)...(2y+2n-1)%64<br>
+        所以f(x+n,n)=(2x+2n+1)(2x+2n+3)(2x+2n+5)...(2x+4n-1)%64<br>
+        我们惊讶地发现了f(x,2n)=f(x,n)*(fx+n,n)<br>
+        这意味着我们可以通过f(x,n)来求f(x,2n)因为我们可以通过f(x,n)求出f(x+n,n)<br>
+        很遗憾的是这些东西项数太多了<br>
+        考虑到我们要的是模上2^64的答案，我们可以只保留前64项<br>
+        因为有用的只有0次项，但是在f(x,n)转移到f(x+n,n)的时候也只有前64项有效，因为大于指数64的项，他们前面的系数一定整除2^64次方，<br>
+        于是我们就有了做法了<br>
+        我们保留前64项<br>
+        ...<br>
+        时间复杂度为lg级别<br>
+    </div>
 
 </div>
 <script type="text/javascript" src="/ACM/js/web_end.js"></script>
