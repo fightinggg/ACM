@@ -1,0 +1,20 @@
+####
+cf165C
+####
+bzoj 尺取法 dp值单调性 二分 2019.5.2
+####
+https://codeforc.es/problemset/problem/165/C
+####
+给你一个01串s,|s|<1e6
+给你一个k, k<|s|
+让你求s的子串中有多少个包含了恰好k个1
+####
+dp1[i]代表以i结尾，恰好包含了k个1的最小起点
+dp2[i]代表以i结尾，恰好包含了k个1的最大起点
+显然两个dp都关于i单调不减
+
+或者这样
+pre[i]统计前i个数里面有多少个1
+然后lower_bound + upper_bound 搞pre数组
+####
+

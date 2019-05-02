@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>bzoj4827</title>
+</head>
+
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>bzoj4827</h1></center>
+    <div id="text">
+    <h2>链接</h2>
+        <div id="normal_href">
+            <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=4827" target="_blank">https://www.lydsy.com/JudgeOnline/problem.php?id=4827</a><br>
+        </div>
+    <h2>题意</h2>
+        <span style="color:red">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;给两个长度为n的首尾相连的序列a,b,你可以旋转他们，可以让整个序列加上一个定值，最后要最小化sigma((ai-bi)^2)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n&lt;5e4,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ai,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bi&lt;100&nbsp;<br>
+        </span>
+    <h2>题解</h2>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;求sigma((a[i]-b[i+k]+C)^2)的最值-&gt;求sigma(a[i]*b[i+k])的最值-&gt;翻转一个串-&gt;sigma(a[n-i]*b[i+k])-&gt;fft<br>
+    </div>
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>
