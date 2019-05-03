@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>最短路和第k短路</title>
+</head>
+
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>最短路和第k短路</h1></center>
+    <div id="text">
+        <h2>先bb一堆</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dij算法很简单，就是通过不断的松弛离源最近的点，说白了，就是一个bfs变种,或者叫做启发式搜索？启发函数就是当前的距离。搜索过程中松弛点<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A*算法也不难，本质上就是启发式搜索，核心就在启发函数f+g上面，其中f为当前走过的路径长度，g为估值函数，估计下还有多远到终点<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在一般的A*搜索中，可以解决迷宫问题，用曼哈顿距离来作为g函数，可以跑的飞快<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们可以根据dij算法求出的信息来计算第k短路。<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们对原图的反向图，求出以待求终点为起点的最短路数组，以此作为A*的启发函数的评估函数，可以证明，在此启发函数作为指引的情况下，
+        我们首先会得到一条从原图起点到终点的路线，如果我们此时不让算法停止，忽略此次结果，那么我们得到的第二个路线是什么呢？<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其实就是第二短路。<br>
+
+        <h2>dijkstra</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dijkstra算法，用于解决单源最短路问题，是一种每一次通过贪心的选择距离源点最近的点来松弛其他点来得到解的方法。
+        <h2>为什么选择距离源点最近的没有松弛过其他点的点</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在松弛过程中，距离数组（函数）表达的意义是这样的，dist(i)代表到i到最短路不会短于dist(i)
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们尝试用第一数学归纳法来证明松弛的这个点已经达到了最短路状态，<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数学归纳法第一步:归纳起点，我们选择松弛的第一个点是源点自己，首先不可否认，对源点自己来说，他已经达到了最短路状态。
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数学归纳法第二步:假设我们已经用k个点松弛过其他点，那么这k个点都已经达到了最短路状态，那么我们接下来要选择第k+1个点来松弛其他点，
+        我们在所有没有松弛过其他点的点中，选出了距离源点最近的点之一，下面来证明这个点已经达到了最短路状态<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设它并非为最短路状态，首先，那就意味着他的最后一步并非通过那k个点到它来得到，肯定是剩余到没有松弛过其点的点得到的，
+        然鹅，你要到其他点，在到此点，的路，显然比直接到此点更长，因为我们选出的就是离源点最近的点，矛盾。
+        <h2>启发式搜索</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于启发式搜索，他有一个启发函数，看哪个点的启发函数值大/小，就先搜索哪一个，比方说，dfs的启发函数是点的深度，bfs的启发函数是点的深度的相反数。
+        <h2>A*搜索</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于A*搜索，他也有启发函数，他的启发函数一般为当前已经走过的路径长度+评估函数，这个评估函数，在迷宫搜索中一般取
+        曼哈顿距离，在最短路搜索中评估函数一般选取为小于等于真实距离，否则会得到错解，比方说，若把dij算法看着A*搜索，他的的评估函数就是f(x)=0哈哈哈哈。可以证明，评估函数选取为小于等于真实距离，
+        不会导致算法正确性的改变。
+        <h2>如何求第k短路？</h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果我们以每一个点到终点到真实最短距离作为评估函数，这个评估函数简直神了，这不叫评估了，这叫开挂。对我们就是开挂，这个挂好开
+        建反向图跑dij即可，然后我们以这个启发函数为指引，来搜索，一下子就找到了最短路，0.0 ，这不是我们想要的，丢掉，只要我们不退出程序，我们就会逐渐得到第二短路、第三短路、等等，这个很显然的。
+    </div>
+
+    <div id="text">
+        <h1>spfa算法</h1>
+    </div>
+    <div id="code">
+     					<pre><span class="c1">//最短/长路spfa算法</span>
+<span class="c1">//可以用于解决差分约束问题</span>
+<span class="c1">//对于同一张图可以多次调用spfa()，你不需要担心初始化问题</span>
+<span class="c1">//对图进行修改/初始化时要调用ini()</span>
+
+<span class="c1">//关于差分约束问题</span>
+<span class="c1">//如果是大于号不等式x1&gt;=x2+k,则连边x2-&gt;x1,对应找最长路</span>
+<span class="c1">//如果是小于号不等式x1&lt;=x2+k,则连边x2-&gt;x1,对应找最短路</span>
+
+<span class="k">struct</span> <span class="n">spfa</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span
+                                    class="n">maxn</span><span class="o">=</span><span class="mf">2e6</span><span
+                                    class="o">+</span><span class="mi">10</span><span class="p">;</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span
+                                    class="n">maxm</span><span class="o">=</span><span class="mf">6e6</span><span
+                                    class="o">+</span><span class="mi">10000</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">head</span><span class="p">[</span><span class="n">maxn</span><span
+                                    class="p">],</span><span class="n">cir</span><span class="p">[</span><span
+                                    class="n">maxn</span><span class="p">],</span><span class="n">d</span><span
+                                    class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+    <span class="kt">bool</span> <span class="n">inq</span><span class="p">[</span><span class="n">maxn</span><span
+                                    class="p">];</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">cnt</span><span
+                                    class="p">;</span>
+
+    <span class="k">struct</span> <span class="n">edge</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">v</span><span class="p">,</span><span class="n">w</span><span
+                                    class="p">,</span><span class="n">nex</span><span class="p">;</span>
+    <span class="p">}</span> <span class="n">g</span><span class="p">[</span><span class="n">maxm</span><span class="p">];</span>
+
+    <span class="kt">void</span> <span class="n">ini</span><span class="p">(</span><span class="kt">int</span> <span
+                                    class="n">newn</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">n</span><span class="o">=</span><span class="n">newn</span><span class="p">;</span>
+        <span class="n">cnt</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">head</span><span class="p">,</span><span
+                                    class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="k">sizeof</span><span
+                                    class="p">(</span><span class="n">head</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">add_edge</span><span class="p">(</span><span
+                                    class="kt">int</span> <span class="n">u</span><span class="p">,</span><span
+                                    class="kt">int</span> <span class="n">v</span><span class="p">,</span><span
+                                    class="kt">int</span> <span class="n">w</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">g</span><span class="p">[</span><span class="n">cnt</span><span class="p">].</span><span
+                                    class="n">v</span><span class="o">=</span><span class="n">v</span><span
+                                    class="p">;</span>
+        <span class="n">g</span><span class="p">[</span><span class="n">cnt</span><span class="p">].</span><span
+                                    class="n">w</span><span class="o">=</span><span class="n">w</span><span
+                                    class="p">;</span>
+        <span class="n">g</span><span class="p">[</span><span class="n">cnt</span><span class="p">].</span><span
+                                    class="n">nex</span><span class="o">=</span><span class="n">head</span><span
+                                    class="p">[</span><span class="n">u</span><span class="p">];</span>
+        <span class="n">head</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span
+                                    class="o">=</span><span class="n">cnt</span><span class="o">++</span><span
+                                    class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">bool</span> <span class="n">short_path</span><span class="p">(</span><span
+                                    class="kt">int</span> <span class="n">s</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">fill</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span
+                                    class="n">d</span><span class="o">+</span><span class="n">n</span><span
+                                    class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mf">1e9</span><span
+                                    class="p">);</span><span class="c1">//最短路选这个</span>
+        <span class="c1">//memset(d,0,sizeof(d));//最长路选这个</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">cir</span><span class="p">,</span><span
+                                    class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span
+                                    class="p">(</span><span class="n">cir</span><span class="p">));</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">inq</span><span class="p">,</span><span
+                                    class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span
+                                    class="p">(</span><span class="n">inq</span><span class="p">));</span>
+
+        <span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span
+                                    class="o">&gt;</span><span class="n">q</span><span class="p">;</span>
+        <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span
+                                    class="n">s</span><span class="p">);</span>
+        <span class="n">inq</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span
+                                    class="o">=</span><span class="kc">true</span><span class="p">;</span>
+        <span class="n">d</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">=</span><span
+                                    class="mi">0</span><span class="p">;</span>
+        <span class="n">cir</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span
+                                    class="o">=</span><span class="mi">1</span><span class="p">;</span>
+
+        <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">q</span><span
+                                    class="p">.</span><span class="n">empty</span><span class="p">())</span> <span
+                                    class="c1">//不要写成了while(~q.empty())</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">u</span><span class="o">=</span><span class="n">q</span><span
+                                    class="p">.</span><span class="n">front</span><span class="p">();</span>
+            <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+            <span class="n">inq</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span
+                                    class="o">=</span><span class="kc">false</span><span class="p">;</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                                    class="o">=</span><span class="n">head</span><span class="p">[</span><span
+                                    class="n">u</span><span class="p">];</span> <span class="o">~</span><span class="n">i</span><span
+                                    class="p">;</span> <span class="n">i</span><span class="o">=</span><span
+                                    class="n">g</span><span class="p">[</span><span class="n">i</span><span
+                                    class="p">].</span><span class="n">nex</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">int</span> <span class="n">v</span><span class="o">=</span><span
+                                    class="n">g</span><span class="p">[</span><span class="n">i</span><span
+                                    class="p">].</span><span class="n">v</span><span class="p">,</span><span
+                                    class="n">w</span><span class="o">=</span><span class="n">g</span><span
+                                    class="p">[</span><span class="n">i</span><span class="p">].</span><span
+                                    class="n">w</span><span class="p">;</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span
+                                    class="n">v</span><span class="p">]</span><span class="o">&gt;</span><span
+                                    class="n">d</span><span class="p">[</span><span class="n">u</span><span
+                                    class="p">]</span><span class="o">+</span><span class="n">w</span><span
+                                    class="p">)</span> <span class="c1">//大于号就是求最短路，小于号就是求最长路</span>
+                <span class="p">{</span>
+                    <span class="n">d</span><span class="p">[</span><span class="n">v</span><span
+                                    class="p">]</span><span class="o">=</span><span class="n">d</span><span
+                                    class="p">[</span><span class="n">u</span><span class="p">]</span><span
+                                    class="o">+</span><span class="n">w</span><span class="p">;</span>
+                    <span class="c1">////////////////////////////////</span>
+                    <span class="cm">/*</span>
+<span class="cm">                    if(++cir[v]&gt;=2+n)</span>
+<span class="cm">                        return false;</span>
+<span class="cm">                    */</span>
+                    <span class="c1">///////////////////////////////</span>
+                    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span
+                                    class="n">inq</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
+                    <span class="p">{</span>
+                        <span class="n">inq</span><span class="p">[</span><span class="n">v</span><span
+                                    class="p">]</span><span class="o">=</span><span class="kc">true</span><span
+                                    class="p">;</span>
+                        <span class="n">q</span><span class="p">.</span><span class="n">push</span><span
+                                    class="p">(</span><span class="n">v</span><span class="p">);</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="n">g</span><span class="p">;</span>
+<span class="c1">//solved bzoj2330   使用判正环+最长路</span>
+<span class="c1">//solved bzoj1001   使用最长路   发现判负环出现了问题 将&gt;=n改为&gt;=n+2就没问题了</span>
+<span class="c1">/////////////////////</span>
+</pre>
+    </div>
+
+    <div id="text"><h2>dijkstra和A*</h2></div>
+    <div id="code">
+        <pre><span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span><span
+                class="o">=</span><span class="mf">1e6</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">buf</span><span class="p">[</span><span class="n">maxn</span><span
+                    class="p">];</span>
+<span class="k">struct</span> <span class="n">graph</span><span class="p">{</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span
+                    class="n">maxn</span><span class="o">=</span><span class="mf">1e3</span><span
+                    class="o">+</span><span
+                    class="mi">5</span><span class="p">;</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span
+                    class="n">maxm</span><span class="o">=</span><span class="mf">1e5</span><span
+                    class="o">+</span><span
+                    class="mi">5</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">star</span><span class="p">{</span>
+        <span class="kt">int</span> <span class="n">v</span><span class="p">,</span><span class="n">w</span><span
+                    class="p">,</span><span class="n">nex</span><span class="p">;</span>
+        <span class="n">star</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span
+                    class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="kt">int</span> <span
+                    class="n">w</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span
+                    class="kt">int</span> <span class="n">nex</span><span class="o">=</span><span
+                    class="mi">0</span><span
+                    class="p">)</span><span class="o">:</span><span class="n">v</span><span class="p">(</span><span
+                    class="n">v</span><span class="p">),</span><span class="n">w</span><span class="p">(</span><span
+                    class="n">w</span><span class="p">),</span><span class="n">nex</span><span class="p">(</span><span
+                    class="n">nex</span><span class="p">){}</span>
+    <span class="p">}</span><span class="n">edge</span><span class="p">[</span><span class="n">maxm</span><span
+                    class="p">];</span><span class="c1">//有向图不要双倍边</span>
+    <span class="kt">int</span> <span class="n">head</span><span class="p">[</span><span class="n">maxn</span><span
+                    class="p">],</span> <span class="n">tot</span><span class="p">,</span> <span class="n">n</span><span
+                    class="p">;</span>
+
+    <span class="kt">void</span> <span class="n">init</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">_n</span><span class="p">){</span>
+        <span class="n">n</span><span class="o">=</span><span class="n">_n</span><span class="p">;</span>
+        <span class="n">tot</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">head</span><span class="p">,</span><span
+                    class="o">-</span><span class="mi">1</span><span class="p">,(</span><span class="n">n</span><span
+                    class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span
+                    class="k">sizeof</span><span class="p">(</span><span class="n">head</span><span
+                    class="p">[</span><span
+                    class="mi">0</span><span class="p">]));</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">add_edge</span><span class="p">(</span><span
+                    class="kt">int</span> <span class="n">u</span><span class="p">,</span><span
+                    class="kt">int</span> <span
+                    class="n">v</span><span class="p">,</span><span class="kt">int</span> <span class="n">w</span><span
+                    class="p">){</span>
+        <span class="n">edge</span><span class="p">[</span><span class="o">++</span><span class="n">tot</span><span
+                    class="p">]</span><span class="o">=</span><span class="n">star</span><span class="p">(</span><span
+                    class="n">v</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span
+                    class="n">head</span><span class="p">[</span><span class="n">u</span><span class="p">]);</span>
+        <span class="n">head</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span
+                    class="o">=</span><span class="n">tot</span><span class="p">;</span>
+    <span class="p">}</span>
+
+
+    <span class="k">struct</span> <span class="n">dijnode</span><span class="p">{</span>
+        <span class="kt">int</span> <span class="n">d</span><span class="p">,</span><span class="n">u</span><span
+                    class="p">;</span>
+        <span class="kt">bool</span> <span class="k">operator</span><span class="o">&lt;</span><span
+                    class="p">(</span><span class="k">const</span> <span class="n">dijnode</span><span
+                    class="o">&amp;</span><span class="n">rhs</span><span class="p">)</span><span
+                    class="k">const</span><span class="p">{</span><span class="k">return</span> <span
+                    class="n">d</span><span class="o">&gt;</span><span class="n">rhs</span><span class="p">.</span><span
+                    class="n">d</span><span class="p">;}</span>
+        <span class="n">dijnode</span><span class="p">(</span><span class="kt">int</span> <span class="n">d</span><span
+                    class="p">,</span><span class="kt">int</span> <span class="n">u</span><span class="p">)</span><span
+                    class="o">:</span><span class="n">d</span><span class="p">(</span><span class="n">d</span><span
+                    class="p">),</span><span class="n">u</span><span class="p">(</span><span class="n">u</span><span
+                    class="p">){}</span>
+    <span class="p">};</span>
+    <span class="kt">void</span> <span class="n">short_path</span><span class="p">(</span><span
+                    class="kt">int</span> <span class="n">s</span><span class="p">,</span><span
+                    class="kt">int</span><span
+                    class="o">*</span><span class="n">dist</span><span class="p">){</span><span
+                    class="c1">//short path</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span
+                    class="o">++</span><span class="p">)</span> <span class="n">dist</span><span class="p">[</span><span
+                    class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mf">2e9</span><span
+                    class="p">;</span>
+        <span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">dijnode</span><span class="o">&gt;</span><span
+                    class="n">q</span><span class="p">;</span><span class="c1">// dis and vert</span>
+        <span class="n">dist</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span
+                    class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span
+                    class="n">dijnode</span><span class="p">(</span><span class="n">dist</span><span
+                    class="p">[</span><span
+                    class="n">s</span><span class="p">],</span><span class="n">s</span><span class="p">));</span>
+        <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">q</span><span
+                    class="p">.</span><span class="n">empty</span><span class="p">()){</span>
+            <span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="n">q</span><span
+                    class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">u</span><span
+                    class="p">;</span> <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span
+                    class="p">();</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="n">head</span><span class="p">[</span><span class="n">u</span><span
+                    class="p">];</span><span class="o">~</span><span class="n">i</span><span class="p">;</span><span
+                    class="n">i</span><span class="o">=</span><span class="n">edge</span><span class="p">[</span><span
+                    class="n">i</span><span class="p">].</span><span class="n">nex</span><span class="p">){</span>
+                <span class="kt">int</span> <span class="n">v</span><span class="o">=</span><span
+                    class="n">edge</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span
+                    class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span
+                    class="n">edge</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span
+                    class="n">w</span><span class="p">;</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">dist</span><span
+                    class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">+</span><span
+                    class="n">w</span><span class="o">&lt;</span><span class="n">dist</span><span
+                    class="p">[</span><span
+                    class="n">v</span><span class="p">]){</span>
+                    <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span
+                    class="p">]</span><span class="o">=</span><span class="n">dist</span><span class="p">[</span><span
+                    class="n">u</span><span class="p">]</span><span class="o">+</span><span class="n">w</span><span
+                    class="p">;</span>
+                    <span class="n">q</span><span class="p">.</span><span class="n">push</span><span
+                    class="p">(</span><span class="n">dijnode</span><span class="p">(</span><span
+                    class="n">dist</span><span
+                    class="p">[</span><span class="n">v</span><span class="p">],</span><span class="n">v</span><span
+                    class="p">));</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+
+    <span class="k">struct</span> <span class="n">Astarnode</span><span class="p">{</span>
+        <span class="kt">int</span> <span class="n">d</span><span class="p">,</span><span class="n">need</span><span
+                    class="p">,</span><span class="n">u</span><span class="p">;</span>
+        <span class="kt">bool</span> <span class="k">operator</span><span class="o">&lt;</span><span
+                    class="p">(</span><span class="k">const</span> <span class="n">Astarnode</span><span
+                    class="o">&amp;</span><span class="n">rhs</span><span class="p">)</span><span
+                    class="k">const</span><span class="p">{</span><span class="k">return</span> <span
+                    class="n">d</span><span class="o">+</span><span class="n">need</span><span
+                    class="o">&gt;</span><span
+                    class="n">rhs</span><span class="p">.</span><span class="n">d</span><span class="o">+</span><span
+                    class="n">rhs</span><span class="p">.</span><span class="n">need</span><span class="p">;}</span>
+        <span class="n">Astarnode</span><span class="p">(</span><span class="kt">int</span> <span
+                    class="n">d</span><span class="p">,</span><span class="kt">int</span> <span
+                    class="n">need</span><span
+                    class="p">,</span><span class="kt">int</span> <span class="n">u</span><span class="p">)</span><span
+                    class="o">:</span><span class="n">d</span><span class="p">(</span><span class="n">d</span><span
+                    class="p">),</span><span class="n">need</span><span class="p">(</span><span
+                    class="n">need</span><span
+                    class="p">),</span><span class="n">u</span><span class="p">(</span><span class="n">u</span><span
+                    class="p">){}</span>
+    <span class="p">};</span>
+    <span class="kt">int</span> <span class="n">kthway</span><span class="p">(</span><span class="n">graph</span><span
+                    class="o">&amp;</span><span class="n">rev</span><span class="p">,</span><span
+                    class="kt">int</span> <span class="n">s</span><span class="p">,</span><span
+                    class="kt">int</span> <span
+                    class="n">t</span><span class="p">,</span><span class="kt">int</span> <span class="n">k</span><span
+                    class="p">){</span><span class="c1">//from s to t the kth way ， g是反向图</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="o">==</span><span
+                    class="n">t</span><span class="p">)</span><span class="n">k</span><span class="o">++</span><span
+                    class="p">;</span>
+        <span class="kt">int</span><span class="o">*</span><span class="n">dist</span><span class="o">=</span><span
+                    class="n">buf</span><span class="p">;</span><span class="c1">//分配内存</span>
+        <span class="n">rev</span><span class="p">.</span><span class="n">short_path</span><span class="p">(</span><span
+                    class="n">t</span><span class="p">,</span><span class="n">dist</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span
+                    class="n">s</span><span class="p">]</span><span class="o">==</span><span class="mf">2e9</span><span
+                    class="p">)</span><span class="k">return</span> <span class="o">-</span><span
+                    class="mi">1</span><span
+                    class="p">;</span><span class="c1">//此路不通</span>
+        <span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">Astarnode</span><span class="o">&gt;</span><span
+                    class="n">q</span><span class="p">;</span>
+        <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span
+                    class="n">Astarnode</span><span class="p">(</span><span class="mi">0</span><span
+                    class="p">,</span><span
+                    class="n">dist</span><span class="p">[</span><span class="n">s</span><span class="p">],</span><span
+                    class="n">s</span><span class="p">));</span>
+        <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">q</span><span
+                    class="p">.</span><span class="n">empty</span><span class="p">()){</span>
+            <span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="n">q</span><span
+                    class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">u</span><span
+                    class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">q</span><span
+                    class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">d</span><span
+                    class="p">;</span>
+            <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">u</span><span class="o">==</span><span
+                    class="n">t</span><span class="p">){</span>
+                <span class="n">k</span><span class="o">--</span><span class="p">;</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">k</span><span class="o">==</span><span
+                    class="mi">0</span><span class="p">)</span><span class="k">return</span> <span
+                    class="n">d</span><span
+                    class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                    class="o">=</span><span class="n">head</span><span class="p">[</span><span class="n">u</span><span
+                    class="p">];</span><span class="o">~</span><span class="n">i</span><span class="p">;</span><span
+                    class="n">i</span><span class="o">=</span><span class="n">edge</span><span class="p">[</span><span
+                    class="n">i</span><span class="p">].</span><span class="n">nex</span><span class="p">){</span>
+                <span class="kt">int</span> <span class="n">v</span><span class="o">=</span><span
+                    class="n">edge</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span
+                    class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span
+                    class="n">edge</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span
+                    class="n">w</span><span class="p">;</span>
+                <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span
+                    class="n">Astarnode</span><span class="p">(</span><span class="n">d</span><span
+                    class="o">+</span><span
+                    class="n">w</span><span class="p">,</span><span class="n">dist</span><span class="p">[</span><span
+                    class="n">v</span><span class="p">],</span><span class="n">v</span><span class="p">));</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span><span
+                    class="c1">//没那么多路</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre>
+    </div>
+
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>
+
+
