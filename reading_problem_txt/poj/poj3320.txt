@@ -1,7 +1,7 @@
 ####
 poj3320
 ####
-bzoj 尺取法 dp值单调性 2019.5.2
+poj 尺取法 dp值单调性 2019.5.2
 ####
 http://poj.org/problem?id=3320
 ####

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>cf749C</title>
+</head>
+
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>cf749C</h1></center>
+    <div id="text">
+    <h2>链接</h2>
+        <div id="normal_href">
+            <a href="http://codeforces.com/problemset/problem/749/C" target="_blank">http://codeforces.com/problemset/problem/749/C</a><br>
+        </div>
+    <h2>题意</h2>
+        <span style="color:red">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;共有n个人，编号为1~n。他们每个人属于且仅属于R阵营或N阵营中的一个。现在他们要进行一场投票。投票可能进行多轮，每一轮投票都是按照从1~n的顺序，当轮到某一人投票的时候，他可以什么都不做，也可以随便挑选一人使他丧失投票的权利。每个人都会代表自己阵营的利益。一个人如果丧失了投票权利，则他直到这场投票结束都不能再投票。投票直到某一阵营一个人都没有的时候就会结束，此时一个人都没有的阵营失败，另一个阵营获胜。<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在给定每个人所属的阵营，问最后哪个阵营会获胜。<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;要求线性时间解决<br>
+        </span>
+    <h2>题解</h2>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;贪心做法:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每个人干掉他后面的第一个非本阵营的人即可，模拟一下<br>
+    </div>
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>

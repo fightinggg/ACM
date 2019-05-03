@@ -1,7 +1,7 @@
 ####
 cf1036D
 ####
-bzoj 尺取法 dp值单调性 贪心 思维 2019.5.2
+cf 尺取法 dp值单调性 贪心 思维 2019.5.2
 ####
 https://codeforc.es/problemset/problem/1036/D
 ####

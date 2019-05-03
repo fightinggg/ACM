@@ -1,7 +1,7 @@
 ####
 cf165C
 ####
-bzoj 尺取法 dp值单调性 二分 2019.5.2
+cf 尺取法 dp值单调性 二分 2019.5.2
 ####
 https://codeforc.es/problemset/problem/165/C
 ####
