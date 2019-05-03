@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>cf466C</title>
+</head>
+
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>cf466C</h1></center>
+    <div id="text">
+    <h2>链接</h2>
+        <div id="normal_href">
+            <a href="http://codeforces.com/problemset/problem/466/C" target="_blank">http://codeforces.com/problemset/problem/466/C</a><br>
+        </div>
+    <h2>题意</h2>
+        <span style="color:red">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;给你一个长为n的数组，数组元素有正有负，让你划分数组为三部分<br>
+        </span>
+    <h2>题解</h2>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;统计前缀和为sum/3的位置，后缀和sum/3的位置，<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;借此统计后缀中有多少个后缀和为sum/3的位置,计作g(i)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;转换题意为求对于每一个前缀和为sum/3的位置，求和g(i+1)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;就是答案<br>
+    </div>
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>
