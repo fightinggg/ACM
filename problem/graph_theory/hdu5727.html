@@ -16,17 +16,17 @@
     </h1>
 
     <div id="text">
-        题意:</br>
+        题意:<br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;给你最n个阳珠子和n个阴珠子（n&le;9），要你串成阴阳相隔的珠链,有一些阳珠子不能和某些阴珠子放一起,否则会失去光芒,询问至少有几个阳珠子失去光芒.
     </div>
 
 
     <script type="text/javascript" src="/ACM/js/solve_begin.js"></script>
     <div>
-        因为阴阳相隔，所以我们可以考虑枚举阴珠子的全排列，在阴珠子之间插入阳珠子完成，插入使用二分图匹配完成。</br>
-        优化:</br>
-        &nbsp;&nbsp;1.考虑旋转，锁定全排列中第一个数字即可</br>
-        &nbsp;&nbsp;2.考虑翻转，hash环排列以及他的翻转排列即可</br>
+        因为阴阳相隔，所以我们可以考虑枚举阴珠子的全排列，在阴珠子之间插入阳珠子完成，插入使用二分图匹配完成。<br>
+        优化:<br>
+        &nbsp;&nbsp;1.考虑旋转，锁定全排列中第一个数字即可<br>
+        &nbsp;&nbsp;2.考虑翻转，hash环排列以及他的翻转排列即可<br>
     </div>
     <script type="text/javascript" src="/ACM/js/solve_end.js"></script>
 
