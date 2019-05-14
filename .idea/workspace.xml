@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e505d993-0813-4b95-9e39-e1a7b5c097cb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/problem/graph_theory/uoj67.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stencil/graph_theory/tarjan强联通分量.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/problem/graph_theory/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/problem/graph_theory/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stencil/graph_theory/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/stencil/graph_theory/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,67 +17,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/index.html">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/stencil/graph_theory/tarjan强联通分量.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="14" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+            <state relative-caret-position="1755">
+              <caret line="117" column="114" lean-forward="true" selection-start-line="117" selection-start-column="114" selection-end-line="117" selection-end-column="114" />
               <folding>
-                <element signature="e#520#526#0" expanded="true" />
-                <element signature="e#621#627#0" expanded="true" />
-                <element signature="e#776#782#0" expanded="true" />
+                <element signature="e#1911#1915#0" expanded="true" />
+                <element signature="e#2530#2534#0" expanded="true" />
+                <element signature="e#9844#9849#1" expanded="true" />
+                <element signature="e#9958#9962#1" expanded="true" />
+                <element signature="e#10060#10064#1" expanded="true" />
+                <element signature="e#10560#10564#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/stencil/graph_theory/最短路和第k短路.html">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/stencil/graph_theory/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1245">
-              <caret line="86" column="6" selection-start-line="86" selection-start-column="6" selection-end-line="86" selection-end-column="6" />
-              <folding>
-                <element signature="e#1055#1061#0" expanded="true" />
-                <element signature="e#1061#1067#0" expanded="true" />
-                <element signature="e#1067#1073#0" expanded="true" />
-                <element signature="e#1073#1079#0" expanded="true" />
-                <element signature="e#1079#1085#0" expanded="true" />
-                <element signature="e#1085#1091#0" expanded="true" />
-                <element signature="e#1091#1097#0" expanded="true" />
-                <element signature="e#1097#1103#0" expanded="true" />
-                <element signature="e#1210#1216#0" expanded="true" />
-                <element signature="e#1216#1222#0" expanded="true" />
-                <element signature="e#1222#1228#0" expanded="true" />
-                <element signature="e#1228#1234#0" expanded="true" />
-                <element signature="e#1234#1240#0" expanded="true" />
-                <element signature="e#1240#1246#0" expanded="true" />
-                <element signature="e#1246#1252#0" expanded="true" />
-                <element signature="e#1252#1258#0" expanded="true" />
-                <element signature="e#1909#1915#0" expanded="true" />
-                <element signature="e#1915#1921#0" expanded="true" />
-                <element signature="e#1921#1927#0" expanded="true" />
-                <element signature="e#1927#1933#0" expanded="true" />
-                <element signature="e#1933#1939#0" expanded="true" />
-                <element signature="e#1939#1945#0" expanded="true" />
-                <element signature="e#1945#1951#0" expanded="true" />
-                <element signature="e#1951#1957#0" expanded="true" />
-                <element signature="e#2332#2338#0" expanded="true" />
-                <element signature="e#2338#2344#0" expanded="true" />
-                <element signature="e#2344#2350#0" expanded="true" />
-                <element signature="e#2350#2356#0" expanded="true" />
-                <element signature="e#2356#2362#0" expanded="true" />
-                <element signature="e#2362#2368#0" expanded="true" />
-                <element signature="e#2368#2374#0" expanded="true" />
-                <element signature="e#2374#2380#0" expanded="true" />
-                <element signature="n#div#1;n#div#0;n#html#0;n#!!top" />
-                <element signature="e#3488#3492#0" expanded="true" />
-                <element signature="e#4030#4034#1" expanded="true" />
-                <element signature="e#4084#4088#1" expanded="true" />
-                <element signature="e#5812#5816#1" expanded="true" />
-                <element signature="e#7684#7688#1" expanded="true" />
-                <element signature="e#9745#9749#1" expanded="true" />
-                <element signature="n#div#3;n#div#0;n#html#0;n#!!top" />
-              </folding>
+            <state relative-caret-position="345">
+              <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -162,7 +122,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stencil/graph_theory/tarjan点双联通分量.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="708">
+            <state relative-caret-position="840">
               <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
               <folding>
                 <element signature="e#1095#1099#0" expanded="true" />
@@ -188,14 +148,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/problem/graph_theory/uoj67.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
+            <state relative-caret-position="255">
               <caret line="17" column="2" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
               <folding>
-                <element signature="e#462#468#0" expanded="true" />
                 <element signature="e#521#527#0" expanded="true" />
                 <element signature="e#669#675#0" expanded="true" />
-                <element signature="e#712#718#0" expanded="true" />
-                <element signature="e#1032#1038#0" expanded="true" />
                 <element signature="e#1310#1314#0" expanded="true" />
                 <element signature="e#1327#1331#0" expanded="true" />
                 <element signature="e#2237#2241#0" expanded="true" />
@@ -234,22 +191,8 @@
                 <element signature="e#13889#13893#0" expanded="true" />
                 <element signature="e#13893#13897#0" expanded="true" />
                 <element signature="e#15081#15085#1" expanded="true" />
-                <element signature="e#15596#15600#1" expanded="true" />
-                <element signature="e#15650#15654#1" expanded="true" />
-                <element signature="e#15932#15936#0" expanded="true" />
-                <element signature="e#16338#16343#0" expanded="true" />
-                <element signature="e#16343#16348#0" expanded="true" />
                 <element signature="e#16978#16982#0" expanded="true" />
-                <element signature="e#16982#16986#0" expanded="true" />
                 <element signature="e#17111#17115#0" expanded="true" />
-                <element signature="e#17115#17119#0" expanded="true" />
-                <element signature="e#17397#17401#1" expanded="true" />
-                <element signature="e#17687#17693#0" expanded="true" />
-                <element signature="e#17695#17701#0" expanded="true" />
-                <element signature="e#18162#18168#1" expanded="true" />
-                <element signature="e#18217#18223#1" expanded="true" />
-                <element signature="e#18361#18367#0" expanded="true" />
-                <element signature="e#18368#18374#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -272,11 +215,9 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/problem/graph_theory/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
+            <state relative-caret-position="345">
               <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
               <folding>
-                <element signature="e#512#518#0" expanded="true" />
-                <element signature="e#606#612#0" expanded="true" />
                 <element signature="e#754#760#0" expanded="true" />
               </folding>
             </state>
@@ -355,7 +296,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/problem/dp/bzoj5073.html" />
         <option value="$PROJECT_DIR$/problem/dp/index.html" />
         <option value="$PROJECT_DIR$/css/head_phone.css" />
         <option value="$PROJECT_DIR$/problem/dp/bzoj2121.html" />
@@ -400,18 +340,19 @@
         <option value="$PROJECT_DIR$/problem/graph_theory/hdu5729.html" />
         <option value="$PROJECT_DIR$/problem/graph_theory/bzoj2730.html" />
         <option value="$PROJECT_DIR$/stencil/graph_theory/tarjan点双联通分量.html" />
-        <option value="$PROJECT_DIR$/stencil/graph_theory/index.html" />
         <option value="$PROJECT_DIR$/problem/graph_theory/bzoj1924.html" />
         <option value="$PROJECT_DIR$/stencil/graph_theory/最短路和第k短路.html" />
         <option value="$PROJECT_DIR$/problem/graph_theory/uoj67.html" />
         <option value="$PROJECT_DIR$/problem/graph_theory/index.html" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/stencil/graph_theory/tarjan强联通分量.html" />
+        <option value="$PROJECT_DIR$/stencil/graph_theory/index.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="174" />
-    <option name="y" value="25" />
+    <option name="x" value="161" />
+    <option name="y" value="23" />
     <option name="width" value="1279" />
     <option name="height" value="877" />
   </component>
@@ -423,7 +364,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -435,12 +375,6 @@
               <item name="ACM" type="b2602c69:ProjectViewProjectNode" />
               <item name="ACM" type="462c0819:PsiDirectoryNode" />
               <item name="problem" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ACM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ACM" type="462c0819:PsiDirectoryNode" />
-              <item name="problem" type="462c0819:PsiDirectoryNode" />
-              <item name="graph_theory" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ACM" type="b2602c69:ProjectViewProjectNode" />
@@ -457,6 +391,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -467,16 +402,16 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/stencil/thinging" />
-      <recent name="$PROJECT_DIR$/stencil/string" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/problem/graph_theory" />
       <recent name="$PROJECT_DIR$/stencil/graph_theory" />
+      <recent name="$PROJECT_DIR$/problem/graph_theory" />
       <recent name="$PROJECT_DIR$/stencil/data_struct" />
       <recent name="$PROJECT_DIR$/problem/dp" />
       <recent name="$PROJECT_DIR$/stencil/math" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/stencil/thinging" />
+      <recent name="$PROJECT_DIR$/stencil/string" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -491,10 +426,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html (2)">
-    <configuration name="主席树.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/data_struct/主席树.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="JavaScript Debug.tarjan强联通分量.html">
     <configuration name="主席树.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/data_struct/主席树.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -505,9 +437,6 @@
       <method v="2" />
     </configuration>
     <configuration name="线段树.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/data_struct/线段树.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="bzoj1924.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/problem/graph_theory/bzoj1924.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="bzoj2124.html" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:63342/ACM/problem/data_struct/bzoj2124.html" useBuiltInWebServerPort="true">
@@ -528,6 +457,9 @@
     <configuration name="tarjan点双联通分量.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/graph_theory/tarjan点双联通分量.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
+    <configuration name="tarjan强联通分量.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/graph_theory/tarjan强联通分量.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="uoj67.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/problem/graph_theory/uoj67.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -536,11 +468,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.tarjan强联通分量.html" />
         <item itemvalue="JavaScript Debug.index.html (2)" />
         <item itemvalue="JavaScript Debug.uoj67.html" />
         <item itemvalue="JavaScript Debug.tarjan点双联通分量.html" />
         <item itemvalue="JavaScript Debug.最短路和第k短路.html" />
-        <item itemvalue="JavaScript Debug.bzoj1924.html" />
       </list>
     </recent_temporary>
   </component>
@@ -654,14 +586,15 @@
       <workItem from="1557729360324" duration="59000" />
       <workItem from="1557834138671" duration="1047000" />
       <workItem from="1557835964857" duration="814000" />
+      <workItem from="1557840236166" duration="240000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105547000" />
+    <option name="totallyTimeSpent" value="105787000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="174" y="25" width="1279" height="877" extended-state="0" />
+    <frame x="161" y="23" width="1279" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18680446" />
@@ -687,9 +620,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/reading_problem/CCF有趣的数.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/reading_problem/cf515B.html">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1108,13 +1038,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/stencil/graph_theory/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/phrase.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -1151,6 +1074,62 @@
             <element signature="e#3861#3865#0" expanded="true" />
             <element signature="e#3898#3902#0" expanded="true" />
             <element signature="e#3905#3909#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="14" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stencil/graph_theory/最短路和第k短路.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1260">
+          <caret line="86" column="6" selection-start-line="86" selection-start-column="6" selection-end-line="86" selection-end-column="6" />
+          <folding>
+            <element signature="e#1055#1061#0" expanded="true" />
+            <element signature="e#1061#1067#0" expanded="true" />
+            <element signature="e#1067#1073#0" expanded="true" />
+            <element signature="e#1073#1079#0" expanded="true" />
+            <element signature="e#1079#1085#0" expanded="true" />
+            <element signature="e#1085#1091#0" expanded="true" />
+            <element signature="e#1091#1097#0" expanded="true" />
+            <element signature="e#1097#1103#0" expanded="true" />
+            <element signature="e#1210#1216#0" expanded="true" />
+            <element signature="e#1216#1222#0" expanded="true" />
+            <element signature="e#1222#1228#0" expanded="true" />
+            <element signature="e#1228#1234#0" expanded="true" />
+            <element signature="e#1234#1240#0" expanded="true" />
+            <element signature="e#1240#1246#0" expanded="true" />
+            <element signature="e#1246#1252#0" expanded="true" />
+            <element signature="e#1252#1258#0" expanded="true" />
+            <element signature="e#1909#1915#0" expanded="true" />
+            <element signature="e#1915#1921#0" expanded="true" />
+            <element signature="e#1921#1927#0" expanded="true" />
+            <element signature="e#1927#1933#0" expanded="true" />
+            <element signature="e#1933#1939#0" expanded="true" />
+            <element signature="e#1939#1945#0" expanded="true" />
+            <element signature="e#1945#1951#0" expanded="true" />
+            <element signature="e#1951#1957#0" expanded="true" />
+            <element signature="e#2332#2338#0" expanded="true" />
+            <element signature="e#2338#2344#0" expanded="true" />
+            <element signature="e#2344#2350#0" expanded="true" />
+            <element signature="e#2350#2356#0" expanded="true" />
+            <element signature="e#2356#2362#0" expanded="true" />
+            <element signature="e#2362#2368#0" expanded="true" />
+            <element signature="e#2368#2374#0" expanded="true" />
+            <element signature="e#2374#2380#0" expanded="true" />
+            <element signature="n#div#1;n#div#0;n#html#0;n#!!top" />
+            <element signature="e#3488#3492#0" expanded="true" />
+            <element signature="e#4030#4034#1" expanded="true" />
+            <element signature="e#4084#4088#1" expanded="true" />
+            <element signature="e#5812#5816#1" expanded="true" />
+            <element signature="e#7684#7688#1" expanded="true" />
+            <element signature="e#9745#9749#1" expanded="true" />
+            <element signature="n#div#3;n#div#0;n#html#0;n#!!top" />
           </folding>
         </state>
       </provider>
@@ -1229,103 +1208,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/problem/graph_theory/zoj4097.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7080">
-          <caret line="472" column="16" selection-end-line="512" />
-          <folding>
-            <element signature="e#831#835#0" expanded="true" />
-            <element signature="e#848#852#0" expanded="true" />
-            <element signature="e#32772#32776#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/problem/graph_theory/hdu5729.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1515">
-          <caret line="101" column="2" selection-start-line="101" selection-start-column="2" selection-end-line="101" selection-end-column="2" />
-          <folding>
-            <element signature="e#413#419#0" expanded="true" />
-            <element signature="e#419#425#0" expanded="true" />
-            <element signature="e#425#431#0" expanded="true" />
-            <element signature="e#431#437#0" expanded="true" />
-            <element signature="e#437#443#0" expanded="true" />
-            <element signature="e#443#449#0" expanded="true" />
-            <element signature="e#449#455#0" expanded="true" />
-            <element signature="e#455#461#0" expanded="true" />
-            <element signature="e#808#829#0" expanded="true" />
-            <element signature="e#1025#1046#0" expanded="true" />
-            <element signature="e#1163#1184#0" expanded="true" />
-            <element signature="e#1305#1326#0" expanded="true" />
-            <element signature="e#1413#1434#0" expanded="true" />
-            <element signature="e#1552#1573#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/new.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.project">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/stencil/graph_theory/最短路和第k短路.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1245">
-          <caret line="86" column="6" selection-start-line="86" selection-start-column="6" selection-end-line="86" selection-end-column="6" />
-          <folding>
-            <element signature="e#1055#1061#0" expanded="true" />
-            <element signature="e#1061#1067#0" expanded="true" />
-            <element signature="e#1067#1073#0" expanded="true" />
-            <element signature="e#1073#1079#0" expanded="true" />
-            <element signature="e#1079#1085#0" expanded="true" />
-            <element signature="e#1085#1091#0" expanded="true" />
-            <element signature="e#1091#1097#0" expanded="true" />
-            <element signature="e#1097#1103#0" expanded="true" />
-            <element signature="e#1210#1216#0" expanded="true" />
-            <element signature="e#1216#1222#0" expanded="true" />
-            <element signature="e#1222#1228#0" expanded="true" />
-            <element signature="e#1228#1234#0" expanded="true" />
-            <element signature="e#1234#1240#0" expanded="true" />
-            <element signature="e#1240#1246#0" expanded="true" />
-            <element signature="e#1246#1252#0" expanded="true" />
-            <element signature="e#1252#1258#0" expanded="true" />
-            <element signature="e#1909#1915#0" expanded="true" />
-            <element signature="e#1915#1921#0" expanded="true" />
-            <element signature="e#1921#1927#0" expanded="true" />
-            <element signature="e#1927#1933#0" expanded="true" />
-            <element signature="e#1933#1939#0" expanded="true" />
-            <element signature="e#1939#1945#0" expanded="true" />
-            <element signature="e#1945#1951#0" expanded="true" />
-            <element signature="e#1951#1957#0" expanded="true" />
-            <element signature="e#2332#2338#0" expanded="true" />
-            <element signature="e#2338#2344#0" expanded="true" />
-            <element signature="e#2344#2350#0" expanded="true" />
-            <element signature="e#2350#2356#0" expanded="true" />
-            <element signature="e#2356#2362#0" expanded="true" />
-            <element signature="e#2362#2368#0" expanded="true" />
-            <element signature="e#2368#2374#0" expanded="true" />
-            <element signature="e#2374#2380#0" expanded="true" />
-            <element signature="n#div#1;n#div#0;n#html#0;n#!!top" />
-            <element signature="e#3488#3492#0" expanded="true" />
-            <element signature="e#4030#4034#1" expanded="true" />
-            <element signature="e#4084#4088#1" expanded="true" />
-            <element signature="e#5812#5816#1" expanded="true" />
-            <element signature="e#7684#7688#1" expanded="true" />
-            <element signature="e#9745#9749#1" expanded="true" />
-            <element signature="n#div#3;n#div#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/stencil/graph_theory/tarjan点双联通分量.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="708">
+        <state relative-caret-position="840">
           <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
           <folding>
             <element signature="e#1095#1099#0" expanded="true" />
@@ -1349,14 +1234,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/problem/graph_theory/uoj67.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
+        <state relative-caret-position="255">
           <caret line="17" column="2" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
           <folding>
-            <element signature="e#462#468#0" expanded="true" />
             <element signature="e#521#527#0" expanded="true" />
             <element signature="e#669#675#0" expanded="true" />
-            <element signature="e#712#718#0" expanded="true" />
-            <element signature="e#1032#1038#0" expanded="true" />
             <element signature="e#1310#1314#0" expanded="true" />
             <element signature="e#1327#1331#0" expanded="true" />
             <element signature="e#2237#2241#0" expanded="true" />
@@ -1395,47 +1277,86 @@
             <element signature="e#13889#13893#0" expanded="true" />
             <element signature="e#13893#13897#0" expanded="true" />
             <element signature="e#15081#15085#1" expanded="true" />
-            <element signature="e#15596#15600#1" expanded="true" />
-            <element signature="e#15650#15654#1" expanded="true" />
-            <element signature="e#15932#15936#0" expanded="true" />
-            <element signature="e#16338#16343#0" expanded="true" />
-            <element signature="e#16343#16348#0" expanded="true" />
             <element signature="e#16978#16982#0" expanded="true" />
-            <element signature="e#16982#16986#0" expanded="true" />
             <element signature="e#17111#17115#0" expanded="true" />
-            <element signature="e#17115#17119#0" expanded="true" />
-            <element signature="e#17397#17401#1" expanded="true" />
-            <element signature="e#17687#17693#0" expanded="true" />
-            <element signature="e#17695#17701#0" expanded="true" />
-            <element signature="e#18162#18168#1" expanded="true" />
-            <element signature="e#18217#18223#1" expanded="true" />
-            <element signature="e#18361#18367#0" expanded="true" />
-            <element signature="e#18368#18374#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/problem/graph_theory/zoj4097.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7080">
+          <caret line="472" column="16" selection-end-line="512" />
+          <folding>
+            <element signature="e#831#835#0" expanded="true" />
+            <element signature="e#848#852#0" expanded="true" />
+            <element signature="e#32772#32776#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/problem/graph_theory/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
+        <state relative-caret-position="345">
           <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
           <folding>
-            <element signature="e#512#518#0" expanded="true" />
-            <element signature="e#606#612#0" expanded="true" />
             <element signature="e#754#760#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/problem/graph_theory/hdu5729.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="14" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+        <state relative-caret-position="1515">
+          <caret line="101" column="2" selection-start-line="101" selection-start-column="2" selection-end-line="101" selection-end-column="2" />
           <folding>
-            <element signature="e#520#526#0" expanded="true" />
-            <element signature="e#621#627#0" expanded="true" />
-            <element signature="e#776#782#0" expanded="true" />
+            <element signature="e#413#419#0" expanded="true" />
+            <element signature="e#419#425#0" expanded="true" />
+            <element signature="e#425#431#0" expanded="true" />
+            <element signature="e#431#437#0" expanded="true" />
+            <element signature="e#437#443#0" expanded="true" />
+            <element signature="e#443#449#0" expanded="true" />
+            <element signature="e#449#455#0" expanded="true" />
+            <element signature="e#455#461#0" expanded="true" />
+            <element signature="e#808#829#0" expanded="true" />
+            <element signature="e#1025#1046#0" expanded="true" />
+            <element signature="e#1163#1184#0" expanded="true" />
+            <element signature="e#1305#1326#0" expanded="true" />
+            <element signature="e#1413#1434#0" expanded="true" />
+            <element signature="e#1552#1573#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/new.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.project">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stencil/graph_theory/tarjan强联通分量.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1755">
+          <caret line="117" column="114" lean-forward="true" selection-start-line="117" selection-start-column="114" selection-end-line="117" selection-end-column="114" />
+          <folding>
+            <element signature="e#1911#1915#0" expanded="true" />
+            <element signature="e#2530#2534#0" expanded="true" />
+            <element signature="e#9844#9849#1" expanded="true" />
+            <element signature="e#9958#9962#1" expanded="true" />
+            <element signature="e#10060#10064#1" expanded="true" />
+            <element signature="e#10560#10564#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stencil/graph_theory/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
         </state>
       </provider>
     </entry>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>tarjan强联通</title>
+</head>
+
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>tarjan强联通</h1></center>
+    <div id="code">
+      <pre><span class="k">struct</span> <span class="nl">Tarjan:</span><span class="n">Graph</span><span
+              class="p">{</span><span class="c1">//强连通分量缩点</span>
+    <span class="kt">int</span> <span class="n">low</span><span class="p">[</span><span class="n">maxn</span><span
+                  class="p">],</span><span class="n">dfn</span><span class="p">[</span><span class="n">maxn</span><span
+                  class="p">],</span><span class="n">belong</span><span class="p">[</span><span
+                  class="n">maxn</span><span class="p">],</span><span class="n">stk</span><span class="p">[</span><span
+                  class="n">maxn</span><span class="p">],</span><span class="n">instk</span><span
+                  class="p">[</span><span class="n">maxn</span><span class="p">],</span><span
+                  class="n">block</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">step</span><span class="p">,</span><span class="n">color</span><span
+                  class="p">;</span>
+    <span class="kt">void</span> <span class="n">tarjan</span><span class="p">(){</span>
+        <span class="n">step</span><span class="o">=</span><span class="n">color</span><span class="o">=</span><span
+                  class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                  class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span
+                  class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span
+                  class="o">++</span><span class="p">)</span> <span class="n">dfn</span><span class="p">[</span><span
+                  class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span
+                  class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                  class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span
+                  class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span
+                  class="o">++</span><span class="p">)</span> <span class="k">if</span><span class="p">(</span><span
+                  class="n">dfn</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
+                  class="o">==</span><span class="mi">0</span><span class="p">)</span> <span
+                  class="n">tarjan</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span
+                  class="mi">0</span><span class="p">);</span><span class="c1">//多个联通快</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">tarjan</span><span class="p">(</span><span class="kt">int</span> <span
+                  class="n">u</span><span class="p">,</span><span class="kt">int</span> <span
+                  class="n">father</span><span class="o">=</span><span class="mi">0</span><span class="p">){</span><span
+                  class="c1">//此函数不开放</span>
+        <span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span
+                  class="o">=</span><span class="n">dfn</span><span class="p">[</span><span class="n">u</span><span
+                  class="p">]</span><span class="o">=++</span><span class="n">step</span><span class="p">;</span> <span
+                  class="n">stk</span><span class="p">[</span><span class="o">++</span><span class="n">stk</span><span
+                  class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">=</span><span
+                  class="n">u</span><span class="p">;</span><span class="n">instk</span><span class="p">[</span><span
+                  class="n">u</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span
+                  class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                  class="o">=</span><span class="n">head</span><span class="p">[</span><span class="n">u</span><span
+                  class="p">];</span><span class="o">~</span><span class="n">i</span><span class="p">;</span><span
+                  class="n">i</span><span class="o">=</span><span class="n">edge</span><span class="p">[</span><span
+                  class="n">i</span><span class="p">].</span><span class="n">nex</span><span class="p">){</span>
+            <span class="kt">int</span> <span class="n">v</span><span class="o">=</span><span class="n">edge</span><span
+                  class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">v</span><span
+                  class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">dfn</span><span class="p">[</span><span
+                  class="n">v</span><span class="p">])</span> <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">instk</span><span
+                  class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="n">low</span><span
+                  class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">=</span><span
+                  class="n">min</span><span class="p">(</span><span class="n">low</span><span class="p">[</span><span
+                  class="n">u</span><span class="p">],</span><span class="n">dfn</span><span class="p">[</span><span
+                  class="n">v</span><span class="p">]);</span>
+            <span class="p">}</span>
+            <span class="k">else</span><span class="p">{</span>
+                <span class="n">tarjan</span><span class="p">(</span><span class="n">v</span><span
+                  class="p">,</span><span class="n">u</span><span class="p">);</span>
+                <span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span
+                  class="o">=</span><span class="n">min</span><span class="p">(</span><span class="n">low</span><span
+                  class="p">[</span><span class="n">u</span><span class="p">],</span><span class="n">low</span><span
+                  class="p">[</span><span class="n">v</span><span class="p">]);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">low</span><span class="p">[</span><span
+                  class="n">u</span><span class="p">]</span><span class="o">==</span><span class="n">dfn</span><span
+                  class="p">[</span><span class="n">u</span><span class="p">]){</span>
+            <span class="n">block</span><span class="p">[</span><span class="n">color</span><span
+                  class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span
+                  class="mi">1</span><span class="p">;</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">stk</span><span class="p">[</span><span
+                  class="n">stk</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span
+                  class="o">!=</span><span class="n">u</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">belong</span><span class="p">[</span><span class="n">stk</span><span
+                  class="p">[</span><span class="n">stk</span><span class="p">[</span><span class="mi">0</span><span
+                  class="p">]]]</span><span class="o">=</span><span class="n">color</span><span class="o">+</span><span
+                  class="mi">1</span><span class="p">;</span>
+                <span class="n">instk</span><span class="p">[</span><span class="n">stk</span><span
+                  class="p">[</span><span class="n">stk</span><span class="p">[</span><span class="mi">0</span><span
+                  class="p">]</span><span class="o">--</span><span class="p">]]</span><span class="o">=</span><span
+                  class="mi">0</span><span class="p">;</span>
+                <span class="n">block</span><span class="p">[</span><span class="n">color</span><span class="o">+</span><span
+                  class="mi">1</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">belong</span><span class="p">[</span><span class="n">stk</span><span class="p">[</span><span
+                  class="n">stk</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span><span
+                  class="o">=++</span><span class="n">color</span><span class="p">;</span>
+            <span class="n">instk</span><span class="p">[</span><span class="n">stk</span><span class="p">[</span><span
+                  class="n">stk</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span
+                  class="o">--</span><span class="p">]]</span><span class="o">=</span><span class="mi">0</span><span
+                  class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">rebuild</span><span class="p">(</span><span class="n">Dag</span><span
+                  class="o">&amp;</span><span class="n">dag</span><span class="p">){</span>
+        <span class="n">set</span><span class="o">&lt;</span><span class="kt">long</span> <span
+                  class="kt">long</span><span class="o">&gt;</span><span class="n">se</span><span class="p">;</span>
+        <span class="n">dag</span><span class="p">.</span><span class="n">ini</span><span class="p">(</span><span
+                  class="n">color</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span
+                  class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">u</span><span
+                  class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">u</span><span
+                  class="o">++</span><span class="p">){</span>
+            <span class="kt">int</span> <span class="n">uu</span><span class="o">=</span><span
+                  class="n">belong</span><span class="p">[</span><span class="n">u</span><span class="p">];</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                  class="o">=</span><span class="n">head</span><span class="p">[</span><span class="n">u</span><span
+                  class="p">];</span><span class="o">~</span><span class="n">i</span><span class="p">;</span><span
+                  class="n">i</span><span class="o">=</span><span class="n">edge</span><span class="p">[</span><span
+                  class="n">i</span><span class="p">].</span><span class="n">nex</span><span class="p">){</span>
+                <span class="kt">int</span> <span class="n">v</span><span class="o">=</span><span
+                  class="n">edge</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span
+                  class="n">v</span><span class="p">;</span>
+                <span class="kt">int</span> <span class="n">vv</span><span class="o">=</span><span
+                  class="n">belong</span><span class="p">[</span><span class="n">v</span><span class="p">];</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">uu</span><span class="o">==</span><span
+                  class="n">vv</span><span class="o">||</span><span class="n">se</span><span class="p">.</span><span
+                  class="n">find</span><span class="p">(</span><span class="n">uu</span><span class="o">*</span><span
+                  class="mf">1e6</span><span class="o">+</span><span class="n">vv</span><span class="p">)</span><span
+                  class="o">!=</span><span class="n">se</span><span class="p">.</span><span class="n">end</span><span
+                  class="p">())</span><span class="k">continue</span><span class="p">;</span>
+                <span class="n">se</span><span class="p">.</span><span class="n">insert</span><span
+                  class="p">(</span><span class="n">uu</span><span class="o">*</span><span class="mf">1e6</span><span
+                  class="o">+</span><span class="n">vv</span><span class="p">);</span>
+                <span class="n">dag</span><span class="p">.</span><span class="n">add_edge</span><span
+                  class="p">(</span><span class="n">uu</span><span class="p">,</span><span class="n">vv</span><span
+                  class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">dag</span><span class="p">.</span><span class="n">dp</span><span class="p">[</span><span
+                  class="n">uu</span><span class="p">][</span><span class="n">u</span><span class="p">]</span><span
+                  class="o">=</span><span class="mi">1</span><span class="p">;</span>
+            <span class="n">dag</span><span class="p">.</span><span class="n">w</span><span class="p">[</span><span
+                  class="n">uu</span><span class="p">]</span><span class="o">=</span><span class="n">block</span><span
+                  class="p">[</span><span class="n">uu</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span><span class="n">graph</span><span class="p">;</span>
+</pre>
+    </div>
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>
