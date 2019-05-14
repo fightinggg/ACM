@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>uoj67</title>
+</head>
+
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <h1>
+        <center><a href="http://uoj.ac/problem/67" target="_blank">uoj67</a></center>
+    </h1>
+
+
+    <div id="text">
+        题意：<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;辞旧迎新之际，喜羊羊正在打理羊村的绿化带，然后他发现了一棵长着毒瘤的树。
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个长着毒瘤的树可以用 n 个结点 m 条无向边的无向图表示。这个图中有一些结点被称作是毒瘤结点，即删掉这个结点和与之相邻的边之后，这个图会变为一棵树。树也即无简单环的无向连通图。
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在给你这个无向图，喜羊羊请你帮他求出所有毒瘤结点。
+
+        <br><br>
+        输入：<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一行两个正整数 n,m ，表示有 n 个点 m 条边。保证 n≥2 。 接下来 m 行，每行两个整数 v,u ，表示 v 和 u 之间有一条无向边。1≤v,u≤n 。保证没有重边和自环。
+    </div>
+
+    <script type="text/javascript" src="/ACM/js/solve_begin.js"></script>
+    <div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;删掉一个点后，也就删掉了与他相连的所有边，记录这些边点条数（点的度数），删掉后成为树的充要条件，剩下n-2条边 且删除的点不是割点。
+    </div>
+    <script type="text/javascript" src="/ACM/js/solve_end.js"></script>
+
+
+    <script type="text/javascript" src="/ACM/js/code_begin.js"></script>
+    <div>
+      <pre><span class="cp">#include&lt;bits/stdc++.h&gt;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="n">Graph</span><span class="p">{</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span><span class="o">=</span><span class="mf">1e5</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span> <span class="n">maxm</span><span class="o">=</span><span class="mf">3e5</span><span class="o">+</span><span class="mi">5</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">star</span><span class="p">{</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span><span class="n">nex</span><span class="p">;}</span><span class="n">edge</span><span class="p">[</span><span class="n">maxm</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">head</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">cnt</span><span class="p">,</span><span class="n">n</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">d</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+    <span class="kt">void</span> <span class="n">ini</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">;</span> <span class="n">cnt</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">head</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">add_edge</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">,</span><span class="kt">int</span> <span class="n">v</span><span class="p">){</span>
+        <span class="n">edge</span><span class="p">[</span><span class="o">++</span><span class="n">cnt</span><span class="p">]</span><span class="o">=</span><span class="n">star</span><span class="p">{</span><span class="n">v</span><span class="p">,</span><span class="n">head</span><span class="p">[</span><span class="n">u</span><span class="p">]};</span> <span class="n">head</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">=</span><span class="n">cnt</span><span class="p">;</span>
+        <span class="n">edge</span><span class="p">[</span><span class="o">++</span><span class="n">cnt</span><span class="p">]</span><span class="o">=</span><span class="n">star</span><span class="p">{</span><span class="n">u</span><span class="p">,</span><span class="n">head</span><span class="p">[</span><span class="n">v</span><span class="p">]};</span> <span class="n">head</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">=</span><span class="n">cnt</span><span class="p">;</span>
+        <span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+        <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="nl">Tarjan:</span><span class="n">Graph</span><span class="p">{</span><span class="c1">//割点</span>
+    <span class="kt">int</span> <span class="n">low</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">dfn</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">cut</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">step</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="n">tarjan</span><span class="p">(){</span>
+        <span class="n">step</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">dfn</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">cut</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="k">if</span><span class="p">(</span><span class="n">dfn</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="n">tarjan</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="c1">//多个联通快</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">tarjan</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">,</span><span class="kt">int</span> <span class="n">father</span><span class="o">=</span><span class="mi">0</span><span class="p">){</span><span class="c1">//此函数不开放</span>
+        <span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">=</span><span class="n">dfn</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">=++</span><span class="n">step</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">first</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">son</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">head</span><span class="p">[</span><span class="n">u</span><span class="p">];</span><span class="o">~</span><span class="n">i</span><span class="p">;</span><span class="n">i</span><span class="o">=</span><span class="n">edge</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">nex</span><span class="p">){</span>
+            <span class="kt">int</span> <span class="n">v</span><span class="o">=</span><span class="n">edge</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">v</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="o">==</span><span class="n">father</span><span class="o">&amp;&amp;!</span><span class="n">first</span><span class="p">)</span> <span class="n">first</span><span class="o">=</span><span class="kc">false</span><span class="p">;</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">dfn</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">=</span><span class="n">min</span><span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">],</span><span class="n">dfn</span><span class="p">[</span><span class="n">v</span><span class="p">]);</span>
+            <span class="k">else</span><span class="p">{</span>
+                <span class="n">son</span><span class="o">++</span><span class="p">;</span>
+                <span class="n">tarjan</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">u</span><span class="p">);</span>
+                <span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">=</span><span class="n">min</span><span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">],</span><span class="n">low</span><span class="p">[</span><span class="n">v</span><span class="p">]);</span>
+                <span class="c1">//一个顶点u是割点,当且仅当1或2</span>
+                <span class="c1">//1.u为树根且u有多与一个子树</span>
+                <span class="c1">//2.u不为树根且存在边(u,v)为树边，使得dfn[u]&lt;=low[v]</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">father</span><span class="o">!=</span><span class="mi">0</span><span class="o">&amp;&amp;</span><span class="n">dfn</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">low</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="n">cut</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">father</span><span class="o">==</span><span class="mi">0</span><span class="o">&amp;&amp;</span><span class="n">son</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span> <span class="n">cut</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span><span class="n">graph</span><span class="p">;</span>
+
+<span class="kr">inline</span> <span class="kt">int</span> <span class="n">read</span><span class="p">(){</span>
+    <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">ch</span><span class="o">=</span><span class="n">getchar</span><span class="p">();</span>
+    <span class="k">while</span><span class="p">(</span><span class="sc">&#39;0&#39;</span><span class="o">&gt;</span><span class="n">ch</span><span class="o">||</span><span class="n">ch</span><span class="o">&gt;</span><span class="sc">&#39;9&#39;</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">ch</span><span class="o">==</span><span class="sc">&#39;-&#39;</span><span class="p">)</span> <span class="n">f</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="n">ch</span><span class="o">=</span><span class="n">getchar</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">while</span><span class="p">(</span><span class="sc">&#39;0&#39;</span><span class="o">&lt;=</span><span class="n">ch</span><span class="o">&amp;&amp;</span><span class="n">ch</span><span class="o">&lt;=</span><span class="sc">&#39;9&#39;</span><span class="p">){</span>
+        <span class="n">ret</span><span class="o">=</span><span class="p">(</span><span class="n">ret</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">ret</span><span class="o">&lt;&lt;</span><span class="mi">3</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">ch</span><span class="o">^</span><span class="mi">48</span><span class="p">);</span>
+        <span class="n">ch</span><span class="o">=</span><span class="n">getchar</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="o">=</span><span class="n">read</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">m</span><span class="o">=</span><span class="n">read</span><span class="p">();</span>
+    <span class="n">graph</span><span class="p">.</span><span class="n">ini</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">m</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">graph</span><span class="p">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">read</span><span class="p">(),</span><span class="n">read</span><span class="p">());</span>
+
+    <span class="n">graph</span><span class="p">.</span><span class="n">tarjan</span><span class="p">();</span>
+
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="n">ans</span><span class="p">;</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">graph</span><span class="p">.</span><span class="n">cut</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="n">m</span><span class="o">-</span><span class="n">graph</span><span class="p">.</span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">==</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">){</span>
+            <span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">ans</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">==</span><span class="n">ans</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">else</span> <span class="n">printf</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+<span class="p">}</span>
+</pre>
+    </div>
+    <script type="text/javascript" src="/ACM/js/code_end.js"></script>
+
+
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>
+
+
