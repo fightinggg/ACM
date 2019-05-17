@@ -1,166 +1,267 @@
 <!DOCTYPE html>
 <html>
- 
+
 <head>
     <meta charset="utf-8">
-	<script type="text/javascript" src="/ACM/js/link.js"></script>
-	<title>最大流dinic</title>
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>最大流dinic</title>
 </head>
 
-<body>
-	<div id = "myweb">
-		
-<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
-<script type="text/javascript" src="/ACM/js/up_and_right.js"></script>
-<!--    啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦-->
-		     
-     				     		<div id="left"><div id="left_in">
-     			<center><h1>最大流dinic</h1></center>
-     			
-     			<div id="text">
- 
- <h3>二分图的最小顶点覆盖</h3>
-定义：假如选了一个点就相当于覆盖了以它为端点的所有边。最小顶点覆盖就是选择最少的点来覆盖所有的边。</br>
-方法：最小顶点覆盖等于二分图的最大匹配。</br>
-我们用二分图来构造最小顶点覆盖。</br>
 
-<h3>二分图的最大独立集</h3>
-定义：选出一些顶点使得这些顶点两两不相邻，则这些点构成的集合称为独立集。找出一个包含顶点数最多的独立集称为最大独立集。</br>
-方法：最大独立集=所有顶点数-最小顶点覆盖。</br>
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
 
-<h3>二分图的最大团</h3>
-定义：对于一般图来说，团是一个顶点集合，且由该顶点集合诱导的子图是一个完全图，简单说，就是选出一些顶点，这些顶点两两之间都有边。最大团就是使得选出的这个顶点集合最大。对于二分图来说，我们默认为左边的所有点之间都有边，右边的所有顶点之间都有边。那么，实际上，我们是要在左边找到一个顶点子集X，在右边找到一个顶点子集Y，使得X中每个顶点和Y中每个顶点之间都有边。</br>
-方法：二分图的最大团=补图的最大独立集。</br>
-补图的定义是：对于二分图中左边一点x和右边一点y，若x和y之间有边，那么在补图中没有，否则有。</br>
-这个方法很好理解，因为最大独立集是两两不相邻，所以最大独立集的补图两两相邻。</br>
+    <center><h1>最大流dinic</h1></center>
 
-<h3>最小边覆盖</h3>
-边覆盖集：通俗地讲，所谓边覆盖集，就是G中所有的顶点都是E*中某条边的邻接顶点（边覆盖顶点），一条边只能覆盖2个顶点。</br>
-注意：在无向图中存在用尽量少的边去“覆盖”住所有的顶点，所以边覆盖集有极小与最小的区别。</br>
-极小边覆盖：若边覆盖E*中的任何真子集都不是边覆盖集，则称E*是极小边覆盖集。</br>
-最小边覆盖：边数最小的边覆盖称为最小边覆盖，通俗地讲，就是极小边覆盖中的最小的一个集合。</br>
-最小边覆盖 = 最大独立集 = n - 最大匹配</br>
+    <div id="text">
 
-<h3>最大权闭合子图</h3>
-定义：有一个有向图，每一个点都有一个权值（可以为正或负或0），选择一个权值和最大的子图，使得每个点的后继都在子图里面，这个子图就叫最大权闭合子图。</br> 
-方法：将正权点连接s,容量为点权,负权点连接t容量为点权绝对值,所求得的最小割将图分为两部分,我们发现所有正点权的和减去该简单割便是与s相连的闭合图的权，通过最小割找到了最大权闭合图。</br>
+        <h3>二分图的最小顶点覆盖</h3>
+        定义：假如选了一个点就相当于覆盖了以它为端点的所有边。最小顶点覆盖就是选择最少的点来覆盖所有的边。</br>
+        方法：最小顶点覆盖等于二分图的最大匹配。</br>
+        我们用二分图来构造最小顶点覆盖。</br>
+
+        <h3>二分图的最大独立集</h3>
+        定义：选出一些顶点使得这些顶点两两不相邻，则这些点构成的集合称为独立集。找出一个包含顶点数最多的独立集称为最大独立集。</br>
+        方法：最大独立集=所有顶点数-最小顶点覆盖。</br>
+
+        <h3>二分图的最大团</h3>
+        定义：对于一般图来说，团是一个顶点集合，且由该顶点集合诱导的子图是一个完全图，简单说，就是选出一些顶点，这些顶点两两之间都有边。最大团就是使得选出的这个顶点集合最大。对于二分图来说，我们默认为左边的所有点之间都有边，右边的所有顶点之间都有边。那么，实际上，我们是要在左边找到一个顶点子集X，在右边找到一个顶点子集Y，使得X中每个顶点和Y中每个顶点之间都有边。</br>
+        方法：二分图的最大团=补图的最大独立集。</br>
+        补图的定义是：对于二分图中左边一点x和右边一点y，若x和y之间有边，那么在补图中没有，否则有。</br>
+        这个方法很好理解，因为最大独立集是两两不相邻，所以最大独立集的补图两两相邻。</br>
+
+        <h3>最小边覆盖</h3>
+        边覆盖集：通俗地讲，所谓边覆盖集，就是G中所有的顶点都是E*中某条边的邻接顶点（边覆盖顶点），一条边只能覆盖2个顶点。</br>
+        注意：在无向图中存在用尽量少的边去“覆盖”住所有的顶点，所以边覆盖集有极小与最小的区别。</br>
+        极小边覆盖：若边覆盖E*中的任何真子集都不是边覆盖集，则称E*是极小边覆盖集。</br>
+        最小边覆盖：边数最小的边覆盖称为最小边覆盖，通俗地讲，就是极小边覆盖中的最小的一个集合。</br>
+        最小边覆盖 = 最大独立集 = n - 最大匹配</br>
+
+        <h3>最大权闭合子图</h3>
+        定义：有一个有向图，每一个点都有一个权值（可以为正或负或0），选择一个权值和最大的子图，使得每个点的后继都在子图里面，这个子图就叫最大权闭合子图。</br> 
+        方法：将正权点连接s,容量为点权,负权点连接t容量为点权绝对值,所求得的最小割将图分为两部分,我们发现所有正点权的和减去该简单割便是与s相连的闭合图的权，通过最小割找到了最大权闭合图。</br>
 
 
-<h3>最大密度子图</h3>
-定义：给定一个无向图，要求它的一个子图，使得子图中边数 与点数 的比值最大，</br>
-方法：定义d【i】为与点i相连的所有边的权值和，定义p【i】为点i的权，保留以前的图，新建源点s汇点t，s到i连边，权值为U，i到t连边，权值为2*g-d【i】-2*p【i】</br>
-那么h（g）的值为（U*n-maxflow），二分答案就行了。</br>
+        <h3>最大密度子图</h3>
+        定义：给定一个无向图，要求它的一个子图，使得子图中边数 与点数 的比值最大，</br>
+        方法：定义d【i】为与点i相连的所有边的权值和，定义p【i】为点i的权，保留以前的图，新建源点s汇点t，s到i连边，权值为U，i到t连边，权值为2*g-d【i】-2*p【i】</br>
+        那么h（g）的值为（U*n-maxflow），二分答案就行了。</br>
 
-<h3>最小路径覆盖子图</h3>
-定义：对于一个有向图，找出最小的路径条数，使之成为一个路径覆盖．</br>
-方法：用原图建立一个两层的新图，如果原图中存在边i->j我们建立的新图就有第一层的点i流到第二层的点j，最后建立超级源点流向 所有的第一层图的点，建立超级汇点，由所有第二层的图流入，用n减去所 求的最大流就是最小路径。</br>
+        <h3>最小路径覆盖子图</h3>
+        定义：对于一个有向图，找出最小的路径条数，使之成为一个路径覆盖．</br>
+        方法：用原图建立一个两层的新图，如果原图中存在边i->j我们建立的新图就有第一层的点i流到第二层的点j，最后建立超级源点流向 所有的第一层图的点，建立超级汇点，由所有第二层的图流入，用n减去所
+        求的最大流就是最小路径。</br>
 
-<h3>在有向无环图的最长链与最长反链与最长链</h3>
-在有向无环图中，有如下的一些定义和性质：</br>
-链：一条链是一些点的集合，链上任意两个点x, y，满足要么 x 能到达 y ，要么 y 能到达 x 。</br>
-反链：一条反链是一些点的集合，链上任意两个点x, y，满足 x 不能到达 y，且 y 也不能到达 x。</br>
-一个定理：最长反链长度=最小链覆盖（用最少的链覆盖所有顶点）</br>
-对偶定理：最长链长度=最小反链覆盖       </br>
-                                             
-<h3>最小链覆盖（可以相交的最小路径覆盖）（最长反链长度）（用最少的链覆盖所有顶点）</h3>
-定义：一条链是一些点的集合，链上任意两个点x, y，满足要么 x 能到达 y ，要么 y 能到达 x 。有向无环图中，找出最小的路径条数，使之成为的一个路径覆盖。</br>
-方法：我们将原图做一次Floyd传递闭包，在新图中寻找最小路径覆盖，这样其实就是相当于将原图改造了一下，只要 x 能到达 y ，就直接连一条边 (x, y)，这样就可以“绕过”原图的一些被其他路径占用的点，直接构造新路径了。这样就将可以相交的最小路径覆盖转化为了路径不能相交的最小路径覆盖了。</br>
+        <h3>在有向无环图的最长链与最长反链与最长链</h3>
+        在有向无环图中，有如下的一些定义和性质：</br>
+        链：一条链是一些点的集合，链上任意两个点x, y，满足要么 x 能到达 y ，要么 y 能到达 x 。</br>
+        反链：一条反链是一些点的集合，链上任意两个点x, y，满足 x 不能到达 y，且 y 也不能到达 x。</br>
+        一个定理：最长反链长度=最小链覆盖（用最少的链覆盖所有顶点）</br>
+        对偶定理：最长链长度=最小反链覆盖       </br>
+                                                     
+        <h3>最小链覆盖（可以相交的最小路径覆盖）（最长反链长度）（用最少的链覆盖所有顶点）</h3>
+        定义：一条链是一些点的集合，链上任意两个点x, y，满足要么 x 能到达 y ，要么 y 能到达 x 。有向无环图中，找出最小的路径条数，使之成为的一个路径覆盖。</br>
+        方法：我们将原图做一次Floyd传递闭包，在新图中寻找最小路径覆盖，这样其实就是相当于将原图改造了一下，只要 x 能到达 y ，就直接连一条边 (x,
+        y)，这样就可以“绕过”原图的一些被其他路径占用的点，直接构造新路径了。这样就将可以相交的最小路径覆盖转化为了路径不能相交的最小路径覆盖了。</br>
 
-</br></br>
-最大团 = 补图的最大独立集</br>
-最小边覆盖 = 二分图最大独立集 = |V| - 最小路径覆盖</br>
-最小路径覆盖 = |V| - 最大匹配数</br>
-最小顶点覆盖 = 最大匹配数</br>
-最小顶点覆盖 + 最大独立数 = |V|</br>
-最小割 = 最小点权覆盖集 = 点权和 - 最大点权独立集</br>
+        </br></br>
+        最大团 = 补图的最大独立集</br>
+        最小边覆盖 = 二分图最大独立集 = |V| - 最小路径覆盖</br>
+        最小路径覆盖 = |V| - 最大匹配数</br>
+        最小顶点覆盖 = 最大匹配数</br>
+        最小顶点覆盖 + 最大独立数 = |V|</br>
+        最小割 = 最小点权覆盖集 = 点权和 - 最大点权独立集</br>
 
-     			</div>
-     			
-     			
-     			<div id="code">
-     				<pre><span class="k">const</span> <span class="kt">double</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">;</span>
+    </div>
+    <div id="code">
+					<pre><span class="k">const</span> <span class="kt">double</span> <span class="n">eps</span><span
+                            class="o">=</span><span class="mf">1e-12</span><span class="p">;</span>
 <span class="k">struct</span> <span class="n">dinic</span><span class="p">{</span>
-    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span><span class="o">=</span><span class="mf">1e5</span><span class="p">;</span>
-    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">maxm</span><span class="o">=</span><span class="mf">1e6</span><span class="p">;</span>
-    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">inf</span><span class="o">=</span><span class="mf">1e9</span><span class="p">;</span>
-    <span class="k">struct</span> <span class="n">edge</span><span class="p">{</span>
-        <span class="kt">int</span> <span class="n">v</span><span class="p">,</span><span class="n">nex</span><span class="p">;</span>
-        <span class="kt">double</span> <span class="n">c</span><span class="p">;</span>
-    <span class="p">}</span> <span class="n">g</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">maxm</span><span class="p">];</span>
-    <span class="kt">int</span> <span class="n">lv</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">current</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">head</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">cnt</span><span class="p">;</span>
-    
-    <span class="kt">void</span> <span class="n">add_edge</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">,</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span><span class="kt">double</span> <span class="n">c</span><span class="p">){</span>
-       <span class="c1">//cout&lt;&lt;u&lt;&lt;&quot; &quot;&lt;&lt;v&lt;&lt;endl;</span>
-        <span class="n">g</span><span class="p">[</span><span class="n">cnt</span><span class="p">].</span><span class="n">v</span><span class="o">=</span><span class="n">v</span><span class="p">;</span>
-        <span class="n">g</span><span class="p">[</span><span class="n">cnt</span><span class="p">].</span><span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">;</span>
-        <span class="n">g</span><span class="p">[</span><span class="n">cnt</span><span class="p">].</span><span class="n">nex</span><span class="o">=</span><span class="n">head</span><span class="p">[</span><span class="n">u</span><span class="p">];</span>
-        <span class="n">head</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">=</span><span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
-        
-        <span class="n">g</span><span class="p">[</span><span class="n">cnt</span><span class="p">].</span><span class="n">v</span><span class="o">=</span><span class="n">u</span><span class="p">;</span>
-        <span class="n">g</span><span class="p">[</span><span class="n">cnt</span><span class="p">].</span><span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-        <span class="n">g</span><span class="p">[</span><span class="n">cnt</span><span class="p">].</span><span class="n">nex</span><span class="o">=</span><span class="n">head</span><span class="p">[</span><span class="n">v</span><span class="p">];</span>
-        <span class="n">head</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">=</span><span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span
+                                class="n">maxn</span><span class="o">=</span><span class="mi">1000</span><span
+                                class="p">,</span><span class="n">maxm</span><span class="o">=</span><span class="mf">1e6</span><span
+                                class="p">,</span><span class="n">inf</span><span class="o">=</span><span
+                                class="mf">1e9</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">star</span><span class="p">{</span><span class="kt">int</span> <span
+                                class="n">v</span><span class="p">,</span><span class="n">nex</span><span
+                                class="p">;</span><span class="kt">double</span> <span class="n">c</span><span
+                                class="p">;}</span> <span class="n">edge</span><span class="p">[</span><span class="mi">2</span><span
+                                class="o">*</span><span class="n">maxm</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">lv</span><span class="p">[</span><span class="n">maxn</span><span
+                                class="p">],</span><span class="n">current</span><span class="p">[</span><span
+                                class="n">maxn</span><span class="p">],</span><span class="n">head</span><span
+                                class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">cnt</span><span
+                                class="p">,</span><span class="n">n</span><span class="p">;</span>
+
+    <span class="kt">void</span> <span class="n">add_edge</span><span class="p">(</span><span
+                                class="kt">int</span> <span class="n">u</span><span class="p">,</span><span class="kt">int</span> <span
+                                class="n">v</span><span class="p">,</span><span class="kt">double</span> <span
+                                class="n">c</span><span class="p">){</span>
+       <span class="c1">// cout&lt;&lt;u&lt;&lt;&quot; &quot;&lt;&lt;v&lt;&lt;&quot; &quot;&lt;&lt;c&lt;&lt;endl;</span>
+        <span class="n">edge</span><span class="p">[</span><span class="o">++</span><span class="n">cnt</span><span
+                                class="p">]</span><span class="o">=</span><span class="n">star</span><span
+                                class="p">{</span><span class="n">v</span><span class="p">,</span><span
+                                class="n">head</span><span class="p">[</span><span class="n">u</span><span
+                                class="p">],</span><span class="n">c</span><span class="p">};</span> <span class="n">head</span><span
+                                class="p">[</span><span class="n">u</span><span class="p">]</span><span
+                                class="o">=</span><span class="n">cnt</span><span class="p">;</span>
+        <span class="n">edge</span><span class="p">[</span><span class="o">++</span><span class="n">cnt</span><span
+                                class="p">]</span><span class="o">=</span><span class="n">star</span><span
+                                class="p">{</span><span class="n">u</span><span class="p">,</span><span
+                                class="n">head</span><span class="p">[</span><span class="n">v</span><span
+                                class="p">],</span><span class="mi">0</span><span class="p">};</span> <span class="n">head</span><span
+                                class="p">[</span><span class="n">v</span><span class="p">]</span><span
+                                class="o">=</span><span class="n">cnt</span><span class="p">;</span>
     <span class="p">}</span>
-    
-    <span class="kt">void</span> <span class="n">ini</span><span class="p">(){</span>
-        <span class="n">memset</span><span class="p">(</span><span class="n">head</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">head</span><span class="p">));</span>
-        <span class="n">cnt</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+
+    <span class="kt">void</span> <span class="n">ini</span><span class="p">(</span><span class="kt">int</span> <span
+                                class="n">n</span><span class="p">){</span>
+        <span class="n">cnt</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span> <span
+                                class="k">this</span><span class="o">-&gt;</span><span class="n">n</span><span
+                                class="o">=</span><span class="n">n</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                                class="o">=</span><span class="mi">0</span><span class="p">;</span><span
+                                class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span
+                                class="p">;</span><span class="n">i</span><span class="o">++</span><span
+                                class="p">)</span> <span class="n">head</span><span class="p">[</span><span
+                                class="n">i</span><span class="p">]</span><span class="o">=-</span><span
+                                class="mi">1</span><span class="p">;</span>
     <span class="p">}</span>
-    
-    <span class="kt">void</span> <span class="n">bfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">s</span><span class="p">){</span>
-        <span class="n">memset</span><span class="p">(</span><span class="n">lv</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">lv</span><span class="p">));</span>
-        <span class="n">lv</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-        <span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="n">q</span><span class="p">;</span>
-        <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
-        <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span>
-            <span class="kt">int</span> <span class="n">u</span><span class="o">=</span><span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span><span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
-            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">head</span><span class="p">[</span><span class="n">u</span><span class="p">];</span> <span class="o">~</span><span class="n">i</span><span class="p">;</span> <span class="n">i</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">nex</span><span class="p">){</span>
-                <span class="n">edge</span><span class="o">&amp;</span><span class="n">e</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+
+    <span class="kt">void</span> <span class="n">bfs</span><span class="p">(</span><span class="kt">int</span> <span
+                                class="n">s</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                                class="o">=</span><span class="mi">0</span><span class="p">;</span><span
+                                class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span
+                                class="p">;</span><span class="n">i</span><span class="o">++</span><span
+                                class="p">)</span> <span class="n">lv</span><span class="p">[</span><span
+                                class="n">i</span><span class="p">]</span><span class="o">=-</span><span
+                                class="mi">1</span><span class="p">;</span>
+        <span class="n">lv</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span
+                                class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span
+                                class="o">&gt;</span><span class="n">q</span><span class="p">;</span> <span
+                                class="n">q</span><span class="p">.</span><span class="n">push</span><span
+                                class="p">(</span><span class="n">s</span><span class="p">);</span>
+        <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">q</span><span
+                                class="p">.</span><span class="n">empty</span><span class="p">()){</span>
+            <span class="kt">int</span> <span class="n">u</span><span class="o">=</span><span class="n">q</span><span
+                                class="p">.</span><span class="n">front</span><span class="p">();</span><span class="n">q</span><span
+                                class="p">.</span><span class="n">pop</span><span class="p">();</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                                class="o">=</span><span class="n">head</span><span class="p">[</span><span
+                                class="n">u</span><span class="p">];</span><span class="o">~</span><span
+                                class="n">i</span><span class="p">;</span><span class="n">i</span><span
+                                class="o">=</span><span class="n">edge</span><span class="p">[</span><span
+                                class="n">i</span><span class="p">].</span><span class="n">nex</span><span
+                                class="p">){</span>
+                <span class="n">star</span><span class="o">&amp;</span><span class="n">e</span><span
+                                class="o">=</span><span class="n">edge</span><span class="p">[</span><span
+                                class="n">i</span><span class="p">];</span>
                 <span class="c1">//if(e.c&lt;=0||lv[e.v]&gt;=0)continue;</span>
-                <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">c</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">*</span><span class="n">eps</span><span class="o">||</span><span class="n">lv</span><span class="p">[</span><span class="n">e</span><span class="p">.</span><span class="n">v</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">)</span><span class="k">continue</span><span class="p">;</span>
-                <span class="n">lv</span><span class="p">[</span><span class="n">e</span><span class="p">.</span><span class="n">v</span><span class="p">]</span><span class="o">=</span><span class="n">lv</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
-                <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">v</span><span class="p">);</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span
+                                class="n">c</span><span class="o">&lt;</span><span class="mi">2</span><span
+                                class="o">*</span><span class="n">eps</span><span class="o">||</span><span
+                                class="n">lv</span><span class="p">[</span><span class="n">e</span><span
+                                class="p">.</span><span class="n">v</span><span class="p">]</span><span
+                                class="o">&gt;=</span><span class="mi">0</span><span class="p">)</span><span class="k">continue</span><span
+                                class="p">;</span>
+                <span class="n">lv</span><span class="p">[</span><span class="n">e</span><span class="p">.</span><span
+                                class="n">v</span><span class="p">]</span><span class="o">=</span><span
+                                class="n">lv</span><span class="p">[</span><span class="n">u</span><span
+                                class="p">]</span><span class="o">+</span><span class="mi">1</span><span
+                                class="p">;</span>
+                <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span
+                                class="n">e</span><span class="p">.</span><span class="n">v</span><span
+                                class="p">);</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
-    
-    <span class="kt">double</span> <span class="n">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">,</span><span class="kt">int</span> <span class="n">t</span><span class="p">,</span><span class="kt">double</span> <span class="n">f</span><span class="p">){</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">u</span><span class="o">==</span><span class="n">t</span><span class="p">)</span><span class="k">return</span> <span class="n">f</span><span class="p">;</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span><span class="n">i</span><span class="o">=</span><span class="n">current</span><span class="p">[</span><span class="n">u</span><span class="p">];</span> <span class="o">~</span><span class="n">i</span><span class="p">;</span> <span class="n">i</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">nex</span><span class="p">){</span>
-            <span class="n">edge</span><span class="o">&amp;</span><span class="n">e</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="o">&amp;</span><span class="n">rev</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="o">^</span><span class="mi">1</span><span class="p">];</span>
+
+    <span class="kt">double</span> <span class="n">dfs</span><span class="p">(</span><span class="kt">int</span> <span
+                                class="n">u</span><span class="p">,</span><span class="kt">int</span> <span
+                                class="n">t</span><span class="p">,</span><span class="kt">double</span> <span
+                                class="n">f</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">u</span><span class="o">==</span><span
+                                class="n">t</span><span class="p">)</span><span class="k">return</span> <span class="n">f</span><span
+                                class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span><span
+                                class="n">i</span><span class="o">=</span><span class="n">current</span><span class="p">[</span><span
+                                class="n">u</span><span class="p">];</span><span class="o">~</span><span
+                                class="n">i</span><span class="p">;</span><span class="n">i</span><span
+                                class="o">=</span><span class="n">edge</span><span class="p">[</span><span
+                                class="n">i</span><span class="p">].</span><span class="n">nex</span><span
+                                class="p">){</span>
+            <span class="n">star</span><span class="o">&amp;</span><span class="n">e</span><span class="o">=</span><span
+                                class="n">edge</span><span class="p">[</span><span class="n">i</span><span
+                                class="p">],</span><span class="o">&amp;</span><span class="n">rev</span><span
+                                class="o">=</span><span class="n">edge</span><span class="p">[</span><span
+                                class="n">i</span><span class="o">^</span><span class="mi">1</span><span
+                                class="p">];</span>
             <span class="c1">//if(e.c&lt;=0||lv[u]&gt;=lv[e.v])continue;</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">c</span><span class="o">&lt;</span><span class="n">eps</span><span class="o">||</span><span class="n">lv</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">lv</span><span class="p">[</span><span class="n">e</span><span class="p">.</span><span class="n">v</span><span class="p">])</span><span class="k">continue</span><span class="p">;</span>
-            <span class="kt">double</span> <span class="n">d</span><span class="o">=</span><span class="n">dfs</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">v</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">min</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">e</span><span class="p">.</span><span class="n">c</span><span class="p">));</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span
+                                class="n">c</span><span class="o">&lt;</span><span class="n">eps</span><span class="o">||</span><span
+                                class="n">lv</span><span class="p">[</span><span class="n">u</span><span
+                                class="p">]</span><span class="o">&gt;=</span><span class="n">lv</span><span
+                                class="p">[</span><span class="n">e</span><span class="p">.</span><span
+                                class="n">v</span><span class="p">])</span><span class="k">continue</span><span
+                                class="p">;</span>
+            <span class="kt">double</span> <span class="n">d</span><span class="o">=</span><span
+                                class="n">dfs</span><span class="p">(</span><span class="n">e</span><span
+                                class="p">.</span><span class="n">v</span><span class="p">,</span><span
+                                class="n">t</span><span class="p">,</span><span class="n">min</span><span
+                                class="p">(</span><span class="n">f</span><span class="p">,</span><span
+                                class="n">e</span><span class="p">.</span><span class="n">c</span><span
+                                class="p">));</span>
             <span class="c1">//if(d&lt;=0)continue;</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">d</span><span class="o">&lt;</span><span class="n">eps</span><span class="p">)</span><span class="k">continue</span><span class="p">;</span>
-            <span class="n">e</span><span class="p">.</span><span class="n">c</span> <span class="o">-=</span><span class="n">d</span><span class="p">;</span>
-            <span class="n">rev</span><span class="p">.</span><span class="n">c</span><span class="o">+=</span><span class="n">d</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">d</span><span class="o">&lt;</span><span
+                                class="n">eps</span><span class="p">)</span><span class="k">continue</span><span
+                                class="p">;</span>
+            <span class="n">e</span><span class="p">.</span><span class="n">c</span> <span class="o">-=</span><span
+                                class="n">d</span><span class="p">;</span>
+            <span class="n">rev</span><span class="p">.</span><span class="n">c</span><span class="o">+=</span><span
+                                class="n">d</span><span class="p">;</span>
             <span class="k">return</span> <span class="n">d</span><span class="p">;</span>
         <span class="p">}</span>
         <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
     <span class="p">}</span>
-    
-    <span class="kt">double</span> <span class="n">maxflow</span><span class="p">(</span><span class="kt">int</span> <span class="n">s</span><span class="p">,</span><span class="kt">int</span> <span class="n">t</span><span class="p">){</span>
-        <span class="kt">double</span> <span class="n">flow</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+
+    <span class="kt">double</span> <span class="n">maxflow</span><span class="p">(</span><span
+                                class="kt">int</span> <span class="n">s</span><span class="p">,</span><span class="kt">int</span> <span
+                                class="n">t</span><span class="p">){</span>
+        <span class="kt">double</span> <span class="n">flow</span><span class="o">=</span><span class="mi">0</span><span
+                                class="p">;</span>
         <span class="k">while</span><span class="p">(</span><span class="kc">true</span><span class="p">){</span>
-            <span class="n">memmove</span><span class="p">(</span><span class="n">current</span><span class="p">,</span><span class="n">head</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">head</span><span class="p">));</span>
             <span class="n">bfs</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">lv</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span><span class="k">return</span> <span class="n">flow</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">lv</span><span class="p">[</span><span
+                                class="n">t</span><span class="p">]</span><span class="o">&lt;</span><span
+                                class="mi">0</span><span class="p">)</span><span class="k">return</span> <span
+                                class="n">flow</span><span class="p">;</span>
             <span class="kt">double</span> <span class="n">f</span><span class="p">;</span>
             <span class="c1">//while((f=dfs(s,t,inf))&gt;0)flow+=f;</span>
-            <span class="k">while</span><span class="p">((</span><span class="n">f</span><span class="o">=</span><span class="n">dfs</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">inf</span><span class="p">))</span><span class="o">&gt;</span><span class="n">eps</span><span class="p">)</span><span class="n">flow</span><span class="o">+=</span><span class="n">f</span><span class="p">;</span><span class="c1">//注意括号</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
+                                class="o">=</span><span class="mi">0</span><span class="p">;</span><span
+                                class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span
+                                class="p">;</span><span class="n">i</span><span class="o">++</span><span
+                                class="p">)</span> <span class="n">current</span><span class="p">[</span><span
+                                class="n">i</span><span class="p">]</span><span class="o">=</span><span
+                                class="n">head</span><span class="p">[</span><span class="n">i</span><span
+                                class="p">];</span>
+            <span class="k">while</span><span class="p">((</span><span class="n">f</span><span class="o">=</span><span
+                                class="n">dfs</span><span class="p">(</span><span class="n">s</span><span
+                                class="p">,</span><span class="n">t</span><span class="p">,</span><span
+                                class="n">inf</span><span class="p">))</span><span class="o">&gt;</span><span class="n">eps</span><span
+                                class="p">)</span><span class="n">flow</span><span class="o">+=</span><span
+                                class="n">f</span><span class="p">;</span><span class="c1">//注意括号</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span> <span class="n">g</span><span class="p">;</span>
 </pre>
-     			</div>
-
-     		</div>
-     		
     </div>
-</body>
-</html>
 
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>
 
 
 
