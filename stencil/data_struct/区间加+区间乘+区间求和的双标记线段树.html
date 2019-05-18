@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>线段树</title>
+</head>
+
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>线段树</h1></center>
+
+    <div id="code">
+        <pre><span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span
+                class="n">ll</span><span class="p">;</span>
+<span class="cp">#define ls (rt&lt;&lt;1)</span>
+<span class="cp">#define rs (ls|1)</span>
+<span class="cp">#define ml ((l+r)&gt;&gt;1)</span>
+<span class="cp">#define mr (ml+1)</span>
+<span class="k">const</span> <span class="n">ll</span> <span class="n">maxn</span><span class="o">=</span><span
+                    class="mf">1e5</span><span class="o">+</span><span class="mi">55</span><span class="p">;</span>
+<span class="n">ll</span> <span class="n">mod</span><span class="o">=</span><span class="mi">123456789</span><span
+                    class="p">;</span>
+<span class="n">ll</span> <span class="n">mul</span><span class="p">[</span><span class="n">maxn</span><span class="o">&lt;&lt;</span><span
+                    class="mi">2</span><span class="p">],</span><span class="n">add</span><span class="p">[</span><span
+                    class="n">maxn</span><span class="o">&lt;&lt;</span><span class="mi">2</span><span
+                    class="p">],</span><span class="n">sum</span><span class="p">[</span><span
+                    class="n">maxn</span><span class="o">&lt;&lt;</span><span class="mi">2</span><span
+                    class="p">],</span><span class="n">a</span><span class="p">[</span><span class="n">maxn</span><span
+                    class="p">];</span>
+
+<span class="kt">void</span> <span class="n">push_down</span><span class="p">(</span><span class="n">ll</span> <span
+                    class="n">rt</span><span class="p">,</span><span class="n">ll</span> <span class="n">l</span><span
+                    class="p">,</span><span class="n">ll</span> <span class="n">r</span><span class="p">){</span>
+    <span class="c1">// if(l!=r) push_down(ls,l,ml),push_down(rs,mr,r);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">mul</span><span class="p">[</span><span class="n">rt</span><span
+                    class="p">]</span><span class="o">!=</span><span class="mi">1</span><span class="p">){</span>
+        <span class="n">mul</span><span class="p">[</span><span class="n">ls</span><span class="p">]</span><span
+                    class="o">=</span><span class="n">mul</span><span class="p">[</span><span class="n">ls</span><span
+                    class="p">]</span><span class="o">*</span><span class="n">mul</span><span class="p">[</span><span
+                    class="n">rt</span><span class="p">]</span><span class="o">%</span><span class="n">mod</span><span
+                    class="p">;</span>
+        <span class="n">add</span><span class="p">[</span><span class="n">ls</span><span class="p">]</span><span
+                    class="o">=</span><span class="n">add</span><span class="p">[</span><span class="n">ls</span><span
+                    class="p">]</span><span class="o">*</span><span class="n">mul</span><span class="p">[</span><span
+                    class="n">rt</span><span class="p">]</span><span class="o">%</span><span class="n">mod</span><span
+                    class="p">;</span>
+        <span class="n">sum</span><span class="p">[</span><span class="n">ls</span><span class="p">]</span><span
+                    class="o">=</span><span class="n">sum</span><span class="p">[</span><span class="n">ls</span><span
+                    class="p">]</span><span class="o">*</span><span class="n">mul</span><span class="p">[</span><span
+                    class="n">rt</span><span class="p">]</span><span class="o">%</span><span class="n">mod</span><span
+                    class="p">;</span>
+
+        <span class="n">mul</span><span class="p">[</span><span class="n">rs</span><span class="p">]</span><span
+                    class="o">=</span><span class="n">mul</span><span class="p">[</span><span class="n">rs</span><span
+                    class="p">]</span><span class="o">*</span><span class="n">mul</span><span class="p">[</span><span
+                    class="n">rt</span><span class="p">]</span><span class="o">%</span><span class="n">mod</span><span
+                    class="p">;</span>
+        <span class="n">add</span><span class="p">[</span><span class="n">rs</span><span class="p">]</span><span
+                    class="o">=</span><span class="n">add</span><span class="p">[</span><span class="n">rs</span><span
+                    class="p">]</span><span class="o">*</span><span class="n">mul</span><span class="p">[</span><span
+                    class="n">rt</span><span class="p">]</span><span class="o">%</span><span class="n">mod</span><span
+                    class="p">;</span>
+        <span class="n">sum</span><span class="p">[</span><span class="n">rs</span><span class="p">]</span><span
+                    class="o">=</span><span class="n">sum</span><span class="p">[</span><span class="n">rs</span><span
+                    class="p">]</span><span class="o">*</span><span class="n">mul</span><span class="p">[</span><span
+                    class="n">rt</span><span class="p">]</span><span class="o">%</span><span class="n">mod</span><span
+                    class="p">;</span>
+
+        <span class="n">mul</span><span class="p">[</span><span class="n">rt</span><span class="p">]</span><span
+                    class="o">=</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">add</span><span class="p">[</span><span class="n">rt</span><span
+                    class="p">]</span><span class="o">!=</span><span class="mi">0</span><span class="p">){</span>
+        <span class="n">add</span><span class="p">[</span><span class="n">ls</span><span class="p">]</span><span
+                    class="o">=</span><span class="p">(</span><span class="n">add</span><span class="p">[</span><span
+                    class="n">ls</span><span class="p">]</span><span class="o">+</span><span class="n">add</span><span
+                    class="p">[</span><span class="n">rt</span><span class="p">])</span><span class="o">%</span><span
+                    class="n">mod</span><span class="p">;</span>
+        <span class="n">sum</span><span class="p">[</span><span class="n">ls</span><span class="p">]</span><span
+                    class="o">=</span><span class="p">(</span><span class="n">sum</span><span class="p">[</span><span
+                    class="n">ls</span><span class="p">]</span><span class="o">+</span><span class="n">add</span><span
+                    class="p">[</span><span class="n">rt</span><span class="p">]</span><span class="o">*</span><span
+                    class="p">(</span><span class="n">ml</span><span class="o">-</span><span class="n">l</span><span
+                    class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">%</span><span
+                    class="n">mod</span><span class="p">;</span>
+
+        <span class="n">add</span><span class="p">[</span><span class="n">rs</span><span class="p">]</span><span
+                    class="o">=</span><span class="p">(</span><span class="n">add</span><span class="p">[</span><span
+                    class="n">rs</span><span class="p">]</span><span class="o">+</span><span class="n">add</span><span
+                    class="p">[</span><span class="n">rt</span><span class="p">])</span><span class="o">%</span><span
+                    class="n">mod</span><span class="p">;</span>
+        <span class="n">sum</span><span class="p">[</span><span class="n">rs</span><span class="p">]</span><span
+                    class="o">=</span><span class="p">(</span><span class="n">sum</span><span class="p">[</span><span
+                    class="n">rs</span><span class="p">]</span><span class="o">+</span><span class="n">add</span><span
+                    class="p">[</span><span class="n">rt</span><span class="p">]</span><span class="o">*</span><span
+                    class="p">(</span><span class="n">r</span><span class="o">-</span><span class="n">mr</span><span
+                    class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">%</span><span
+                    class="n">mod</span><span class="p">;</span>
+
+        <span class="n">add</span><span class="p">[</span><span class="n">rt</span><span class="p">]</span><span
+                    class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">push_up</span><span class="p">(</span><span class="n">ll</span> <span
+                    class="n">rt</span><span class="p">,</span><span class="n">ll</span> <span class="n">l</span><span
+                    class="p">,</span><span class="n">ll</span> <span class="n">r</span><span class="p">){</span>
+    <span class="n">sum</span><span class="p">[</span><span class="n">rt</span><span class="p">]</span><span
+                    class="o">=</span><span class="p">(</span><span class="n">sum</span><span class="p">[</span><span
+                    class="n">ls</span><span class="p">]</span><span class="o">+</span><span class="n">sum</span><span
+                    class="p">[</span><span class="n">rs</span><span class="p">])</span><span class="o">%</span><span
+                    class="n">mod</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">build</span><span class="p">(</span><span class="n">ll</span> <span
+                    class="n">rt</span><span class="p">,</span><span class="n">ll</span> <span class="n">l</span><span
+                    class="p">,</span><span class="n">ll</span> <span class="n">r</span><span class="p">){</span>
+    <span class="n">mul</span><span class="p">[</span><span class="n">rt</span><span class="p">]</span><span
+                    class="o">=</span><span class="mi">1</span><span class="p">;</span>
+    <span class="n">add</span><span class="p">[</span><span class="n">rt</span><span class="p">]</span><span
+                    class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">l</span><span class="o">==</span><span
+                    class="n">r</span><span class="p">){</span>
+        <span class="n">sum</span><span class="p">[</span><span class="n">rt</span><span class="p">]</span><span
+                    class="o">=</span><span class="n">a</span><span class="p">[</span><span class="n">l</span><span
+                    class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+        <span class="n">build</span><span class="p">(</span><span class="n">ls</span><span class="p">,</span><span
+                    class="n">l</span><span class="p">,</span><span class="n">ml</span><span class="p">);</span>
+        <span class="n">build</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span><span
+                    class="n">mr</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
+        <span class="n">push_up</span><span class="p">(</span><span class="n">rt</span><span class="p">,</span><span
+                    class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">update_add</span><span class="p">(</span><span class="n">ll</span> <span
+                    class="n">rt</span><span class="p">,</span><span class="n">ll</span> <span class="n">l</span><span
+                    class="p">,</span><span class="n">ll</span> <span class="n">r</span><span class="p">,</span><span
+                    class="n">ll</span> <span class="n">ql</span><span class="p">,</span><span class="n">ll</span> <span
+                    class="n">qr</span><span class="p">,</span><span class="n">ll</span> <span class="n">d</span><span
+                    class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">l</span><span class="o">!=</span><span
+                    class="n">r</span><span class="p">)</span><span class="n">push_down</span><span
+                    class="p">(</span><span class="n">rt</span><span class="p">,</span><span class="n">l</span><span
+                    class="p">,</span><span class="n">r</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">ql</span><span class="o">&lt;=</span><span
+                    class="n">l</span><span class="o">&amp;&amp;</span><span class="n">r</span><span
+                    class="o">&lt;=</span><span class="n">qr</span><span class="p">){</span>
+        <span class="n">sum</span><span class="p">[</span><span class="n">rt</span><span class="p">]</span><span
+                    class="o">=</span><span class="p">(</span><span class="n">sum</span><span class="p">[</span><span
+                    class="n">rt</span><span class="p">]</span><span class="o">+</span><span class="p">(</span><span
+                    class="n">r</span><span class="o">-</span><span class="n">l</span><span class="o">+</span><span
+                    class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">d</span><span
+                    class="p">)</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+        <span class="n">add</span><span class="p">[</span><span class="n">rt</span><span class="p">]</span><span
+                    class="o">=</span><span class="n">d</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">ml</span><span class="o">&gt;=</span><span
+                    class="n">ql</span><span class="p">)</span> <span class="n">update_add</span><span
+                    class="p">(</span><span class="n">ls</span><span class="p">,</span><span class="n">l</span><span
+                    class="p">,</span><span class="n">ml</span><span class="p">,</span><span class="n">ql</span><span
+                    class="p">,</span><span class="n">qr</span><span class="p">,</span><span class="n">d</span><span
+                    class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">mr</span><span class="o">&lt;=</span><span
+                    class="n">qr</span><span class="p">)</span> <span class="n">update_add</span><span
+                    class="p">(</span><span class="n">rs</span><span class="p">,</span><span class="n">mr</span><span
+                    class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">ql</span><span
+                    class="p">,</span><span class="n">qr</span><span class="p">,</span><span class="n">d</span><span
+                    class="p">);</span>
+        <span class="n">push_up</span><span class="p">(</span><span class="n">rt</span><span class="p">,</span><span
+                    class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">update_mul</span><span class="p">(</span><span class="n">ll</span> <span
+                    class="n">rt</span><span class="p">,</span><span class="n">ll</span> <span class="n">l</span><span
+                    class="p">,</span><span class="n">ll</span> <span class="n">r</span><span class="p">,</span><span
+                    class="n">ll</span> <span class="n">ql</span><span class="p">,</span><span class="n">ll</span> <span
+                    class="n">qr</span><span class="p">,</span><span class="n">ll</span> <span class="n">d</span><span
+                    class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">l</span><span class="o">!=</span><span
+                    class="n">r</span><span class="p">)</span><span class="n">push_down</span><span
+                    class="p">(</span><span class="n">rt</span><span class="p">,</span><span class="n">l</span><span
+                    class="p">,</span><span class="n">r</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">ql</span><span class="o">&lt;=</span><span
+                    class="n">l</span><span class="o">&amp;&amp;</span><span class="n">r</span><span
+                    class="o">&lt;=</span><span class="n">qr</span><span class="p">){</span>
+        <span class="n">sum</span><span class="p">[</span><span class="n">rt</span><span class="p">]</span><span
+                    class="o">=</span><span class="n">sum</span><span class="p">[</span><span class="n">rt</span><span
+                    class="p">]</span><span class="o">*</span><span class="n">d</span><span class="o">%</span><span
+                    class="n">mod</span><span class="p">;</span>
+        <span class="n">mul</span><span class="p">[</span><span class="n">rt</span><span class="p">]</span><span
+                    class="o">=</span><span class="n">d</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">ml</span><span class="o">&gt;=</span><span
+                    class="n">ql</span><span class="p">)</span> <span class="n">update_mul</span><span
+                    class="p">(</span><span class="n">ls</span><span class="p">,</span><span class="n">l</span><span
+                    class="p">,</span><span class="n">ml</span><span class="p">,</span><span class="n">ql</span><span
+                    class="p">,</span><span class="n">qr</span><span class="p">,</span><span class="n">d</span><span
+                    class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">mr</span><span class="o">&lt;=</span><span
+                    class="n">qr</span><span class="p">)</span> <span class="n">update_mul</span><span
+                    class="p">(</span><span class="n">rs</span><span class="p">,</span><span class="n">mr</span><span
+                    class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">ql</span><span
+                    class="p">,</span><span class="n">qr</span><span class="p">,</span><span class="n">d</span><span
+                    class="p">);</span>
+        <span class="n">push_up</span><span class="p">(</span><span class="n">rt</span><span class="p">,</span><span
+                    class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">ll</span> <span class="n">query_sum</span><span class="p">(</span><span class="n">ll</span> <span
+                    class="n">rt</span><span class="p">,</span><span class="n">ll</span> <span class="n">l</span><span
+                    class="p">,</span><span class="n">ll</span> <span class="n">r</span><span class="p">,</span><span
+                    class="n">ll</span> <span class="n">ql</span><span class="p">,</span><span class="n">ll</span> <span
+                    class="n">qr</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">l</span><span class="o">!=</span><span
+                    class="n">r</span><span class="p">)</span><span class="n">push_down</span><span
+                    class="p">(</span><span class="n">rt</span><span class="p">,</span><span class="n">l</span><span
+                    class="p">,</span><span class="n">r</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">ql</span><span class="o">&lt;=</span><span
+                    class="n">l</span><span class="o">&amp;&amp;</span><span class="n">r</span><span
+                    class="o">&lt;=</span><span class="n">qr</span><span class="p">){</span>
+        <span class="k">return</span> <span class="n">sum</span><span class="p">[</span><span class="n">rt</span><span
+                    class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+        <span class="n">ll</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span
+                    class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">ml</span><span class="o">&gt;=</span><span
+                    class="n">ql</span><span class="p">)</span> <span class="n">ret</span><span class="o">+=</span><span
+                    class="n">query_sum</span><span class="p">(</span><span class="n">ls</span><span
+                    class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">ml</span><span
+                    class="p">,</span><span class="n">ql</span><span class="p">,</span><span class="n">qr</span><span
+                    class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">mr</span><span class="o">&lt;=</span><span
+                    class="n">qr</span><span class="p">)</span> <span class="n">ret</span><span class="o">+=</span><span
+                    class="n">query_sum</span><span class="p">(</span><span class="n">rs</span><span
+                    class="p">,</span><span class="n">mr</span><span class="p">,</span><span class="n">r</span><span
+                    class="p">,</span><span class="n">ql</span><span class="p">,</span><span class="n">qr</span><span
+                    class="p">);</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="o">%</span><span class="n">mod</span><span
+                    class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+    </div>
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>
+
+
+
