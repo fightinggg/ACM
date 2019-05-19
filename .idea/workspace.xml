@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e505d993-0813-4b95-9e39-e1a7b5c097cb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/stencil/data_struct/区间加+区间乘+区间求和的双标记线段树.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stencil/data_struct/区间加+区间乘+区间赋值+区间p次方求和的三标记线段树.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stencil/data_struct/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/stencil/data_struct/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stencil/data_struct/区间加+区间乘+区间赋值+区间p次方求和的三标记线段树.html" beforeDir="false" afterPath="$PROJECT_DIR$/stencil/data_struct/区间加+区间乘+区间赋值+区间p次方求和的三标记线段树.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,19 +19,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/stencil/math/FFT.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stencil/Yuki_technique/多项式倍增.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
-              <caret line="15" column="12" lean-forward="true" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+              <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -49,8 +39,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stencil/data_struct/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="3" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
+            <state relative-caret-position="270">
+              <caret line="18" selection-start-line="18" selection-end-line="18" />
             </state>
           </provider>
         </entry>
@@ -67,8 +57,36 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
+            <state relative-caret-position="255">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/stencil/data_struct/区间翻转0-1+区间赋值0-1+区间求和的双标记动态开点线段树.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="22" column="41" lean-forward="true" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
+              <folding>
+                <element signature="e#422#427#0" expanded="true" />
+                <element signature="e#621#625#0" expanded="true" />
+                <element signature="e#625#629#0" expanded="true" />
+                <element signature="e#2201#2206#1" expanded="true" />
+                <element signature="e#8084#8089#1" expanded="true" />
+                <element signature="e#9523#9527#0" expanded="true" />
+                <element signature="e#9575#9580#0" expanded="true" />
+                <element signature="e#9580#9585#0" expanded="true" />
+                <element signature="e#9632#9636#0" expanded="true" />
+                <element signature="e#11091#11095#0" expanded="true" />
+                <element signature="e#11699#11703#0" expanded="true" />
+                <element signature="e#13033#13037#0" expanded="true" />
+                <element signature="e#13085#13090#0" expanded="true" />
+                <element signature="e#13090#13095#0" expanded="true" />
+                <element signature="e#13142#13146#0" expanded="true" />
+                <element signature="e#13874#13878#0" expanded="true" />
+                <element signature="e#14433#14437#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -102,9 +120,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stencil/data_struct/区间加+区间乘+区间赋值+区间p次方求和的三标记线段树.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="708">
-              <caret line="107" column="6" selection-start-line="107" selection-start-column="6" selection-end-line="107" selection-end-column="6" />
+            <state relative-caret-position="255">
+              <caret line="110" lean-forward="true" selection-start-line="110" selection-end-line="110" />
               <folding>
+                <element signature="n#div#0;n#div#0;n#div#0;n#html#0;n#!!top" />
                 <element signature="e#384#388#0" expanded="true" />
                 <element signature="e#388#392#0" expanded="true" />
                 <element signature="e#478#482#0" expanded="true" />
@@ -129,6 +148,23 @@
                 <element signature="e#24868#24872#0" expanded="true" />
                 <element signature="e#25439#25443#0" expanded="true" />
                 <element signature="e#25997#26001#0" expanded="true" />
+                <element signature="n#div#0;n#div#1;n#div#0;n#html#0;n#!!top" />
+                <element signature="e#26806#26810#0" expanded="true" />
+                <element signature="e#26810#26814#0" expanded="true" />
+                <element signature="e#30287#30292#1" expanded="true" />
+                <element signature="e#45589#45594#1" expanded="true" />
+                <element signature="e#47076#47080#0" expanded="true" />
+                <element signature="e#47128#47133#0" expanded="true" />
+                <element signature="e#47133#47138#0" expanded="true" />
+                <element signature="e#47185#47189#0" expanded="true" />
+                <element signature="e#49212#49216#0" expanded="true" />
+                <element signature="e#49820#49824#0" expanded="true" />
+                <element signature="e#51261#51265#0" expanded="true" />
+                <element signature="e#51313#51318#0" expanded="true" />
+                <element signature="e#51318#51323#0" expanded="true" />
+                <element signature="e#51370#51374#0" expanded="true" />
+                <element signature="e#52152#52156#0" expanded="true" />
+                <element signature="e#52760#52764#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -137,7 +173,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stencil/graph_theory/tarjan边双联通分量.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="708">
+            <state relative-caret-position="945">
               <caret line="63" column="6" selection-start-line="63" selection-start-column="6" selection-end-line="63" selection-end-column="6" />
               <folding>
                 <element signature="e#1097#1101#0" expanded="true" />
@@ -191,7 +227,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/stencil/string/后缀自动机.html" />
         <option value="$PROJECT_DIR$/stencil/string/palindrome_tree.html" />
         <option value="$PROJECT_DIR$/stencil/string/错位比较.html" />
         <option value="$PROJECT_DIR$/stencil/data_struct/lct.html" />
@@ -239,6 +274,7 @@
         <option value="$PROJECT_DIR$/new.html" />
         <option value="$PROJECT_DIR$/stencil/graph_theory/最小费用最大流.html" />
         <option value="$PROJECT_DIR$/stencil/data_struct/区间加+区间乘+区间求和的双标记线段树.html" />
+        <option value="$PROJECT_DIR$/stencil/data_struct/区间翻转0:1+区间赋值0:1+区间求和的双标记动态开点线段树.html" />
         <option value="$PROJECT_DIR$/stencil/data_struct/区间加+区间乘+区间赋值+区间p次方求和的三标记线段树.html" />
         <option value="$PROJECT_DIR$/stencil/data_struct/index.html" />
         <option value="$PROJECT_DIR$/index.html" />
@@ -246,8 +282,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="114" />
-    <option name="y" value="23" />
+    <option name="x" value="224" />
+    <option name="y" value="48" />
     <option name="width" value="1279" />
     <option name="height" value="877" />
   </component>
@@ -259,6 +295,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -281,7 +318,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -292,16 +328,16 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/stencil/thinging" />
+      <recent name="$PROJECT_DIR$/stencil/string" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/stencil/data_struct" />
       <recent name="$PROJECT_DIR$/stencil/graph_theory" />
       <recent name="$PROJECT_DIR$/problem/graph_theory" />
       <recent name="$PROJECT_DIR$/problem/dp" />
       <recent name="$PROJECT_DIR$/stencil/math" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/stencil/thinging" />
-      <recent name="$PROJECT_DIR$/stencil/string" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -317,6 +353,9 @@
     </option>
   </component>
   <component name="RunManager" selected="JavaScript Debug.index.html">
+    <configuration name="区间翻转0-1+区间赋值0-1+区间求和的双标记动态开点线段树.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/data_struct/区间翻转0-1+区间赋值0-1+区间求和的双标记动态开点线段树.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="FFT.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/math/FFT.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -347,9 +386,6 @@
     <configuration name="index.html" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:63342/ACM/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="tarjan强联通分量.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/graph_theory/tarjan强联通分量.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
     <configuration name="tarjan点双联通分量.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/graph_theory/tarjan点双联通分量.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -365,10 +401,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JavaScript Debug.区间加+区间乘+区间赋值+区间p次方求和的三标记线段树.html" />
+        <item itemvalue="JavaScript Debug.区间翻转0-1+区间赋值0-1+区间求和的双标记动态开点线段树.html" />
         <item itemvalue="JavaScript Debug.区间加+区间乘+区间求和的双标记线段树.html" />
         <item itemvalue="JavaScript Debug.多项式倍增.html" />
         <item itemvalue="JavaScript Debug.FFT.html" />
-        <item itemvalue="JavaScript Debug.tarjan强联通分量.html" />
       </list>
     </recent_temporary>
   </component>
@@ -487,14 +523,15 @@
       <workItem from="1558096179347" duration="959000" />
       <workItem from="1558181649989" duration="500000" />
       <workItem from="1558192394424" duration="294000" />
+      <workItem from="1558277053228" duration="881000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107868000" />
+    <option name="totallyTimeSpent" value="108749000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="114" y="23" width="1279" height="877" extended-state="0" />
+    <frame x="224" y="48" width="1279" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18680446" />
@@ -520,9 +557,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/reading_problem_txt/make_blog.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/reading_problem/cf544E.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1105,7 +1139,14 @@
     <entry file="file://$PROJECT_DIR$/stencil/Yuki_technique/多项式倍增.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="15" column="12" lean-forward="true" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+          <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stencil/data_struct/区间加+区间乘+区间求和的双标记线段树.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -1113,26 +1154,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/stencil/graph_theory/二分图最小费用固定流.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/stencil/graph_theory/tarjan边双联通分量.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="708">
-          <caret line="63" column="6" selection-start-line="63" selection-start-column="6" selection-end-line="63" selection-end-column="6" />
-          <folding>
-            <element signature="e#1097#1101#0" expanded="true" />
-            <element signature="e#1101#1105#0" expanded="true" />
-            <element signature="e#1733#1737#0" expanded="true" />
-            <element signature="e#5123#5127#0" expanded="true" />
-            <element signature="e#6126#6131#1" expanded="true" />
-            <element signature="e#7960#7965#0" expanded="true" />
-            <element signature="e#7965#7970#0" expanded="true" />
-            <element signature="e#9842#9846#1" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1160,11 +1181,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/stencil/graph_theory/tarjan边双联通分量.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="945">
+          <caret line="63" column="6" selection-start-line="63" selection-start-column="6" selection-end-line="63" selection-end-column="6" />
+          <folding>
+            <element signature="e#1097#1101#0" expanded="true" />
+            <element signature="e#1101#1105#0" expanded="true" />
+            <element signature="e#1733#1737#0" expanded="true" />
+            <element signature="e#5123#5127#0" expanded="true" />
+            <element signature="e#6126#6131#1" expanded="true" />
+            <element signature="e#7960#7965#0" expanded="true" />
+            <element signature="e#7965#7970#0" expanded="true" />
+            <element signature="e#9842#9846#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stencil/graph_theory/二分图最小费用固定流.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/stencil/data_struct/区间加+区间乘+区间赋值+区间p次方求和的三标记线段树.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="708">
-          <caret line="107" column="6" selection-start-line="107" selection-start-column="6" selection-end-line="107" selection-end-column="6" />
+        <state relative-caret-position="255">
+          <caret line="110" lean-forward="true" selection-start-line="110" selection-end-line="110" />
           <folding>
+            <element signature="n#div#0;n#div#0;n#div#0;n#html#0;n#!!top" />
             <element signature="e#384#388#0" expanded="true" />
             <element signature="e#388#392#0" expanded="true" />
             <element signature="e#478#482#0" expanded="true" />
@@ -1189,28 +1231,64 @@
             <element signature="e#24868#24872#0" expanded="true" />
             <element signature="e#25439#25443#0" expanded="true" />
             <element signature="e#25997#26001#0" expanded="true" />
+            <element signature="n#div#0;n#div#1;n#div#0;n#html#0;n#!!top" />
+            <element signature="e#26806#26810#0" expanded="true" />
+            <element signature="e#26810#26814#0" expanded="true" />
+            <element signature="e#30287#30292#1" expanded="true" />
+            <element signature="e#45589#45594#1" expanded="true" />
+            <element signature="e#47076#47080#0" expanded="true" />
+            <element signature="e#47128#47133#0" expanded="true" />
+            <element signature="e#47133#47138#0" expanded="true" />
+            <element signature="e#47185#47189#0" expanded="true" />
+            <element signature="e#49212#49216#0" expanded="true" />
+            <element signature="e#49820#49824#0" expanded="true" />
+            <element signature="e#51261#51265#0" expanded="true" />
+            <element signature="e#51313#51318#0" expanded="true" />
+            <element signature="e#51318#51323#0" expanded="true" />
+            <element signature="e#51370#51374#0" expanded="true" />
+            <element signature="e#52152#52156#0" expanded="true" />
+            <element signature="e#52760#52764#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/stencil/data_struct/区间加+区间乘+区间求和的双标记线段树.html">
+    <entry file="file://$PROJECT_DIR$/stencil/data_struct/区间翻转0-1+区间赋值0-1+区间求和的双标记动态开点线段树.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+        <state relative-caret-position="330">
+          <caret line="22" column="41" lean-forward="true" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
+          <folding>
+            <element signature="e#422#427#0" expanded="true" />
+            <element signature="e#621#625#0" expanded="true" />
+            <element signature="e#625#629#0" expanded="true" />
+            <element signature="e#2201#2206#1" expanded="true" />
+            <element signature="e#8084#8089#1" expanded="true" />
+            <element signature="e#9523#9527#0" expanded="true" />
+            <element signature="e#9575#9580#0" expanded="true" />
+            <element signature="e#9580#9585#0" expanded="true" />
+            <element signature="e#9632#9636#0" expanded="true" />
+            <element signature="e#11091#11095#0" expanded="true" />
+            <element signature="e#11699#11703#0" expanded="true" />
+            <element signature="e#13033#13037#0" expanded="true" />
+            <element signature="e#13085#13090#0" expanded="true" />
+            <element signature="e#13090#13095#0" expanded="true" />
+            <element signature="e#13142#13146#0" expanded="true" />
+            <element signature="e#13874#13878#0" expanded="true" />
+            <element signature="e#14433#14437#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/stencil/data_struct/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="3" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
+        <state relative-caret-position="270">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
+        <state relative-caret-position="255">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
         </state>
       </provider>
     </entry>

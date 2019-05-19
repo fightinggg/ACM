@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>线段树</title>
+</head>
+
+<!--区间翻转0/1+区间赋值0/1+区间求和的双标记动态开点线段树.html-->
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>线段树</h1></center>
+    <div id="code">
+        <div>
+            <pre><span class="cp">/* http://acm.cug.edu.cn/problem.php?cid=1176&amp;pid=1 */</span>
+<span class="cp">// 区间赋值为0/1,区间的值取反</span>
+<span class="cp">//线段树动态开点</span>
+
+<span class="cp">//  区间翻转0/1+区间赋值0/1+区间求和的双标记动态开点线段树.html</span>
+
+<span class="cp">#define ml ((l+r)&gt;&gt;1)</span>
+<span class="cp">#define mr (ml+1)</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span><span class="o">=</span><span class="mf">5e4</span><span class="o">+</span><span class="mi">5</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">rev</span><span class="p">[</span><span class="n">maxn</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="mi">35</span><span class="p">],</span><span class="n">cov</span><span class="p">[</span><span class="n">maxn</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="mi">35</span><span class="p">],</span><span class="n">sum</span><span class="p">[</span><span class="n">maxn</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="mi">35</span><span class="p">],</span><span class="n">ls</span><span class="p">[</span><span class="n">maxn</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="mi">35</span><span class="p">],</span><span class="n">rs</span><span class="p">[</span><span class="n">maxn</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="mi">35</span><span class="p">],</span><span class="n">a</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">tot</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="n">push_son</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span><span class="n">son</span><span class="p">,</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span><span class="kt">int</span> <span class="n">r</span><span class="p">,</span><span class="kt">int</span> <span class="n">covrt</span><span class="p">,</span><span class="kt">int</span> <span class="n">revrt</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">son</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">son</span><span class="o">=++</span><span class="n">tot</span><span class="p">;</span>
+        <span class="n">cov</span><span class="p">[</span><span class="n">son</span><span class="p">]</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="n">rev</span><span class="p">[</span><span class="n">son</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="n">sum</span><span class="p">[</span><span class="n">son</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="n">ls</span><span class="p">[</span><span class="n">son</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="n">rs</span><span class="p">[</span><span class="n">son</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">covrt</span><span class="o">!=-</span><span class="mi">1</span><span class="p">){</span>
+        <span class="n">sum</span><span class="p">[</span><span class="n">son</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">r</span><span class="o">-</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">covrt</span><span class="p">;</span>
+        <span class="n">cov</span><span class="p">[</span><span class="n">son</span><span class="p">]</span><span class="o">=</span><span class="n">covrt</span><span class="p">;</span>
+        <span class="n">rev</span><span class="p">[</span><span class="n">son</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">revrt</span><span class="o">!=</span><span class="mi">0</span><span class="p">){</span>
+        <span class="n">sum</span><span class="p">[</span><span class="n">son</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">r</span><span class="o">-</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">sum</span><span class="p">[</span><span class="n">son</span><span class="p">];</span>
+        <span class="n">rev</span><span class="p">[</span><span class="n">son</span><span class="p">]</span><span class="o">^=</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">push_down</span><span class="p">(</span><span class="kt">int</span> <span class="n">rt</span><span class="p">,</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span><span class="kt">int</span> <span class="n">r</span><span class="p">){</span>
+    <span class="n">push_son</span><span class="p">(</span><span class="n">ls</span><span class="p">[</span><span class="n">rt</span><span class="p">],</span><span class="n">l</span><span class="p">,</span><span class="n">ml</span><span class="p">,</span><span class="n">cov</span><span class="p">[</span><span class="n">rt</span><span class="p">],</span><span class="n">rev</span><span class="p">[</span><span class="n">rt</span><span class="p">]);</span>
+    <span class="n">push_son</span><span class="p">(</span><span class="n">rs</span><span class="p">[</span><span class="n">rt</span><span class="p">],</span><span class="n">mr</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">cov</span><span class="p">[</span><span class="n">rt</span><span class="p">],</span><span class="n">rev</span><span class="p">[</span><span class="n">rt</span><span class="p">]);</span>
+    <span class="n">cov</span><span class="p">[</span><span class="n">rt</span><span class="p">]</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span> <span class="n">rev</span><span class="p">[</span><span class="n">rt</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">push_up</span><span class="p">(</span><span class="kt">int</span> <span class="n">rt</span><span class="p">,</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span><span class="kt">int</span> <span class="n">r</span><span class="p">){</span>
+    <span class="n">sum</span><span class="p">[</span><span class="n">rt</span><span class="p">]</span><span class="o">=</span><span class="n">sum</span><span class="p">[</span><span class="n">ls</span><span class="p">[</span><span class="n">rt</span><span class="p">]]</span><span class="o">+</span><span class="n">sum</span><span class="p">[</span><span class="n">rs</span><span class="p">[</span><span class="n">rt</span><span class="p">]];</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">build</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span><span class="n">rt</span><span class="p">,</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span><span class="kt">int</span> <span class="n">r</span><span class="p">){</span>
+    <span class="n">rt</span><span class="o">=</span><span class="n">tot</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">push_son</span><span class="p">(</span><span class="n">rt</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="kt">int</span> <span class="n">rt</span><span class="p">,</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span><span class="kt">int</span> <span class="n">r</span><span class="p">,</span><span class="kt">int</span> <span class="n">ql</span><span class="p">,</span><span class="kt">int</span> <span class="n">qr</span><span class="p">,</span><span class="kt">int</span> <span class="n">d</span><span class="p">,</span><span class="kt">int</span> <span class="n">type</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">ql</span><span class="o">&lt;=</span><span class="n">l</span><span class="o">&amp;&amp;</span><span class="n">r</span><span class="o">&lt;=</span><span class="n">qr</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">type</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="n">push_son</span><span class="p">(</span><span class="n">rt</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="c1">//rev</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">type</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="n">push_son</span><span class="p">(</span><span class="n">rt</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="c1">//cover</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+        <span class="n">push_down</span><span class="p">(</span><span class="n">rt</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">ml</span><span class="o">&gt;=</span><span class="n">ql</span><span class="p">)</span> <span class="n">update</span><span class="p">(</span><span class="n">ls</span><span class="p">[</span><span class="n">rt</span><span class="p">],</span><span class="n">l</span><span class="p">,</span><span class="n">ml</span><span class="p">,</span><span class="n">ql</span><span class="p">,</span><span class="n">qr</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">type</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">mr</span><span class="o">&lt;=</span><span class="n">qr</span><span class="p">)</span> <span class="n">update</span><span class="p">(</span><span class="n">rs</span><span class="p">[</span><span class="n">rt</span><span class="p">],</span><span class="n">mr</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">ql</span><span class="p">,</span><span class="n">qr</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">type</span><span class="p">);</span>
+        <span class="n">push_up</span><span class="p">(</span><span class="n">rt</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">query</span><span class="p">(</span><span class="kt">int</span> <span class="n">rt</span><span class="p">,</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span><span class="kt">int</span> <span class="n">r</span><span class="p">,</span><span class="kt">int</span> <span class="n">ql</span><span class="p">,</span><span class="kt">int</span> <span class="n">qr</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">ql</span><span class="o">&lt;=</span><span class="n">l</span><span class="o">&amp;&amp;</span><span class="n">r</span><span class="o">&lt;=</span><span class="n">qr</span><span class="p">){</span>
+        <span class="k">return</span> <span class="n">sum</span><span class="p">[</span><span class="n">rt</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+        <span class="n">push_down</span><span class="p">(</span><span class="n">rt</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">ml</span><span class="o">&gt;=</span><span class="n">ql</span><span class="p">)</span> <span class="n">ret</span><span class="o">+=</span><span class="n">query</span><span class="p">(</span><span class="n">ls</span><span class="p">[</span><span class="n">rt</span><span class="p">],</span><span class="n">l</span><span class="p">,</span><span class="n">ml</span><span class="p">,</span><span class="n">ql</span><span class="p">,</span><span class="n">qr</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">mr</span><span class="o">&lt;=</span><span class="n">qr</span><span class="p">)</span> <span class="n">ret</span><span class="o">+=</span><span class="n">query</span><span class="p">(</span><span class="n">rs</span><span class="p">[</span><span class="n">rt</span><span class="p">],</span><span class="n">mr</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">ql</span><span class="p">,</span><span class="n">qr</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>
+
+
+
