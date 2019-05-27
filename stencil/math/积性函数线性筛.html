@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>积性函数线性筛</title>
+</head>
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+
+    <center><h1>积性函数线性筛</h1></center>
+    <div id="text"></div>
+    <div id="code">
+        <pre><span class="cp">#include&lt;bits/stdc++.h&gt;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="cm">/*                        数论函数表</span>
+<span class="cm"> i phi(i) PHI(i) muu(i) MUU(i) ddd(i) DDD(i) sig(i) SIG(i)</span>
+<span class="cm"> 1   1      1      1      1      1      1      1      1</span>
+<span class="cm"> 2   1      2     -1      0      2      3      3      4</span>
+<span class="cm"> 3   2      4     -1     -1      2      5      4      8</span>
+<span class="cm"> 4   2      6      0     -1      3      8      7     15</span>
+<span class="cm"> 5   4     10     -1     -2      2     10      6     21</span>
+<span class="cm"> 6   2     12      1     -1      4     14     12     33</span>
+<span class="cm"> 7   6     18     -1     -2      2     16      8     41</span>
+<span class="cm"> 8   4     22      0     -2      4     20     15     56</span>
+<span class="cm"> 9   6     28      0     -2      3     23     13     69</span>
+<span class="cm">10   4     32      1     -1      4     27     18     87</span>
+<span class="cm">11  10     42     -1     -2      2     29     12     99</span>
+<span class="cm">12   4     46      0     -2      6     35     28    127</span>
+<span class="cm">13  12     58     -1     -3      2     37     14    141</span>
+<span class="cm">14   6     64      1     -2      4     41     24    165</span>
+<span class="cm">15   8     72      1     -1      4     45     24    189</span>
+<span class="cm">16   8     80      0     -1      5     50     31    220</span>
+<span class="cm">17  16     96     -1     -2      2     52     18    238</span>
+<span class="cm">18   6    102      0     -2      6     58     39    277</span>
+<span class="cm">19  18    120     -1     -3      2     60     20    297</span>
+<span class="cm">20   8    128      0     -3      6     66     42    339</span>
+<span class="cm">21  12    140      1     -2      4     70     32    371</span>
+<span class="cm">22  10    150      1     -1      4     74     36    407</span>
+<span class="cm">23  22    172     -1     -2      2     76     24    431</span>
+<span class="cm">24   8    180      0     -2      8     84     60    491</span>
+<span class="cm">25  20    200      0     -2      3     87     31    522</span>
+<span class="cm">26  12    212      1     -1      4     91     42    564</span>
+<span class="cm">27  18    230      0     -1      4     95     40    604</span>
+<span class="cm">28  12    242      0     -1      6    101     56    660</span>
+<span class="cm">29  28    270     -1     -2      2    103     30    690</span>
+<span class="cm">30   8    278     -1     -3      8    111     72    762*/</span>
+
+<span class="cm">/****  * 超级积性函数线性筛 *  ****/</span>
+<span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span
+                    class="p">;</span>
+<span class="k">const</span> <span class="n">ll</span> <span class="n">maxn</span><span class="o">=</span><span
+                    class="mf">5e6</span><span class="p">;</span>
+<span class="n">ll</span> <span class="n">no_pri</span><span class="p">[</span><span class="n">maxn</span><span
+                    class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span
+                    class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span
+                    class="p">},</span><span class="n">pri</span><span class="p">[</span><span
+                    class="n">maxn</span><span class="p">],</span><span class="n">low</span><span
+                    class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+<span class="n">ll</span> <span class="n">PHI</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span
+                    class="n">DDD</span><span class="p">[</span><span class="n">maxn</span><span
+                    class="p">],</span><span class="n">XDX</span><span class="p">[</span><span
+                    class="n">maxn</span><span class="p">],</span><span class="n">MUU</span><span
+                    class="p">[</span><span class="n">maxn</span><span class="p">],</span><span
+                    class="n">SIG</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+<span class="kt">void</span> <span class="n">f_ini</span><span class="p">(){</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span
+                    class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span
+                    class="n">maxn</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span
+                    class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">no_pri</span><span
+                    class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">low</span><span
+                    class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span
+                    class="n">pri</span><span class="p">[</span><span class="o">++</span><span class="n">pri</span><span
+                    class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">=</span><span
+                    class="n">i</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">j</span><span
+                    class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">pri</span><span
+                    class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span
+                    class="n">i</span><span class="o">&lt;</span><span class="n">maxn</span><span
+                    class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">no_pri</span><span class="p">[</span><span class="n">pri</span><span class="p">[</span><span
+                    class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">i</span><span
+                    class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">%</span><span
+                    class="n">pri</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span
+                    class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">low</span><span class="p">[</span><span class="n">pri</span><span
+                    class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span
+                    class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">low</span><span
+                    class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span
+                    class="n">pri</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="n">low</span><span class="p">[</span><span
+                    class="n">pri</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span
+                    class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span
+                    class="n">pri</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">DDD</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span
+                    class="o">=</span><span class="n">PHI</span><span class="p">[</span><span class="mi">1</span><span
+                    class="p">]</span><span class="o">=</span><span class="n">MUU</span><span class="p">[</span><span
+                    class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">SIG</span><span
+                    class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span
+                    class="mi">1</span><span class="p">;</span><span class="c1">// 改这里</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span
+                    class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span
+                    class="n">pri</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span
+                    class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">mul</span><span
+                    class="o">=</span><span class="n">pri</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">],</span><span class="n">ct</span><span class="o">=</span><span class="mi">1</span><span
+                    class="p">;</span><span class="n">mul</span><span class="o">&lt;</span><span
+                    class="n">maxn</span><span class="p">;</span><span class="n">mul</span><span
+                    class="o">*=</span><span class="n">pri</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">],</span><span class="n">ct</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">DDD</span><span class="p">[</span><span class="n">mul</span><span class="p">]</span><span
+                    class="o">=</span><span class="n">ct</span><span class="o">+</span><span class="mi">1</span><span
+                    class="p">;</span><span class="c1">// 改这里</span>
+            <span class="n">SIG</span><span class="p">[</span><span class="n">mul</span><span class="p">]</span><span
+                    class="o">=</span><span class="n">SIG</span><span class="p">[</span><span class="n">mul</span><span
+                    class="o">/</span><span class="n">pri</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">]]</span><span class="o">+</span><span class="n">mul</span><span class="p">;</span><span
+                    class="c1">// 改这里</span>
+            <span class="n">MUU</span><span class="p">[</span><span class="n">mul</span><span class="p">]</span><span
+                    class="o">=</span><span class="n">ct</span><span class="o">==</span><span class="mi">1</span><span
+                    class="o">?-</span><span class="mi">1</span><span class="o">:</span><span class="mi">0</span><span
+                    class="p">;</span><span class="c1">// 改这里</span>
+            <span class="n">PHI</span><span class="p">[</span><span class="n">mul</span><span class="p">]</span><span
+                    class="o">=</span><span class="n">mul</span><span class="o">/</span><span class="n">pri</span><span
+                    class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span
+                    class="p">(</span><span class="n">pri</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span><span
+                    class="c1">// 改这里</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span
+                    class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span
+                    class="n">maxn</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span
+                    class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">j</span><span
+                    class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">pri</span><span
+                    class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span
+                    class="n">i</span><span class="o">&lt;</span><span class="n">maxn</span><span
+                    class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">ll</span> <span class="n">x</span><span class="o">=</span><span class="n">low</span><span
+                    class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">pri</span><span
+                    class="p">[</span><span class="n">j</span><span class="p">]],</span> <span class="n">y</span><span
+                    class="o">=</span><span class="n">i</span><span class="o">*</span><span class="n">pri</span><span
+                    class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">/</span><span
+                    class="n">x</span><span class="p">;</span>
+            <span class="n">DDD</span><span class="p">[</span><span class="n">x</span><span class="o">*</span><span
+                    class="n">y</span><span class="p">]</span><span class="o">=</span><span class="n">DDD</span><span
+                    class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">*</span><span
+                    class="n">DDD</span><span class="p">[</span><span class="n">y</span><span class="p">];</span>
+            <span class="n">MUU</span><span class="p">[</span><span class="n">x</span><span class="o">*</span><span
+                    class="n">y</span><span class="p">]</span><span class="o">=</span><span class="n">MUU</span><span
+                    class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">*</span><span
+                    class="n">MUU</span><span class="p">[</span><span class="n">y</span><span class="p">];</span>
+            <span class="n">PHI</span><span class="p">[</span><span class="n">x</span><span class="o">*</span><span
+                    class="n">y</span><span class="p">]</span><span class="o">=</span><span class="n">PHI</span><span
+                    class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">*</span><span
+                    class="n">PHI</span><span class="p">[</span><span class="n">y</span><span class="p">];</span>
+            <span class="n">SIG</span><span class="p">[</span><span class="n">x</span><span class="o">*</span><span
+                    class="n">y</span><span class="p">]</span><span class="o">=</span><span class="n">SIG</span><span
+                    class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">*</span><span
+                    class="n">SIG</span><span class="p">[</span><span class="n">y</span><span class="p">];</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">%</span><span
+                    class="n">pri</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span
+                    class="o">==</span><span class="mi">0</span><span class="p">)</span> <span
+                    class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span
+                    class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span
+                    class="n">maxn</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span
+                    class="p">)</span> <span class="p">{</span>
+        <span class="n">DDD</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
+                    class="o">+=</span><span class="n">DDD</span><span class="p">[</span><span class="n">i</span><span
+                    class="o">-</span><span class="mi">1</span><span class="p">];</span>
+        <span class="n">MUU</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
+                    class="o">+=</span><span class="n">MUU</span><span class="p">[</span><span class="n">i</span><span
+                    class="o">-</span><span class="mi">1</span><span class="p">];</span>
+        <span class="n">PHI</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
+                    class="o">+=</span><span class="n">PHI</span><span class="p">[</span><span class="n">i</span><span
+                    class="o">-</span><span class="mi">1</span><span class="p">];</span>
+        <span class="n">SIG</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
+                    class="o">+=</span><span class="n">SIG</span><span class="p">[</span><span class="n">i</span><span
+                    class="o">-</span><span class="mi">1</span><span class="p">];</span>
+         <span class="n">XDX</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
+                    class="o">=</span><span class="p">(</span><span class="n">DDD</span><span class="p">[</span><span
+                    class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">DDD</span><span
+                    class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span
+                    class="p">])</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span
+                    class="n">XDX</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span
+                    class="mi">1</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+    <span class="n">f_ini</span><span class="p">();</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;数论函数表</span><span
+                    class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot; i phi(i) PHI(i) muu(i) MUU(i) ddd(i) DDD(i) sig(i) SIG(i)</span><span
+                    class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span
+                    class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span
+                    class="mi">30</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span
+                    class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%2lld %3lld %6lld %6lld %6lld %6lld %6lld %6lld %6lld</span><span
+                    class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span
+                    class="n">i</span><span class="p">,</span><span class="n">PHI</span><span class="p">[</span><span
+                    class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">PHI</span><span
+                    class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span
+                    class="p">],</span><span class="n">PHI</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">],</span><span class="n">MUU</span><span class="p">[</span><span class="n">i</span><span
+                    class="p">]</span><span class="o">-</span><span class="n">MUU</span><span class="p">[</span><span
+                    class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span
+                    class="n">MUU</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span
+                    class="n">DDD</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
+                    class="o">-</span><span class="n">DDD</span><span class="p">[</span><span class="n">i</span><span
+                    class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">DDD</span><span
+                    class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">SIG</span><span
+                    class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span
+                    class="n">SIG</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span
+                    class="mi">1</span><span class="p">],</span><span class="n">SIG</span><span class="p">[</span><span
+                    class="n">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+    </div>
+
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>
