@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e505d993-0813-4b95-9e39-e1a7b5c097cb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/stencil/math/积性函数线性筛.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stencil/math/杜教筛与卷积.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stencil/math/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/stencil/math/index.html" afterDir="false" />
     </list>
@@ -18,39 +18,55 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/problem/graph_theory/hdu6445.html">
+        <entry file="file://$PROJECT_DIR$/stencil/math/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="31" column="47" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
-              <folding>
-                <element signature="e#455#461#0" expanded="true" />
-                <element signature="e#1223#1229#0" expanded="true" />
-                <element signature="e#1229#1235#0" expanded="true" />
-                <element signature="e#1235#1241#0" expanded="true" />
-                <element signature="e#1241#1247#0" expanded="true" />
-                <element signature="e#1247#1253#0" expanded="true" />
-                <element signature="e#1253#1259#0" expanded="true" />
-                <element signature="e#1259#1265#0" expanded="true" />
-                <element signature="e#1265#1271#0" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#1366#1372#0" expanded="true" />
-                <element signature="e#1372#1378#0" expanded="true" />
-                <element signature="e#1378#1384#0" expanded="true" />
-                <element signature="e#1384#1390#0" expanded="true" />
-                <element signature="e#1390#1396#0" expanded="true" />
-                <element signature="e#1396#1402#0" expanded="true" />
-                <element signature="e#1402#1408#0" expanded="true" />
-                <element signature="e#1408#1414#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="150">
+              <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/stencil/math/index.html">
+        <entry file="file://$PROJECT_DIR$/stencil/math/杜教筛与卷积.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="97" lean-forward="true" selection-start-line="20" selection-start-column="97" selection-end-line="20" selection-end-column="97" />
+            <state relative-caret-position="108">
+              <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+              <folding>
+                <element signature="e#517#521#0" expanded="true" />
+                <element signature="e#523#527#0" expanded="true" />
+                <element signature="e#529#534#0" expanded="true" />
+                <element signature="e#534#539#0" expanded="true" />
+                <element signature="e#584#588#0" expanded="true" />
+                <element signature="e#590#594#0" expanded="true" />
+                <element signature="e#596#601#0" expanded="true" />
+                <element signature="e#601#606#0" expanded="true" />
+                <element signature="e#824#828#0" expanded="true" />
+                <element signature="e#830#834#0" expanded="true" />
+                <element signature="e#841#845#0" expanded="true" />
+                <element signature="e#860#864#0" expanded="true" />
+                <element signature="e#900#904#0" expanded="true" />
+                <element signature="e#917#921#0" expanded="true" />
+                <element signature="e#930#934#0" expanded="true" />
+                <element signature="e#936#940#0" expanded="true" />
+                <element signature="e#947#951#0" expanded="true" />
+                <element signature="e#1027#1031#0" expanded="true" />
+                <element signature="e#1046#1050#0" expanded="true" />
+                <element signature="e#1059#1063#0" expanded="true" />
+                <element signature="e#1065#1069#0" expanded="true" />
+                <element signature="e#1078#1082#0" expanded="true" />
+                <element signature="e#1117#1121#0" expanded="true" />
+                <element signature="e#1131#1135#0" expanded="true" />
+                <element signature="e#1146#1150#0" expanded="true" />
+                <element signature="e#1185#1189#0" expanded="true" />
+                <element signature="e#1212#1216#0" expanded="true" />
+                <element signature="e#1224#1228#0" expanded="true" />
+                <element signature="e#1230#1234#0" expanded="true" />
+                <element signature="e#1584#1588#1" expanded="true" />
+                <element signature="e#1685#1689#1" expanded="true" />
+                <element signature="e#1840#1844#1" expanded="true" />
+                <element signature="e#3010#3014#0" expanded="true" />
+                <element signature="e#3972#3976#1" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -63,7 +79,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stencil/math/积性函数线性筛.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="708">
+            <state relative-caret-position="3555">
               <caret line="237" column="6" selection-start-line="237" selection-start-column="6" selection-end-line="237" selection-end-column="6" />
               <folding>
                 <element signature="e#358#362#0" expanded="true" />
@@ -75,13 +91,6 @@
                 <element signature="e#12389#12393#1" expanded="true" />
                 <element signature="e#12969#12973#1" expanded="true" />
                 <element signature="e#16329#16333#1" expanded="true" />
-                <element signature="e#18849#18855#0" expanded="true" />
-                <element signature="e#18929#18935#1" expanded="true" />
-                <element signature="e#19041#19047#0" expanded="true" />
-                <element signature="e#19174#19180#1" expanded="true" />
-                <element signature="e#19450#19454#0" expanded="true" />
-                <element signature="e#19728#19734#0" expanded="true" />
-                <element signature="e#19856#19862#1" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -232,7 +241,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/stencil/dp/index.html" />
         <option value="$PROJECT_DIR$/stencil/thinging/莫队算法.html" />
         <option value="$PROJECT_DIR$/stencil/thinging/index.html" />
         <option value="$PROJECT_DIR$/stencil/graph_theory/网络流24题.html" />
@@ -283,12 +291,13 @@
         <option value="$PROJECT_DIR$/problem/graph_theory/hdu6445.html" />
         <option value="$PROJECT_DIR$/stencil/math/积性函数线性筛.html" />
         <option value="$PROJECT_DIR$/stencil/math/index.html" />
+        <option value="$PROJECT_DIR$/stencil/math/杜教筛与卷积.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="167" />
-    <option name="y" value="49" />
+    <option name="x" value="81" />
+    <option name="y" value="23" />
     <option name="width" value="1325" />
     <option name="height" value="877" />
   </component>
@@ -334,16 +343,16 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/stencil/thinging" />
+      <recent name="$PROJECT_DIR$/stencil/string" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/stencil/math" />
       <recent name="$PROJECT_DIR$/problem/graph_theory" />
       <recent name="$PROJECT_DIR$/problem/data_struct" />
       <recent name="$PROJECT_DIR$/stencil/data_struct" />
       <recent name="$PROJECT_DIR$/stencil/graph_theory" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/stencil/thinging" />
-      <recent name="$PROJECT_DIR$/stencil/string" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -358,11 +367,14 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.积性函数线性筛.html">
+  <component name="RunManager" selected="JavaScript Debug.杜教筛与卷积.html">
     <configuration name="ACM-ICPC 2018 徐州赛区网络预赛 G Trace.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/problem/data_struct/ACM-ICPC 2018 徐州赛区网络预赛 G Trace.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="积性函数线性筛.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/math/积性函数线性筛.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="杜教筛与卷积.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/math/杜教筛与卷积.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="主席树.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/data_struct/主席树.html" useBuiltInWebServerPort="true">
@@ -386,9 +398,6 @@
     <configuration name="index.html (1)" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:63342/ACM/problem/data_struct/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="index.html (2)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/data_struct/index.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
     <configuration name="index.html" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:63342/ACM/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -397,11 +406,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.杜教筛与卷积.html" />
         <item itemvalue="JavaScript Debug.积性函数线性筛.html" />
         <item itemvalue="JavaScript Debug.hdu6445.html" />
         <item itemvalue="JavaScript Debug.hdu6183.html" />
         <item itemvalue="JavaScript Debug.ACM-ICPC 2018 徐州赛区网络预赛 G Trace.html" />
-        <item itemvalue="JavaScript Debug.index.html (2)" />
       </list>
     </recent_temporary>
   </component>
@@ -527,14 +536,15 @@
       <workItem from="1558420276082" duration="1318000" />
       <workItem from="1558541710134" duration="1572000" />
       <workItem from="1558938885483" duration="262000" />
+      <workItem from="1558939409867" duration="143000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113538000" />
+    <option name="totallyTimeSpent" value="113681000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="167" y="49" width="1325" height="877" extended-state="0" />
+    <frame x="81" y="23" width="1325" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17944786" />
@@ -560,9 +570,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/stencil/data_struct/划分树.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/up_and_right.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1163,6 +1170,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/problem/graph_theory/hdu6445.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="47" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
+          <folding>
+            <element signature="e#455#461#0" expanded="true" />
+            <element signature="e#1223#1229#0" expanded="true" />
+            <element signature="e#1229#1235#0" expanded="true" />
+            <element signature="e#1235#1241#0" expanded="true" />
+            <element signature="e#1241#1247#0" expanded="true" />
+            <element signature="e#1247#1253#0" expanded="true" />
+            <element signature="e#1253#1259#0" expanded="true" />
+            <element signature="e#1259#1265#0" expanded="true" />
+            <element signature="e#1265#1271#0" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#1366#1372#0" expanded="true" />
+            <element signature="e#1372#1378#0" expanded="true" />
+            <element signature="e#1378#1384#0" expanded="true" />
+            <element signature="e#1384#1390#0" expanded="true" />
+            <element signature="e#1390#1396#0" expanded="true" />
+            <element signature="e#1396#1402#0" expanded="true" />
+            <element signature="e#1402#1408#0" expanded="true" />
+            <element signature="e#1408#1414#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stencil/math/莫比乌斯.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stencil/math/积性函数线性筛.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3555">
+          <caret line="237" column="6" selection-start-line="237" selection-start-column="6" selection-end-line="237" selection-end-column="6" />
+          <folding>
+            <element signature="e#358#362#0" expanded="true" />
+            <element signature="e#375#379#0" expanded="true" />
+            <element signature="e#5021#5025#1" expanded="true" />
+            <element signature="e#6255#6259#1" expanded="true" />
+            <element signature="e#9196#9200#0" expanded="true" />
+            <element signature="e#9856#9860#1" expanded="true" />
+            <element signature="e#12389#12393#1" expanded="true" />
+            <element signature="e#12969#12973#1" expanded="true" />
+            <element signature="e#16329#16333#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/stencil/data_struct/区间翻转0-1+区间赋值0-1+区间求和的双标记动态开点线段树.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1263,65 +1318,53 @@
     <entry file="file://$PROJECT_DIR$/stencil/graph_theory/二分图最小费用固定流.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/problem/graph_theory/hdu6445.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="31" column="47" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
-          <folding>
-            <element signature="e#455#461#0" expanded="true" />
-            <element signature="e#1223#1229#0" expanded="true" />
-            <element signature="e#1229#1235#0" expanded="true" />
-            <element signature="e#1235#1241#0" expanded="true" />
-            <element signature="e#1241#1247#0" expanded="true" />
-            <element signature="e#1247#1253#0" expanded="true" />
-            <element signature="e#1253#1259#0" expanded="true" />
-            <element signature="e#1259#1265#0" expanded="true" />
-            <element signature="e#1265#1271#0" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#1366#1372#0" expanded="true" />
-            <element signature="e#1372#1378#0" expanded="true" />
-            <element signature="e#1378#1384#0" expanded="true" />
-            <element signature="e#1384#1390#0" expanded="true" />
-            <element signature="e#1390#1396#0" expanded="true" />
-            <element signature="e#1396#1402#0" expanded="true" />
-            <element signature="e#1402#1408#0" expanded="true" />
-            <element signature="e#1408#1414#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/stencil/math/莫比乌斯.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/stencil/math/积性函数线性筛.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="708">
-          <caret line="237" column="6" selection-start-line="237" selection-start-column="6" selection-end-line="237" selection-end-column="6" />
-          <folding>
-            <element signature="e#358#362#0" expanded="true" />
-            <element signature="e#375#379#0" expanded="true" />
-            <element signature="e#5021#5025#1" expanded="true" />
-            <element signature="e#6255#6259#1" expanded="true" />
-            <element signature="e#9196#9200#0" expanded="true" />
-            <element signature="e#9856#9860#1" expanded="true" />
-            <element signature="e#12389#12393#1" expanded="true" />
-            <element signature="e#12969#12973#1" expanded="true" />
-            <element signature="e#16329#16333#1" expanded="true" />
-            <element signature="e#18849#18855#0" expanded="true" />
-            <element signature="e#18929#18935#1" expanded="true" />
-            <element signature="e#19041#19047#0" expanded="true" />
-            <element signature="e#19174#19180#1" expanded="true" />
-            <element signature="e#19450#19454#0" expanded="true" />
-            <element signature="e#19728#19734#0" expanded="true" />
-            <element signature="e#19856#19862#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/stencil/math/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="97" lean-forward="true" selection-start-line="20" selection-start-column="97" selection-end-line="20" selection-end-column="97" />
+        <state relative-caret-position="150">
+          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stencil/math/杜教筛与卷积.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+          <folding>
+            <element signature="e#517#521#0" expanded="true" />
+            <element signature="e#523#527#0" expanded="true" />
+            <element signature="e#529#534#0" expanded="true" />
+            <element signature="e#534#539#0" expanded="true" />
+            <element signature="e#584#588#0" expanded="true" />
+            <element signature="e#590#594#0" expanded="true" />
+            <element signature="e#596#601#0" expanded="true" />
+            <element signature="e#601#606#0" expanded="true" />
+            <element signature="e#824#828#0" expanded="true" />
+            <element signature="e#830#834#0" expanded="true" />
+            <element signature="e#841#845#0" expanded="true" />
+            <element signature="e#860#864#0" expanded="true" />
+            <element signature="e#900#904#0" expanded="true" />
+            <element signature="e#917#921#0" expanded="true" />
+            <element signature="e#930#934#0" expanded="true" />
+            <element signature="e#936#940#0" expanded="true" />
+            <element signature="e#947#951#0" expanded="true" />
+            <element signature="e#1027#1031#0" expanded="true" />
+            <element signature="e#1046#1050#0" expanded="true" />
+            <element signature="e#1059#1063#0" expanded="true" />
+            <element signature="e#1065#1069#0" expanded="true" />
+            <element signature="e#1078#1082#0" expanded="true" />
+            <element signature="e#1117#1121#0" expanded="true" />
+            <element signature="e#1131#1135#0" expanded="true" />
+            <element signature="e#1146#1150#0" expanded="true" />
+            <element signature="e#1185#1189#0" expanded="true" />
+            <element signature="e#1212#1216#0" expanded="true" />
+            <element signature="e#1224#1228#0" expanded="true" />
+            <element signature="e#1230#1234#0" expanded="true" />
+            <element signature="e#1584#1588#1" expanded="true" />
+            <element signature="e#1685#1689#1" expanded="true" />
+            <element signature="e#1840#1844#1" expanded="true" />
+            <element signature="e#3010#3014#0" expanded="true" />
+            <element signature="e#3972#3976#1" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

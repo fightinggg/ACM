@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <title>杜教筛与卷积</title>
+</head>
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1>杜教筛与卷积</h1></center>
+    <div id="text"></div>
+    <div id="code">
+        <pre><span class="cm">/*</span>
+<span class="cm">常见数论函数</span>
+<span class="cm">e(n)=[n=1]</span>
+<span class="cm">1(n)=1</span>
+<span class="cm">id(n)=n</span>
+<span class="cm">d(n)=sum{1} (1&lt;=i&lt;=n&amp;&amp;i|n)</span>
+<span class="cm">SIG(n)=sum{i} (1&lt;=i&lt;=n&amp;&amp;i|n)</span>
+
+<span class="cm">常见关系</span>
+<span class="cm">e=u*1</span>
+<span class="cm">d=1*1</span>
+<span class="cm">SIG=id*1</span>
+<span class="cm">id=phi*1</span>
+
+<span class="cm">杜教筛</span>
+<span class="cm">g(1-&gt;i-&gt;n)*f(1-&gt;n/i) = (g*f)(1-&gt;n)</span>
+<span class="cm">g(1)*f(1-&gt;n) = (g*f)(1-&gt;n) - g(2-&gt;i-&gt;n)*f(1-&gt;n/i)</span>
+
+<span class="cm">phi*I = id</span>
+<span class="cm">I(1)*phi(1-&gt;n) = (I*phi)(1-&gt;n) - I(2-&gt;i-&gt;n)*phi(1-&gt;n/i)</span>
+<span class="cm">phi(1-&gt;n) = id(1-&gt;n) - phi(1-&gt;n/i)</span>
+<span class="cm">phi(1-&gt;n) = n*(n+1)/2 - phi(1-&gt;n/i), (2&lt;=i&lt;=n)g</span>
+<span class="cm">*/</span>
+
+<span class="c1">//杜教筛求 phi(n) 前缀和</span>
+<span class="n">ll</span> <span class="n">sum_phi</span><span class="p">(</span><span class="n">ll</span> <span
+                    class="n">n</span><span class="p">){</span><span class="c1">// 2e9 is ok</span>
+    <span class="k">static</span> <span class="n">map</span><span class="o">&lt;</span><span class="n">ll</span><span
+                    class="p">,</span><span class="n">ll</span><span class="o">&gt;</span> <span
+                    class="n">mp</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&lt;</span><span class="n">maxn</span><span
+                    class="p">)</span> <span class="k">return</span> <span class="n">PHI</span><span
+                    class="p">[</span><span class="n">n</span><span class="p">];</span>
+    <span class="n">ll</span> <span class="n">ret</span><span class="o">=</span><span class="n">mp</span><span
+                    class="p">[</span><span class="n">n</span><span class="p">];</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">ret</span><span class="o">!=</span><span
+                    class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="n">ret</span><span
+                    class="p">;</span>
+    <span class="n">ret</span><span class="o">=</span><span class="n">n</span><span class="o">*</span><span
+                    class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span
+                    class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span
+                    class="mi">2</span><span class="p">,</span><span class="n">ed</span><span class="p">;</span><span
+                    class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span
+                    class="n">i</span><span class="o">=</span><span class="n">ed</span><span class="o">+</span><span
+                    class="mi">1</span><span class="p">){</span>
+        <span class="n">ed</span><span class="o">=</span><span class="n">n</span><span class="o">/</span><span
+                    class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">i</span><span
+                    class="p">);</span>
+        <span class="n">ret</span><span class="o">-=</span><span class="p">(</span><span class="n">ed</span><span
+                    class="o">-</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span
+                    class="p">)</span><span class="o">*</span><span class="n">sum_phi</span><span
+                    class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">i</span><span
+                    class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&gt;</span><span class="n">maxn</span><span
+                    class="p">)</span> <span class="n">mp</span><span class="p">[</span><span class="n">n</span><span
+                    class="p">]</span><span class="o">=</span><span class="n">ret</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+    </div>
+
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>
