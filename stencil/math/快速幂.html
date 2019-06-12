@@ -11,154 +11,72 @@
 <div>
     <center><h1>快速幂</h1></center>
     <div id="code">
-        <pre><span class="c1">//结构体使用方法：唯一构造函数，第一个参数是方阵的大小，第二个参数是0则初始化为0元，1则为单位元</span>
-<span class="c1">//函数参数输入，返回值输出</span>
-<span class="c1">//如果遇到特殊情况，可能会因为没有写拷贝构造函数而tle，这种情况发生在LEN过大，样例过多的情况画，因为</span>
-<span class="c1">//mod要赋值</span>
+       <pre><span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">LEN</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span>
 
-<span class="k">struct</span> <span class="n">Sarray</span><span class="p">{</span>
-    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span
-                    class="n">LEN</span><span class="o">=</span><span class="mi">105</span><span class="p">;</span>
-    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span
-                    class="n">mod</span><span class="o">=</span><span class="mf">1e9</span><span class="o">+</span><span
-                    class="mi">7</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">len</span><span class="p">,</span><span class="n">data</span><span
-                    class="p">[</span><span class="n">LEN</span><span class="p">][</span><span class="n">LEN</span><span
-                    class="p">];</span>
-
-    <span class="n">Sarray</span><span class="p">(</span><span class="kt">int</span> <span class="n">len</span><span
-                    class="p">,</span><span class="kt">int</span> <span class="n">flag</span><span
-                    class="p">)</span><span class="o">:</span><span class="n">len</span><span class="p">(</span><span
-                    class="n">len</span><span class="p">){</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
-                    class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">&lt;</span><span class="n">len</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">++</span><span class="p">){</span>
-            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span
-                    class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span
-                    class="o">&lt;</span><span class="n">len</span><span class="p">;</span><span class="n">j</span><span
-                    class="o">++</span><span class="p">)</span><span class="n">data</span><span class="p">[</span><span
-                    class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span
-                    class="o">=</span><span class="mi">0</span><span class="p">;</span>
-            <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span
-                    class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">flag</span><span
-                    class="p">;</span>
-        <span class="p">}</span>
+<span class="kt">void</span> <span class="n">sarray_cpy</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">[][</span><span class="n">LEN</span><span class="p">],</span><span class="kt">int</span> <span class="n">b</span><span class="p">[][</span><span class="n">LEN</span><span class="p">],</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="c1">// a/b可以为同一个数组</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
     <span class="p">}</span>
+<span class="p">}</span>
 
-    <span class="n">Sarray</span> <span class="k">operator</span> <span class="o">*</span><span class="p">(</span><span
-                    class="k">const</span> <span class="n">Sarray</span><span class="o">&amp;</span><span
-                    class="n">a</span><span class="p">){</span>
-        <span class="n">Sarray</span> <span class="n">tem</span><span class="p">(</span><span class="n">a</span><span
-                    class="p">.</span><span class="n">len</span><span class="p">,</span><span class="mi">0</span><span
-                    class="p">);</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
-                    class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">&lt;</span><span class="n">len</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">++</span><span class="p">){</span>
-            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span
-                    class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span
-                    class="o">&lt;</span><span class="n">len</span><span class="p">;</span><span class="n">j</span><span
-                    class="o">++</span><span class="p">){</span>
-                <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span
-                    class="n">k</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span
-                    class="n">k</span><span class="o">&lt;</span><span class="n">len</span><span class="p">;</span><span
-                    class="n">k</span><span class="o">++</span><span class="p">){</span>
-                    <span class="n">tem</span><span class="p">.</span><span class="n">data</span><span
-                    class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span
-                    class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">tem</span><span
-                    class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span
-                    class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">+</span><span
-                    class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span
-                    class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">a</span><span
-                    class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span
-                    class="p">][</span><span class="n">j</span><span class="p">])</span><span class="o">%</span><span
-                    class="n">mod</span><span class="p">;</span>
-                <span class="p">}</span>
+<span class="kt">void</span> <span class="n">sarray_mul</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">[][</span><span class="n">LEN</span><span class="p">],</span><span class="kt">int</span> <span class="n">b</span><span class="p">[][</span><span class="n">LEN</span><span class="p">],</span><span class="kt">int</span> <span class="n">ret</span><span class="p">[][</span><span class="n">LEN</span><span class="p">],</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="kt">int</span> <span class="n">mod</span><span class="p">){</span>
+    <span class="k">static</span> <span class="kt">int</span> <span class="n">c</span><span class="p">[</span><span class="n">LEN</span><span class="p">][</span><span class="n">LEN</span><span class="p">];</span><span class="c1">// a/b/ret可以为同一个数组</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">k</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">k</span><span class="o">++</span><span class="p">){</span>
+                <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">+</span><span class="mi">1ll</span><span class="o">*</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">])</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
             <span class="p">}</span>
         <span class="p">}</span>
-        <span class="k">return</span> <span class="n">tem</span><span class="p">;</span>
     <span class="p">}</span>
+    <span class="n">sarray_cpy</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">ret</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
+<span class="p">}</span>
 
-    <span class="n">Sarray</span> <span class="k">operator</span> <span class="o">+</span><span class="p">(</span><span
-                    class="k">const</span> <span class="n">Sarray</span><span class="o">&amp;</span><span
-                    class="n">a</span><span class="p">){</span>
-        <span class="n">Sarray</span> <span class="n">tem</span><span class="p">(</span><span class="n">a</span><span
-                    class="p">.</span><span class="n">len</span><span class="p">,</span><span class="mi">0</span><span
-                    class="p">);</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span
-                    class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">&lt;</span><span class="n">len</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">++</span><span class="p">){</span>
-            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span
-                    class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span
-                    class="o">&lt;</span><span class="n">len</span><span class="p">;</span><span class="n">j</span><span
-                    class="o">++</span><span class="p">){</span>
-                <span class="n">tem</span><span class="p">.</span><span class="n">data</span><span
-                    class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span
-                    class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">data</span><span
-                    class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span
-                    class="p">]</span><span class="o">+</span><span class="n">a</span><span class="p">.</span><span
-                    class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span
-                    class="n">j</span><span class="p">])</span><span class="o">%</span><span class="n">mod</span><span
-                    class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">tem</span><span class="p">;</span>
+<span class="kt">void</span> <span class="n">sarray_qpow</span><span class="p">(</span><span class="kt">int</span> <span class="n">aa</span><span class="p">[][</span><span class="n">LEN</span><span class="p">],</span><span class="n">ll</span> <span class="n">b</span><span class="p">,</span><span class="kt">int</span> <span class="n">ret</span><span class="p">[][</span><span class="n">LEN</span><span class="p">],</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="kt">int</span> <span class="n">mod</span><span class="p">){</span>
+    <span class="k">static</span> <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="n">LEN</span><span class="p">][</span><span class="n">LEN</span><span class="p">];</span><span class="c1">// aa ret可以为同一个数组</span>
+    <span class="n">sarray_cpy</span><span class="p">(</span><span class="n">aa</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="n">ret</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="n">ret</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
     <span class="p">}</span>
-
-<span class="p">};</span>
-
-<span class="n">Sarray</span> <span class="n">qpow</span><span class="p">(</span><span class="n">Sarray</span> <span
-                    class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span
-                    class="p">){</span><span class="c1">//会更改a，不能按引用传递</span>
-    <span class="n">Sarray</span> <span class="n">tem</span><span class="p">(</span><span class="n">a</span><span
-                    class="p">.</span><span class="n">len</span><span class="p">,</span><span class="mi">1</span><span
-                    class="p">);</span>
     <span class="k">while</span><span class="p">(</span><span class="n">b</span><span class="p">){</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">b</span><span class="o">&amp;</span><span
-                    class="mi">1</span><span class="p">)</span><span class="n">tem</span><span class="o">=</span><span
-                    class="n">a</span><span class="o">*</span><span class="n">tem</span><span class="p">;</span>
-        <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="o">*</span><span class="n">a</span><span
-                    class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">b</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">)</span> <span class="n">sarray_mul</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">ret</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">mod</span><span class="p">);</span>
+        <span class="n">sarray_mul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">mod</span><span class="p">);</span>
         <span class="n">b</span><span class="o">&gt;&gt;=</span><span class="mi">1</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="k">return</span> <span class="n">tem</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="c1">//sigma(p^i) from 0 to n [0,n]</span>
-<span class="n">Sarray</span> <span class="n">sigma</span><span class="p">(</span><span class="n">Sarray</span><span
-                    class="o">&amp;</span><span class="n">p</span><span class="p">,</span><span
-                    class="kt">int</span> <span class="n">n</span><span class="p">){</span><span
-                    class="c1">//按引用传递，加速过程</span>
-    <span class="n">Sarray</span> <span class="n">E</span><span class="p">(</span><span class="n">p</span><span
-                    class="p">.</span><span class="n">len</span><span class="p">,</span><span class="mi">1</span><span
-                    class="p">);</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span
-                    class="mi">0</span><span class="p">)</span><span class="k">return</span> <span
-                    class="n">E</span><span class="p">;</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span
-                    class="mi">1</span><span class="p">)</span><span class="k">return</span> <span
-                    class="n">E</span><span class="o">+</span><span class="n">p</span><span class="p">;</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&amp;</span><span
-                    class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span
-                    class="p">(</span><span class="n">E</span><span class="o">+</span><span class="n">qpow</span><span
-                    class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">n</span><span
-                    class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span
-                    class="p">))</span><span class="o">*</span><span class="n">sigma</span><span class="p">(</span><span
-                    class="n">p</span><span class="p">,</span><span class="n">n</span><span
-                    class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">);</span>
-    <span class="k">else</span>  <span class="k">return</span> <span class="p">(</span><span class="n">E</span><span
-                    class="o">+</span><span class="n">qpow</span><span class="p">(</span><span class="n">p</span><span
-                    class="p">,</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span
-                    class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span
-                    class="n">sigma</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span
-                    class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span
-                    class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">qpow</span><span
-                    class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">n</span><span
-                    class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">sarray_add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">[][</span><span class="n">LEN</span><span class="p">],</span><span class="kt">int</span> <span class="n">b</span><span class="p">[][</span><span class="n">LEN</span><span class="p">],</span><span class="kt">int</span> <span class="n">c</span><span class="p">[][</span><span class="n">LEN</span><span class="p">],</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="kt">int</span> <span class="n">mod</span><span class="p">){</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="c1">// a,b,c可以为同一个数组</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">+</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 <span class="p">}</span>
-<span class="c1">///////////////////////////////////////</span>
+
+<span class="c1">// a^0 a^1 a^2 a^3 ... a^b</span>
+<span class="kt">void</span> <span class="n">sarray_sum</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">[][</span><span class="n">LEN</span><span class="p">],</span><span class="n">ll</span> <span class="n">b</span><span class="p">,</span><span class="kt">int</span> <span class="n">ret</span><span class="p">[][</span><span class="n">LEN</span><span class="p">],</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="kt">int</span> <span class="n">mod</span><span class="p">){</span>
+    <span class="k">static</span> <span class="kt">int</span> <span class="n">tmp</span><span class="p">[</span><span class="n">LEN</span><span class="p">][</span><span class="n">LEN</span><span class="p">];</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">b</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="n">sarray_qpow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">ret</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">mod</span><span class="p">);</span>
+    <span class="k">else</span><span class="p">{</span>
+        <span class="n">ll</span> <span class="n">mid</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">;</span>
+        <span class="n">sarray_sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">mid</span><span class="p">,</span><span class="n">ret</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">mod</span><span class="p">);</span>
+        <span class="n">sarray_qpow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">tmp</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">mod</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+        <span class="n">sarray_mul</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span><span class="n">tmp</span><span class="p">,</span><span class="n">ret</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">mod</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">((</span><span class="n">b</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">sarray_mul</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">ret</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">mod</span><span class="p">);</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">ret</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">ret</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">trans</span><span class="p">[</span><span class="n">LEN</span><span class="p">][</span><span class="n">LEN</span><span class="p">]</span><span class="o">=</span><span class="p">{</span>
+    <span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span>
+    <span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span>
+<span class="p">};</span>
 </pre>
     </div>
 </div>
