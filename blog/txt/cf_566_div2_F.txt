@@ -1,0 +1,42 @@
+
+
+###link
+https://codeforc.es/contest/1182/problem/F
+###link
+
+###time
+2019.6.13
+###time
+
+###name
+cf_566_div2_F
+###name
+
+###txt
+题意：
+    f(x)=abs(sin((p/q)*PI*x)) a<=x<=b
+    输入 p q a b
+    输出f(x)取最大值时候的x
+数据范围：
+    0<=a<=b<=1e9
+    1<=p,q<=1e9
+###txt
+
+###othersblog
+###othersblog
+
+
+###solve
+最后等价于求[a,b]间的x使得(2px)%(2q) 和q最接近
+让x=m+kn , k=sqrt(b-a)
+枚举n二分m即可
+###solve
+
+###code
+cf_566_div2_F.cpp
+###code
+
+###tag
+bsgs
+###tag
+

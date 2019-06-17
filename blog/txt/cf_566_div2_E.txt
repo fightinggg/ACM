@@ -1,0 +1,62 @@
+
+
+###link
+https://codeforc.es/contest/1182/problem/E
+###link
+
+###time
+2019.6.13
+###time
+
+###name
+cf_566_div2_E
+###name
+
+###txt
+题意：
+    f(x)=c^(2x-6)f(x-1)f(x-2)f(x-3)
+    输入f(1) f(2) f(3) n c
+    输出f(n)
+数据范围：
+    f(1)<1e9
+    f(2)<1e9
+    f(3)<1e9
+    c<1e9
+    n<1e18
+###txt
+
+###othersblog
+###othersblog
+
+
+###solve
+法1：
+    令g(x)=f(x)*c^x
+    则g(x)=g(x-1)g(x-2)g(x-3)
+    令h(x)=lg(5,g(x))
+    则h(x)=h(x-1)+h(x-2)+g(x-3)
+    于是成了bsgs算法+矩阵快速幂
+###solve
+
+###code
+cf_566_div2_E1.cpp
+###code
+
+###solve
+法2：
+    令g(x)=f(x)*c^x
+    则g(x)=g(x-1)g(x-2)g(x-3)
+    可以肯定出g(x)=g(1)^a*g(2)^b*g(3)*c
+    于是a,b,c都是x的函数
+    且a(x)=a(x-1)+a(x-2)+a(x-3) bc同理
+###solve
+
+###code
+cf_566_div2_E2.cpp
+###code
+
+###tag
+bsgs
+矩阵快速幂
+###tag
+

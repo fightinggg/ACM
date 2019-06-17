@@ -72,6 +72,7 @@ struct blog {
     string build_time() { return "<span style=\"float:right\">此文更新于" + time + "</span>\n"; }
 
     string build_link() {
+        if (link == "") return "<h1><center>" + name + "<center><h1>";
         return "    <h1><center><a href=\"" + link + "\" target=\"_blank\">" + name + "</a></center></h1>\n\n";
     }
 
@@ -120,11 +121,21 @@ struct blog {
         return s;
     }
 
+    string txttohtml(string txt){
+        string s;
+        for(int i=0;i<txt.size();i++){
+            if(txt[i]==' ')s+="&nbsp;";
+            else if(txt[i]=='>')s+="&gt;";
+            else if(txt[i]=='<')s+="&lt;";
+            else s+=txt[i];
+        }
+        return s;
+    }
     string build_txt(vector<string> &txt) {
         string s;
-        s = "    <div id=\"text\">\n        题意：<br>\n";
+        s = "    <div id=\"text\">\n";
         for (int i = 0; i < txt.size(); i++) {
-            s += "            " + txt[i] + "<br>\n";
+            s += "            " + txttohtml(txt[i]) + "<br>\n";
         }
         s += "    </div>\n\n";
         return s;
@@ -136,7 +147,7 @@ struct blog {
     }
 
     string build_tag(vector<string> &read_tag) {
-        tag=read_tag;
+        tag = read_tag;
         string s;
         if (tag.empty()) return s;
         s += "            <span>此文标签</span><br>\n";
@@ -157,7 +168,7 @@ struct blog {
     }
 
     blog(string s) {// file name
-        cout << s << endl;
+        cout << "lookint for " << s << endl;
         ifstream in(s);
         string buf;
         vector<string> reading;
@@ -262,6 +273,7 @@ void build_index(vector<blog> myblog) {
 }
 
 int main() {
+    cout<<endl;
     ini();
     vector<blog> myblog;
     DIR *dir = opendir(auto_cpy(workspace + "txt/"));
