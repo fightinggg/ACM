@@ -12,17 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0a9b6c9-baba-45c7-8474-4ab00d75b4ac" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/cpp/cf_710_E.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/txt/cf_710_E.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cpp/cf_566_div2_E1.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/cpp/cf_566_div2_E_1.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cpp/cf_566_div2_E2.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/cpp/cf_566_div2_E_2.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/span.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/span.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/span/bsgs.html" beforeDir="false" afterPath="$PROJECT_DIR$/span/bsgs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/span/cf_566_div2_E.html" beforeDir="false" afterPath="$PROJECT_DIR$/span/cf_566_div2_E.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/span/矩阵快速幂.html" beforeDir="false" afterPath="$PROJECT_DIR$/span/矩阵快速幂.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/txt/cf_566_div2_E.txt" beforeDir="false" afterPath="$PROJECT_DIR$/txt/cf_566_div2_E.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../js/web_begin.js" beforeDir="false" afterPath="$PROJECT_DIR$/../js/web_begin.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,8 +31,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/span.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="263" lean-forward="true" selection-start-line="263" selection-end-line="263" />
+            <state relative-caret-position="4020">
+              <caret line="268" column="25" selection-start-line="268" selection-start-column="25" selection-end-line="268" selection-end-column="25" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -251,22 +242,23 @@
       <workItem from="1560401592163" duration="27000" />
       <workItem from="1560401653391" duration="11798000" />
       <workItem from="1560417161633" duration="1829000" />
-      <workItem from="1561195231274" duration="902000" />
+      <workItem from="1561195231274" duration="1227000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14687000" />
+    <option name="totallyTimeSpent" value="15012000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="45" y="23" width="1317" height="877" extended-state="0" />
+    <frame x="45" y="23" width="1317" height="877" extended-state="1" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18431373" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3299363" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.47261146" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.47261146" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.35414013" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -433,8 +425,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/span.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="263" lean-forward="true" selection-start-line="263" selection-end-line="263" />
+        <state relative-caret-position="4020">
+          <caret line="268" column="25" selection-start-line="268" selection-start-column="25" selection-end-line="268" selection-end-column="25" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
