@@ -121,16 +121,17 @@ struct blog {
         return s;
     }
 
-    string txttohtml(string txt){
+    string txttohtml(string txt) {
         string s;
-        for(int i=0;i<txt.size();i++){
-            if(txt[i]==' ')s+="&nbsp;";
-            else if(txt[i]=='>')s+="&gt;";
-            else if(txt[i]=='<')s+="&lt;";
-            else s+=txt[i];
+        for (int i = 0; i < txt.size(); i++) {
+            if (txt[i] == ' ')s += "&nbsp;";
+            else if (txt[i] == '>')s += "&gt;";
+            else if (txt[i] == '<')s += "&lt;";
+            else s += txt[i];
         }
         return s;
     }
+
     string build_txt(vector<string> &txt) {
         string s;
         s = "    <div id=\"text\">\n";
@@ -257,23 +258,34 @@ void build_index(vector<blog> myblog) {
             index[myblog[i].tag[j]].push_back(myblog[i].name);
         }
     }
+
+    ofstream out1(workspace + "span/index.html");
+    out1<<head1<<"生成博客总揽"<<head2;
+
     for (pair<string, vector<string>> x:index) {
         string name = x.first;
         vector<string> web = x.second;
-        ofstream out(workspace + "span/" + name + ".html");
 
-        out << head1 << name << head2;
+        out1 << "            <div id=\"index\">\n";
+        out1 << "                <a href=\"" + name + ".html\">" + name + "</a> </br>\n";
+        out1 << "            </div>\n";
+
+        ofstream out2(workspace + "span/" + name + ".html");
+
+        out2 << head1 << name << head2;
         for (int i = 0; i < web.size(); i++) {
-            out << "            <div id=\"index\">\n";
-            out << "                <a href=\"" + web[i] + ".html\">" + web[i] + "</a> </br>\n";
-            out << "            </div>\n";
+            out2 << "            <div id=\"index\">\n";
+            out2 << "                <a href=\"" + web[i] + ".html\">" + web[i] + "</a> </br>\n";
+            out2 << "            </div>\n";
         }
-        out << tail3 << endl;
+        out2 << tail3 << endl;
     }
+
+    out1<<tail3<<endl;
 }
 
 int main() {
-    cout<<endl;
+    cout << endl;
     ini();
     vector<blog> myblog;
     DIR *dir = opendir(auto_cpy(workspace + "txt/"));

@@ -39,7 +39,7 @@ cf_566_div2_E
 ###solve
 
 ###code
-cf_566_div2_E1.cpp
+cf_566_div2_E_1.cpp
 ###code
 
 ###solve
@@ -52,7 +52,7 @@ cf_566_div2_E1.cpp
 ###solve
 
 ###code
-cf_566_div2_E2.cpp
+cf_566_div2_E_2.cpp
 ###code
 
 ###tag

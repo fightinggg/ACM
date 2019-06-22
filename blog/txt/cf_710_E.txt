@@ -1,0 +1,41 @@
+
+
+###link
+https://codeforc.es/problemset/problem/710/E
+###link
+
+###time
+2019.6.22
+###time
+
+###name
+cf_710_E
+###name
+
+###txt
+你最开始有一个0，要构造出n
+你有两种操作，
+1 加上或减去一 代价为x
+2 乘以2 代价为y
+###txt
+
+###othersblog
+###othersblog
+
+
+###solve
+dp[i] -> 构造出n的最小代价
+i为偶数 dp[i] <- dp[i-1] , dp[i/2]
+i为奇数 dp[i] <- dp[i-1] , dp[i/2+1]
+###solve
+
+###tag
+dp优化转移方程
+###tag
+
+###code
+cf_710_E.cpp
+###code
+
+
+
