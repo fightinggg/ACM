@@ -33,13 +33,12 @@ f(i,j)=f(i-1,j-1)*i*j+f(i,j-1)
 用数学归纳法证明f(i,j)关于j是一个最高次为2*i的多项式
 ###solve
 
-###tag
-拉格朗日插值法
-###tag
-
 ###code
 bzoj2655.cpp
 ###code
 
+###tag
+拉格朗日插值法
+###tag
 
 

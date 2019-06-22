@@ -12,8 +12,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0a9b6c9-baba-45c7-8474-4ab00d75b4ac" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../js/web_begin.js" beforeDir="false" afterPath="$PROJECT_DIR$/../js/web_begin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/txt/cf_468_B.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/txt/bzoj2655.txt" beforeDir="false" afterPath="$PROJECT_DIR$/txt/bzoj2655.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/txt/cf_710_E.txt" beforeDir="false" afterPath="$PROJECT_DIR$/txt/cf_710_E.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,11 +30,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/span.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4020">
-              <caret line="268" column="25" selection-start-line="268" selection-start-column="25" selection-end-line="268" selection-end-column="25" />
+            <state relative-caret-position="60">
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -73,19 +75,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/span/cf_566_div2_E.html">
+        <entry file="file://$PROJECT_DIR$/txt/cf_566_div2_F.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="26" column="10" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cpp/cf_566_div2_F.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="708">
-              <caret line="50" selection-start-line="50" selection-end-line="50" />
+            <state relative-caret-position="420">
+              <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -93,8 +86,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/txt/bzoj2655.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="35" column="6" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
+            <state relative-caret-position="510">
+              <caret line="34" selection-start-line="34" selection-end-line="34" />
             </state>
           </provider>
         </entry>
@@ -102,8 +95,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/txt/cf_710_E.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
+            <state relative-caret-position="330">
+              <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/txt/cf_468_B.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="24" column="14" lean-forward="true" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -138,15 +140,16 @@
         <option value="$PROJECT_DIR$/span/拉格朗日插值法.html" />
         <option value="$PROJECT_DIR$/博客协议.txt" />
         <option value="$PROJECT_DIR$/txt/多项式.txt" />
-        <option value="$PROJECT_DIR$/txt/bzoj2655.txt" />
         <option value="$PROJECT_DIR$/cpp/cf_566_div2_E1.cpp" />
         <option value="$PROJECT_DIR$/cpp/cf_566_div2_E2.cpp" />
         <option value="$PROJECT_DIR$/txt/cf_566_div2_F.txt" />
         <option value="$PROJECT_DIR$/cpp/cf_566_div2_F.cpp" />
         <option value="$PROJECT_DIR$/txt/cf_566_div2_E.txt" />
         <option value="$PROJECT_DIR$/cpp/cf_710_E.cpp" />
-        <option value="$PROJECT_DIR$/txt/cf_710_E.txt" />
         <option value="$PROJECT_DIR$/span.cpp" />
+        <option value="$PROJECT_DIR$/txt/bzoj2655.txt" />
+        <option value="$PROJECT_DIR$/txt/cf_710_E.txt" />
+        <option value="$PROJECT_DIR$/txt/cf_468_B.txt" />
       </list>
     </option>
   </component>
@@ -169,6 +172,11 @@
               <item name="blog" type="b2602c69:ProjectViewProjectNode" />
               <item name="blog" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="blog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="blog" type="462c0819:PsiDirectoryNode" />
+              <item name="txt" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -186,8 +194,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/cpp" />
       <recent name="$PROJECT_DIR$/txt" />
+      <recent name="$PROJECT_DIR$/cpp" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -242,18 +250,18 @@
       <workItem from="1560401592163" duration="27000" />
       <workItem from="1560401653391" duration="11798000" />
       <workItem from="1560417161633" duration="1829000" />
-      <workItem from="1561195231274" duration="1227000" />
+      <workItem from="1561195231274" duration="1716000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15012000" />
+    <option name="totallyTimeSpent" value="15501000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="45" y="23" width="1317" height="877" extended-state="1" />
+    <frame x="45" y="23" width="1317" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18431373" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18431373" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -340,13 +348,6 @@
     <entry file="file://$PROJECT_DIR$/span/矩阵快速幂.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/txt/cf_566_div2_F.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/span/bsgs.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -378,31 +379,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/txt/bzoj2655.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" column="6" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/txt/cf_566_div2_E.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="41" column="14" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cpp/cf_710_E.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="621">
           <caret line="80" selection-start-line="80" selection-end-line="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/txt/cf_710_E.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -425,11 +405,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/span.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4020">
-          <caret line="268" column="25" selection-start-line="268" selection-start-column="25" selection-end-line="268" selection-end-column="25" />
+        <state relative-caret-position="60">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/txt/cf_566_div2_E.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="41" column="14" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/txt/cf_566_div2_F.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/txt/bzoj2655.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/txt/cf_710_E.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/txt/cf_468_B.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="14" lean-forward="true" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
         </state>
       </provider>
     </entry>

@@ -1,0 +1,45 @@
+
+
+###link
+https://codeforc.es/problemset/problem/468/B
+###link
+
+###time
+2019.6.22
+###time
+
+###name
+cf_468_B
+###name
+
+###txt
+给你一个集合s
+让你把这个集合划分为两个集合
+在集合A中若x存在则a-x也存在
+在集合B中若x存在则b-x也存在
+数据范围
+    |s|<1e5
+    a<1e9
+    b<1e9
+注意
+    集合中不包含相同的数
+###txt
+
+###othersblog
+###othersblog
+
+
+###solve
+使用并查集维护，
+容易证明若x和a-x存在，则他们必定在同一个集合中
+x和b-x同理
+###solve
+
+###code
+cf_468_B.cpp
+###code
+
+###tag
+dsu
+###tag
+
