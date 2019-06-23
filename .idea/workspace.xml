@@ -189,7 +189,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="44" />
     <option name="y" value="23" />
     <option name="width" value="1396" />
@@ -263,8 +263,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html (2)">
+  <component name="RunManager" selected="JavaScript Debug.合数分解.html">
     <configuration name="多项式.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/math/多项式.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="合数分解.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/ACM/stencil/math/合数分解.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="主席树.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/data_struct/主席树.html" useBuiltInWebServerPort="true">
@@ -291,9 +294,6 @@
     <configuration name="拉格朗日插值法.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/math/拉格朗日插值法.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="bsgs.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/ACM/blog/span/bsgs.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
     <configuration name="bzoj2124.html" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:63342/ACM/problem/data_struct/bzoj2124.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -317,11 +317,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.合数分解.html" />
         <item itemvalue="JavaScript Debug.index.html (2)" />
         <item itemvalue="JavaScript Debug.dp优化转移方程.html" />
         <item itemvalue="JavaScript Debug.多项式.html" />
         <item itemvalue="JavaScript Debug.debug.html" />
-        <item itemvalue="JavaScript Debug.bsgs.html" />
       </list>
     </recent_temporary>
   </component>
