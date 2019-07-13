@@ -60,15 +60,15 @@ include CMakeFiles/blog.dir/flags.make
 CMakeFiles/blog.dir/span.cpp.o: CMakeFiles/blog.dir/flags.make
 CMakeFiles/blog.dir/span.cpp.o: ../span.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/s/Documents/GitHub/ACM/blog/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/blog.dir/span.cpp.o"
-	/usr/local/bin/g++-8  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/blog.dir/span.cpp.o -c /Users/s/Documents/GitHub/ACM/blog/span.cpp
+	/usr/local/bin/g++-9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/blog.dir/span.cpp.o -c /Users/s/Documents/GitHub/ACM/blog/span.cpp
 
 CMakeFiles/blog.dir/span.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/blog.dir/span.cpp.i"
-	/usr/local/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/s/Documents/GitHub/ACM/blog/span.cpp > CMakeFiles/blog.dir/span.cpp.i
+	/usr/local/bin/g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/s/Documents/GitHub/ACM/blog/span.cpp > CMakeFiles/blog.dir/span.cpp.i
 
 CMakeFiles/blog.dir/span.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/blog.dir/span.cpp.s"
-	/usr/local/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/s/Documents/GitHub/ACM/blog/span.cpp -o CMakeFiles/blog.dir/span.cpp.s
+	/usr/local/bin/g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/s/Documents/GitHub/ACM/blog/span.cpp -o CMakeFiles/blog.dir/span.cpp.s
 
 # Object files for target blog
 blog_OBJECTS = \

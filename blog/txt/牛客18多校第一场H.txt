@@ -1,0 +1,47 @@
+
+
+###link
+https://ac.nowcoder.com/acm/contest/139/H
+###link
+
+###time
+2019.7.12
+###time
+
+###name
+牛客18多校第一场H
+###name
+
+###txt
+给一颗边带权点不带权点树
+定义两点间的距离为：
+    若路径上的边权构成数列a[0...n]
+    则距离d= 对所有i>=1求和 (a[i-1]-a[i])*(a[i-1]-a[i])
+现在要求距离每个点最远的那个点的距离为多少
+###txt
+
+###othersblog
+###othersblog
+
+
+###solve
+树dp求down很简单
+关于up , 仔细分析，抽象出来为此：
+    给你w[]和d[]
+    对每一个i，要求出最大化j!=i时的d[j]+(w[i]-w[j])
+    化简后发现为
+    d[j]+w[i]*w[i]+w[j]*w[j]-2*w[i]*w[j]
+  = w[i]*w[i] + (-2*w[i])*w[j] + (d[j]+w[j]*w[j])
+    显然斜率优化，我们排序后对前缀和后缀做两遍斜率优化即可
+###solve
+
+###code
+牛客18多校第一场H.cpp
+###code
+
+###tag
+树形dp
+斜率优化dp
+###tag
+
+
