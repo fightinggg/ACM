@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e505d993-0813-4b95-9e39-e1a7b5c097cb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/stencil/math/img/类欧几里得算法f函数.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stencil/math/img/类欧几里得算法一类问题图.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stencil/math/类欧几里得算法.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stencil/string/hash.html" beforeDir="false" afterPath="$PROJECT_DIR$/stencil/string/hash.html" afterDir="false" />
-    </list>
+    <list default="true" id="e505d993-0813-4b95-9e39-e1a7b5c097cb" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -123,8 +117,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/stencil/math/类欧几里得算法.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
+            <state relative-caret-position="195">
+              <caret line="13" column="37" lean-forward="true" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -244,8 +238,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="117" />
-    <option name="y" value="186" />
+    <option name="x" value="500" />
+    <option name="y" value="104" />
     <option name="width" value="1396" />
     <option name="height" value="805" />
   </component>
@@ -540,15 +534,15 @@
       <workItem from="1563245251618" duration="587000" />
       <workItem from="1563512305140" duration="1491000" />
       <workItem from="1563962255486" duration="210000" />
-      <workItem from="1564127056543" duration="632000" />
+      <workItem from="1564127056543" duration="1112000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="156931000" />
+    <option name="totallyTimeSpent" value="157411000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="58" y="59" width="1396" height="805" extended-state="0" />
+    <frame x="-45" y="81" width="1396" height="805" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49929875" visible="true" weight="0.176" />
@@ -1133,8 +1127,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/stencil/math/类欧几里得算法.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        <state relative-caret-position="195">
+          <caret line="13" column="37" lean-forward="true" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
           <folding>
             <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
           </folding>
