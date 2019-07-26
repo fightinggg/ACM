@@ -26,166 +26,57 @@
 
     </div>
     <div id="code">
-     	<pre><span class="c1">//单hash</span>
-<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span
-                    class="kt">long</span> <span class="n">ull</span><span class="p">;</span>
-<span class="k">struct</span> <span class="n">str_hash</span> <span class="p">{</span>
-    <span class="k">static</span> <span class="k">const</span> <span class="n">ull</span> <span
-                    class="n">maxn</span><span class="o">=</span><span class="mf">1e3</span><span
-                    class="o">+</span><span class="mi">666</span><span class="p">,</span><span class="n">p</span><span
-                    class="o">=</span><span class="mi">47</span><span class="p">,</span><span class="n">mod</span><span
-                    class="o">=</span><span class="mf">1e9</span><span class="o">+</span><span class="mi">7</span><span
-                    class="p">;</span>
-    <span class="k">static</span> <span class="n">ull</span> <span class="n">pw</span><span class="p">[</span><span
-                    class="n">maxn</span><span class="p">];</span>
-    <span class="n">ull</span> <span class="n">hash</span><span class="p">[</span><span class="n">maxn</span><span
-                    class="p">],</span><span class="n">len</span><span class="p">;</span>
+     	<pre><span class="k">struct</span> <span class="n">str_hash</span> <span class="p">{</span><span class="c1">//单hash</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">maxn</span><span class="o">=</span><span class="mf">3e5</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="mi">47</span><span class="p">,</span><span class="n">mod</span><span class="o">=</span><span class="mf">1e9</span><span class="o">+</span><span class="mi">7</span><span class="p">;</span>
+    <span class="k">static</span> <span class="kt">int</span> <span class="n">pw</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">pr</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">h1</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">h2</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">len</span><span class="p">;</span>
     <span class="n">str_hash</span><span class="p">(){</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">pw</span><span class="p">[</span><span
-                    class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span
-                    class="p">)</span><span class="k">return</span><span class="p">;</span>
-        <span class="n">pw</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span
-                    class="o">=</span><span class="mi">1</span><span class="p">;</span>
-        <span class="k">for</span><span class="p">(</span><span class="n">ull</span> <span class="n">i</span><span
-                    class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">&lt;</span><span class="n">maxn</span><span class="p">;</span><span
-                    class="n">i</span><span class="o">++</span><span class="p">){</span>
-            <span class="n">pw</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
-                    class="o">=</span><span class="n">pw</span><span class="p">[</span><span class="n">i</span><span
-                    class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span
-                    class="n">p</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">pw</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+        <span class="n">pw</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">pr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">rev</span><span class="o">=</span><span class="n">qpow</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">mod</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="n">mod</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">maxn</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">pw</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">1ll</span><span class="o">*</span><span class="n">pw</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">p</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+            <span class="n">pr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">1ll</span><span class="o">*</span><span class="n">pr</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">rev</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
         <span class="p">}</span>
     <span class="p">}</span>
-    <span class="kt">void</span> <span class="n">build</span><span class="p">(</span><span class="kt">char</span><span
-                    class="o">*</span><span class="n">s</span><span class="p">,</span><span class="n">ull</span> <span
-                    class="n">_len</span><span class="p">){</span>
-        <span class="n">len</span><span class="o">=</span><span class="n">_len</span><span class="p">;</span>
-        <span class="k">for</span><span class="p">(</span><span class="n">ull</span> <span class="n">i</span><span
-                    class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">&lt;=</span><span class="n">len</span><span class="p">;</span><span
-                    class="n">i</span><span class="o">++</span><span class="p">){</span>
-            <span class="n">hash</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
-                    class="o">=</span><span class="p">(</span><span class="n">hash</span><span class="p">[</span><span
-                    class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span
-                    class="o">*</span><span class="n">p</span><span class="o">+</span><span class="n">s</span><span
-                    class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span
-                    class="sc">&#39;a&#39;</span><span class="p">)</span><span class="o">%</span><span
-                    class="n">mod</span><span class="p">;</span>
-        <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">extend</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">){</span>
+        <span class="n">len</span><span class="o">++</span><span class="p">;</span>
+        <span class="n">h1</span><span class="p">[</span><span class="n">len</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="mi">1ll</span><span class="o">*</span><span class="n">h1</span><span class="p">[</span><span class="n">len</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">p</span><span class="o">+</span><span class="n">c</span><span class="p">)</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+        <span class="n">h2</span><span class="p">[</span><span class="n">len</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">h2</span><span class="p">[</span><span class="n">len</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1ll</span><span class="o">*</span><span class="n">c</span><span class="o">*</span><span class="n">pw</span><span class="p">[</span><span class="n">len</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="n">ull</span> <span class="n">query</span><span class="p">(</span><span class="n">ull</span> <span
-                    class="n">l</span><span class="p">,</span> <span class="n">ull</span> <span class="n">r</span><span
-                    class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span
-                    class="p">(</span><span class="n">hash</span><span class="p">[</span><span class="n">r</span><span
-                    class="p">]</span><span class="o">-</span><span class="n">hash</span><span class="p">[</span><span
-                    class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span
-                    class="o">*</span><span class="n">pw</span><span class="p">[</span><span class="n">r</span><span
-                    class="o">-</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span
-                    class="p">]</span><span class="o">%</span><span class="n">mod</span><span class="o">+</span><span
-                    class="n">mod</span><span class="p">)</span><span class="o">%</span><span class="n">mod</span><span
-                    class="p">;}</span><span class="c1">//注意没有下标检查</span>
+    <span class="kt">void</span> <span class="n">ini</span><span class="p">(){</span><span class="n">len</span><span class="o">=</span><span class="mi">0</span><span class="p">;}</span>
+    <span class="kt">int</span> <span class="n">query</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">h1</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="o">+</span><span class="mi">1ll</span><span class="o">*</span><span class="n">h1</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">mod</span><span class="o">-</span><span class="n">pw</span><span class="p">[</span><span class="n">r</span><span class="o">-</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">]))</span><span class="o">%</span><span class="n">mod</span><span class="p">;}</span><span class="c1">//注意没有下标检查</span>
+    <span class="kt">int</span> <span class="n">qurev</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">1ll</span><span class="o">*</span><span class="p">(</span><span class="n">h2</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="o">-</span><span class="n">h2</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">mod</span><span class="p">)</span><span class="o">*</span><span class="n">pr</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">%</span><span class="n">mod</span><span class="p">;}</span><span class="c1">//注意没有下标检查</span>
 <span class="p">};</span>
-<span class="n">ull</span> <span class="n">str_hash</span><span class="o">::</span><span class="n">pw</span><span
-                    class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">str_hash</span><span class="o">::</span><span class="n">pw</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">str_hash</span><span class="o">::</span><span class="n">pr</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
 
 
 <span class="c1">//双hash，双倍常数，1e6 的数据 nlgn的做法 1s的时限 不建议使用</span>
-<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span
-                    class="kt">long</span>  <span class="n">ull</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span>  <span class="n">ull</span><span class="p">;</span>
 <span class="k">struct</span> <span class="n">double_hash</span> <span class="p">{</span>
-    <span class="k">static</span> <span class="k">const</span> <span class="n">ull</span> <span
-                    class="n">maxn</span><span class="o">=</span><span class="mf">1e3</span><span
-                    class="o">+</span><span class="mi">666</span><span class="p">,</span><span class="n">p</span><span
-                    class="o">=</span><span class="mi">26</span><span class="p">,</span><span class="n">mod1</span><span
-                    class="o">=</span><span class="mf">1e9</span><span class="o">+</span><span class="mi">7</span><span
-                    class="p">,</span><span class="n">mod2</span><span class="o">=</span><span
-                    class="mf">1e9</span><span class="o">+</span><span class="mi">9</span><span class="p">;</span>
-    <span class="k">static</span> <span class="n">ull</span> <span class="n">pw1</span><span class="p">[</span><span
-                    class="n">maxn</span><span class="p">],</span><span class="n">pw2</span><span
-                    class="p">[</span><span class="n">maxn</span><span class="p">];</span>
-    <span class="n">ull</span> <span class="n">hash1</span><span class="p">[</span><span class="n">maxn</span><span
-                    class="p">],</span><span class="n">hash2</span><span class="p">[</span><span
-                    class="n">maxn</span><span class="p">],</span><span class="n">len</span><span class="p">;</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="n">ull</span> <span class="n">maxn</span><span class="o">=</span><span class="mf">1e3</span><span class="o">+</span><span class="mi">666</span><span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="mi">26</span><span class="p">,</span><span class="n">mod1</span><span class="o">=</span><span class="mf">1e9</span><span class="o">+</span><span class="mi">7</span><span class="p">,</span><span class="n">mod2</span><span class="o">=</span><span class="mf">1e9</span><span class="o">+</span><span class="mi">9</span><span class="p">;</span>
+    <span class="k">static</span> <span class="n">ull</span> <span class="n">pw1</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">pw2</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+    <span class="n">ull</span> <span class="n">hash1</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">hash2</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">len</span><span class="p">;</span>
     <span class="n">double_hash</span><span class="p">(){</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">pw1</span><span class="p">[</span><span
-                    class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span
-                    class="p">)</span><span class="k">return</span><span class="p">;</span>
-        <span class="n">pw1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span
-                    class="o">=</span><span class="n">pw2</span><span class="p">[</span><span class="mi">0</span><span
-                    class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
-        <span class="k">for</span><span class="p">(</span><span class="n">ull</span> <span class="n">i</span><span
-                    class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">&lt;</span><span class="n">maxn</span><span class="p">;</span><span
-                    class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">pw1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
-                    class="o">=</span><span class="n">pw1</span><span class="p">[</span><span class="n">i</span><span
-                    class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span
-                    class="n">p</span><span class="o">%</span><span class="n">mod1</span><span class="p">;</span>
-            <span class="n">pw2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
-                    class="o">=</span><span class="n">pw2</span><span class="p">[</span><span class="n">i</span><span
-                    class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span
-                    class="n">p</span><span class="o">%</span><span class="n">mod2</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">pw1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="k">return</span><span class="p">;</span>
+        <span class="n">pw1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">pw2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">ull</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">maxn</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">pw1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">pw1</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">p</span><span class="o">%</span><span class="n">mod1</span><span class="p">;</span>
+            <span class="n">pw2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">pw2</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">p</span><span class="o">%</span><span class="n">mod2</span><span class="p">;</span>
         <span class="p">}</span>
     <span class="p">}</span>
-    <span class="kt">void</span> <span class="n">build</span><span class="p">(</span><span class="kt">char</span><span
-                    class="o">*</span><span class="n">s</span><span class="p">,</span><span class="n">ull</span> <span
-                    class="n">_len</span><span class="p">){</span>
+    <span class="kt">void</span> <span class="n">build</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="n">s</span><span class="p">,</span><span class="n">ull</span> <span class="n">_len</span><span class="p">){</span>
         <span class="n">len</span><span class="o">=</span><span class="n">_len</span><span class="p">;</span>
-        <span class="k">for</span><span class="p">(</span><span class="n">ull</span> <span class="n">i</span><span
-                    class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span
-                    class="o">&lt;=</span><span class="n">len</span><span class="p">;</span><span
-                    class="n">i</span><span class="o">++</span><span class="p">){</span>
-            <span class="n">hash1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
-                    class="o">=</span><span class="p">(</span><span class="n">hash1</span><span class="p">[</span><span
-                    class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span
-                    class="o">*</span><span class="n">p</span><span class="o">+</span><span class="n">s</span><span
-                    class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span
-                    class="sc">&#39;a&#39;</span><span class="p">)</span><span class="o">%</span><span
-                    class="n">mod1</span><span class="p">;</span><span class="c1">//无边界</span>
-            <span class="n">hash2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span
-                    class="o">=</span><span class="p">(</span><span class="n">hash2</span><span class="p">[</span><span
-                    class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span
-                    class="o">*</span><span class="n">p</span><span class="o">+</span><span class="n">s</span><span
-                    class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span
-                    class="sc">&#39;a&#39;</span><span class="p">)</span><span class="o">%</span><span
-                    class="n">mod2</span><span class="p">;</span><span class="c1">//same</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">ull</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">len</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">hash1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">hash1</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">p</span><span class="o">+</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;a&#39;</span><span class="p">)</span><span class="o">%</span><span class="n">mod1</span><span class="p">;</span><span class="c1">//无边界</span>
+            <span class="n">hash2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">hash2</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">p</span><span class="o">+</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;a&#39;</span><span class="p">)</span><span class="o">%</span><span class="n">mod2</span><span class="p">;</span><span class="c1">//same</span>
         <span class="p">}</span>
     <span class="p">}</span>
-    <span class="n">ull</span> <span class="n">query1</span><span class="p">(</span><span class="n">ull</span> <span
-                    class="n">l</span><span class="p">,</span> <span class="n">ull</span> <span class="n">r</span><span
-                    class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span
-                    class="p">(</span><span class="n">hash1</span><span class="p">[</span><span class="n">r</span><span
-                    class="p">]</span><span class="o">-</span><span class="n">hash1</span><span class="p">[</span><span
-                    class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span
-                    class="o">*</span><span class="n">pw1</span><span class="p">[</span><span class="n">r</span><span
-                    class="o">-</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span
-                    class="p">]</span><span class="o">%</span><span class="n">mod1</span><span class="o">+</span><span
-                    class="n">mod1</span><span class="p">)</span><span class="o">%</span><span
-                    class="n">mod1</span><span class="p">;}</span>
-    <span class="n">ull</span> <span class="n">query2</span><span class="p">(</span><span class="n">ull</span> <span
-                    class="n">l</span><span class="p">,</span> <span class="n">ull</span> <span class="n">r</span><span
-                    class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span
-                    class="p">(</span><span class="n">hash2</span><span class="p">[</span><span class="n">r</span><span
-                    class="p">]</span><span class="o">-</span><span class="n">hash2</span><span class="p">[</span><span
-                    class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span
-                    class="o">*</span><span class="n">pw2</span><span class="p">[</span><span class="n">r</span><span
-                    class="o">-</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span
-                    class="p">]</span><span class="o">%</span><span class="n">mod2</span><span class="o">+</span><span
-                    class="n">mod2</span><span class="p">)</span><span class="o">%</span><span
-                    class="n">mod2</span><span class="p">;}</span>
-    <span class="n">ull</span> <span class="n">query</span><span class="p">(</span><span class="n">ull</span> <span
-                    class="n">l</span><span class="p">,</span><span class="n">ull</span> <span class="n">r</span><span
-                    class="p">){</span><span class="k">return</span> <span class="n">query1</span><span
-                    class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span
-                    class="p">)</span><span class="o">*</span><span class="n">mod2</span><span class="o">+</span><span
-                    class="n">query2</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span
-                    class="n">r</span><span class="p">);}</span><span class="c1">//注意没有下标检查</span>
-<span class="p">}</span><span class="n">hash_a</span><span class="p">,</span><span class="n">hash_b</span><span
-                    class="p">;</span>
-<span class="n">ull</span> <span class="n">double_hash</span><span class="o">::</span><span class="n">pw1</span><span
-                    class="p">[</span><span class="n">maxn</span><span class="p">],</span><span
-                    class="n">double_hash</span><span class="o">::</span><span class="n">pw2</span><span
-                    class="p">[</span><span class="n">maxn</span><span class="p">];</span>
+    <span class="n">ull</span> <span class="n">query1</span><span class="p">(</span><span class="n">ull</span> <span class="n">l</span><span class="p">,</span> <span class="n">ull</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">hash1</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="o">-</span><span class="n">hash1</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">pw1</span><span class="p">[</span><span class="n">r</span><span class="o">-</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">%</span><span class="n">mod1</span><span class="o">+</span><span class="n">mod1</span><span class="p">)</span><span class="o">%</span><span class="n">mod1</span><span class="p">;}</span>
+    <span class="n">ull</span> <span class="n">query2</span><span class="p">(</span><span class="n">ull</span> <span class="n">l</span><span class="p">,</span> <span class="n">ull</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">hash2</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="o">-</span><span class="n">hash2</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">pw2</span><span class="p">[</span><span class="n">r</span><span class="o">-</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">%</span><span class="n">mod2</span><span class="o">+</span><span class="n">mod2</span><span class="p">)</span><span class="o">%</span><span class="n">mod2</span><span class="p">;}</span>
+    <span class="n">ull</span> <span class="n">query</span><span class="p">(</span><span class="n">ull</span> <span class="n">l</span><span class="p">,</span><span class="n">ull</span> <span class="n">r</span><span class="p">){</span><span class="k">return</span> <span class="n">query1</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">)</span><span class="o">*</span><span class="n">mod2</span><span class="o">+</span><span class="n">query2</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">);}</span><span class="c1">//注意没有下标检查</span>
+<span class="p">}</span><span class="n">hash_a</span><span class="p">,</span><span class="n">hash_b</span><span class="p">;</span>
+<span class="n">ull</span> <span class="n">double_hash</span><span class="o">::</span><span class="n">pw1</span><span class="p">[</span><span class="n">maxn</span><span class="p">],</span><span class="n">double_hash</span><span class="o">::</span><span class="n">pw2</span><span class="p">[</span><span class="n">maxn</span><span class="p">];</span>
 </pre>
     </div>
 

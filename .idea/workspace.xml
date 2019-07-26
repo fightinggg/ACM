@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e505d993-0813-4b95-9e39-e1a7b5c097cb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/problem/math/2019牛客D.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/problem/math/img/2019牛客D.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/problem/math/img/2019牛客D题目.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stencil/math/img/类欧几里得算法f函数.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stencil/math/img/类欧几里得算法一类问题图.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stencil/math/类欧几里得算法.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/problem/math/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/problem/math/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stencil/data_struct/线段树.html" beforeDir="false" afterPath="$PROJECT_DIR$/stencil/data_struct/线段树.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stencil/string/hash.html" beforeDir="false" afterPath="$PROJECT_DIR$/stencil/string/hash.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,25 +23,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/stencil/graph_theory/steinerTree.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="77" selection-start-line="19" selection-start-column="77" selection-end-line="19" selection-end-column="77" />
-              <folding>
-                <element signature="e#375#379#0" expanded="true" />
-                <element signature="e#379#383#0" expanded="true" />
-                <element signature="e#417#421#0" expanded="true" />
-                <element signature="e#421#425#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stencil/graph_theory/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
-              <caret line="19" column="40" lean-forward="true" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
+              <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -50,7 +34,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stencil/data_struct/线段树.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="633">
+            <state relative-caret-position="1560">
               <caret line="235" column="6" selection-start-line="235" selection-start-column="6" selection-end-line="235" selection-end-column="6" />
               <folding>
                 <element signature="n#div#1;n#div#0;n#html#0;n#!!top" />
@@ -78,68 +62,33 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/problem/math/2019牛客D.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="34" column="32" lean-forward="true" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+            <state relative-caret-position="510">
+              <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#div#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#1;n#div#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#925#929#0" expanded="true" />
-                <element signature="e#942#946#0" expanded="true" />
-                <element signature="e#1187#1191#0" expanded="true" />
                 <element signature="e#1191#1195#0" expanded="true" />
-                <element signature="e#1344#1348#0" expanded="true" />
                 <element signature="e#1348#1352#0" expanded="true" />
-                <element signature="e#2159#2164#1" expanded="true" />
-                <element signature="e#2773#2777#0" expanded="true" />
                 <element signature="e#2777#2781#0" expanded="true" />
-                <element signature="e#3005#3009#0" expanded="true" />
-                <element signature="e#3018#3022#0" expanded="true" />
-                <element signature="e#3028#3032#0" expanded="true" />
-                <element signature="e#3041#3045#0" expanded="true" />
-                <element signature="e#3103#3108#0" expanded="true" />
-                <element signature="e#3701#3705#1" expanded="true" />
-                <element signature="e#3803#3807#0" expanded="true" />
                 <element signature="e#3807#3811#0" expanded="true" />
-                <element signature="e#4098#4102#1" expanded="true" />
-                <element signature="e#4275#4279#0" expanded="true" />
                 <element signature="e#4279#4283#0" expanded="true" />
-                <element signature="e#4574#4578#1" expanded="true" />
-                <element signature="e#5434#5439#0" expanded="true" />
-                <element signature="e#6790#6795#0" expanded="true" />
-                <element signature="e#8313#8317#0" expanded="true" />
                 <element signature="e#8317#8321#0" expanded="true" />
-                <element signature="e#8368#8372#0" expanded="true" />
                 <element signature="e#8372#8376#0" expanded="true" />
-                <element signature="e#8423#8427#0" expanded="true" />
                 <element signature="e#8427#8431#0" expanded="true" />
-                <element signature="e#8711#8715#1" expanded="true" />
-                <element signature="e#8763#8767#0" expanded="true" />
                 <element signature="e#8767#8771#0" expanded="true" />
-                <element signature="e#9295#9299#1" expanded="true" />
-                <element signature="e#9796#9800#1" expanded="true" />
-                <element signature="e#9971#9975#0" expanded="true" />
                 <element signature="e#9975#9979#0" expanded="true" />
-                <element signature="e#10311#10315#1" expanded="true" />
-                <element signature="e#10363#10367#0" expanded="true" />
                 <element signature="e#10367#10371#0" expanded="true" />
-                <element signature="e#10877#10882#1" expanded="true" />
-                <element signature="e#12105#12109#0" expanded="true" />
                 <element signature="e#12109#12113#0" expanded="true" />
-                <element signature="e#12498#12502#0" expanded="true" />
                 <element signature="e#12502#12506#0" expanded="true" />
-                <element signature="e#12984#12988#1" expanded="true" />
-                <element signature="e#13036#13040#0" expanded="true" />
                 <element signature="e#13040#13044#0" expanded="true" />
-                <element signature="e#13909#13913#0" expanded="true" />
                 <element signature="e#13913#13917#0" expanded="true" />
-                <element signature="e#13966#13970#0" expanded="true" />
                 <element signature="e#13970#13974#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/problem/math/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
@@ -149,10 +98,43 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/problem/math/hdu6428.html">
+        <entry file="file://$PROJECT_DIR$/stencil/string/palindrome_tree.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/stencil/string/hash.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-700" />
+            <state relative-caret-position="360">
+              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+              <folding>
+                <element signature="e#3364#3368#1" expanded="true" />
+                <element signature="e#10961#10965#1" expanded="true" />
+                <element signature="e#12591#12595#0" expanded="true" />
+                <element signature="e#13246#13251#0" expanded="true" />
+                <element signature="e#13252#13257#0" expanded="true" />
+                <element signature="e#13911#13916#0" expanded="true" />
+                <element signature="e#13917#13922#0" expanded="true" />
+              </folding>
+            </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/stencil/math/类欧几里得算法.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="24" selection-start-line="24" selection-end-line="24" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/problem/math/hdu6428.html">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -207,8 +189,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/stencil/data_struct/区间加+区间乘+区间求和的双标记线段树.html" />
-        <option value="$PROJECT_DIR$/stencil/data_struct/区间翻转0:1+区间赋值0:1+区间求和的双标记动态开点线段树.html" />
         <option value="$PROJECT_DIR$/stencil/data_struct/区间加+区间乘+区间赋值+区间p次方求和的三标记线段树.html" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/stencil/data_struct/区间翻转0-1+区间赋值0-1+区间求和的双标记动态开点线段树.html" />
@@ -258,12 +238,14 @@
         <option value="$PROJECT_DIR$/stencil/data_struct/线段树.html" />
         <option value="$PROJECT_DIR$/problem/math/2019牛客D.html" />
         <option value="$PROJECT_DIR$/problem/math/index.html" />
+        <option value="$PROJECT_DIR$/stencil/string/hash.html" />
+        <option value="$PROJECT_DIR$/stencil/math/类欧几里得算法.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="25" />
-    <option name="y" value="23" />
+    <option name="x" value="117" />
+    <option name="y" value="186" />
     <option name="width" value="1396" />
     <option name="height" value="805" />
   </component>
@@ -275,6 +257,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -285,38 +268,43 @@
             <path>
               <item name="ACM" type="b2602c69:ProjectViewProjectNode" />
               <item name="ACM" type="462c0819:PsiDirectoryNode" />
-              <item name="problem" type="462c0819:PsiDirectoryNode" />
+              <item name="stencil" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ACM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ACM" type="462c0819:PsiDirectoryNode" />
+              <item name="stencil" type="462c0819:PsiDirectoryNode" />
+              <item name="math" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/problem/math/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/stencil/math/img" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/problem/math/img" />
-      <recent name="$PROJECT_DIR$/stencil/graph_theory" />
-      <recent name="$PROJECT_DIR$/blog/cpp" />
-      <recent name="$PROJECT_DIR$/blog/txt" />
-      <recent name="$PROJECT_DIR$/stencil/math/img" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/blog/cpp" />
       <recent name="$PROJECT_DIR$/blog" />
       <recent name="$PROJECT_DIR$/blog/txt" />
       <recent name="$PROJECT_DIR$/stencil/thinging" />
       <recent name="$PROJECT_DIR$/stencil/string" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/stencil/math/img" />
+      <recent name="$PROJECT_DIR$/stencil/math" />
+      <recent name="$PROJECT_DIR$/problem/math/img" />
+      <recent name="$PROJECT_DIR$/stencil/graph_theory" />
+      <recent name="$PROJECT_DIR$/blog/cpp" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -331,11 +319,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html (2)">
+  <component name="RunManager" selected="JavaScript Debug.类欧几里得算法.html">
     <configuration name="2019牛客D.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/ACM/problem/math/2019牛客D.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="线段树.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/ACM/stencil/data_struct/线段树.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="类欧几里得算法.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/ACM/stencil/math/类欧几里得算法.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="合数分解.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/ACM/stencil/math/合数分解.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="主席树.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/data_struct/主席树.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="主席树.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/data_struct/主席树.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="线段树.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/data_struct/线段树.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="多项式求逆.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63344/ACM/stencil/math/多项式求逆.html" useBuiltInWebServerPort="true">
@@ -356,25 +359,10 @@
     <configuration name="拉格朗日插值法.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/math/拉格朗日插值法.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="合数分解.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/ACM/stencil/math/合数分解.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="主席树.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/data_struct/主席树.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="主席树.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/data_struct/主席树.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="线段树.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ACM/stencil/data_struct/线段树.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
     <configuration name="bzoj2124.html" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:63342/ACM/problem/data_struct/bzoj2124.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="cdq.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/ACM/stencil/data_struct/cdq.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="树形dp.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/ACM/stencil/dp/树形dp.html" useBuiltInWebServerPort="true">
+    <configuration name="hash.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/ACM/stencil/string/hash.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="index.html (1)" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:63342/ACM/problem/data_struct/index.html" useBuiltInWebServerPort="true">
@@ -391,11 +379,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.类欧几里得算法.html" />
+        <item itemvalue="JavaScript Debug.hash.html" />
         <item itemvalue="JavaScript Debug.index.html (2)" />
         <item itemvalue="JavaScript Debug.2019牛客D.html" />
         <item itemvalue="JavaScript Debug.线段树.html" />
-        <item itemvalue="JavaScript Debug.树形dp.html" />
-        <item itemvalue="JavaScript Debug.cdq.html" />
       </list>
     </recent_temporary>
   </component>
@@ -551,14 +539,16 @@
       <workItem from="1563245081459" duration="156000" />
       <workItem from="1563245251618" duration="587000" />
       <workItem from="1563512305140" duration="1491000" />
+      <workItem from="1563962255486" duration="210000" />
+      <workItem from="1564127056543" duration="632000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="156089000" />
+    <option name="totallyTimeSpent" value="156931000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="25" y="23" width="1396" height="805" extended-state="0" />
+    <frame x="58" y="59" width="1396" height="805" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49929875" visible="true" weight="0.176" />
@@ -584,19 +574,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/solve_end.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/solve_begin.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/link.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/code_end.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1054,13 +1031,13 @@
     <entry file="file://$PROJECT_DIR$/stencil/graph_theory/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="19" column="40" lean-forward="true" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
+          <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/stencil/data_struct/线段树.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="633">
+        <state relative-caret-position="1560">
           <caret line="235" column="6" selection-start-line="235" selection-start-column="6" selection-end-line="235" selection-end-column="6" />
           <folding>
             <element signature="n#div#1;n#div#0;n#html#0;n#!!top" />
@@ -1084,12 +1061,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/new.html">
+    <entry file="file://$PROJECT_DIR$/problem/math/2019牛客D.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" lean-forward="true" selection-end-line="16" />
+        <state relative-caret-position="510">
+          <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#1;n#div#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#1191#1195#0" expanded="true" />
+            <element signature="e#1348#1352#0" expanded="true" />
+            <element signature="e#2777#2781#0" expanded="true" />
+            <element signature="e#3807#3811#0" expanded="true" />
+            <element signature="e#4279#4283#0" expanded="true" />
+            <element signature="e#8317#8321#0" expanded="true" />
+            <element signature="e#8372#8376#0" expanded="true" />
+            <element signature="e#8427#8431#0" expanded="true" />
+            <element signature="e#8767#8771#0" expanded="true" />
+            <element signature="e#9975#9979#0" expanded="true" />
+            <element signature="e#10367#10371#0" expanded="true" />
+            <element signature="e#12109#12113#0" expanded="true" />
+            <element signature="e#12502#12506#0" expanded="true" />
+            <element signature="e#13040#13044#0" expanded="true" />
+            <element signature="e#13913#13917#0" expanded="true" />
+            <element signature="e#13970#13974#0" expanded="true" />
+          </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/problem/math/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="20" lean-forward="true" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stencil/string/palindrome_tree.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/problem/math/hdu6428.html">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/problem/math/bzoj2655.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -1098,77 +1108,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/problem/math/2019牛客D.html">
+    <entry file="file://$PROJECT_DIR$/new.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="34" column="32" lean-forward="true" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+        <state relative-caret-position="240">
+          <caret line="16" lean-forward="true" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stencil/string/hash.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
           <folding>
-            <element signature="n#style#0;n#img#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#1;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#925#929#0" expanded="true" />
-            <element signature="e#942#946#0" expanded="true" />
-            <element signature="e#1187#1191#0" expanded="true" />
-            <element signature="e#1191#1195#0" expanded="true" />
-            <element signature="e#1344#1348#0" expanded="true" />
-            <element signature="e#1348#1352#0" expanded="true" />
-            <element signature="e#2159#2164#1" expanded="true" />
-            <element signature="e#2773#2777#0" expanded="true" />
-            <element signature="e#2777#2781#0" expanded="true" />
-            <element signature="e#3005#3009#0" expanded="true" />
-            <element signature="e#3018#3022#0" expanded="true" />
-            <element signature="e#3028#3032#0" expanded="true" />
-            <element signature="e#3041#3045#0" expanded="true" />
-            <element signature="e#3103#3108#0" expanded="true" />
-            <element signature="e#3701#3705#1" expanded="true" />
-            <element signature="e#3803#3807#0" expanded="true" />
-            <element signature="e#3807#3811#0" expanded="true" />
-            <element signature="e#4098#4102#1" expanded="true" />
-            <element signature="e#4275#4279#0" expanded="true" />
-            <element signature="e#4279#4283#0" expanded="true" />
-            <element signature="e#4574#4578#1" expanded="true" />
-            <element signature="e#5434#5439#0" expanded="true" />
-            <element signature="e#6790#6795#0" expanded="true" />
-            <element signature="e#8313#8317#0" expanded="true" />
-            <element signature="e#8317#8321#0" expanded="true" />
-            <element signature="e#8368#8372#0" expanded="true" />
-            <element signature="e#8372#8376#0" expanded="true" />
-            <element signature="e#8423#8427#0" expanded="true" />
-            <element signature="e#8427#8431#0" expanded="true" />
-            <element signature="e#8711#8715#1" expanded="true" />
-            <element signature="e#8763#8767#0" expanded="true" />
-            <element signature="e#8767#8771#0" expanded="true" />
-            <element signature="e#9295#9299#1" expanded="true" />
-            <element signature="e#9796#9800#1" expanded="true" />
-            <element signature="e#9971#9975#0" expanded="true" />
-            <element signature="e#9975#9979#0" expanded="true" />
-            <element signature="e#10311#10315#1" expanded="true" />
-            <element signature="e#10363#10367#0" expanded="true" />
-            <element signature="e#10367#10371#0" expanded="true" />
-            <element signature="e#10877#10882#1" expanded="true" />
-            <element signature="e#12105#12109#0" expanded="true" />
-            <element signature="e#12109#12113#0" expanded="true" />
-            <element signature="e#12498#12502#0" expanded="true" />
-            <element signature="e#12502#12506#0" expanded="true" />
-            <element signature="e#12984#12988#1" expanded="true" />
-            <element signature="e#13036#13040#0" expanded="true" />
-            <element signature="e#13040#13044#0" expanded="true" />
-            <element signature="e#13909#13913#0" expanded="true" />
-            <element signature="e#13913#13917#0" expanded="true" />
-            <element signature="e#13966#13970#0" expanded="true" />
-            <element signature="e#13970#13974#0" expanded="true" />
+            <element signature="e#3364#3368#1" expanded="true" />
+            <element signature="e#10961#10965#1" expanded="true" />
+            <element signature="e#12591#12595#0" expanded="true" />
+            <element signature="e#13246#13251#0" expanded="true" />
+            <element signature="e#13252#13257#0" expanded="true" />
+            <element signature="e#13911#13916#0" expanded="true" />
+            <element signature="e#13917#13922#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/problem/math/hdu6428.html">
+    <entry file="file://$PROJECT_DIR$/stencil/math/类欧几里得算法.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-700" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/problem/math/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="20" lean-forward="true" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+        <state relative-caret-position="360">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
