@@ -1,22 +1,159 @@
 <!DOCTYPE html>
 <html>
 
-
 <head>
     <meta charset="utf-8">
     <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <title>类欧几里得算法</title>
 </head>
 
 
 <script type="text/javascript" src="/ACM/js/web_begin.js"></script>
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 <div>
     <center><h1>类欧几里得算法</h1></center>
-    <div id="text">
-        类欧几里得算法主要解决下面的一类问题 <br>
-        <img src="img/类欧几里得算法一类问题图.png" style="width:30%">
+    <div id="text" style="overflow: scroll">
+        先考虑一个简单的问题
+        $$f(a,b,c,n)=\sum_{i=0}^n\lfloor\frac{ai+b}{c}\rfloor$$
+        我们这样来解决
+        $$
+        \begin{aligned}
+        \\&f(a,b,c,n)
+        \\&=\sum_{i=0}^n\lfloor\frac{ai+b}{c}\rfloor
+        \\&=f(a\%c,b\%c,c,n)+\sum_{i=0}^{n}(i\lfloor\frac{a}{c}\rfloor+\lfloor\frac{b}{c}\rfloor)
+        \\&=f(a\%c,b\%c,c,n)+\frac{n(n+1)}{2}\lfloor\frac{a}{c}\rfloor+(n+1)\lfloor\frac{b}{c}\rfloor
+        \\
+        \\&令m=\lfloor\frac{an+b}{c}\rfloor
+        \\&则f(a,b,c,n)
+        \\&=\sum_{i=0}^n\lfloor\frac{ai+b}{c}\rfloor
+        \\&=\sum_{i=0}^n\sum_{j=1}^m[\lfloor\frac{ai+b}{c}\rfloor\geq j]
+        \\&=\sum_{i=0}^n\sum_{j=0}^{m-1}[\lfloor\frac{ai+b}{c}\rfloor\geq j+1]
+        \\&=\sum_{i=0}^n\sum_{j=0}^{m-1}[ai+b \geq cj+c]
+        \\&=\sum_{i=0}^n\sum_{j=0}^{m-1}[ai \gt cj+c-b-1]
+        \\&=\sum_{i=0}^n\sum_{j=0}^{m-1}[i \gt \lfloor\frac{cj+c-b-1}{a}\rfloor]
+        \\&=\sum_{j=0}^{m-1}n-\lfloor\frac{cj+c-b-1}{a}\rfloor
+        \\&=nm-f(c,c-b-1,a,m-1)
+        \\&可以开始递归，递归出口 m=0
+        \end{aligned}
+        $$
+
+        然后我们考虑两个难一点的题目，同时解决这两个问题
+        $$
+        \begin{aligned}
+        &h(a,b,c,n)=\sum_{i=0}^n\lfloor\frac{ai+b}{c}\rfloor^2
+        \quad\quad\quad\quad g(a,b,c,n)=\sum_{i=0}^ni\lfloor\frac{ai+b}{c}\rfloor
+        \end{aligned}
+        $$
+
+
+        先来看h
+        $$
+        \begin{aligned}
+        &h(a,b,c,n)\\
+        =&\sum_{i=0}^n\lfloor\frac{ai+b}{c}\rfloor^2\\
+        =&\sum_{i=0}^n(\lfloor\frac{(a\%c)i+(b\%c) }{c}\rfloor+\lfloor\frac{a}{c}\rfloor i+\lfloor\frac{b}{c}\rfloor)^2\\
+        =&\sum_{i=0}^n(\lfloor\frac{(a\%c)i+(b\%c) }{c}\rfloor^2+\lfloor\frac{a}{c}\rfloor^2i^2+\lfloor\frac{b}{c}\rfloor^2+2\lfloor\frac{a}{c}\rfloor i\lfloor\frac{b}{c}\rfloor+2\lfloor\frac{(a\%c)i+(b\%c) }{c}\rfloor\lfloor\frac{a}{c}\rfloor i+2\lfloor\frac{(a\%c)i+(b\%c) }{c}\rfloor\lfloor\frac{b}{c}\rfloor\\
+        =&h(a\%c,b\%c,c,n)+2\lfloor\frac{a}{c}\rfloor g(a\%c,b\%c,c,n)+2\lfloor\frac{b}{c}\rfloor f(a\%c,b\%c,c,n)+\lfloor\frac{a}{c}\rfloor^2\frac{n(n+1)(2n+1)}{6}+2\lfloor\frac{a}{c}\rfloor \lfloor\frac{b}{c}\rfloor\frac{n(n+1)}{2}+(n+1)\lfloor\frac{b}{c}\rfloor^2
+        \end{aligned}
+        $$
+
+        这里我们只用关心第一项
+
+        $$
+        \begin{aligned}
+        &令m=\lfloor\frac{an+b}{c}\rfloor则\\
+        &h(a,b,c,n)\\
+        =&\sum_{i=0}^n\lfloor\frac{ai+b}{c}\rfloor^2\\
+        =&\sum_{i=0}^n(\sum_{j=1}^m[\lfloor\frac{ai+b}{c}\rfloor\geq j])^2\\
+        =&\sum_{i=0}^n(\sum_{j=0}^{m-1}[i \gt \lfloor\frac{cj+c-b-1}{a}\rfloor])^2\\
+        =&\sum_{i=0}^n\sum_{j=0}^{m-1}[i \gt \lfloor\frac{cj+c-b-1}{a}\rfloor]\sum_{k=0}^{m-1}[i \gt \lfloor\frac{ck+c-b-1}{a}\rfloor]\\
+        =&\sum_{i=0}^n\sum_{j=0}^{m-1}\sum_{k=0}^{m-1}[i \gt \lfloor\frac{cj+c-b-1}{a}\rfloor]*[i \gt \lfloor\frac{ck+c-b-1}{a}\rfloor]\\
+        =&\sum_{i=0}^n\sum_{j=0}^{m-1}\sum_{k=0}^{m-1}[i \gt max(\lfloor\frac{cj+c-b-1}{a}\rfloor,\lfloor\frac{ck+c-b-1}{a}\rfloor)]\\
+        =&\sum_{i=0}^n\sum_{j=0}^{m-1}\sum_{k=0}^{m-1}[i \gt max(\lfloor\frac{cj+c-b-1}{a}\rfloor,\lfloor\frac{ck+c-b-1}{a}\rfloor)]\\
+        =&nm^2-\sum_{j=0}^{m-1}\sum_{k=0}^{m-1} max(\lfloor\frac{cj+c-b-1}{a}\rfloor,\lfloor\frac{ck+c-b-1}{a}\rfloor)\\
+        =&nm^2-2\sum_{j=0}^{m-1}j\lfloor\frac{cj+c-b-1}{a}\rfloor-\sum_{j=0}^{m-1}\lfloor\frac{cj+c-b-1}{a}\rfloor\\
+        =&nm^2-2g(c,c-b-1,a,m-1)-f(c,c-b-1,a,m-1)
+        \end{aligned}
+        $$
+        推出来了。。。。。<br>
+        然后我们来怼g
+        $$
+        \begin{aligned}
+        &g(a,b,c,n)\\
+        =&\sum_{i=0}^ni\lfloor\frac{ai+b}{c}\rfloor\\
+        =&\sum_{i=0}^ni\lfloor\frac{(a\%c)i+b\%c}{c}+\lfloor\frac{a}{c}\rfloor i+\lfloor\frac{b}{c}\rfloor\rfloor \\
+        =&\sum_{i=0}^ni(\lfloor\frac{(a\%c)i+b\%c}{c}\rfloor+\lfloor\frac{a}{c}\rfloor i+\lfloor\frac{b}{c}\rfloor)\\
+        =&\sum_{i=0}^ni\lfloor\frac{(a\%c)i+b\%c}{c}\rfloor+\sum_{i=0}^n\lfloor\frac{a}{c}\rfloor i^2+\sum_{i=0}^n\lfloor\frac{b}{c}\rfloor i\\
+        =&\frac{n(n+1)(2n+1)}{6}\lfloor\frac{a}{c}\rfloor +\frac{n(n+1)}{2}\lfloor\frac{b}{c}\rfloor +\sum_{i=0}^ni\lfloor\frac{(a\%c)i+b\%c}{c}\rfloor\\
+        =&g(a\%c,b\%c,c,n)+\frac{n(n+1)(2n+1)}{6}\lfloor\frac{a}{c}\rfloor +\frac{n(n+1)}{2}\lfloor\frac{b}{c}\rfloor
+        \end{aligned}
+        $$
+
+        同理我们只关心第一项
+        $$
+        \begin{aligned}
+        &g(a,b,c,n)\\
+        =&\sum_{i=0}^ni\lfloor\frac{ai+b}{c}\rfloor\\
+        =&\sum_{i=0}^n(i\sum_{j=1}^m[\lfloor\frac{ai+b}{c}\rfloor \geq j])\\
+        =&\sum_{i=0}^n(i\sum_{j=0}^{m-1}[i \gt \lfloor\frac{cj+c-b-1}{a}\rfloor])\\
+        =&\sum_{i=0}^n\sum_{j=0}^{m-1}i[i \gt \lfloor\frac{cj+c-b-1}{a}\rfloor]\\
+        =&\sum_{j=0}^{m-1}\sum_{i=\lfloor\frac{cj+c-b-1}{a}\rfloor+1}^ni\\
+        =&\sum_{j=0}^{m-1}\frac{(n+\lfloor\frac{cj+c-b-1}{a}\rfloor+1)*(n-(\lfloor\frac{cj+c-b-1}{a}\rfloor+1)+1)}{2}\\
+        =&\sum_{j=0}^{m-1}\frac{(n+\lfloor\frac{cj+c-b-1}{a}\rfloor+1)*(n-\lfloor\frac{cj+c-b-1}{a}\rfloor)}{2}\\
+        =&\sum_{j=0}^{m-1}\frac{n^2-\lfloor\frac{cj+c-b-1}{a}\rfloor^2+n-\lfloor\frac{cj+c-b-1}{a}\rfloor}{2}\\
+        =&\frac{n(n+1)m}{2}-\frac{\sum_{j=0}^{m-1}\lfloor\frac{cj+c-b-1}{a}\rfloor^2}{2}-\frac{\sum_{j=0}^{m-1}\lfloor\frac{cj+c-b-1}{a}\rfloor}{2}\\
+        =&\frac{n(n+1)m}{2}-\frac{h(c,c-b-1,a,m-1)}{2}-\frac{f(c,c-b-1,a,m-1)}{2}\\
+        \end{aligned}
+        $$
+        推完了总结一下
+
+        $$
+        \begin{aligned}
+        &f(a,b,c,n)=\sum_{i=0}^n\lfloor\frac{ai+b}{c}\rfloor\\
+        &h(a,b,c,n)=\sum_{i=0}^n\lfloor\frac{ai+b}{c}\rfloor^2  \\
+        & g(a,b,c,n)=\sum_{i=0}^ni\lfloor\frac{ai+b}{c}\rfloor  \\
+        \\
+        &f(a,b,c,n)=f(a\%c,b\%c,c,n)+\frac{n(n+1)}{2}\lfloor\frac{a}{c}\rfloor+(n+1)\lfloor\frac{b}{c}\rfloor\\
+        &h(a,b,c,n)=h(a\%c,b\%c,c,n)+2\lfloor\frac{a}{c}\rfloor g(a\%c,b\%c,c,n)+2\lfloor\frac{b}{c}\rfloor f(a\%c,b\%c,c,n)+\lfloor\frac{a}{c}\rfloor^2\frac{n(n+1)(2n+1)}{6}+2\lfloor\frac{a}{c}\rfloor \lfloor\frac{b}{c}\rfloor\frac{n(n+1)}{2}+(n+1)\lfloor\frac{b}{c}\rfloor^2\\
+        &g(a,b,c,n)=g(a\%c,b\%c,c,n)+\frac{n(n+1)(2n+1)}{6}\lfloor\frac{a}{c}\rfloor +\frac{n(n+1)}{2}\lfloor\frac{b}{c}\rfloor\\
+        \\
+        &f(a,b,c,n)=nm-f(c,c-b-1,a,m-1)\\
+        &h(a,b,c,n)=nm^2-2g(c,c-b-1,a,m-1)-f(c,c-b-1,a,m-1)\\
+        &g(a,b,c,n)=\frac{n(n+1)m}{2}-\frac{h(c,c-b-1,a,m-1)}{2}-\frac{f(c,c-b-1,a,m-1)}{2}\\
+        \end{aligned}
+        $$
+
     </div>
+
+
+    <div id="code">
+        <pre><span class="kt">void</span> <span class="n">calfgh_baoli</span><span class="p">(</span><span class="n">ll</span> <span class="n">a</span><span class="p">,</span><span class="n">ll</span> <span class="n">b</span><span class="p">,</span><span class="n">ll</span> <span class="n">c</span><span class="p">,</span><span class="n">ll</span> <span class="n">n</span><span class="p">,</span><span class="n">ll</span><span class="o">&amp;</span><span class="n">f</span><span class="p">,</span><span class="n">ll</span><span class="o">&amp;</span><span class="n">g</span><span class="p">,</span><span class="n">ll</span><span class="o">&amp;</span><span class="n">h</span><span class="p">){</span>
+    <span class="n">f</span><span class="o">=</span><span class="n">g</span><span class="o">=</span><span class="n">h</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">f</span><span class="o">+=</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="n">c</span><span class="p">;</span>
+        <span class="n">g</span><span class="o">+=</span><span class="n">i</span><span class="o">*</span><span class="p">((</span><span class="n">a</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="n">c</span><span class="p">);</span>
+        <span class="n">h</span><span class="o">+=</span><span class="p">((</span><span class="n">a</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="n">c</span><span class="p">)</span><span class="o">*</span><span class="p">((</span><span class="n">a</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="n">c</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// a&gt;=0 b&gt;=0 c&gt;0 n&gt;=0         -&gt; O(lg(a,c))</span>
+<span class="kt">void</span> <span class="n">calfgh</span><span class="p">(</span><span class="n">ll</span> <span class="n">a</span><span class="p">,</span><span class="n">ll</span> <span class="n">b</span><span class="p">,</span><span class="n">ll</span> <span class="n">c</span><span class="p">,</span><span class="n">ll</span> <span class="n">n</span><span class="p">,</span><span class="n">ll</span><span class="o">&amp;</span><span class="n">f</span><span class="p">,</span><span class="n">ll</span><span class="o">&amp;</span><span class="n">g</span><span class="p">,</span><span class="n">ll</span><span class="o">&amp;</span><span class="n">h</span><span class="p">){</span>
+    <span class="n">ll</span> <span class="n">A</span><span class="o">=</span><span class="n">a</span><span class="o">/</span><span class="n">c</span><span class="p">,</span><span class="n">B</span><span class="o">=</span><span class="n">b</span><span class="o">/</span><span class="n">c</span><span class="p">,</span><span class="n">s0</span><span class="o">=</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">s1</span><span class="o">=</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">s2</span><span class="o">=</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">6</span><span class="p">;</span>
+    <span class="n">f</span><span class="o">=</span><span class="n">s1</span><span class="o">*</span><span class="n">A</span><span class="o">+</span><span class="n">s0</span><span class="o">*</span><span class="n">B</span><span class="p">;</span>
+    <span class="n">g</span><span class="o">=</span><span class="n">s2</span><span class="o">*</span><span class="n">A</span><span class="o">+</span><span class="n">s1</span><span class="o">*</span><span class="n">B</span><span class="p">;</span>
+    <span class="n">h</span><span class="o">=</span><span class="n">s2</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="n">A</span><span class="o">+</span><span class="n">s0</span><span class="o">*</span><span class="n">B</span><span class="o">*</span><span class="n">B</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">s1</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="n">B</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">B</span><span class="o">*</span><span class="n">f</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="n">g</span><span class="p">;</span><span class="c1">// 先减掉</span>
+    <span class="n">a</span><span class="o">%=</span><span class="n">c</span><span class="p">,</span><span class="n">b</span><span class="o">%=</span><span class="n">c</span><span class="p">;</span>
+    <span class="n">ll</span> <span class="n">m</span><span class="o">=</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="n">c</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">m</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ll</span> <span class="n">ff</span><span class="p">,</span><span class="n">gg</span><span class="p">,</span><span class="n">hh</span><span class="p">;</span> <span class="n">calfgh</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">c</span><span class="o">-</span><span class="n">b</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">ff</span><span class="p">,</span><span class="n">gg</span><span class="p">,</span><span class="n">hh</span><span class="p">);</span>
+        <span class="n">f</span><span class="o">+=</span><span class="n">n</span><span class="o">*</span><span class="n">m</span><span class="o">-</span><span class="n">ff</span><span class="p">;</span>
+        <span class="n">g</span><span class="o">+=</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">m</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">hh</span><span class="o">-</span><span class="n">ff</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+        <span class="n">h</span><span class="o">+=</span><span class="n">n</span><span class="o">*</span><span class="n">m</span><span class="o">*</span><span class="n">m</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">gg</span><span class="o">-</span><span class="n">ff</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">h</span><span class="o">+=</span><span class="mi">2</span><span class="o">*</span><span class="n">B</span><span class="o">*</span><span class="n">f</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="n">g</span><span class="p">;</span><span class="c1">//再加上</span>
+<span class="p">}</span>
+</pre>
+    </div>
+
 </div>
 <script type="text/javascript" src="/ACM/js/web_end.js"></script>
 </html>

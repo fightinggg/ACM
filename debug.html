@@ -1,17 +1,39 @@
-<meta http-equiv=Content-Type content="text/html;charset=utf-8">
+<!DOCTYPE html>
 <html>
-姝ゅ伐浣滃睘浜庢彁楂樿姹�
-<body bgcolor="white">
-<h1>The Echo JSP - Testing for Jsp tasks</h1>
-<br> header: Host value:  localhost:8080
-<br> header: Connection value:  keep-alive
-<br> header: Upgrade-Insecure-Requests value:  1
-<br> header: User-Agent value:  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36
-<br> header: Accept value:  text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3
-<br> header: Referer value:  http://localhost:8080/all.html
-<br> header: Accept-Encoding value:  gzip, deflate, br
-<br> header: Accept-Language value:  zh-CN,zh;q=0.9
-<br> header: Cookie value:  Idea-85eac14=467bdeed-512c-4f3a-ab23-e5cc5d59beab
 
-</body>
-</html> 
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <title>manacher</title>
+</head>
+
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div>
+    <center><h1></h1></center>
+    $$
+    \begin{aligned}
+    \\&f(a,b,c,n)
+    \\&=\sum_{i=0}^n\lfloor\frac{ai+b}{c}\rfloor
+    \\&=f(a\%c,b\%c,c,n)+\sum_{i=0}^{n}(i\lfloor\frac{a}{c}\rfloor+\lfloor\frac{b}{c}\rfloor)
+    \\&=f(a\%c,b\%c,c,n)+\frac{n(n+1)}{2}\lfloor\frac{a}{c}\rfloor+(n+1)\lfloor\frac{b}{c}\rfloor
+    \\
+    \\&令m=\lfloor\frac{an+b}{c}\rfloor
+    \\&则f(a,b,c,n)
+    \\&=\sum_{i=0}^n\lfloor\frac{ai+b}{c}\rfloor
+    \\&=\sum_{i=0}^n\sum_{j=1}^m[\lfloor\frac{ai+b}{c}\rfloor\geq j]
+    \\&=\sum_{i=0}^n\sum_{j=0}^{m-1}[\lfloor\frac{ai+b}{c}\rfloor\geq j+1]
+    \\&=\sum_{i=0}^n\sum_{j=0}^{m-1}[ai+b \geq cj+c]
+    \\&=\sum_{i=0}^n\sum_{j=0}^{m-1}[ai \gt cj+c-b-1]
+    \\&=\sum_{i=0}^n\sum_{j=0}^{m-1}[i \gt \lfloor\frac{cj+c-b-1}{a}\rfloor]
+    \\&=\sum_{j=0}^{m-1}n-\lfloor\frac{cj+c-b-1}{a}\rfloor
+    \\&=nm-f(c,c-b-1,a,m-1)
+    \\&可以开始递归，递归出口 m=0
+    \end{aligned}
+    $$
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>
+
+
