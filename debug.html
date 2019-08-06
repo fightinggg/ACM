@@ -6,34 +6,34 @@
     <script type="text/javascript" src="/ACM/js/link.js"></script>
     <script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <title>manacher</title>
-</head>
+<!--</head>-->
 
 
-<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
-<div>
-    <center><h1></h1></center>
-    $$
-    \begin{aligned}
-    \\&f(a,b,c,n)
-    \\&=\sum_{i=0}^n\lfloor\frac{ai+b}{c}\rfloor
-    \\&=f(a\%c,b\%c,c,n)+\sum_{i=0}^{n}(i\lfloor\frac{a}{c}\rfloor+\lfloor\frac{b}{c}\rfloor)
-    \\&=f(a\%c,b\%c,c,n)+\frac{n(n+1)}{2}\lfloor\frac{a}{c}\rfloor+(n+1)\lfloor\frac{b}{c}\rfloor
-    \\
-    \\&令m=\lfloor\frac{an+b}{c}\rfloor
-    \\&则f(a,b,c,n)
-    \\&=\sum_{i=0}^n\lfloor\frac{ai+b}{c}\rfloor
-    \\&=\sum_{i=0}^n\sum_{j=1}^m[\lfloor\frac{ai+b}{c}\rfloor\geq j]
-    \\&=\sum_{i=0}^n\sum_{j=0}^{m-1}[\lfloor\frac{ai+b}{c}\rfloor\geq j+1]
-    \\&=\sum_{i=0}^n\sum_{j=0}^{m-1}[ai+b \geq cj+c]
-    \\&=\sum_{i=0}^n\sum_{j=0}^{m-1}[ai \gt cj+c-b-1]
-    \\&=\sum_{i=0}^n\sum_{j=0}^{m-1}[i \gt \lfloor\frac{cj+c-b-1}{a}\rfloor]
-    \\&=\sum_{j=0}^{m-1}n-\lfloor\frac{cj+c-b-1}{a}\rfloor
-    \\&=nm-f(c,c-b-1,a,m-1)
-    \\&可以开始递归，递归出口 m=0
-    \end{aligned}
-    $$
-</div>
-<script type="text/javascript" src="/ACM/js/web_end.js"></script>
-</html>
+<!--<script type="text/javascript" src="/ACM/js/web_begin.js"></script>-->
+<!--<div>-->
+<!--    <center><h1></h1></center>-->
+<!--    $$-->
+<!--    \begin{aligned}-->
+<!--    \\&f(a,b,c,n)-->
+<!--    \\&=\sum_{i=0}^n\lfloor\frac{ai+b}{c}\rfloor-->
+<!--    \\&=f(a\%c,b\%c,c,n)+\sum_{i=0}^{n}(i\lfloor\frac{a}{c}\rfloor+\lfloor\frac{b}{c}\rfloor)-->
+<!--    \\&=f(a\%c,b\%c,c,n)+\frac{n(n+1)}{2}\lfloor\frac{a}{c}\rfloor+(n+1)\lfloor\frac{b}{c}\rfloor-->
+<!--    \\-->
+<!--    \\&令m=\lfloor\frac{an+b}{c}\rfloor-->
+<!--    \\&则f(a,b,c,n)-->
+<!--    \\&=\sum_{i=0}^n\lfloor\frac{ai+b}{c}\rfloor-->
+<!--    \\&=\sum_{i=0}^n\sum_{j=1}^m[\lfloor\frac{ai+b}{c}\rfloor\geq j]-->
+<!--    \\&=\sum_{i=0}^n\sum_{j=0}^{m-1}[\lfloor\frac{ai+b}{c}\rfloor\geq j+1]-->
+<!--    \\&=\sum_{i=0}^n\sum_{j=0}^{m-1}[ai+b \geq cj+c]-->
+<!--    \\&=\sum_{i=0}^n\sum_{j=0}^{m-1}[ai \gt cj+c-b-1]-->
+<!--    \\&=\sum_{i=0}^n\sum_{j=0}^{m-1}[i \gt \lfloor\frac{cj+c-b-1}{a}\rfloor]-->
+<!--    \\&=\sum_{j=0}^{m-1}n-\lfloor\frac{cj+c-b-1}{a}\rfloor-->
+<!--    \\&=nm-f(c,c-b-1,a,m-1)-->
+<!--    \\&可以开始递归，递归出口 m=0-->
+<!--    \end{aligned}-->
+<!--    $$-->
+<!--</div>-->
+<!--<script type="text/javascript" src="/ACM/js/web_end.js"></script>-->
+<!--</html>-->
 
 

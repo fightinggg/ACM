@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/ACM/js/link.js"></script>
+    <script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <title> bzoj </title>
+</head>
+
+<script type="text/javascript" src="/ACM/js/web_begin.js"></script>
+<div style="overflow: scroll">
+    <center><h1>bzoj2118</h1></center>
+    <div>
+        Description<br>
+        墨墨突然对等式很感兴趣，他正在研究a1x1+a2y2+…+anxn=B存在非负整数解的条件，他要求你编写一个程序，给定N、{an}、以
+        及B的取值范围，求出有多少B可以使等式存在非负整数解。<br>
+        <br>
+        Input<br>
+        输入的第一行包含3个正整数，分别表示N、BMin、BMax分别表示数列的长度、B的下界、B的上界。输入的第二行包含N个整数，即
+        数列{an}的值。<br>
+        <br>
+        Output<br>
+        输出一个整数，表示有多少b可以使等式存在非负整数解。<br>
+        <br>
+        Sample Input<br>
+        2 5 10<br>
+        3 5<br>
+        <br>
+        Sample Output<br>
+        5<br>
+        <br>
+        HINT<br>
+        对于100%的数据，N≤12，0≤ai≤5*10^5，1≤BMin≤BMax≤10^12。<br>
+    </div>
+
+    <hr>
+    <div>
+        f[i]表示模x意义下等于i时的最小背包容量<br>
+        如果我们取x=min(ai),<br>
+        则对于所有的f[i],f[i]+k*ai一定能够取得到<br>
+        f用最短路来求即可<br>
+    </div>
+
+    <div id="code">
+        <pre><span class="cp">#include&lt;bits/stdc++.h&gt;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+    <span class="n">ll</span> <span class="n">n</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">;</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lld%lld%lld&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">,</span><span class="o">&amp;</span><span class="n">l</span><span class="p">,</span><span class="o">&amp;</span><span class="n">r</span><span class="p">);</span>
+    <span class="n">ll</span> <span class="n">mi</span><span class="o">=</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">30</span><span class="p">;</span>
+    <span class="n">ll</span> <span class="n">a</span><span class="p">[</span><span class="mi">12</span><span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lld&quot;</span><span class="p">,</span><span class="n">a</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
+        <span class="n">mi</span><span class="o">=</span><span class="n">min</span><span class="p">(</span><span class="n">mi</span><span class="p">,</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">dis</span><span class="p">(</span><span class="n">mi</span><span class="p">,</span><span class="mf">1e18</span><span class="p">);</span>
+    <span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">ll</span><span class="p">,</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span><span class="p">,</span><span class="n">greater</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
+    <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="n">dis</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span>
+        <span class="n">ll</span> <span class="n">u</span><span class="o">=</span><span class="n">q</span><span class="p">.</span><span class="n">top</span><span class="p">();</span><span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">ll</span> <span class="n">v</span><span class="o">=</span><span class="n">u</span><span class="o">+</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">dis</span><span class="p">[</span><span class="n">v</span><span class="o">%</span><span class="n">mi</span><span class="p">]</span><span class="o">&gt;</span><span class="n">dis</span><span class="p">[</span><span class="n">u</span><span class="o">%</span><span class="n">mi</span><span class="p">]</span><span class="o">+</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+                <span class="n">dis</span><span class="p">[</span><span class="n">v</span><span class="o">%</span><span class="n">mi</span><span class="p">]</span><span class="o">=</span><span class="n">dis</span><span class="p">[</span><span class="n">u</span><span class="o">%</span><span class="n">mi</span><span class="p">]</span><span class="o">+</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+                <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">l</span><span class="o">--</span><span class="p">;</span>
+    <span class="kt">long</span> <span class="kt">long</span> <span class="n">ans</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">ll</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">mi</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">dis</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">l</span><span class="p">)</span> <span class="n">ans</span><span class="o">-=</span><span class="p">(</span><span class="n">l</span><span class="o">-</span><span class="n">dis</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="n">mi</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">dis</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">r</span><span class="p">)</span> <span class="n">ans</span><span class="o">+=</span><span class="p">(</span><span class="n">r</span><span class="o">-</span><span class="n">dis</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="n">mi</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 5 6 8 9 10</span>
+<span class="c1">// 2 0 2 1 1</span>
+</pre>
+    </div>
+</div>
+<script type="text/javascript" src="/ACM/js/web_end.js"></script>
+</html>
