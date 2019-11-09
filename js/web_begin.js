@@ -1,7 +1,7 @@
 document.writeln('                   <body>     																																					');
 document.writeln('                   <div id="myweb"> 																																												');
 
-document.writeln('   <div id="up"> <center><a href="http://fightinggg.github.io/">逐    梦</a></center></div>																	');
+document.writeln('   <div id="up"> <center><a href="http://fightinggg.coding.me/">逐    梦</a></center></div>																	');
 document.writeln('                   <nav id="menu" class="menu">     																																					');
 document.writeln('                   <div id="right">																																													');
 
